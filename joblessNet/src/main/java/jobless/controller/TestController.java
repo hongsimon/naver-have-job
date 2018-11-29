@@ -3,10 +3,10 @@ package jobless.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("mainController")
-public class MainController {
-	@RequestMapping(value="/test.do")
+@Controller("testController")
+public class TestController {
+	@RequestMapping(value="/test2.do")
 	public String controllerTest() {
-		return "test";
+		return "test2";
 	}
 }
