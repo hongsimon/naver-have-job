@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<Configuration>
+	<Properties>
+		<Property name="baseDir">d:logFiles</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss a} %level %c - %m %n" />
+		</Console>
+		<RollingFile name="RollingFile" fileName="${baseDir}/test.log"
+		filePattern="${baseDir}/$${date:yyyy-MM-dd}/test-%d{MM-dd-yyyy}-%i.log.zip">
+			<PatternLayout pattern="%d %c [%t] %m %n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1000" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<file name="filetest" />
+	</Appenders>
+	<Loggers>
+		<Root level="trace">
+			<appender-ref ref="Console" />
+			<appender-ref ref="RollingFile" />
+		</Root>
+	</Loggers>
+</Configuration>

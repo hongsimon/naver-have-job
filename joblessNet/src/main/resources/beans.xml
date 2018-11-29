@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="jobless.dao" />
+	<context:component-scan base-package="jobless.model" />
+	<context:component-scan base-package="jobless.controller" />
+
+	<context:property-placeholder location="classpath:dbConfig.properties" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${db.driverClass}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:SqlMapConfig.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:mapper/boardCategoryMapper.xml</value>
+				<value>classpath:mapper/boardMapper.xml</value>
+				<value>classpath:mapper/clipMapper.xml</value>
+				<value>classpath:mapper/commentMapper.xml</value>
+				<value>classpath:mapper/contentMapper.xml</value>
+				<value>classpath:mapper/iconMapper.xml</value>
+				<value>classpath:mapper/platformMapper.xml</value>
+				<value>classpath:mapper/postMapper.xml</value>
+				<value>classpath:mapper/userMapper.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="jobless." />
+		<property name="annotationClass" value="jobless.dao.mapper.MyAnnotMapper" />
+	</bean>
+
+</beans>
