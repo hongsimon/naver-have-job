@@ -20,6 +20,7 @@ public class UserVO {
 	public UserVO() {
 	}
 
+	//insert용
 	public UserVO(String loginId, String nickName, String password, String email, int platformId) {
 		this.loginId = loginId;
 		this.nickName = nickName;
@@ -27,7 +28,8 @@ public class UserVO {
 		this.email = email;
 		this.platformId = platformId;
 	}
-
+	
+	//select, update용
 	public UserVO(int userId, String loginId, String nickName, String password, String email, int point,
 			LocalDate regDate, boolean admin, boolean ban, int platformId) {
 		this.userId = userId;
