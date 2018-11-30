@@ -11,4 +11,11 @@
 		<property name="prefix" value="/WEB-INF/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/css/**" location="/resources/css/" />
+	<mvc:resources mapping="/images/**" location="/resources/images/" />
+	<mvc:resources mapping="/js/**" location="/resources/js/" />
 </beans>

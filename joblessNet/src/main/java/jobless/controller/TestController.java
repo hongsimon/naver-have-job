@@ -19,20 +19,18 @@ public class TestController {
 
 	@RequestMapping("/getFile")
 	public void getFile(MultipartFile mulFile, HttpServletRequest request) {
-		System.out.println(mulFile.getOriginalFilename());
-
-		String uploadPath = "uploadImg";
-		String sDownPath = request.getServletContext().getRealPath("/uploadImg");
-		int size = 10 * 1024 * 1024; // 업로드 사이즈 제한 10M 이하
-
 		String fileName = mulFile.getOriginalFilename(); // 파일명
+		
+		String uploadPath = "/resources/images/";
+		String sDownPath = request.getServletContext().getRealPath(uploadPath);
+		int size = 10 * 1024 * 1024; // 업로드 사이즈 제한 10M 이하
 
 		File file = new File(sDownPath + fileName);
 
+		System.out.println(file.getPath());
 		try {
 			mulFile.transferTo(file);
 		} catch (IllegalStateException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -4,12 +4,8 @@
 
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
-<!-- 
-	<context-param>
-		<param-name>log4jConfiguration</param-name>
-		<param-value>classpath:log4j2.xml</param-value>
-	</context-param>
- -->
+	<!-- <context-param> <param-name>log4jConfiguration</param-name> <param-value>classpath:log4j2.xml</param-value> 
+		</context-param> -->
 	<!-- needed for ContextLoaderListener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -35,8 +31,8 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- encoding filter end -->
-	
-	
+
+
 	<!-- Bootstraps the root web application context before servlet initialization -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -59,5 +55,4 @@
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 </web-app>

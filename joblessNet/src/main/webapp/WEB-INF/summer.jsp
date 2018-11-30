@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action="getFile" method="post" enctype="multipart/form-data">
-		<input type="file" name="file"/> <input type="submit" value="서버전달" />
+		<input type="file" name="mulFile"/> <input type="submit" value="서버전달" />
 	</form>
 </body>
 </html>
