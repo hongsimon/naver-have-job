@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,19 +19,25 @@ public class TestController {
 		return "summer";
 	}
 
-	@RequestMapping("/getFile")
-	public void getFile(MultipartFile mulFile, HttpServletRequest request) {
-		String fileName = mulFile.getOriginalFilename(); // 파일명
+	@RequestMapping("/imgUpload")
+	public void getFile(MultipartFile uploadFile, HttpServletRequest request, HttpServletResponse response) {
+		String fileName = uploadFile.getOriginalFilename(); // 파일명
 		
 		String uploadPath = "/resources/images/";
 		String sDownPath = request.getServletContext().getRealPath(uploadPath);
-		int size = 10 * 1024 * 1024; // 업로드 사이즈 제한 10M 이하
 
 		File file = new File(sDownPath + fileName);
 
-		System.out.println(file.getPath());
 		try {
-			mulFile.transferTo(file);
+			uploadFile.transferTo(file);
+
+			String imgPath = request.getContextPath() + "/images/";
+			JSONObject json = new JSONObject();
+			
+			json.put("url", imgPath + fileName);
+			
+			response.setContentType("application/json");
+			response.getWriter().print(json);
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
