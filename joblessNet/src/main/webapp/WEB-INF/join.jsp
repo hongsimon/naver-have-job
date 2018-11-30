@@ -8,5 +8,8 @@
 </head>
 <body>
 회원가입 페이지!!
+<form>
+	<input>
+</form>
 </body>
 </html>

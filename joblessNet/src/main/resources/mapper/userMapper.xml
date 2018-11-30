@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IUserMapper">
 	<insert id="insertUser" parameterType="User">
-		insert into user(name, nickName) values(#{name}, #{nickName})
+		insert into taku.user(login_id, nickName, password, email, platform_id) values(#{login_id}, #{nickName}, #{password}, #{email}, #{platform_id})
 	</insert>
 	<select id="selectUserById" resultType="User" parameterType="int">
 		select * from user where userId = #{userId}
