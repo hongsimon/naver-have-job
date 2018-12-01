@@ -7,7 +7,7 @@ import jobless.model.UserVO;
 public interface GetUserService {
 	public UserVO getUserByUserId(int userId);
 
-	public UserVO getUserByLoginId(int loginId);
+	public UserVO getUserByLoginId(String loginId);
 	
 	public List<UserVO> getAllUser();
 }

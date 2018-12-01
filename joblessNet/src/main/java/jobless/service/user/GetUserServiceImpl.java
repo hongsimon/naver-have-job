@@ -21,7 +21,7 @@ public class GetUserServiceImpl implements GetUserService {
 	}
 
 	@Override
-	public UserVO getUserByLoginId(int loginId) {
+	public UserVO getUserByLoginId(String loginId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
