@@ -8,7 +8,8 @@ public interface PostDAO {
 
 	public void insert(PostVO post);
 	public void update(PostVO post);
-	public void delete(String id);
-	public PostVO read(String id);
+	public void delete(int id);
+	public PostVO read(int id);
 	public List<PostVO> readAll();
+	public List<PostVO> readChoosedAll(int id);
 }

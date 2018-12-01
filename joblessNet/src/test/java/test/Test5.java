@@ -23,17 +23,20 @@ public class Test5 {
 	PostDAO postDao;
 
 
-
+	//-----------------------------------------------------------------------
+	
+	// Post dao 包访
+	
 	@Test @Ignore // 己傍
 	public void testInsert() {
 		System.out.println("insert start");
-		postDao.insert(new PostVO("youg boys", 1, 1, 1));
+		postDao.insert(new PostVO("youg girls", 1, 1, 2));
 		System.out.println("insert end");
 	}
 
 	@Test @Ignore // 己傍
 	public void testUpdate() {
-		String postId = "12";
+		int postId = 6;
 		String title = "HiHi";
 		
 		System.out.println("update start");
@@ -41,29 +44,27 @@ public class Test5 {
 		System.out.println(post.toString());
 		post.setTitle(title);
 		postDao.update(post);
+		System.out.println(post.toString());
 		System.out.println("update end");
 	}
 
 	@Test @Ignore // 己傍
 	public void testDelete() {
-		String postId = "5";
+		int postId = 6;
 		
 		System.out.println("delete start");
 		postDao.delete(postId);
 		System.out.println("delete end");
 	}
 	
-	
-	
-	
-	
 	@Test @Ignore // 己傍
 	public void testSelect() {
 		System.out.println("read start");
-		PostVO post = postDao.read("12");
-		System.out.println("read end");
+		PostVO post = postDao.read(12);
 		System.out.println(post.toString());
+		System.out.println("read end");
 	}
+	
 	@Test @Ignore // 己傍
 	public void testSelecList() {
 		System.out.println("readAll start");
@@ -73,4 +74,21 @@ public class Test5 {
 		
 		System.out.println("readAll end");
 	}
+	
+	@Test @Ignore // 己傍
+	public void testselectOwnList() {
+		int userId = 1;
+		
+		System.out.println("selectOwnList start");
+		List<PostVO> list = postDao.readChoosedAll(userId);
+		
+		for (PostVO unit : list) {System.out.println(unit.toString());}
+		
+		System.out.println("selectOwnList end");
+	}
+	
+	//-----------------------------------------------------------------------
+	
+	
+	
 }

@@ -8,7 +8,8 @@ import jobless.model.PostVO;
 public interface IPostMapper {
 	void insertPost(PostVO post);
 	void updatePost(PostVO post);
-	void deletePost(String id);
-	PostVO selectPostById(String id);
+	void deletePost(int id);
+	PostVO selectPostById(int id);
 	List<PostVO> selectPostList();
+	List<PostVO> selectPostOwnList(int id);
 }

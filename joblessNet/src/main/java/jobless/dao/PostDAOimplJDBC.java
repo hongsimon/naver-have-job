@@ -25,12 +25,12 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
-	public void delete(String id) {
+	public void delete(int id) {
 		postMapper.deletePost(id);
 	}
 	
 	@Override
-	public PostVO read(String id) {
+	public PostVO read(int id) {
 		PostVO post = postMapper.selectPostById(id);
 		return post;
 	}
@@ -38,6 +38,12 @@ public class PostDAOimplJDBC implements PostDAO {
 	@Override
 	public List<PostVO> readAll() {
 		List<PostVO> postList = postMapper.selectPostList();
+		return postList;
+	}
+	
+	@Override
+	public List<PostVO> readChoosedAll(int id) {
+		List<PostVO> postList = postMapper.selectPostOwnList(id);
 		return postList;
 	}
 }
