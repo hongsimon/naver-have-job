@@ -22,7 +22,7 @@ public class PostVO {
 		this.contentId = contentId;
 		this.boardId = boardId;
 		this.writerId = writerId;
-	}
+	}	
 
 	public PostVO(int postId, String title, LocalDateTime writeDate, int contentId, int boardId, int views,
 			int writerId) {
@@ -91,4 +91,10 @@ public class PostVO {
 		this.writerId = writerId;
 	}
 
+	@Override
+	public String toString() {
+		return "PostVO [postId=" + postId + ", title=" + title + ", writeDate=" + writeDate + ", contentId=" + contentId
+				+ ", boardId=" + boardId + ", views=" + views + ", writerId=" + writerId + "]";
+	}
+	
 }

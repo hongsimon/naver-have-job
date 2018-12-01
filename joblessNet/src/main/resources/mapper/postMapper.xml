@@ -3,5 +3,44 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IPostMapper">
-
+	<insert id="insertPost" parameterType="Post">
+		INSERT INTO post (post_title, content_id, board_id, user_id) 
+		VALUES (#{title}, #{contentId}, #{boardId}, #{writerId});
+	</insert>
+	<update id="updatePost" parameterType="Post">
+		update post 
+		set 
+			post_title = #{title}
+		where 
+			post_id = #{postId}
+	</update>
+	<delete id="deletePost" parameterType="string">
+		delete from post where post_id = #{postId}
+	</delete>
+	<select id="selectPostById"  parameterType="string" resultType="Post">
+		select 
+			post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			content_id contentId, 
+			board_id contentId, 
+			views, 
+			user_id writerId
+		from 
+			post 
+		where 
+			post_id = #{postId}
+	</select>
+	<select id="selectPostList" resultType="Post">
+		select 
+			post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			content_id contentId, 
+			board_id contentId, 
+			views, 
+			user_id writerId
+		from 
+			post
+	</select>
 </mapper>
