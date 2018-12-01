@@ -32,7 +32,15 @@ public class ClipVO {
 		this.title = title;
 		this.clipURL = clipURL;
 	}
-
+	
+	//테스트
+	public ClipVO(String title, String clipURL, int writerId, int broadcasterId) {
+		this.title = title;
+		this.clipURL = clipURL;
+		this.writerId = writerId;
+		this.broadcasterId = broadcasterId;
+	}
+	
 	public int getClipId() {
 		return clipId;
 	}
