@@ -8,7 +8,9 @@ import jobless.model.ClipVO;
 public interface IClipMapper {
 	void insertClip(ClipVO clipVO);
 	List<ClipVO> selectClipList();
-	ClipVO selectClipById(int clip_id);
+	List<ClipVO> selectClipByWriterId(int writerId);
+	List<ClipVO> selectClipByBroadcasterId(int broadCasterId);
+	ClipVO selectClipById(int clipId);
 	void updateClip(ClipVO clipVO);
-	void deleteClip(int clip_id);
+	void deleteClip(int clipId);
 }

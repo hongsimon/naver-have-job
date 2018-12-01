@@ -97,4 +97,9 @@ public class ClipVO {
 		this.broadcasterId = broadcasterId;
 	}
 
+	@Override
+	public String toString() {
+		return "ClipVO [clipId=" + clipId + ", title=" + title + ", clipURL=" + clipURL + ", writeDate=" + writeDate + ", views=" + views + ", writerId=" + writerId + ", broadcasterId=" + broadcasterId + "]";
+	}
+	
 }

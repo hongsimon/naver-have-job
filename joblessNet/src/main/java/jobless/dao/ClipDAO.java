@@ -11,6 +11,10 @@ public interface ClipDAO {
 
 	// Clip리스트를 디비에서 받아오는 메소드
 	public List<ClipVO> readAll();
+	
+	public List<ClipVO> readWriterAll(int writerId);
+	
+	public List<ClipVO> readBroadCasterAll(int broadCasterId);
 
 	// Clip 정보를 삭제하는 메소드
 	public void delete(int clip_id);

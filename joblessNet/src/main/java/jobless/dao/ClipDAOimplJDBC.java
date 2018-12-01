@@ -28,16 +28,30 @@ public class ClipDAOimplJDBC implements ClipDAO {
 	}
 
 	@Override
-	public void delete(int clip_id) {
+	public void delete(int clipId) {
 		// TODO Auto-generated method stub
-		mapper.deleteClip(clip_id);
+		mapper.deleteClip(clipId);
 	}
 
 	@Override
-	public ClipVO read(int clip_id) {
+	public ClipVO read(int clipId) {
 		// TODO Auto-generated method stub
-		ClipVO clip =  mapper.selectClipById(clip_id);
+		ClipVO clip =  mapper.selectClipById(clipId);
 		return clip;
+	}
+
+	@Override
+	public List<ClipVO> readWriterAll(int writerId) {
+		// TODO Auto-generated method stub
+		List<ClipVO> clipList = mapper.selectClipByWriterId(writerId);
+		return clipList;
+	}
+
+	@Override
+	public List<ClipVO> readBroadCasterAll(int broadCasterId) {
+		// TODO Auto-generated method stub
+		List<ClipVO> clipList = mapper.selectClipByBroadcasterId(broadCasterId);
+		return clipList;
 	}
 
 }
