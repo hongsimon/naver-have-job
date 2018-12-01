@@ -10,9 +10,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import jobless.dao.ClipDAO;
+import jobless.dao.CommentDAO;
 import jobless.model.ClipVO;
+import jobless.model.CommentVO;
 
-//clip, comment, content //test~~~By Daeheon//
+//clip, comment, content 
+//test By YooDaeheon
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
 public class Test3 {
@@ -21,6 +24,9 @@ public class Test3 {
 	
 	@Autowired
 	ClipDAO clipDao;
+	
+	@Autowired
+	CommentDAO commentDao;
 	
 	//clip
 	@org.junit.Test
@@ -59,8 +65,47 @@ public class Test3 {
 		}*/
 	}
 	
+	//comment
 	@org.junit.Test
 	public void commentTest() {
+		//*insert comment into Clip Test*
+		//commentDao.insertIntoClip(new CommentVO("클립에 댓글", 1, 0, 2));
 		
+		//*insert comment into Post Test*
+		//commentDao.insertIntoPost(new CommentVO("게시물에 댓글", 1, 1, 0));
+		
+		//*readAll Post Test*
+		/*List<CommentVO> comment = commentDao.readAll();
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
+		//*readAll Post Test*
+		/*List<CommentVO> comment = commentDao.readAllByPostId(1);
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
+		
+		//*readAll Clip Test*
+		/*List<CommentVO> comment = commentDao.readAllByClipId(2);
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
+		
+		//*readAll User Test*
+		/*List<CommentVO> comment = commentDao.readAllByUserId(2);
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
+		
+		//*select Comment Test*
+		/*CommentVO comment = commentDao.read(3);
+		System.out.println(comment);*/
+		
+		//*delete Test*
+		/*commentDao.delete(2);
+		List<CommentVO> comment = commentDao.readAll();
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
 	}
 }

@@ -3,5 +3,66 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.ICommentMapper">
-
+	<!-- 우리가 jdbc로 작성했던 쿼리문을 여기다가 만들면 됨 -->
+  	<insert id="insertPostComment" parameterType="Comment">
+  		insert into comment(comment_content, user_id, post_id) values(#{content}, #{userId}, #{postId})
+  	</insert>
+  	<insert id="insertClipComment" parameterType="Comment">
+  		insert into comment(comment_content, user_id, clip_id) values(#{content}, #{userId}, #{clipId})
+  	</insert>
+  	
+  	<select id="selectCommentById" parameterType="Integer" resultType="Comment">
+  		select 
+  			comment_id commentId, 
+  			comment_content content, 
+  			user_id userId, 
+  			post_id postId, 
+  			clip_id clipId
+  		from comment
+  		where comment_id = #{commentId}
+  	</select>
+  	
+  	<select id="selectCommentList" resultType="Comment">
+  		select 
+  			comment_id commentId, 
+  			comment_content content, 
+  			user_id userId, 
+  			post_id postId, 
+  			clip_id clipId
+  		from comment
+  	</select>
+  	
+  	<select id="selectCommentByClipId" parameterType="int" resultType="Comment">
+  		select 
+  			comment_id commentId, 
+  			comment_content content, 
+  			user_id userId, 
+  			post_id postId, 
+  			clip_id clipId
+  		from comment 
+  		where clip_id = #{clipId}
+  	</select>
+  	<select id="selectCommentByPostId" parameterType="int" resultType="Comment">
+  		select
+  			comment_id commentId, 
+  			comment_content content, 
+  			user_id userId, 
+  			post_id postId, 
+  			clip_id clipId 
+  		from comment 
+  		where post_id = #{postId}
+  	</select>
+  	<select id="selectCommentByUserId" parameterType="int" resultType="Comment">
+  		select
+  			comment_id commentId, 
+  			comment_content content, 
+  			user_id userId, 
+  			post_id postId, 
+  			clip_id clipId 
+  		from comment 
+  		where user_id = #{userId}
+  	</select>
+  	<delete id="deleteComment" parameterType="int">
+  		delete from comment where comment_id = #{commentId}
+  	</delete>
 </mapper>
