@@ -1,11 +1,11 @@
-package jobless.service;
+package jobless.service.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jobless.dao.UserDAO;
 
-@Repository("deleteUser")
+@Repository("deleteUserService")
 public class DeleteUserServiceImpl implements DeleteUserService {
 
 	@Autowired

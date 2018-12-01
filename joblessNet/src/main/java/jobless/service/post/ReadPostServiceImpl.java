@@ -1,4 +1,4 @@
-package jobless.service;
+package jobless.service.post;
 
 import java.util.List;
 
@@ -8,32 +8,32 @@ import org.springframework.stereotype.Repository;
 import jobless.dao.PostDAO;
 import jobless.model.PostVO;
 
-@Repository("getPostService")
-public class GetPostServiceImpl implements GetPostService{
+@Repository("readPostService")
+public class ReadPostServiceImpl implements ReadPostService{
 
 	@Autowired
 	PostDAO postdao;
 	
 	@Override
-	public List<PostVO> getAllPost() {
+	public List<PostVO> readAllPost() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PostVO> getPostByUserId(int userId) {
+	public List<PostVO> readPostByUserId(int userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PostVO> getPostByBoardId(int boardId) {
+	public List<PostVO> readPostByBoardId(int boardId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PostVO> getPostByCategoryId(int categoryId) {
+	public List<PostVO> readPostByCategoryId(int categoryId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,4 +1,4 @@
-package jobless.service;
+package jobless.service.user;
 
 import jobless.model.UserVO;
 

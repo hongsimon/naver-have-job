@@ -1,17 +1,18 @@
-package jobless.service;
+package jobless.service.post;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jobless.dao.PostDAO;
 
-@Repository("writePostService")
-public class WritePostServiceImpl implements WritePostService {
+@Repository("deletePostService")
+public class DeletePostServiceImpl implements DeletePostService {
+
 	@Autowired
 	PostDAO postdao;
 	
 	@Override
-	public void writePost(PostRequest postReq) {
+	public void deletePost(int postId) {
 		// TODO Auto-generated method stub
 
 	}
