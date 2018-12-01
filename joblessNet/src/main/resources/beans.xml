@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<context:component-scan base-package="jobless.dao" />
 	<context:component-scan base-package="jobless.model" />
+	<context:component-scan base-package="jobless.service" />
 	<context:component-scan base-package="jobless.controller" />
+	
 
 	<context:property-placeholder location="classpath:dbConfig.properties" />
 
@@ -46,4 +53,36 @@
 		<property name="annotationClass" value="jobless.dao.mapper.MyAnnotMapper" />
 	</bean>
 
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" rollback-for="RuntimeException" />
+			<tx:method name="write*" rollback-for="RuntimeException" />
+			<tx:method name="add*" rollback-for="RuntimeException" />
+			<tx:method name="create*" rollback-for="RuntimeException" />
+			<tx:method name="regist*" rollback-for="RuntimeException" />
+			<tx:method name="set*" rollback-for="RuntimeException" />
+			<tx:method name="update*" rollback-for="RuntimeException" />
+			<tx:method name="modify*" rollback-for="RuntimeException" />
+			<tx:method name="edit*" rollback-for="RuntimeException" />
+			<tx:method name="change*" rollback-for="RuntimeException" />
+			<tx:method name="delete*" rollback-for="RuntimeException" />
+			<tx:method name="remove" rollback-for="RuntimeException" />
+			<tx:method name="terminate*" rollback-for="RuntimeException" />
+			<tx:method name="read*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="transactionPoint" expression="execution(public * jobless.service.*Impl.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPoint"/>
+	</aop:config>
+	
+	<aop:aspectj-autoproxy expose-proxy="true"/>
 </beans>

@@ -32,7 +32,15 @@ public class ClipVO {
 		this.title = title;
 		this.clipURL = clipURL;
 	}
-
+	
+	//테스트
+	public ClipVO(String title, String clipURL, int writerId, int broadcasterId) {
+		this.title = title;
+		this.clipURL = clipURL;
+		this.writerId = writerId;
+		this.broadcasterId = broadcasterId;
+	}
+	
 	public int getClipId() {
 		return clipId;
 	}
@@ -89,4 +97,9 @@ public class ClipVO {
 		this.broadcasterId = broadcasterId;
 	}
 
+	@Override
+	public String toString() {
+		return "ClipVO [clipId=" + clipId + ", title=" + title + ", clipURL=" + clipURL + ", writeDate=" + writeDate + ", views=" + views + ", writerId=" + writerId + ", broadcasterId=" + broadcasterId + "]";
+	}
+	
 }

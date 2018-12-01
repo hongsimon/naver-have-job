@@ -3,5 +3,58 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IClipMapper">
-
+	<!-- 우리가 jdbc로 작성했던 쿼리문을 여기다가 만들면 됨 -->
+  	<insert id="insertClip" parameterType="Clip">
+  		insert into clip(clip_title, clip_url, writer_id, broadcaster_id) values(#{title}, #{clipURL}, #{writerId}, #{broadcasterId})
+  	</insert>
+  	<select id="selectClipList" resultType="Clip">
+  		select 
+  			clip_id clipId, 
+  			clip_title title, 
+  			clip_url clipURL, 
+  			write_date writeDate, 
+  			views, 
+  			writer_id writerId, 
+  			broadcaster_id broadcasterId
+  		from clip
+  	</select>
+  	<select id="selectClipById" parameterType="int" resultType="Clip">
+  		select 
+  			clip_id clipId, 
+  			clip_title title, 
+  			clip_url clipURL, 
+  			write_date writeDate, 
+  			views, 
+  			writer_id writerId, 
+  			broadcaster_id broadcasterId 
+  		from clip 
+  		where clip_id = #{clipId}
+  	</select>
+  	<select id="selectClipByWriterId" parameterType="int" resultType="Clip">
+  		select 
+  			clip_id clipId, 
+  			clip_title title, 
+  			clip_url clipURL, 
+  			write_date writeDate, 
+  			views, 
+  			writer_id writerId, 
+  			broadcaster_id broadcasterId 
+  		from clip 
+  		where writer_id = #{writerId}
+  	</select>
+  	<select id="selectClipByBroadcasterId" parameterType="int" resultType="Clip">
+  		select 
+  			clip_id clipId, 
+  			clip_title title, 
+  			clip_url clipURL, 
+  			write_date writeDate, 
+  			views, 
+  			writer_id writerId, 
+  			broadcaster_id broadcasterId 
+  		from clip 
+  		where broadcaster_id = #{broadcasterId}
+  	</select>
+  	<delete id="deleteClip" parameterType="int">
+  		delete from clip where clip_id = #{clipId}
+  	</delete>
 </mapper>
