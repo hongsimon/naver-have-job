@@ -8,8 +8,14 @@
 </head>
 <body>
 회원가입 페이지!!
-<form>
-	<input>
+<form action="join" method="post">
+	<input type="text" name="login_id"><br>
+	<input type="text" name="nickName"><br>
+	<input type="text" name="password"><br>
+	<input type="text" name="email"><br>
+	<input type="number" name="platform_id"><br>
+	
+	<input type="submit">
 </form>
 </body>
 </html>

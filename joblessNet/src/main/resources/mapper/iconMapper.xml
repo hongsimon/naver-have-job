@@ -3,5 +3,42 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IIconMapper">
-
+<insert id="insertIcon" parameterType="Icon">
+		insert 
+		into 
+			icon(filename)
+				
+			values(#{fileName})
+	</insert>
+	<select id="selectIconById" resultType="Icon" parameterType="int">
+		select 
+			icon_id as iconId, 
+			filename as fileName
+		from 
+			icon 
+		where 
+			icon_id = #{iconId}
+	</select>
+	<select id="selectAllIcon" resultType="Icon">	
+		select 
+			icon_id as iconId, 
+			filename as fileName
+		from 
+			icon 
+	</select>
+	<delete id="deleteIcon" parameterType="int">
+		delete 
+		from 
+			icon 
+		where 
+			icon_id = #{iconId}
+	</delete>
+	<update id="updateIcon" parameterType="Icon">
+		update 
+			icon 
+		set 
+			filename = #{fileName}
+		where 
+			icon_id = #{iconId};
+	</update>
 </mapper>

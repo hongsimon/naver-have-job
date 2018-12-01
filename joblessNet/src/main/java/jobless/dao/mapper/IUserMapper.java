@@ -6,13 +6,13 @@ import jobless.model.UserVO;
 
 @MyAnnotMapper
 public interface IUserMapper {
-	public void insert(UserVO user);
+	public void insertUser(UserVO user);
 	
-	public UserVO select(int userId);
+	public UserVO selectUserById(int userId);
 	
-	public List<UserVO> select();
+	public List<UserVO> selectAllUser();
 	
-	public void delete(int userId);
+	public void deleteUser(int userId);
 	
-	public void update(UserVO user);
+	public void updateUser(UserVO user);
 }

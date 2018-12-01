@@ -14,27 +14,25 @@ public class UserDAOImplJDBC implements UserDAO {
 	private IUserMapper mapper;
 
 	public void insert(UserVO user) {
-		// TODO Auto-generated method stub
-		
+		mapper.insertUser(user);
 	}
 
 	public UserVO select(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		UserVO user = mapper.selectUserById(userId);
+		return user;
 	}
 
 	public List<UserVO> select() {
-		// TODO Auto-generated method stub
-		return null;
+		List<UserVO> user = mapper.selectAllUser();
+		return user;
 	}
 
 	public void delete(int userId) {
-		// TODO Auto-generated method stub
-		
+		mapper.deleteUser(userId);
 	}
 
 	public void update(UserVO user) {
-		// TODO Auto-generated method stub
+		mapper.updateUser(user);
 		
 	}
 
