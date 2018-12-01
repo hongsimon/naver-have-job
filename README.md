@@ -1,1 +1,1 @@
-# naver-have-job
+# never-have-job
