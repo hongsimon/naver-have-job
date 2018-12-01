@@ -1,0 +1,66 @@
+/*----------------------------------커뮤니티 게시판----------------------------*/
+.border-community{
+  background-color: #ffffff;
+}
+
+.hr-color{
+  color: #adadad;
+}
+
+.border-title-hr{
+  margin-left: 20px;
+  margin-right: 20px;
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.favorites button{
+  margin-left: 20px;
+}
+
+.category ul li{
+  list-style: none;
+  display: inline-block;
+}
+
+.category{
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.icon{
+  display: inline-block;
+}
+
+.border-table table{
+  margin: 10px;
+  width: 950px;
+}
+
+.service{
+  padding: 10px;
+  width: 100%;
+}
+
+.page-nav{
+  display: inline-block;
+  text-align: center;
+}
+
+.page-nav ol {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+.page-nav li {
+  float: left;
+
+}
+
+/*-------------------------------------핫클립-----------------------------------*/
+
+.border-hotClip{
+  background-color: #fff;
+}

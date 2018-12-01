@@ -1,0 +1,56 @@
+/* 배경 */
+body{
+  background-color: #e8e8e8;
+}
+
+/* 상단 메뉴바 탑 컬러 */
+.head-nav-top-color{
+  border-top-color: #287A72;
+  background-color: #ffffff;
+}
+
+/* 상단 메뉴바 메인 컬러 */
+.head-nav-main-color{
+
+}
+
+/* 상단 메뉴바 버튼 컬러 */
+.head-nav-top-dropdown, .head-nav-top-dropdown:active, .head-nav-top-dropdown:link, .head-nav-top-dropdown:hover, .head-nav-top-dropdown:visited{
+  color: #000000;
+}
+
+/* 검색창 테두리 */
+.searchBox{
+  border-color: #287A72;
+}
+
+/* 아이콘 공용 색상 */
+.gly-color{
+  color: #287A72;
+}
+
+/* 게시판 제목 공용 색상 */
+.title-text{
+  color: #000000;
+}
+
+/* 게시판 내 포인트 컬러 */
+/* 댓글수,  */
+.point-color{
+  color: #287A72;
+}
+
+/* 카테고리 목록 컬러 */
+.category-List{
+  color:#287A72;
+}
+
+/* 카테고리 목록 호버 */
+.category-List:hover{
+  color:orange;
+}
+
+/* 카테고리 목록 선택 */
+.focuse{
+  color:red;
+}

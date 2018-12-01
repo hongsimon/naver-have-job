@@ -1,0 +1,59 @@
+
+/* 검색 버튼 */
+.search-nav{
+  position: absolute;
+  border: 0px;
+  outline: 0px;
+  background-color: #e8e8e8;
+    zoom:2;
+}
+
+/* 검색 박스 */
+.searchBox{
+  border: 3px solid;
+  width: 240px;
+  height: 40px;
+}
+
+/*삭제 버튼*/
+.del-btn{
+  margin-left: 0px;
+  margin-right: 0px;
+  border: 0px;
+  outline: 0px;
+  padding-top: 5px;
+  background-color: #ffffff;
+  zoom:0.8;
+  color: #a3a3a3;
+}
+
+/* 삭제버튼 : 호버 */
+.del-btn:hover{
+  color: #287A72;
+  background-color: #dddada;
+  border-radius: 5px;
+}
+
+.head-nav-top-color{
+  border-top : 10px solid;
+  border-radius: 5px;
+}
+
+.head-nav-top-size{
+  height: 35px;
+}
+
+.head-nav-top-dropdown span, .head-nav-top-dropdown:hover, .head-nav-top-dropdown:link, .head-nav-top-dropdown:visited{
+  text-decoration: none;
+  font-size: 16px;
+  position: relative;
+  padding-top: 7px;
+
+}
+
+.head-nav-top-dropdown:hover span, .head-nav-top-dropdown:active span{
+  text-decoration: none;
+  font-size: 16px;
+  position: relative;
+  padding-top: 7px;
+}

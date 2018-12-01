@@ -1,0 +1,105 @@
+/* 영역 확인 테두리*/
+.test-border{
+  border: 1px solid black;
+}
+
+/* 컨테이너 최고 넓이 */
+.container {
+  width: 1200px;
+  max-width: none !important;
+}
+
+/* 우측 정렬 */
+.con-right{
+  float: right;
+}
+
+/* 좌측 정렬 */
+.con-left{
+  float: left;
+}
+
+/* 글자 정렬 */
+.overflower{
+  display: inline-block;
+}
+
+/* 좌우 빈 넓이 제거 */
+.padding-zero{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* 마진 제거 */
+.margin-zero{
+  margin: 0 !important;
+}
+
+
+/* gly 사이즈-작음 */
+.gly-size-small{
+  zoom:0.5;
+}
+
+/* gly 사이즈-중간 */
+.gly-size-middle{
+  zoom:1;
+}
+
+/* display-inline */
+.display-in, .display-in div{
+  display: inline-block;
+}
+
+/*dropdown 사이즈-큼 */
+.drop-menu-size-big{
+  width: 240px;
+}
+
+/* 제목 텍스트 - 큼 */
+.title-text-big{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* 제목 텍스트 - 아주큼 */
+.title-text-more-big{
+  font-weight: bold;
+  font-size: 30px;
+}
+
+/* 텍스트 중앙 정렬 */
+.text-center{
+  text-align: center;
+}
+
+/* 컨테니어 간 넓이*/
+.margin-nav{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* 문서간의 넓이*/
+.margin-container{
+  margin-bottom: 40px;
+}
+
+/* 타이틀과 문서간 넓이*/
+.margin-title{
+  margin-top: 10px;
+}
+
+/* 작동하지않는 a태그 */
+.not-working-a, .not-working-a:hover, .not-working-a:link, .not-working-a:visited, .not-working-a:active{
+ text-decoration: none;
+}
+
+/* 로고 */
+.logo a img{
+  margin-left: -50px;
+  width: 250px;
+  max-height: inherit;
+  margin-top: -50px;
+  margin-bottom: -70px;
+  overflow: hidden;
+}

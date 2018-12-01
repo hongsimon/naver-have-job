@@ -9,12 +9,12 @@ public class UserController {
 	@RequestMapping(value="/main")
 	public String controllerMain() {
 		System.out.println("메인 페이지");
-		return "main";
+		return "view/main/main";
 	}
 	
 	@RequestMapping(value="/join")
 	public String controllerJoin() {
 		System.out.println("회원가입 페이지");
-		return "join";
+		return "view/loginPage/singin";
 	}
 }
