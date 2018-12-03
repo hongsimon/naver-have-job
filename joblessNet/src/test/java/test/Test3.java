@@ -9,9 +9,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import jobless.dao.BoardDAO;
 import jobless.dao.ClipDAO;
 import jobless.dao.CommentDAO;
 import jobless.dao.PlatformDAO;
+import jobless.model.BoardVO;
 import jobless.model.ClipVO;
 import jobless.model.CommentVO;
 import jobless.model.PlatformVO;
@@ -32,6 +34,9 @@ public class Test3 {
 	
 	@Autowired
 	PlatformDAO platformDao;
+	
+	@Autowired
+	BoardDAO boardDao;
 	
 	//clip
 	@org.junit.Test
@@ -117,6 +122,7 @@ public class Test3 {
 	
 	//platform
 	@org.junit.Test
+	@Ignore
 	public void platformTest() {
 		//*insert Test*
 		//platformDao.insert(new PlatformVO("에러다"));
@@ -139,6 +145,41 @@ public class Test3 {
 		List<PlatformVO> platform = platformDao.readAll();
 		for (PlatformVO platformVO : platform) {
 			System.out.println(platformVO);
+		}*/
+	}
+	
+	//board
+	@org.junit.Test
+	public void boardTest() {
+		//*insert*
+		/*boardDao.insert(new BoardVO(1,"수빈갤3"));
+		List<BoardVO> board = boardDao.readAll();
+		for (BoardVO boardVO : board) {
+			System.out.println(boardVO);
+		}*/
+		
+		//*readAll*
+		/*List<BoardVO> board = boardDao.readAll();
+		for (BoardVO boardVO : board) {
+			System.out.println(boardVO);
+		}*/
+		
+		//*read*
+		/*BoardVO board = boardDao.read(2);
+		System.out.println(board);*/
+		
+		//*update*
+		/*boardDao.update(new BoardVO(4, "수빈갤3", "수빈갤3css"));
+		List<BoardVO> board = boardDao.readAll();
+		for (BoardVO boardVO : board) {
+			System.out.println(boardVO);
+		}*/
+		
+		//*delete*
+		/*boardDao.delete(4);
+		List<BoardVO> board = boardDao.readAll();
+		for (BoardVO boardVO : board) {
+			System.out.println(boardVO);
 		}*/
 	}
 }
