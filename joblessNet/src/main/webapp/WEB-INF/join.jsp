@@ -17,5 +17,8 @@
 	
 	<input type="submit">
 </form>
+<br>
+회원삭제 페이지!!
+<a href="deleteUser">ㄱㄱㅆ</a>
 </body>
 </html>

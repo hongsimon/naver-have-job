@@ -68,14 +68,12 @@ public class Test4 {
 	}
 	
 	//User기능 테스트
-	@Test @Ignore
+	@Test
 	public void UserTest() {
-		System.out.println(new UserVO("userLoginId11", "userNickName11", "userPassword11", "user@email.com11", 1));
-		userDao.insert(new UserVO("userLoginId111", "userNickName111", "userPassword111", "user@email.com111", 1));
+//		System.out.println(new UserVO("userLoginId11", "userNickName11", "userPassword11", "user@email.com11", 1));
+//		userDao.insert(new UserVO("userLoginId111", "userNickName111", "userPassword111", "user@email.com111", 1));
 		
-
-		
-//		System.out.println( userDao.select(1));
+		System.out.println(userDao.select(11));
 		
 //		List<UserVO> userList = userDao.select();
 //		for (UserVO userVO : userList) {
