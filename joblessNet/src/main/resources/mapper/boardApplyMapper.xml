@@ -3,5 +3,59 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IBoardApplyMapper">
-
+	<insert id="insertBoardApply" parameterType="BoardApply">
+		INSERT INTO board_apply (user_id, content, broadcaster_url) 
+		VALUES (#{ownerId}, #{content}, #{broadcasterURL});
+	</insert>
+	<update id="updateBoardApply" parameterType="BoardApply">
+		UPDATE 
+			board_apply 
+		SET 
+			user_id = #{ownerId}, 
+			content = #{content}, 
+			broadcaster_url = #{broadcasterURL}, 
+			is_completed = #{complete} 
+		WHERE 
+			apply_id = #{applyId};
+	</update>
+	<delete id="deleteBoardApply" parameterType="int">
+		DELETE FROM 
+			board_apply 
+		WHERE 
+			apply_id = #{applyId};
+	</delete>
+	<select id="selectBoardApplyById" parameterType="int" resultType="BoardApply">
+		select 
+			apply_id applyId, 
+			user_id ownerId, 
+			content, 
+			broadcaster_url broadcasterURL, 
+			is_completed complete
+		from
+			board_apply
+		where
+			apply_id = #{applyId};
+	</select>
+	<select id="selectBoardApplyList" resultType="BoardApply">
+		select 
+			apply_id applyId, 
+			user_id ownerId, 
+			content content, 
+			broadcaster_url broadcasterURL, 
+			is_completed complete
+		from
+			board_apply;
+	</select>
+	<select id="selectBoardApplyOwnList" parameterType="int" resultType="BoardApply">
+		select 
+			apply_id applyId, 
+			user_id ownerId, 
+			content content, 
+			broadcaster_url broadcasterURL, 
+			is_completed complete
+		from
+			board_apply
+		where
+			user_id = #{ownerId};
+	</select>
 </mapper>

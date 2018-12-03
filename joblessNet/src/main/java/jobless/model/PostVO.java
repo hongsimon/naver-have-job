@@ -13,19 +13,21 @@ public class PostVO {
 	private int boardId;
 	private int views;
 	private int writerId;
+	private int categoryId;
 
 	public PostVO() {
 	}
 
-	public PostVO(String title, int contentId, int boardId, int writerId) {
+	public PostVO(String title, int contentId, int boardId, int writerId, int categoryId) {
 		this.title = title;
 		this.contentId = contentId;
 		this.boardId = boardId;
 		this.writerId = writerId;
+		this.categoryId = categoryId;
 	}	
 
 	public PostVO(int postId, String title, LocalDateTime writeDate, int contentId, int boardId, int views,
-			int writerId) {
+			int writerId, int categoryId) {
 		this.postId = postId;
 		this.title = title;
 		this.writeDate = writeDate;
@@ -33,6 +35,7 @@ public class PostVO {
 		this.boardId = boardId;
 		this.views = views;
 		this.writerId = writerId;
+		this.categoryId = categoryId;
 	}
 
 	public int getPostId() {
@@ -91,10 +94,19 @@ public class PostVO {
 		this.writerId = writerId;
 	}
 
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	@Override
 	public String toString() {
 		return "PostVO [postId=" + postId + ", title=" + title + ", writeDate=" + writeDate + ", contentId=" + contentId
-				+ ", boardId=" + boardId + ", views=" + views + ", writerId=" + writerId + "]";
+				+ ", boardId=" + boardId + ", views=" + views + ", writerId=" + writerId + ", categoryId=" + categoryId
+				+ "]";
 	}
-	
+
 }

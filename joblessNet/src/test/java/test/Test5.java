@@ -10,7 +10,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import jobless.dao.BoardApplyDAO;
+import jobless.dao.ContentDAO;
 import jobless.dao.PostDAO;
+import jobless.model.BoardApplyVO;
+import jobless.model.ContentVO;
 import jobless.model.PostVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,35 +26,43 @@ public class Test5 {
 	@Autowired
 	PostDAO postDao;
 
+	@Autowired
+	ContentDAO contentDao;
+	
+	@Autowired
+	BoardApplyDAO boardApplyDao;
+	
 
 	//-----------------------------------------------------------------------
 	
 	// Post dao 관련
 	
 	@Test @Ignore // 성공
-	public void testInsert() {
+	public void testInsertPost() {
 		System.out.println("insert start");
-		postDao.insert(new PostVO("youg girls", 1, 1, 2));
+		postDao.insert(new PostVO("youg girls", 1, 1, 1, 1));
 		System.out.println("insert end");
 	}
 
 	@Test @Ignore // 성공
-	public void testUpdate() {
-		int postId = 6;
+	public void testUpdatePost() {
+		int postId = 19;
 		String title = "HiHi";
+		int categoryId = 2;
 		
 		System.out.println("update start");
 		PostVO post = postDao.read(postId);
 		System.out.println(post.toString());
 		post.setTitle(title);
+		post.setCategoryId(categoryId);
 		postDao.update(post);
 		System.out.println(post.toString());
 		System.out.println("update end");
 	}
 
 	@Test @Ignore // 성공
-	public void testDelete() {
-		int postId = 6;
+	public void testDeletePost() {
+		int postId = 19;
 		
 		System.out.println("delete start");
 		postDao.delete(postId);
@@ -58,15 +70,15 @@ public class Test5 {
 	}
 	
 	@Test @Ignore // 성공
-	public void testSelect() {
+	public void testSelectPost() {
 		System.out.println("read start");
-		PostVO post = postDao.read(12);
+		PostVO post = postDao.read(20);
 		System.out.println(post.toString());
 		System.out.println("read end");
 	}
 	
 	@Test @Ignore // 성공
-	public void testSelecList() {
+	public void testSelecListPost() {
 		System.out.println("readAll start");
 		List<PostVO> list = postDao.readAll();
 		
@@ -76,7 +88,7 @@ public class Test5 {
 	}
 	
 	@Test @Ignore // 성공
-	public void testselectOwnList() {
+	public void testselectOwnListPost() {
 		int userId = 1;
 		
 		System.out.println("selectOwnList start");
@@ -87,8 +99,137 @@ public class Test5 {
 		System.out.println("selectOwnList end");
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//-----------------------------------------------------------------------
 	
+	// Content dao 관련
+	
+	@Test @Ignore // 성공
+	public void testInsertContent() {
+		String content = "hello mom";
+		
+		System.out.println("insert start");
+		contentDao.insert(new ContentVO(content));
+		System.out.println("insert end");
+	}
+
+	@Test @Ignore // 성공
+	public void testUpdateContent() {
+		int id = 5;
+		String title = "HiHi";
+		
+		System.out.println("update start");
+		ContentVO content = contentDao.read(id);
+		System.out.println(content.toString());
+		content.setContent(title);
+		contentDao.update(content);
+		System.out.println(content.toString());
+		System.out.println("update end");
+	}
+
+	@Test @Ignore // 성공
+	public void testDeleteContent() {
+		int id = 6;
+		
+		System.out.println("delete start");
+		contentDao.delete(id);
+		System.out.println("delete end");
+	}
+	
+	@Test @Ignore // 성공
+	public void testSelectContent() {
+		int id = 5;
+		
+		System.out.println("read start");
+		ContentVO content = contentDao.read(id);
+		System.out.println(content.toString());
+		System.out.println("read end");
+	}
+	
+	
+	
+	
+	
+	
+	
+	//-----------------------------------------------------------------------
+	
+	// boardApply dao (관리자랑 쓴 작성자만 봄)
+	
+	@Test @Ignore // 성공
+	public void testInsertBoardApply() {
+		System.out.println("insert start");
+		boardApplyDao.insert(new BoardApplyVO(1, "youg boys", "nate.net"));
+		System.out.println("insert end");
+	}
+
+	@Test @Ignore // 성공
+	public void testUpdateBoardApply() {
+		int applyId = 3;
+		String content = "HiHi";
+		String broadcasterURL = "google.co.kr";
+		
+		System.out.println("update start");
+		BoardApplyVO boardApply = boardApplyDao.read(applyId);
+		System.out.println(boardApply.toString());
+		boardApply.setApplyId(applyId);
+		boardApply.setContent(content);
+		boardApply.setBroadcasterURL(broadcasterURL);
+		boardApplyDao.update(boardApply);
+		System.out.println(boardApply.toString());
+		System.out.println("update end");
+	}
+
+	@Test @Ignore // 성공
+	public void testDeleteBoardApply() {
+		int applyId = 3;
+		
+		System.out.println("delete start");
+		boardApplyDao.delete(applyId);
+		System.out.println("delete end");
+	}
+	
+	@Test @Ignore // 성공
+	public void testSelectBoardApplyById() {
+		int applyId = 3;
+		
+		System.out.println("read start");
+		BoardApplyVO boardApply = boardApplyDao.read(applyId);
+		System.out.println(boardApply.toString());
+		System.out.println("read end");
+	}
+	
+	@Test @Ignore // 성공
+	public void testSelecListBoardApply() {
+		System.out.println("readAll start");
+		List<BoardApplyVO> list = boardApplyDao.readAll();
+		
+		for (BoardApplyVO unit : list) {System.out.println(unit.toString());}
+		
+		System.out.println("readAll end");
+	}
+	
+	@Test @Ignore // 성공
+	public void testselectOwnListBoardApply() {
+		int userId = 2;
+		
+		System.out.println("selectOwnList start");
+		List<BoardApplyVO> list = boardApplyDao.readChoosedAll(userId);
+		
+		for (BoardApplyVO unit : list) {System.out.println(unit.toString());}
+		
+		System.out.println("selectOwnList end");
+	}
+
+	//-----------------------------------------------------------------------
 	
 	
 }

@@ -66,4 +66,11 @@ public class BoardApplyVO {
 	public void setComplete(boolean complete) {
 		this.complete = complete;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardApplyVO [applyId=" + applyId + ", ownerId=" + ownerId + ", content=" + content
+				+ ", broadcasterURL=" + broadcasterURL + ", complete=" + complete + "]";
+	}
+	
 }

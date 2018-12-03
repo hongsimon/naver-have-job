@@ -9,6 +9,10 @@ public class ContentVO {
 
 	public ContentVO() {
 	}
+	
+	public ContentVO(String content) {
+		this.content = content;
+	}
 
 	public ContentVO(int contentId, String content) {
 		this.contentId = contentId;
@@ -29,6 +33,11 @@ public class ContentVO {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Override
+	public String toString() {
+		return "ContentVO [contentId=" + contentId + ", content=" + content + "]";
 	}
 
 }
