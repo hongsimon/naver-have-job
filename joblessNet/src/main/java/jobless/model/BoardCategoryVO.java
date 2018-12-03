@@ -11,11 +11,13 @@ public class BoardCategoryVO {
 	public BoardCategoryVO() {
 	}
 
+	//insert용
 	public BoardCategoryVO(String categoryName, int boardId) {
 		this.categoryName = categoryName;
 		this.boardId = boardId;
 	}
 
+	//select ,update용
 	public BoardCategoryVO(int boardCategoryId, String categoryName, int boardId) {
 		this.boardCategoryId = boardCategoryId;
 		this.categoryName = categoryName;
@@ -44,5 +46,11 @@ public class BoardCategoryVO {
 
 	public void setBoardId(int boardId) {
 		this.boardId = boardId;
+	}
+	
+	@Override
+	public String toString() {
+		return "BoardCategoryVO [boardCategoryId=" + boardCategoryId + ", categoryName=" + categoryName + ", boardId="
+				+ boardId + "]";
 	}
 }
