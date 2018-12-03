@@ -16,6 +16,8 @@ public class WritePostServiceImpl implements WritePostService {
 	
 	@Override
 	public void writePost(PostRequest postReq) {
+
+		
 		// TODO Auto-generated method stub
 		/*try {
 			postdao.insert(postReq.getPost());

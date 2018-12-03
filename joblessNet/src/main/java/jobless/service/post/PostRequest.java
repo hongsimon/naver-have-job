@@ -15,7 +15,7 @@ public class PostRequest {
 	private int writerId;
 	private String content;
 	
-	public void validation() {
+	public void validate() {
 		
 	}
 	

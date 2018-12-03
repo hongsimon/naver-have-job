@@ -18,11 +18,8 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String controllerJoin_POST(@RequestParam String login_id,
-									  @RequestParam String nickName,
-									  @RequestParam String password,
-									  @RequestParam String email,
-									  @RequestParam int platform_id
+	public String controllerJoin_POST(@RequestParam String postTitle,
+									  @RequestParam int contentId
 									  ) {
 		System.out.println("회원가입 페이지_POST");
 		

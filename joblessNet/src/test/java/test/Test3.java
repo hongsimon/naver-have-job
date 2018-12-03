@@ -17,6 +17,8 @@ import jobless.model.BoardVO;
 import jobless.model.ClipVO;
 import jobless.model.CommentVO;
 import jobless.model.PlatformVO;
+import jobless.service.post.PostRequest;
+import jobless.service.post.WritePostService;
 
 //clip, comment, content 
 //test By YooDaeheon
@@ -181,5 +183,14 @@ public class Test3 {
 		for (BoardVO boardVO : board) {
 			System.out.println(boardVO);
 		}*/
+	}
+	
+
+	@Autowired
+	WritePostService writePost;
+	
+	public void writeServiceTest() {
+		PostRequest postReq	= new PostRequest();
+		writePost.writePost(postReq);
 	}
 }
