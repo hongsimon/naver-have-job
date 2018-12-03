@@ -11,8 +11,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import jobless.dao.ClipDAO;
 import jobless.dao.CommentDAO;
+import jobless.dao.PlatformDAO;
 import jobless.model.ClipVO;
 import jobless.model.CommentVO;
+import jobless.model.PlatformVO;
 
 //clip, comment, content 
 //test By YooDaeheon
@@ -27,6 +29,9 @@ public class Test3 {
 	
 	@Autowired
 	CommentDAO commentDao;
+	
+	@Autowired
+	PlatformDAO platformDao;
 	
 	//clip
 	@org.junit.Test
@@ -67,6 +72,7 @@ public class Test3 {
 	
 	//comment
 	@org.junit.Test
+	@Ignore
 	public void commentTest() {
 		//*insert comment into Clip Test*
 		//commentDao.insertIntoClip(new CommentVO("클립에 댓글", 1, 0, 2));
@@ -106,6 +112,33 @@ public class Test3 {
 		List<CommentVO> comment = commentDao.readAll();
 		for (CommentVO commentVO : comment) {
 			System.out.println(comment);
+		}*/
+	}
+	
+	//platform
+	@org.junit.Test
+	public void platformTest() {
+		//*insert Test*
+		//platformDao.insert(new PlatformVO("에러다"));
+		
+		//*readAll Test*
+		/*List<PlatformVO> platform = platformDao.readAll();
+		for (PlatformVO platformVO : platform) {
+			System.out.println(platformVO);
+		}*/
+		
+		//*update
+		/*platformDao.update(new PlatformVO(5, "수정"));
+		List<PlatformVO> platform = platformDao.readAll();
+		for (PlatformVO platformVO : platform) {
+			System.out.println(platformVO);
+		}*/
+		
+		//*delete
+		/*platformDao.delete(6);
+		List<PlatformVO> platform = platformDao.readAll();
+		for (PlatformVO platformVO : platform) {
+			System.out.println(platformVO);
 		}*/
 	}
 }

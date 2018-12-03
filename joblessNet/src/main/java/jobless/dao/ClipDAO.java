@@ -17,8 +17,8 @@ public interface ClipDAO {
 	public List<ClipVO> readBroadCasterAll(int broadCasterId);
 
 	// Clip 정보를 삭제하는 메소드
-	public void delete(int clip_id);
+	public void delete(int clipId);
 
 	// Clip 정보를 가져오는 메소드
-	public ClipVO read(int clip_id);
+	public ClipVO read(int clipId);
 }
