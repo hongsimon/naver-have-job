@@ -11,16 +11,20 @@ import jobless.model.UserVO;
 public class DeleteUserServiceImpl implements DeleteUserService {
 
 	@Autowired
-	UserDAO  userdao;
+	UserDAO userDao;
 	
 	@Override
 	public void deleteUser(int userId) {
 		try {
-			UserVO user = userdao.select(userId);
+
+			System.out.println(userId);
+			System.out.println(userDao.select(userId));
+			UserVO user = userDao.select(userId);
+			System.out.println(user);
 			if(user == null) {
 				throw new UserNotFoundException(userId + "번 사용자를 찾지 못했습니다.");
 			}
-			userdao.delete(userId);
+			userDao.delete(userId);
 		} catch (RuntimeException e) {
 			throw e;
 		}

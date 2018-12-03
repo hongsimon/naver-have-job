@@ -10,7 +10,7 @@
 회원삭제 페이지!!
 
 <form action="deleteUser" method="post">
-	<input type="number" name="userId">
+	<input type="text" name="userId">
 	<input type="submit">
 </form>
 

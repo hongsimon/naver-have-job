@@ -16,9 +16,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import jobless.dao.BoardCategoryDAO;
 import jobless.dao.IconDAO;
 import jobless.dao.UserDAO;
+import jobless.exception.UserNotFoundException;
 import jobless.model.BoardCategoryVO;
 import jobless.model.IconVO;
 import jobless.model.UserVO;
+import jobless.service.user.DeleteUserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
@@ -67,18 +69,17 @@ public class Test4 {
 		
 	}
 	
+	@Autowired
+	DeleteUserService deleteUserService; 
+	
 	//User기능 테스트
 	@Test
 	public void UserTest() {
-//		System.out.println(new UserVO("userLoginId11", "userNickName11", "userPassword11", "user@email.com11", 1));
-//		userDao.insert(new UserVO("userLoginId111", "userNickName111", "userPassword111", "user@email.com111", 1));
+		//수정 테스트
 		
-		System.out.println(userDao.select(11));
 		
-//		List<UserVO> userList = userDao.select();
-//		for (UserVO userVO : userList) {
-//			System.out.println(userVO);
-//		}
+		//삭제 테스트
+		//deleteUserService.deleteUser(9); 
 	}
 	
 }

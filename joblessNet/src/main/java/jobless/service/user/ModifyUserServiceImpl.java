@@ -14,7 +14,7 @@ public class ModifyUserServiceImpl implements ModifyUserService {
 	
 	@Override
 	public void modifyUser(UserVO user) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
