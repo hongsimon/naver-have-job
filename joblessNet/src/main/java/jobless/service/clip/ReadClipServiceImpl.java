@@ -16,13 +16,11 @@ public class ReadClipServiceImpl implements ReadClipService{
 	
 	@Override
 	public List<ClipVO> readAllClip() {
-		// TODO Auto-generated method stub
-		return null;
+		return clipdao.readAll();
 	}
 
 	@Override
 	public List<ClipVO> readClipByUserId(int userId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
