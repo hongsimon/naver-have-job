@@ -17,12 +17,17 @@ public class UserDAOImplJDBC implements UserDAO {
 		mapper.insertUser(user);
 	}
 
-	public UserVO select(int userId) {
-		UserVO user = mapper.selectUserById(userId);
+	public UserVO selectUserId(int userId) {
+		UserVO user = mapper.selectUserByUserId(userId);
+		return user;
+	}
+	
+	public UserVO selectLoginId(String loginId) {
+		UserVO user = mapper.selectUserByLoginId(loginId);
 		return user;
 	}
 
-	public List<UserVO> select() {
+	public List<UserVO> selectAll() {
 		List<UserVO> user = mapper.selectAllUser();
 		return user;
 	}

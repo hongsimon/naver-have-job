@@ -14,7 +14,7 @@ public class JoinUserServiceImpl implements JoinUserService {
 	
 	@Override
 	public void joinUser(UserVO user) {
-		// TODO Auto-generated method stub
+		userdao.insert(user);
 	}
 
 }
