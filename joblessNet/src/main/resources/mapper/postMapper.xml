@@ -73,4 +73,30 @@
 		where
 			user_id = #{writerId}
 	</select>
+	
+	<resultMap type="PostDetail" id="PostMap">
+		<association property="post" javaType="Post" autoMapping="true"/>
+		<association property="user" javaType="User" autoMapping="true"/>
+		<association property="content" javaType="Content" autoMapping="true"></association>
+	</resultMap>
+	<select id="selectPostDetail" parameterType="int" resultMap="PostMap">
+		select 
+			post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			p.content_id contentId, 
+			board_id contentId, 
+			views, 
+			p.user_id writerId,
+			category_id categoryId,
+			u.user_id userId,
+			nickname,
+			content
+		from 
+			post p 
+			join user u on p.user_id = u.user_id
+			join content c on p.content_id = c.content_id
+		where 
+			post_id = #{postId}
+		</select>
 </mapper>

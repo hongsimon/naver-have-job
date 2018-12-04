@@ -6,7 +6,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import jobless.dao.UserDAO;
+import jobless.dao.ContentDAO;
+import jobless.dao.PostDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
@@ -15,11 +16,13 @@ public class Test {
 	ApplicationContext context;
 	
 	@Autowired
-	UserDAO userDao;
+	PostDAO postDao;
+	
+	@Autowired
+	ContentDAO contentdao;
 	
 	@org.junit.Test
 	public void test() {
-		System.out.println("test");
-		userDao.select();
+		System.out.println(postDao.readDetail(3));
 	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jobless.dao.mapper.IPostMapper;
+import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
 
 @Repository("PostDAO")
@@ -45,5 +46,10 @@ public class PostDAOimplJDBC implements PostDAO {
 	public List<PostVO> readChoosedAll(int id) {
 		List<PostVO> postList = postMapper.selectPostOwnList(id);
 		return postList;
+	}
+	
+	@Override
+	public PostDetailVO readDetail(int id) {
+		return postMapper.selectPostDetail(id);
 	}
 }
