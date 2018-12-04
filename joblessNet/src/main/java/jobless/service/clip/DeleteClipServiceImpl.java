@@ -14,7 +14,7 @@ public class DeleteClipServiceImpl implements DeleteClipService {
 	@Override
 	public void deleteClip(int clipId) {
 		// TODO Auto-generated method stub
-		
+		clipdao.delete(clipId);
 	}
 	
 }

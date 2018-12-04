@@ -1,24 +1,25 @@
 package jobless.service.post;
 
-import java.time.LocalDateTime;
-
 import jobless.model.ContentVO;
 import jobless.model.PostVO;
+import jobless.model.UserVO;
 
 public class PostRequest {
 /*	private int postId;
 	private String title;
-	private LocalDateTime writeDate;
-	private int contentId;
 	private int boardId;
-	private int views;
 	private int writerId;
+	private int categoryId;
+	private int contentId;
 	private String content;
+	*/
+	PostVO post;
+	UserVO user;
 	
 	public void validate() {
 		
 	}
-	
+/*	
 	public PostVO getPost() {
 		return new PostVO(title, contentId, boardId, writerId);
 	}

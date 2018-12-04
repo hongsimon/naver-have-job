@@ -11,10 +11,11 @@ public class ModifyClipServiceImpl implements ModifyClipService{
 	@Autowired
 	ClipDAO clipdao;
 	
+	
 	@Override
 	public void modifyClip(ClipRequest clipReq) {
 		// TODO Auto-generated method stub
-		
+		//킾
 	}
 	
 }
