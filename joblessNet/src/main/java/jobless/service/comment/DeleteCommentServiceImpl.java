@@ -14,7 +14,7 @@ public class DeleteCommentServiceImpl implements DeleteCommentService{
 	@Override
 	public void delete(int commentId) {
 		// TODO Auto-generated method stub
-		commentDao.delete(commentId);;
+		commentDao.delete(commentId);
 	}
 
 }
