@@ -20,7 +20,8 @@ import jobless.exception.UserNotFoundException;
 import jobless.model.BoardCategoryVO;
 import jobless.model.IconVO;
 import jobless.model.UserVO;
-import jobless.service.board.CreateBoardService;
+import jobless.service.board.CreateBoardCategoryService;
+import jobless.service.board.ModifyBoardCategoryService;
 import jobless.service.icon.CreateIconService;
 import jobless.service.icon.DeleteIconService;
 import jobless.service.icon.ModifyIconService;
@@ -58,12 +59,22 @@ public class Test4 {
 	}
 	
 	@Autowired
-	CreateBoardService createBoardSerivce;
+	CreateBoardCategoryService createBoardCategoryService;
+	
+	@Autowired
+	ModifyBoardCategoryService modifyBoardCategoryService;
 	
 	//boardCategory기능 테스트
 	@Test
 	public void BoardCategoryTest() {
-		createBoardSerivce.createBoard(new BoardCategoryVO("테스트 카테고리", 1));
+		//카테고리 삭제 테스트
+		
+		
+		//카테고리 수정 테스트
+		modifyBoardCategoryService.modifyBoardCategory(new BoardCategoryVO(2 ,"수정된 테스트 카테고리", 1));
+		
+		//카테고리 생성 테스트
+		createBoardCategoryService.createBoardCategory(new BoardCategoryVO("", 1));
 		
 //		boardCategoryDAO.insert(new BoardCategoryVO("test_board_name", 1));
 //		System.out.println(boardCategoryDAO.select(1));

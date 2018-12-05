@@ -7,13 +7,13 @@ import jobless.dao.BoardCategoryDAO;
 import jobless.model.BoardCategoryVO;
 
 @Repository("createBoardService")
-public class CreateBoardServiceImpl implements CreateBoardService {
+public class CreateBoardCategoryServiceImpl implements CreateBoardCategoryService {
 
 	@Autowired
 	BoardCategoryDAO boardCategoryDao;
 	
 	@Override
-	public void createBoard(BoardCategoryVO boardCategory) {
+	public void createBoardCategory(BoardCategoryVO boardCategory) {
 		boardCategoryDao.insert(boardCategory);
 	}
 
