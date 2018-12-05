@@ -7,6 +7,7 @@ public class PostDetailVO {
 	private PostVO post;
 	private UserVO user;
 	private ContentVO content;
+	private int likes;
 
 	public PostVO getPost() {
 		return post;
@@ -32,9 +33,17 @@ public class PostDetailVO {
 		this.content = content;
 	}
 
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
 	@Override
 	public String toString() {
-		return "PostDetailVO [post=" + post + ", user=" + user + ", content=" + content + "]";
+		return "PostDetailVO [post=" + post + ", user=" + user + ", content=" + content + ", likes=" + likes + "]";
 	}
 	
 	
