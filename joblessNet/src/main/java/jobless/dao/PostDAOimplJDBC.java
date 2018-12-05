@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import jobless.dao.condition.Condition;
 import jobless.dao.mapper.IPostMapper;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
@@ -51,5 +52,10 @@ public class PostDAOimplJDBC implements PostDAO {
 	@Override
 	public PostDetailVO readDetail(int id) {
 		return postMapper.selectPostDetail(id);
+	}
+
+	@Override
+	public List<PostDetailVO> readDetailAll(Condition condition) {
+		return postMapper.selectDetailPostList(condition);
 	}
 }

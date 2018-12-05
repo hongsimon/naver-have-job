@@ -75,13 +75,15 @@
 	</select>
 	
 	<resultMap type="PostDetail" id="PostMap">
+		<result property="likes" column="likes" javaType="int"/>
 		<association property="post" javaType="Post" autoMapping="true"/>
 		<association property="user" javaType="User" autoMapping="true"/>
-		<association property="content" javaType="Content" autoMapping="true"></association>
+		<association property="content" javaType="Content" autoMapping="true"/>
 	</resultMap>
+	
 	<select id="selectPostDetail" parameterType="int" resultMap="PostMap">
 		select 
-			post_id postId, 
+			p.post_id postId, 
 			post_title title, 
 			write_date writeDate, 
 			p.content_id contentId, 
@@ -91,12 +93,61 @@
 			category_id categoryId,
 			u.user_id userId,
 			nickname,
-			content
+			content,
+			count(p.post_id) likes
 		from 
 			post p 
 			join user u on p.user_id = u.user_id
 			join content c on p.content_id = c.content_id
+			left outer join taku.like l on p.post_id = l.post_id
 		where 
-			post_id = #{postId}
-		</select>
+			p.post_id = #{postId}
+		group by
+			p.post_id
+	</select>
+
+	<select id="selectDetailPostList" parameterType="Condition" resultMap="PostMap">
+		select 
+			p.post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			p.content_id contentId, 
+			board_id contentId, 
+			views, 
+			p.user_id writerId,
+			category_id categoryId,
+			u.user_id userId,
+			nickname,
+			content,
+			count(l.post_id) likes
+		from 
+			post p 
+			join user u on p.user_id = u.user_id
+			join content c on p.content_id = c.content_id
+			left outer join taku.like l on p.post_id = l.post_id
+		<if test="period != null || id != null">
+		WHERE
+			<if test="period != null">
+			write_date &gt; #{period.startDate} AND write_date &lt; #{period.endDate} <if test="id != null">AND</if>
+			</if>
+			<if test="id != null">
+			
+			</if>
+		</if>
+		GROUP BY
+			p.post_id
+		<if test="order != null">
+		ORDER BY
+			<if test="order.likes">
+			likes desc <if test="order.views">,</if>
+			</if>
+			<if test="order.views">
+			views desc
+			</if>
+		</if>
+		<if test="limit != null">
+		LIMIT
+			#{limit.startIndex}, #{limit.offset}
+		</if>
+	</select>
 </mapper>
