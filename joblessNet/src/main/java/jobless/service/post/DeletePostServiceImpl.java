@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jobless.dao.PostDAO;
+import jobless.exception.DeletePostException;
 
 @Repository("deletePostService")
 public class DeletePostServiceImpl implements DeletePostService {
@@ -13,8 +14,11 @@ public class DeletePostServiceImpl implements DeletePostService {
 	
 	@Override
 	public void deletePost(int postId) {
-		// TODO Auto-generated method stub
-		postdao.delete(postId);
+		try {
+			postdao.delete(postId);
+		} catch (Exception e) {
+			throw new DeletePostException("post 삭제 실패" + e);
+		}
 	}
 
 }

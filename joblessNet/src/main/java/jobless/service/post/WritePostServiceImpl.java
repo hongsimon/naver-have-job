@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import jobless.dao.ContentDAO;
 import jobless.dao.PostDAO;
+import jobless.exception.WritePostException;
 import jobless.model.ContentVO;
 import jobless.model.PostVO;
 
@@ -25,9 +26,11 @@ public class WritePostServiceImpl implements WritePostService {
 	public void writePost(PostRequest postReq) {
 		try {
 			contentdao.insert(new ContentVO(postReq.getContent()));
+			int contentId = postdao.readLastInsertId();
+			postReq.setContentId(contentId);
 			postdao.insert(new PostVO(postReq.getTitle(), postReq.getContentId(), postReq.getWriterId(), postReq.getBoardId(), postReq.getCategoryId()));
 		} catch (Exception e) {
-			throw new RuntimeException();
+			throw new WritePostException("post 작성 실패" + e);
 		}
 	}
 
