@@ -20,6 +20,7 @@ import jobless.exception.UserNotFoundException;
 import jobless.model.BoardCategoryVO;
 import jobless.model.IconVO;
 import jobless.model.UserVO;
+import jobless.service.board.CreateBoardService;
 import jobless.service.icon.CreateIconService;
 import jobless.service.icon.DeleteIconService;
 import jobless.service.icon.ModifyIconService;
@@ -56,13 +57,18 @@ public class Test4 {
 		}
 	}
 	
+	@Autowired
+	CreateBoardService createBoardSerivce;
+	
 	//boardCategory기능 테스트
 	@Test
 	public void BoardCategoryTest() {
+		createBoardSerivce.createBoard(new BoardCategoryVO("테스트 카테고리", 1));
+		
 //		boardCategoryDAO.insert(new BoardCategoryVO("test_board_name", 1));
 //		System.out.println(boardCategoryDAO.select(1));
 //		System.out.println(boardCategoryDAO.selectAll());
-		boardCategoryDAO.update(new BoardCategoryVO(1, "test_name", 1));
+//		boardCategoryDAO.update(new BoardCategoryVO(1, "test_name", 1));
 	}
 	
 	@Autowired
@@ -78,7 +84,7 @@ public class Test4 {
 	SelectIconService selectIconService;
 	
 	//Icon기능 테스트
-	@Test
+	@Test @Ignore
 	public void IconTest() {
 		//icon 조회 테스트(모두)
 //		List<IconVO> icon = selectIconService.SelectIconAll();
