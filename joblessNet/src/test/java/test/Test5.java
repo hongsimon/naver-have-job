@@ -16,6 +16,8 @@ import jobless.dao.PostDAO;
 import jobless.model.BoardApplyVO;
 import jobless.model.ContentVO;
 import jobless.model.PostVO;
+import jobless.service.post.PostRequest;
+import jobless.service.post.WritePostService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
@@ -32,19 +34,22 @@ public class Test5 {
 	@Autowired
 	BoardApplyDAO boardApplyDao;
 	
+	@Autowired
+	WritePostService writePostService;
+	
 
 	//-----------------------------------------------------------------------
 	
-	// Post dao °ü·Ã
+	// Post dao ï¿½ï¿½ï¿½ï¿½
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testInsertPost() {
 		System.out.println("insert start");
 		postDao.insert(new PostVO("youg girls", 1, 1, 1, 1));
 		System.out.println("insert end");
 	}
 
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testUpdatePost() {
 		int postId = 19;
 		String title = "HiHi";
@@ -60,7 +65,7 @@ public class Test5 {
 		System.out.println("update end");
 	}
 
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testDeletePost() {
 		int postId = 19;
 		
@@ -69,7 +74,7 @@ public class Test5 {
 		System.out.println("delete end");
 	}
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testSelectPost() {
 		System.out.println("read start");
 		PostVO post = postDao.read(20);
@@ -77,7 +82,7 @@ public class Test5 {
 		System.out.println("read end");
 	}
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testSelecListPost() {
 		System.out.println("readAll start");
 		List<PostVO> list = postDao.readAll();
@@ -87,12 +92,12 @@ public class Test5 {
 		System.out.println("readAll end");
 	}
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testselectOwnListPost() {
 		int userId = 1;
 		
 		System.out.println("selectOwnList start");
-		List<PostVO> list = postDao.readChoosedAll(userId);
+		List<PostVO> list = postDao.readOwnList(userId);
 		
 		for (PostVO unit : list) {System.out.println(unit.toString());}
 		
@@ -110,9 +115,9 @@ public class Test5 {
 	
 	//-----------------------------------------------------------------------
 	
-	// Content dao °ü·Ã
+	// Content dao ï¿½ï¿½ï¿½ï¿½
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testInsertContent() {
 		String content = "hello mom";
 		
@@ -121,7 +126,7 @@ public class Test5 {
 		System.out.println("insert end");
 	}
 
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testUpdateContent() {
 		int id = 5;
 		String title = "HiHi";
@@ -135,7 +140,7 @@ public class Test5 {
 		System.out.println("update end");
 	}
 
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testDeleteContent() {
 		int id = 6;
 		
@@ -144,7 +149,7 @@ public class Test5 {
 		System.out.println("delete end");
 	}
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testSelectContent() {
 		int id = 5;
 		
@@ -162,16 +167,16 @@ public class Test5 {
 	
 	//-----------------------------------------------------------------------
 	
-	// boardApply dao (°ü¸®ÀÚ¶û ¾´ ÀÛ¼ºÀÚ¸¸ º½)
+	// boardApply dao (ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½)
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testInsertBoardApply() {
 		System.out.println("insert start");
 		boardApplyDao.insert(new BoardApplyVO(1, "youg boys", "nate.net"));
 		System.out.println("insert end");
 	}
 
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testUpdateBoardApply() {
 		int applyId = 3;
 		String content = "HiHi";
@@ -188,7 +193,7 @@ public class Test5 {
 		System.out.println("update end");
 	}
 
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testDeleteBoardApply() {
 		int applyId = 3;
 		
@@ -197,7 +202,7 @@ public class Test5 {
 		System.out.println("delete end");
 	}
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testSelectBoardApplyById() {
 		int applyId = 3;
 		
@@ -207,7 +212,7 @@ public class Test5 {
 		System.out.println("read end");
 	}
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testSelecListBoardApply() {
 		System.out.println("readAll start");
 		List<BoardApplyVO> list = boardApplyDao.readAll();
@@ -217,7 +222,7 @@ public class Test5 {
 		System.out.println("readAll end");
 	}
 	
-	@Test @Ignore // ¼º°ø
+	@Test @Ignore // ï¿½ï¿½ï¿½ï¿½
 	public void testselectOwnListBoardApply() {
 		int userId = 2;
 		
@@ -232,4 +237,11 @@ public class Test5 {
 	//-----------------------------------------------------------------------
 	
 	
+	@Test
+	public void test() {
+		
+		System.out.println("wriePostService start");
+//		writePostService.writePost(new PostRequest(, "ì œëª©ìž„", "", boardId, writerId, categoryId));
+		System.out.println("wriePostService end");
+	}
 }

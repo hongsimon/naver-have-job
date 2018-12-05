@@ -14,4 +14,6 @@ public interface IPostMapper {
 	PostDetailVO selectPostDetail(int id);
 	List<PostVO> selectPostList();
 	List<PostVO> selectPostOwnList(int id);
+	List<PostVO> selectPostByBoardId(int id);
+	List<PostVO> selectPostByCategoryId(int id);
 }

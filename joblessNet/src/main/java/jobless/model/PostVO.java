@@ -15,14 +15,13 @@ public class PostVO {
 	private int writerId;
 	private int categoryId;
 
-	public PostVO() {
-	}
+	public PostVO() {}
 
-	public PostVO(String title, int contentId, int boardId, int writerId, int categoryId) {
+	public PostVO(String title, int contentId, int writerId, int boardId, int categoryId) {
 		this.title = title;
 		this.contentId = contentId;
-		this.boardId = boardId;
 		this.writerId = writerId;
+		this.boardId = boardId;
 		this.categoryId = categoryId;
 	}	
 

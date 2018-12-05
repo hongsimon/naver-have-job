@@ -32,7 +32,7 @@
 			post_title title, 
 			write_date writeDate, 
 			content_id contentId, 
-			board_id contentId, 
+			board_id boardId, 
 			views, 
 			user_id writerId,
 			category_id categoryId
@@ -49,7 +49,7 @@
 			post_title title, 
 			write_date writeDate, 
 			content_id contentId, 
-			board_id contentId, 
+			board_id boardId, 
 			views, 
 			user_id writerId,
 			category_id categoryId
@@ -64,7 +64,7 @@
 			post_title title, 
 			write_date writeDate, 
 			content_id contentId, 
-			board_id contentId, 
+			board_id boardId, 
 			views, 
 			user_id writerId,
 			category_id categoryId
@@ -74,11 +74,44 @@
 			user_id = #{writerId}
 	</select>
 	
+	<select id="selectPostByBoardId" parameterType="int" resultType="Post">
+		select
+			post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			content_id contentId, 
+			board_id boardId, 
+			views, 
+			user_id writerId,
+			category_id categoryId
+		from 
+			post
+		where
+			board_id = #{boardId}
+	</select>
+	
+	<select id="readPostByCategoryId" parameterType="int" resultType="Post">
+		select
+			post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			content_id contentId, 
+			board_id boardId, 
+			views, 
+			user_id writerId,
+			category_id categoryId
+		from 
+			post
+		where
+			category_id = #{categoryId}
+	</select>
+	
 	<resultMap type="PostDetail" id="PostMap">
 		<association property="post" javaType="Post" autoMapping="true"/>
 		<association property="user" javaType="User" autoMapping="true"/>
 		<association property="content" javaType="Content" autoMapping="true"></association>
 	</resultMap>
+	
 	<select id="selectPostDetail" parameterType="int" resultMap="PostMap">
 		select 
 			post_id postId, 
@@ -98,5 +131,5 @@
 			join content c on p.content_id = c.content_id
 		where 
 			post_id = #{postId}
-		</select>
+	</select>
 </mapper>
