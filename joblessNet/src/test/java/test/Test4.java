@@ -20,7 +20,14 @@ import jobless.exception.UserNotFoundException;
 import jobless.model.BoardCategoryVO;
 import jobless.model.IconVO;
 import jobless.model.UserVO;
+import jobless.service.icon.CreateIconService;
+import jobless.service.icon.DeleteIconService;
+import jobless.service.icon.ModifyIconService;
+import jobless.service.icon.SelectIconService;
 import jobless.service.user.DeleteUserService;
+import jobless.service.user.GetUserService;
+import jobless.service.user.JoinUserService;
+import jobless.service.user.ModifyUserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
@@ -58,10 +65,40 @@ public class Test4 {
 		boardCategoryDAO.update(new BoardCategoryVO(1, "test_name", 1));
 	}
 	
+	@Autowired
+	CreateIconService createIconService;
+	
+	@Autowired
+	ModifyIconService modifyIconService; 
+	
+	@Autowired
+	DeleteIconService deleteIconService; 
+	
+	@Autowired
+	SelectIconService selectIconService;
 	
 	//Icon기능 테스트
-	@Test @Ignore
+	@Test
 	public void IconTest() {
+		//icon 조회 테스트(모두)
+//		List<IconVO> icon = selectIconService.SelectIconAll();
+//		for (IconVO iconVO : icon) {
+//			System.out.println(iconVO);
+//		}
+		
+		//icon 조회 테스트(한개만)
+//		System.out.println(selectIconService.SelectIconById(1));
+		
+		//icon 삭제 테스트
+//		deleteIconService.DeleteIcon(3);
+		
+		//icon 수정 테스트
+//		modifyIconService.ModifyIncon(new IconVO(3, "New 정신개조콘"));
+		
+		//icon 등록 테스트
+//		createIconService.CreateIcon(new IconVO("정신개조콘"));
+		
+		
 //		iconDao.insert(new IconVO("케장콘"));
 //		iconDao.update(new IconVO(1, "멸시콘"));
 //		System.out.println(iconDao.select(1));
@@ -72,14 +109,38 @@ public class Test4 {
 	@Autowired
 	DeleteUserService deleteUserService; 
 	
+	@Autowired
+	ModifyUserService modifyUserService; 
+	
+	@Autowired
+	JoinUserService joinUserService;
+	
+	@Autowired
+	GetUserService getUserService;
+	
 	//User기능 테스트
-	@Test
+	@Test @Ignore
 	public void UserTest() {
-		//수정 테스트
+		//회원 검색 테스트(All)
+//		List<UserVO> user = getUserService.getAllUser();
+//		for (UserVO userVO : user) {
+//			System.out.println(userVO);
+//		}
 		
+		//회원 검색 테스트(loginId)
+//		System.out.println(getUserService.getUserByLoginId("tjdalsdl1214"));
 		
-		//삭제 테스트
-		//deleteUserService.deleteUser(9); 
+		//회원 검색 테스트(userId)
+//		System.out.println(getUserService.getUserByUserId(1));
+		
+		//회원 가입 테스트
+//		joinUserService.joinUser(new UserVO("나는야", "퉁퉁이", "골목", "대장이라네", 1));
+		
+		//회원 정보 수정 테스트
+//		modifyUserService.modifyUser(new UserVO(8, "포킹닉네임", "포킹패스워드", "포킹이메일"));
+		
+		//회원 탈퇴 테스트
+//		deleteUserService.deleteUser(19); 
 	}
 	
 }

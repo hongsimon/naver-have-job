@@ -8,7 +8,9 @@ import jobless.model.UserVO;
 public interface IUserMapper {
 	public void insertUser(UserVO user);
 	
-	public UserVO selectUserById(int userId);
+	public UserVO selectUserByUserId(int userId);
+	
+	public UserVO selectUserByLoginId(String LoginId);
 	
 	public List<UserVO> selectAllUser();
 	

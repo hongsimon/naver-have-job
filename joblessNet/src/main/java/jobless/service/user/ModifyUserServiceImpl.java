@@ -14,7 +14,7 @@ public class ModifyUserServiceImpl implements ModifyUserService {
 	
 	@Override
 	public void modifyUser(UserVO user) {
-		
+		userdao.update(user);
 
 	}
 

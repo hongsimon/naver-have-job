@@ -16,4 +16,6 @@ public interface IPostMapper {
 	List<PostVO> selectPostOwnList(int id);
 	PostDetailVO selectPostDetail(int id);
 	List<PostDetailVO> selectDetailPostList(Condition condition);
+	List<PostVO> selectPostByBoardId(int id);
+	List<PostVO> selectPostByCategoryId(int id);
 }

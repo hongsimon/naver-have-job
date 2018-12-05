@@ -2,16 +2,16 @@ package jobless.dao.condition;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("Conditions")
-public class Conditions {
+@Alias("Condition")
+public class Condition {
 	private Id id;
-	private Date date;
+	private Period period;
 	private Limit limit;
 	private Order order;
 
-	public Conditions(Id id, Date date, Limit limit, Order order) {
+	public Condition(Id id, Period period, Limit limit, Order order) {
 		this.id = id;
-		this.date = date;
+		this.period = period;
 		this.limit = limit;
 		this.order = order;
 	}
@@ -20,8 +20,8 @@ public class Conditions {
 		return id;
 	}
 
-	public Date getDate() {
-		return date;
+	public Period getDate() {
+		return period;
 	}
 	
 	public Limit getLimit() {

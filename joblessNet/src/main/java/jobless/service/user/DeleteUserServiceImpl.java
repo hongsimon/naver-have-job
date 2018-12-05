@@ -18,9 +18,8 @@ public class DeleteUserServiceImpl implements DeleteUserService {
 		try {
 
 			System.out.println(userId);
-			System.out.println(userDao.select(userId));
-			UserVO user = userDao.select(userId);
-			System.out.println(user);
+			System.out.println(userDao.selectUserId(userId));
+			UserVO user = userDao.selectUserId(userId);
 			if(user == null) {
 				throw new UserNotFoundException(userId + "번 사용자를 찾지 못했습니다.");
 			}

@@ -16,20 +16,20 @@ public class GetUserServiceImpl implements GetUserService {
 
 	@Override
 	public UserVO getUserByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		UserVO user = userdao.selectUserId(userId);
+		return user;
 	}
 
 	@Override
 	public UserVO getUserByLoginId(String loginId) {
-		// TODO Auto-generated method stub
-		return null;
+		UserVO user = userdao.selectLoginId(loginId);
+		return user;
 	}
 
 	@Override
 	public List<UserVO> getAllUser() {
-		// TODO Auto-generated method stub
-		return null;
+		List<UserVO> user = userdao.selectAll();
+		return user;
 	}
 
 }

@@ -4,22 +4,23 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("Order")
 public class Order {
-	private int views;
-	private int likes;
+	private boolean views;
+	private boolean likes;
 
-	public int getViews() {
+	public boolean getViews() {
 		return views;
 	}
 
-	public void setViews(int views) {
+	public void setViews(boolean views) {
 		this.views = views;
 	}
 
-	public int getLikes() {
+	public boolean getLikes() {
 		return likes;
 	}
 
-	public void setLikes(int likes) {
+	public void setLikes(boolean likes) {
 		this.likes = likes;
 	}
+
 }

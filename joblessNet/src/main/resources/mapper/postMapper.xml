@@ -32,7 +32,7 @@
 			post_title title, 
 			write_date writeDate, 
 			content_id contentId, 
-			board_id contentId, 
+			board_id boardId, 
 			views, 
 			user_id writerId,
 			category_id categoryId
@@ -49,7 +49,7 @@
 			post_title title, 
 			write_date writeDate, 
 			content_id contentId, 
-			board_id contentId, 
+			board_id boardId, 
 			views, 
 			user_id writerId,
 			category_id categoryId
@@ -64,7 +64,7 @@
 			post_title title, 
 			write_date writeDate, 
 			content_id contentId, 
-			board_id contentId, 
+			board_id boardId, 
 			views, 
 			user_id writerId,
 			category_id categoryId
@@ -72,6 +72,38 @@
 			post
 		where
 			user_id = #{writerId}
+	</select>
+	
+	<select id="selectPostByBoardId" parameterType="int" resultType="Post">
+		select
+			post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			content_id contentId, 
+			board_id boardId, 
+			views, 
+			user_id writerId,
+			category_id categoryId
+		from 
+			post
+		where
+			board_id = #{boardId}
+	</select>
+	
+	<select id="readPostByCategoryId" parameterType="int" resultType="Post">
+		select
+			post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			content_id contentId, 
+			board_id boardId, 
+			views, 
+			user_id writerId,
+			category_id categoryId
+		from 
+			post
+		where
+			category_id = #{categoryId}
 	</select>
 	
 	<resultMap type="PostDetail" id="PostMap">
@@ -149,5 +181,6 @@
 		LIMIT
 			#{limit.startIndex}, #{limit.offset}
 		</if>
+			post_id = #{postId}
 	</select>
 </mapper>

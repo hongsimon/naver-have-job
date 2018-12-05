@@ -36,6 +36,11 @@ public class PostDAOimplJDBC implements PostDAO {
 		PostVO post = postMapper.selectPostById(id);
 		return post;
 	}
+
+	@Override
+	public PostDetailVO readDetail(int id) {
+		return postMapper.selectPostDetail(id);
+	}
 	
 	@Override
 	public List<PostVO> readAll() {
@@ -44,18 +49,23 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
-	public List<PostVO> readChoosedAll(int id) {
+	public List<PostVO> readOwnList(int id) {
 		List<PostVO> postList = postMapper.selectPostOwnList(id);
 		return postList;
 	}
 	
 	@Override
-	public PostDetailVO readDetail(int id) {
-		return postMapper.selectPostDetail(id);
+	public List<PostVO> readBoardIdList(int id) {
+		return postMapper.selectPostByBoardId(id);
 	}
 
 	@Override
 	public List<PostDetailVO> readDetailAll(Condition condition) {
 		return postMapper.selectDetailPostList(condition);
+	}
+	
+	@Override
+	public List<PostVO> readCategoryIdList(int id) {
+		return postMapper.selectPostByCategoryId(id);
 	}
 }

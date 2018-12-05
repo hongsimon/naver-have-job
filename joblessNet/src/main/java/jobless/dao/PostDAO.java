@@ -15,5 +15,7 @@ public interface PostDAO {
 	public PostDetailVO readDetail(int id);
 	public List<PostDetailVO> readDetailAll(Condition condition);
 	public List<PostVO> readAll();
-	public List<PostVO> readChoosedAll(int id);
+	public List<PostVO> readOwnList(int id);
+	public List<PostVO> readBoardIdList(int id);
+	public List<PostVO> readCategoryIdList(int id);
 }

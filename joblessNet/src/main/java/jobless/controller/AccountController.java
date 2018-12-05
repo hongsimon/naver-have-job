@@ -37,9 +37,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/deleteUser", method=RequestMethod.POST)
-	public String ccontrollerDeleteUser_POST(@RequestParam int userId
-										     
-											) {
+	public String ccontrollerDeleteUser_POST(@RequestParam int userId) {
 		System.out.println("회원삭제 페이지_POST");
 		deleteUserService.deleteUser(userId);
 		
