@@ -239,9 +239,8 @@ public class Test5 {
 	
 	@Test
 	public void test() {
-		
 		System.out.println("wriePostService start");
-//		writePostService.writePost(new PostRequest(, "제목임", "", boardId, writerId, categoryId));
+		writePostService.writePost(new PostRequest(0, "KiKi", "하하", 1, 1, 1));
 		System.out.println("wriePostService end");
 	}
 }

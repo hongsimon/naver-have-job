@@ -90,7 +90,7 @@
 			board_id = #{boardId}
 	</select>
 	
-	<select id="readPostByCategoryId" parameterType="int" resultType="Post">
+	<select id="selectPostByCategoryId" parameterType="int" resultType="Post">
 		select
 			post_id postId, 
 			post_title title, 
@@ -104,6 +104,10 @@
 			post
 		where
 			category_id = #{categoryId}
+	</select>
+	
+	<select id="selectLastInsertId" resultType="int">
+		select LAST_INSERT_ID() from taku.content limit 1;
 	</select>
 	
 	<resultMap type="PostDetail" id="PostMap">
@@ -144,7 +148,7 @@
 			post_title title, 
 			write_date writeDate, 
 			p.content_id contentId, 
-			board_id contentId, 
+			board_id boardId, 
 			views, 
 			p.user_id writerId,
 			category_id categoryId,
@@ -181,6 +185,5 @@
 		LIMIT
 			#{limit.startIndex}, #{limit.offset}
 		</if>
-			post_id = #{postId}
 	</select>
 </mapper>

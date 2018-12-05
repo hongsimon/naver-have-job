@@ -16,6 +16,12 @@ public class PostVO {
 	private int categoryId;
 
 	public PostVO() {}
+	
+	public PostVO(String title, int categoryId) {
+		super();
+		this.title = title;
+		this.categoryId = categoryId;
+	}
 
 	public PostVO(String title, int contentId, int writerId, int boardId, int categoryId) {
 		this.title = title;

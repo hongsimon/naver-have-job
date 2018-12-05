@@ -18,4 +18,5 @@ public interface PostDAO {
 	public List<PostVO> readOwnList(int id);
 	public List<PostVO> readBoardIdList(int id);
 	public List<PostVO> readCategoryIdList(int id);
+	public int readLastInsertId();
 }

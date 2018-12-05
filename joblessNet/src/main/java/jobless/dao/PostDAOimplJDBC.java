@@ -68,4 +68,11 @@ public class PostDAOimplJDBC implements PostDAO {
 	public List<PostVO> readCategoryIdList(int id) {
 		return postMapper.selectPostByCategoryId(id);
 	}
+
+	@Override
+	public int readLastInsertId() {
+		return postMapper.selectLastInsertId();
+	}
+	
+	
 }
