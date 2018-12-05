@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import jobless.dao.BoardCategoryDAO;
 import jobless.model.BoardCategoryVO;
 
-@Repository("createBoardService")
+@Repository("createBoardCategoryService")
 public class CreateBoardCategoryServiceImpl implements CreateBoardCategoryService {
 
 	@Autowired

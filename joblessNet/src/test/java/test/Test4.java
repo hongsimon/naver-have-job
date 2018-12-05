@@ -21,7 +21,9 @@ import jobless.model.BoardCategoryVO;
 import jobless.model.IconVO;
 import jobless.model.UserVO;
 import jobless.service.board.CreateBoardCategoryService;
+import jobless.service.board.DeleteBoardCategoryService;
 import jobless.service.board.ModifyBoardCategoryService;
+import jobless.service.board.SelectBoardCategoryService;
 import jobless.service.icon.CreateIconService;
 import jobless.service.icon.DeleteIconService;
 import jobless.service.icon.ModifyIconService;
@@ -64,17 +66,32 @@ public class Test4 {
 	@Autowired
 	ModifyBoardCategoryService modifyBoardCategoryService;
 	
+	@Autowired
+	DeleteBoardCategoryService deleteBoardCategoryService;
+	
+	@Autowired
+	SelectBoardCategoryService selectBoardCategoryService;
+	
 	//boardCategory기능 테스트
 	@Test
 	public void BoardCategoryTest() {
-		//카테고리 삭제 테스트
+		//카테고리 조회 테스트(ByAll)
+//		List<BoardCategoryVO> boardCategory = selectBoardCategoryService.selectBoardCategotyByAll();
+//		for (BoardCategoryVO boardCategoryVO : boardCategory) {
+//			System.out.println(boardCategoryVO);
+//		}
 		
+		//카테고리 조회 테스트(ById)
+//		System.out.println(selectBoardCategoryService.selectBoardCategotyById(5));
+		
+		//카테고리 삭제 테스트
+//		deleteBoardCategoryService.deleteBoardCategory(4);
 		
 		//카테고리 수정 테스트
-		modifyBoardCategoryService.modifyBoardCategory(new BoardCategoryVO(2 ,"수정된 테스트 카테고리", 1));
+//		modifyBoardCategoryService.modifyBoardCategory(new BoardCategoryVO(5 ,"친구가없네", 1));
 		
 		//카테고리 생성 테스트
-		createBoardCategoryService.createBoardCategory(new BoardCategoryVO("", 1));
+//		createBoardCategoryService.createBoardCategory(new BoardCategoryVO("나는 개똥벌레", 1));
 		
 //		boardCategoryDAO.insert(new BoardCategoryVO("test_board_name", 1));
 //		System.out.println(boardCategoryDAO.select(1));
@@ -98,7 +115,7 @@ public class Test4 {
 	@Test @Ignore
 	public void IconTest() {
 		//icon 조회 테스트(모두)
-//		List<IconVO> icon = selectIconService.SelectIconAll();
+//		List<IconVO> icon = selectIconService.SelectIconByAll();
 //		for (IconVO iconVO : icon) {
 //			System.out.println(iconVO);
 //		}

@@ -21,7 +21,7 @@ public class SelectIcnoServiceImpl implements SelectIconService {
 	}
 
 	@Override
-	public List<IconVO> SelectIconAll() {
+	public List<IconVO> SelectIconByAll() {
 		List<IconVO> icon = iconDao.selectAll();
 		return icon;
 	}
