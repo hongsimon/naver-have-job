@@ -1,18 +1,56 @@
 package jobless.service.user;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 public class UserRequest {
 	private int userId;
 	private String loginId;
 	private String nickName;
 	private String password;
+	private String passwordCheck;
 	private String email;
 	private int point;
 	private LocalDate regDate;
 	private boolean admin;
 	private boolean ban;
 	private int platformId;
+	
+	
+	// insert용
+		public UserRequest(String loginId, String nickName, String password, String email, int platformId) {
+			super();
+			this.loginId = loginId;
+			this.nickName = nickName;
+			this.password = password;
+			this.email = email;
+			this.platformId = platformId;
+		}
+
+		// update 용
+		public UserRequest(int userId, String nickName, String password, String email) {
+			super();
+			this.userId = userId;
+			this.nickName = nickName;
+			this.password = password;
+			this.email = email;
+		}
+
+		// select용
+		public UserRequest(int userId, String loginId, String nickName, String password, String email, int point,
+				LocalDate regDate, boolean admin, boolean ban, int platformId) {
+			super();
+			this.userId = userId;
+			this.loginId = loginId;
+			this.nickName = nickName;
+			this.password = password;
+			this.email = email;
+			this.point = point;
+			this.regDate = regDate;
+			this.admin = admin;
+			this.ban = ban;
+			this.platformId = platformId;
+		}
 	
 	public int getUserId() {
 		return userId;
@@ -37,6 +75,12 @@ public class UserRequest {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getPasswordCheck() {
+		return passwordCheck;
+	}
+	public void setPasswordCheck(String passwordCheck) {
+		this.passwordCheck = passwordCheck;
 	}
 	public String getEmail() {
 		return email;
@@ -74,4 +118,6 @@ public class UserRequest {
 	public void setPlatformId(int platformId) {
 		this.platformId = platformId;
 	}
+	
+
 }

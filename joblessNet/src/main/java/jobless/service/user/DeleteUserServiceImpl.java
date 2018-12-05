@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jobless.dao.UserDAO;
+import jobless.exception.UserNotDeleteException;
 import jobless.exception.UserNotFoundException;
 import jobless.model.UserVO;
 
@@ -16,14 +17,16 @@ public class DeleteUserServiceImpl implements DeleteUserService {
 	@Override
 	public void deleteUser(int userId) {
 		try {
-
-			System.out.println(userId);
-			System.out.println(userDao.selectUserId(userId));
 			UserVO user = userDao.selectUserId(userId);
 			if(user == null) {
-				throw new UserNotFoundException(userId + "번 사용자를 찾지 못했습니다.");
+				throw new UserNotFoundException("사용자를 찾지 못했습니다.");
 			}
+			
 			userDao.delete(userId);
+			user = userDao.selectUserId(userId);
+			if(user != null) {
+				throw new UserNotDeleteException("사용자를 삭제하지 못했습니다");
+			}
 		} catch (RuntimeException e) {
 			throw e;
 		}
