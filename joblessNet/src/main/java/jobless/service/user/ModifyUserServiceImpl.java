@@ -13,8 +13,9 @@ public class ModifyUserServiceImpl implements ModifyUserService {
 	UserDAO userdao;
 	
 	@Override
-	public void modifyUser(UserRequest user) {
-		userdao.update(new UserVO(user.getUserId(), user.getNickName(), user.getPassword(), user.getEmail()));
+	public void modifyUser(UserRequest userRequest) {
+		userdao.update(new UserVO(userRequest.getUserId(), userRequest.getNickName(), 
+				  				  userRequest.getPassword(), userRequest.getEmail()));
 
 	}
 

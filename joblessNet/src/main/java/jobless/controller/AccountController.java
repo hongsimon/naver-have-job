@@ -48,12 +48,16 @@ public class AccountController {
 									  @RequestParam String email,
 									  @RequestParam int platformId
 									  ) {
+		UserRequest userRequest = new UserRequest(loginId, nickName, passwordCheck, email, platformId);
 		
-		joinUserService.joinUser(new UserVO(loginId, nickName, password, email, platformId));	
+		
+		joinUserService.joinUser(new UserRequest(userRequest.getLoginId(), userRequest.getNickName(),
+											userRequest.getPassword(), userRequest.getEmail(),
+											userRequest.getPlatformId()));	
 
 		System.out.println("회원가입 페이지_POST");
 		
-		return "redirect:/main";
+		return "redirect:/main"; 
 	}
 	
 	@RequestMapping(value="/deleteUser", method=RequestMethod.GET)

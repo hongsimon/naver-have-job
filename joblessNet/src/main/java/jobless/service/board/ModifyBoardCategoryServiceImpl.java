@@ -13,8 +13,10 @@ public class ModifyBoardCategoryServiceImpl implements ModifyBoardCategoryServic
 	BoardCategoryDAO boardCategoryDao;
 	
 	@Override
-	public void modifyBoardCategory(BoardCategoryVO boardCategory) {
-		boardCategoryDao.update(boardCategory);
+	public void modifyBoardCategory(BoardCategoryRequest boardCategoryRequest) {
+		boardCategoryDao.update(new BoardCategoryVO(boardCategoryRequest.getBoardCategoryId(),
+													boardCategoryRequest.getCategoryName(),
+													boardCategoryRequest.getBoardId()));
 	}
 
 }

@@ -13,8 +13,9 @@ public class JoinUserServiceImpl implements JoinUserService {
 	UserDAO userdao;
 	
 	@Override
-	public void joinUser(UserVO user) {
-		userdao.insert(user);
+	public void joinUser(UserRequest userRequest) {
+		userdao.insert(new UserVO(userRequest.getLoginId(), userRequest.getNickName(), userRequest.getPassword(),
+								  userRequest.getEmail(), userRequest.getPlatformId()));
 	}
 
 }

@@ -13,8 +13,8 @@ public class CreateIconServiceImpl implements CreateIconService {
 	IconDAO iconDao;
 	
 	@Override
-	public void CreateIcon(IconVO icon) {
-		iconDao.insert(icon);
+	public void CreateIcon(IconRequest IconRequest) {
+		iconDao.insert(new IconVO(IconRequest.getFileName()));
 
 	}
 

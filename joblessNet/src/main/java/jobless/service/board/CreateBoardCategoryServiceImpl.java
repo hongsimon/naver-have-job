@@ -13,8 +13,9 @@ public class CreateBoardCategoryServiceImpl implements CreateBoardCategoryServic
 	BoardCategoryDAO boardCategoryDao;
 	
 	@Override
-	public void createBoardCategory(BoardCategoryVO boardCategory) {
-		boardCategoryDao.insert(boardCategory);
+	public void createBoardCategory(BoardCategoryRequest boardCategoryRequest) {
+		boardCategoryDao.insert(new BoardCategoryVO(boardCategoryRequest.getCategoryName(),
+													boardCategoryRequest.getBoardId()));
 	}
 
 }

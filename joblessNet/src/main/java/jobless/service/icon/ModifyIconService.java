@@ -3,5 +3,5 @@ package jobless.service.icon;
 import jobless.model.IconVO;
 
 public interface ModifyIconService {
-	public void ModifyIncon(IconVO icon);
+	public void ModifyIncon(IconRequest iconRequest);
 }
