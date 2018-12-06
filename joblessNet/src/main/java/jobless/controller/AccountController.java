@@ -51,9 +51,15 @@ public class AccountController {
 		UserRequest userRequest = new UserRequest(loginId, nickName, passwordCheck, email, platformId);
 		
 		
-		joinUserService.joinUser(new UserRequest(userRequest.getLoginId(), userRequest.getNickName(),
-											userRequest.getPassword(), userRequest.getEmail(),
-											userRequest.getPlatformId()));	
+		try {
+			joinUserService.joinUser(new UserRequest(userRequest.getLoginId(), userRequest.getNickName(),
+					userRequest.getPassword(), userRequest.getEmail(),
+					userRequest.getPlatformId()));	
+		}catch (DuplicateKeyException e) {
+			req.setAttribute("DuplicateKeyException", "DuplicateKeyException");
+			e.getMessage();
+			return "join";
+		}
 
 		System.out.println("회원가입 페이지_POST");
 		

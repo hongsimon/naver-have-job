@@ -14,8 +14,19 @@ public class JoinUserServiceImpl implements JoinUserService {
 	
 	@Override
 	public void joinUser(UserRequest userRequest) {
+		UserVO userVO = userdao.selectLoginId(userRequest.getLoginId());
+		if(userVO.getLoginId().equals(userRequest.getLoginId())) {
+//			throw new OverR
+		}
+		
 		userdao.insert(new UserVO(userRequest.getLoginId(), userRequest.getNickName(), userRequest.getPassword(),
 								  userRequest.getEmail(), userRequest.getPlatformId()));
+		
+		try {
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 }
