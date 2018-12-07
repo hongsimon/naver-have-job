@@ -1,5 +1,8 @@
 package jobless.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jobless.exception.OverlapEmailException;
+import jobless.exception.OverlapLoginIdException;
+import jobless.exception.OverlapNickNameException;
 import jobless.exception.UserNotFoundException;
 import jobless.model.UserVO;
 import jobless.service.user.DeleteUserService;
@@ -48,15 +54,41 @@ public class AccountController {
 									  @RequestParam String email,
 									  @RequestParam int platformId
 									  ) {
-		UserRequest userRequest = new UserRequest(loginId, nickName, passwordCheck, email, platformId);
 		
+		UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
+		userRequest.setPasswordCheck(passwordCheck);
+		
+		//잘못된 정보는 errors라는 맵을 넣어놓기 위해 errors라는 맵을 생성
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		
+		userRequest.validate(errors);
+		
+		//errors는 view에 표출해주기 위해 request라는 속성 값으로 넣어줌
+		req.setAttribute("errors", errors);
+		
+		if(!errors.isEmpty()) {
+			return "join";
+		}
 		
 		try {
 			joinUserService.joinUser(new UserRequest(userRequest.getLoginId(), userRequest.getNickName(),
 					userRequest.getPassword(), userRequest.getEmail(),
-					userRequest.getPlatformId()));	
+					userRequest.getPlatformId()));
+			
+		}catch (OverlapLoginIdException e) {
+			req.setAttribute("OverlapLoginIdException", true);
+			e.getMessage();
+			return "join";
+		}catch (OverlapNickNameException e) {
+			req.setAttribute("OverlapNickNameException", true);
+			e.getMessage();
+			return "join";
+		}catch (OverlapEmailException e) {
+			req.setAttribute("OverlapEmailException", true);
+			e.getMessage();
+			return "join";
 		}catch (DuplicateKeyException e) {
-			req.setAttribute("DuplicateKeyException", "DuplicateKeyException");
+			req.setAttribute("DuplicateKeyException", true);
 			e.getMessage();
 			return "join";
 		}

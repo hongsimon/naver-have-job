@@ -10,8 +10,18 @@
 </head>
 <body>
 회원가입 페이지!!
-${DuplicateKeyException }
-<%= request.getAttribute("OverlapLoginIdException") %>
+<c:if test="${OverlapLoginIdException }">중복된 로그인아이디</c:if>
+<c:if test="${OverlapNickNameException }">중복된 닉네임</c:if>
+<c:if test="${OverlapEmailException }">중복된 이메일</c:if>
+<c:if test="${DuplicateKeyException }">중복된 회원정보</c:if>
+<c:if test="${errors.loginId }">로그인 아이디</c:if><br>
+<c:if test="${errors.password }">비번</c:if><br>
+<c:if test="${errors.passwordCheck }">비번체크</c:if><br>
+<c:if test="${errors.notMatchPassword }">비번체크 틀림!!</c:if>
+<c:if test="${errors.nickName }">닉넴</c:if><br>
+<c:if test="${errors.email }">이메일</c:if><br>
+<c:if test="${errors.platformId }">플랫폼</c:if><br>
+
 <form action="join" method="post">
 	<input type="text" name="loginId" placeholder="loginId"><br>
 	<input type="text" name="nickName" placeholder="nickName"><br>

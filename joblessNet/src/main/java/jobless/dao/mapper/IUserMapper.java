@@ -12,6 +12,10 @@ public interface IUserMapper {
 	
 	public UserVO selectUserByLoginId(String LoginId);
 	
+	public UserVO selectUserByNickName(String nickName);
+	
+	public UserVO selectUserByEmail(String email);
+	
 	public List<UserVO> selectAllUser();
 	
 	public void deleteUser(int userId);
