@@ -3,21 +3,20 @@
   <head>
     <script type="text/javascript" src="../js/jQuery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/twitch.js"></script>
     <script type="text/javascript" src="../js/shareJs.js"></script>
     <script type="text/javascript" src="../js/sliceString.js"></script>
     <script type="text/javascript" src="../js/transform-videoUri.js"></script>
     <script type="text/javascript" src="../js/borderJs.js"></script>
+
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/shareCss.css">
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/write.css" />
     <link rel="stylesheet" href="../css/customC.css">
-    <meta charset="utf-8" />
-    <script type="text/javascript">
 
-    </script>
+    <meta charset="utf-8" />
     <title>백수넷</title>
-    <%@include file="nav-header.jsp"%>
 
   </head>
   <body>
@@ -39,7 +38,10 @@
                     <div class="clip-write">
                       <form class="" action="#" method="post">
                         클립 주소
-                        <input type="text" name="clip_url" placeholder="<iframe>...</iframe>">
+                        <input type="text" name="clip" placeholder="url..." class="clip_url">
+
+                        <input type="hidden" name="clip_url" class="clip_url" />
+                        <input type="hidden" name="clip_Thumbnail" class="clip_Thumbnail" />
 
                         클립 제목
                         <input type="text" name="" value="">
@@ -47,6 +49,7 @@
                         <div>
                           음란물/광고 등 부적절한 영상은 임의로 삭제될 수 있으며, 관리를 위해 등록한 시간과 등록자의 IP 주소가 기록됩니다. IP 주소는 공개적으로 노출되지 않습니다.
                         </div>
+                        
                         <button type="submit" name="button">업로드</button>
                       </form>
                     </div>

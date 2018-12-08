@@ -146,3 +146,9 @@
 .twitch div{
   color:  #472650;
 }
+
+
+hr{
+  margin: 10px;
+  border: 1px solid #e2dfdf;
+}

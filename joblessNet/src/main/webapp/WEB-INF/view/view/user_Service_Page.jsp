@@ -38,6 +38,7 @@
     			alert(error);
     		}
           });
+          $('iframe').attr("src", "http://localhost:8080/jobless-net/main")
         })
 
         $("#userDel").click(function() {
@@ -53,10 +54,11 @@
     		}
 
           });
+          $('iframe').attr("src", "http://localhost:8080/jobless-net/view_Service")
         })
 
 
-      })
+});
   </script>
 
 
@@ -80,6 +82,9 @@
         <div class="inner">
           
         </div>
+        <iframe width="100%" height="1024">
+        
+        </iframe>
       </div>
     </div>
   </div>
