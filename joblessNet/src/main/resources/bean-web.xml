@@ -19,4 +19,5 @@
 	<mvc:resources mapping="/images/**" location="/resources/images/" />
 	<mvc:resources mapping="/js/**" location="/resources/js/" />
 	<mvc:resources mapping="/summernote/**" location="/resources/summernote/" />
+	<mvc:resources mapping="/service/**" location="/WEB-INF/view/service/" />
 </beans>

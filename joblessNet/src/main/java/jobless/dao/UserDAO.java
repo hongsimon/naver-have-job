@@ -10,6 +10,10 @@ public interface UserDAO {
 	public UserVO selectUserId(int userId);
 	
 	public UserVO selectLoginId(String loginId);
+
+	public UserVO selectNickName(String nickName);
+	
+	public UserVO selectEmail(String email);
 	
 	public List<UserVO> selectAll();
 	

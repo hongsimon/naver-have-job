@@ -62,6 +62,7 @@
 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
+			<tx:method name="auth*" rollback-for="RuntimeException" />
 			<tx:method name="insert*" rollback-for="RuntimeException" />
 			<tx:method name="write*" rollback-for="RuntimeException" />
 			<tx:method name="add*" rollback-for="RuntimeException" />
@@ -78,6 +79,7 @@
 			<tx:method name="read*" read-only="true" />
 			<tx:method name="select*" read-only="true" />
 			<tx:method name="get*" read-only="true" />
+			<tx:method name="auth*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
 	

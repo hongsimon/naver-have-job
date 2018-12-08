@@ -10,7 +10,6 @@ public class UserVO {
 	private String loginId;
 	private String nickName;
 	private String password;
-	private String passwordCheck;
 	private String email;
 	private int point;
 	private LocalDate regDate;

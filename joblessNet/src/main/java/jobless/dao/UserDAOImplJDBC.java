@@ -26,6 +26,18 @@ public class UserDAOImplJDBC implements UserDAO {
 		UserVO user = mapper.selectUserByLoginId(loginId);
 		return user;
 	}
+	
+	@Override
+	public UserVO selectNickName(String nickName) {
+		UserVO user = mapper.selectUserByLoginId(nickName);
+		return user;
+	}
+
+	@Override
+	public UserVO selectEmail(String email) {
+		UserVO user = mapper.selectUserByLoginId(email);
+		return user;
+	}
 
 	public List<UserVO> selectAll() {
 		List<UserVO> user = mapper.selectAllUser();

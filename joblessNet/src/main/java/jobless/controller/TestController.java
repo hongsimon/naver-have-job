@@ -43,6 +43,7 @@ public class TestController {
 			
 			json.put("url", imgPath + fileName);
 			
+			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json");
 			response.getWriter().print(json);
 		} catch (IllegalStateException | IOException e) {

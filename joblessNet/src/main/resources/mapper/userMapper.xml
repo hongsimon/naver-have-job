@@ -56,6 +56,40 @@
 		where 
 			login_id = #{loginId}
 	</select>
+	<select id="selectUserByNickName" resultType="User" parameterType="String">
+		select 
+			user_id as userId, 
+			login_id as loginId, 
+			nickname as nickName, 
+			password, 
+			email, 
+			point, 
+			is_admin, 
+			reg_date as regDate, 
+			is_banned, 
+			platform_id as platformId 
+		from 
+			user 
+		where 
+			nickname = #{nickName}
+	</select>
+	<select id="selectUserByEmail" resultType="User" parameterType="String">
+		select 
+			user_id as userId, 
+			login_id as loginId, 
+			nickname as nickName, 
+			password, 
+			email, 
+			point, 
+			is_admin, 
+			reg_date as regDate, 
+			is_banned, 
+			platform_id as platformId 
+		from 
+			user 
+		where 
+			email = #{email}
+	</select>
 	<select id="selectAllUser" resultType="User">	
 		select 
 			user_id as userId, 
