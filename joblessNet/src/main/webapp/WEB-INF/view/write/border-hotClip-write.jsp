@@ -54,11 +54,11 @@
           <div class="row">
           <%@include file="../share-nav/nav-service.jsp"%>
 
-             <!-- 게시판 메뉴 -->
-            <div class="col-xs-10 hotclip">
+            <!-- 게시판 메뉴 -->
+            <div class="col-xs-10 ">
 
-              <div class="hotclip">
-                <div class="col-xs-12 writeHotClip hotclip">
+              <div class=" margin-container ">
+                <div class="writeHotClip">
                   <div class="hotClip-box">
                     <div class="title-text-more-big ">
                       클립 올리기
