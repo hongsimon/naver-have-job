@@ -9,6 +9,6 @@ public class IndexController {
 	@RequestMapping(value="/main")
 	public String controllerMain() {
 		System.out.println("메인 페이지");
-		return "main";
+		return "view/main/main";
 	}
 }
