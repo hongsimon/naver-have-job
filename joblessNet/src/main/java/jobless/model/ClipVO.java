@@ -9,6 +9,7 @@ public class ClipVO {
 	private int clipId;
 	private String title;
 	private String clipURL;
+	private String thumbURL;
 	private LocalDateTime writeDate;
 	private int views;
 	private int writerId;

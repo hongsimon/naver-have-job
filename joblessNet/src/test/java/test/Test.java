@@ -36,7 +36,7 @@ public class Test {
 		
 		Limit limit = new Limit(0, 5);
 		
-		Period period = new Period(LocalDateTime.now().minusDays(2), LocalDateTime.now());
+		Period period = new Period(LocalDateTime.now().minusDays(20), LocalDateTime.now());
 		
 		Condition condition = new Condition(null, period, limit, order);
 		for(PostDetailVO post : postDao.readDetailAll(condition)) {

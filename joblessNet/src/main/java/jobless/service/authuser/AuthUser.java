@@ -1,6 +1,6 @@
 package jobless.service.authuser;
 
-public class AuthUserRequest {
+public class AuthUser {
 
 	private int userId;
 	private String loginId;
@@ -10,7 +10,7 @@ public class AuthUserRequest {
 	private boolean admin;
 	private int platformId;
 
-	public AuthUserRequest(int userId, String loginId, String nickName, String email, int point, boolean admin,
+	public AuthUser(int userId, String loginId, String nickName, String email, int point, boolean admin,
 			int platformId) {
 		this.userId = userId;
 		this.loginId = loginId;

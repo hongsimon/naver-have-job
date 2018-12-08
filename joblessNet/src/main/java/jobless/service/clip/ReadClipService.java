@@ -5,7 +5,7 @@ import java.util.List;
 import jobless.model.ClipVO;
 
 public interface ReadClipService {
-	ClipVO readClip(int boardId);
+	ClipVO readClip(int clipId);
 	
 	List<ClipVO> readAllClip();
 
