@@ -15,11 +15,16 @@ public class UserSessionTestController {
 	GetUserService getUserService;
 	
 	@RequestMapping(value="loginTest", method=RequestMethod.GET)
-	public String SessionTest(@RequestParam String loginId,
-							  @RequestParam String password
-							 ) {
-			
-		return "";
+	public String SessionTest_GET() {
+		return "loginTest";
+	}
+	
+	@RequestMapping(value="loginTest", method=RequestMethod.POST)
+	public String SessionTest_POST(@RequestParam String loginId,
+   								   @RequestParam String password
+								   ) {
+		
+		return "loginTest";
 	}
 	
 }

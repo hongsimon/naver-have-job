@@ -73,7 +73,7 @@
 		where 
 			nickname = #{nickName}
 	</select>
-		<select id="selectUserByEmail" resultType="User" parameterType="String">
+	<select id="selectUserByEmail" resultType="User" parameterType="String">
 		select 
 			user_id as userId, 
 			login_id as loginId, 

@@ -46,6 +46,36 @@ public class GetUserServiceImpl implements GetUserService {
 		
 		return user;
 	}
+	
+	@Override
+	public UserVO getUserByNickName(String nickName) {
+		UserVO user = userdao.selectNickName(nickName);
+		try {
+			
+			if(user == null) {
+				throw new UserNotFoundException("사용자를 찾지 못했습니다.");
+			}
+			
+		}catch (RuntimeException e) {
+			throw e;
+		}
+		return user;
+	}
+
+	@Override
+	public UserVO getUserByEmail(String email) {
+		UserVO user = userdao.selectEmail(email);
+		try {
+			
+			if(user == null) {
+				throw new UserNotFoundException("사용자를 찾지 못했습니다.");
+			}
+			
+		}catch (RuntimeException e) {
+			throw e;
+		}
+		return user;
+	}
 
 	@Override
 	public List<UserVO> getAllUser() {
@@ -62,5 +92,6 @@ public class GetUserServiceImpl implements GetUserService {
 		
 		return user;
 	}
+
 
 }

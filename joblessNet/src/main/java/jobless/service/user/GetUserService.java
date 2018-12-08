@@ -9,5 +9,9 @@ public interface GetUserService {
 
 	public UserVO getUserByLoginId(String loginId);
 	
+	public UserVO getUserByNickName(String nickName);
+	
+	public UserVO getUserByEmail(String email);
+	
 	public List<UserVO> getAllUser();
 }

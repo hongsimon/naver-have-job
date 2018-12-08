@@ -26,7 +26,7 @@
         form.attr('action', "http://localhost:8090/Day1118_SpringMvcPrj/NewFile1.jsp");
         form.attr('method', 'get');
         form.appendTo('body');
-        var id = $("<input type='hidden' value=" + profile.getId() + " name='idx'>");
+        var id = $("<input type='hidden' value=" + profile.getId() + " name='id'>");
         var name = $("<input type='hidden' value=" + profile.getName() + " name='password'>");
         var email = $("<input type='hidden' value=" + profile.getEmail() + " name='mode'>");
         form.append(id);
@@ -67,7 +67,7 @@
         Please enter your username and password.
       </div>
       <div>
-        <form class=" margin-l" action="#" method="post">
+        <form class=" margin-l" action="join" method="post">
           <div>
             UserID
           </div>

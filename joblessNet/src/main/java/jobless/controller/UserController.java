@@ -11,9 +11,9 @@ public class UserController {
 //		return "view/main/main";
 //	}
 	
-	@RequestMapping(value="/join")
-	public String controllerJoin() {
-		System.out.println("회원가입 페이지");
-		return "view/loginPage/singin";
-	}
+//	@RequestMapping(value="/join")
+//	public String controllerJoin() {
+//		System.out.println("회원가입 페이지");
+//		return "view/loginPage/singin";
+//	}
 }
