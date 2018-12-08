@@ -70,3 +70,38 @@
 .broadcasterCommunity{
   background-color: #fff;
 }
+
+.broadcasterList{
+  padding-top: 30px;
+  max-width: 900px;
+  column-count: 5;
+  column-fill: balance;
+  margin-bottom: 30px;
+  margin-top: -10px;
+}
+
+.broadcasterClass{
+  margin-top: 30px;
+  display: inline-block;
+  vertical-align: top;
+  width: 170px;
+  border: 1px solid #444444;
+  box-shadow: 0px 1px 10px 1px grey;
+}
+
+.head-title{
+  background-color: #595959;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+  font-size: 15px;
+  padding: 3px;
+  display: table-cell;
+  width: 170px
+}
+
+.broadcasterClass div:not(.head-title) {
+  padding: 10px;
+  color: #287A72;
+  cursor: pointer;
+}

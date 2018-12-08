@@ -16,7 +16,7 @@ $(function(){
         });
 
       $("#searchBox").keyup(function(){
-
+        $(".broadcasterClass").hide();
         $("#broadcasterList").children().children().hide();
 
           var search = $(this).val();
@@ -28,6 +28,7 @@ $(function(){
           .forEach(function(item){
 
             $("#broadcasterList div>a:contains('"+item.name+"')").parent().show();
+            $("#broadcasterList div>a:contains('"+item.name+"')").parent().parent().show();
             $("#broadcasterList div>a:contains('"+item.name+"')").parent().siblings("div:eq(0)").show();
 
           });
