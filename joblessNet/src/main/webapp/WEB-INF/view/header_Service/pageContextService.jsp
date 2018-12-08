@@ -22,3 +22,5 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginPage.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/service.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/write.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/view.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/error.css">

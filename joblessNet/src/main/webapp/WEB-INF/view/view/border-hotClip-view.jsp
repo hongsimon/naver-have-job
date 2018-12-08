@@ -3,12 +3,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <%@include file="../header_Service/pageContextService.jsp"%>
+   <%@include file="../header_Service/pageContextService.jsp"%>
 
-    <meta charset="utf-8">
-    <title>백수넷 - hotClip</title>
-    
-    <%@include file="../share-nav/nav-header.jsp"%>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+
+    </script>
+    <title>백수넷</title>
+	<%@include file="../share-nav/nav-header.jsp"%>
   </head>
   <body>
         <div class="container margin-nav">

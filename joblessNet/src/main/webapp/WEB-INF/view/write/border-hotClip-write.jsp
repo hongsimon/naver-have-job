@@ -77,7 +77,11 @@
                     <div class="clip-write">
                       <form class="" action="#" method="post">
                         클립 주소
-                        <input type="text" name="clip_url" placeholder="<iframe>...</iframe>">
+                        <input type="text" name="clip" placeholder="url..." class="clip_url">
+
+                        <input type="hidden" name="clip_url" class="clip_url" />
+                        <input type="hidden" name="clip_Thumbnail" class="clip_Thumbnail" />
+                        
 
                         클립 제목
                         <input type="text" name="" value="">

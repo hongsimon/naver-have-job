@@ -1,0 +1,36 @@
+/*--hotclip--*/
+
+.hotclip{
+  background-color: #ffffff;
+}
+
+.hotclip-view-frame iframe{
+  margin-top: 15px;
+  width: 100%;
+  height: 450px;
+  border: none;
+}
+
+.hotclip-title{
+  margin: 5px;
+  font-size: 20px;
+  word-break:break-all;
+}
+
+.hotclip-views p{
+  display: inline-block;
+}
+
+.hotclip-views{
+  margin: 5px;
+}
+
+.hotclip-views>div{
+  display: inline-block;
+}
+
+.like-btn button{
+  background: none;
+  border: none;
+  color: #707070;
+}
