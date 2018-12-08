@@ -19,6 +19,14 @@ public class BoardApplyVO {
 		this.broadcasterURL = broadcasterURL;
 	}
 
+	public BoardApplyVO(int ownerId, String content, String broadcasterURL, boolean complete) {
+		super();
+		this.ownerId = ownerId;
+		this.content = content;
+		this.broadcasterURL = broadcasterURL;
+		this.complete = complete;
+	}
+
 	public BoardApplyVO(int applyId, int ownerId, String content, String broadcasterURL, boolean complete) {
 		this.applyId = applyId;
 		this.ownerId = ownerId;
@@ -66,4 +74,11 @@ public class BoardApplyVO {
 	public void setComplete(boolean complete) {
 		this.complete = complete;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardApplyVO [applyId=" + applyId + ", ownerId=" + ownerId + ", content=" + content
+				+ ", broadcasterURL=" + broadcasterURL + ", complete=" + complete + "]";
+	}
+	
 }

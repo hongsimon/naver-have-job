@@ -9,11 +9,18 @@ public class IconVO {
 
 	public IconVO() {
 	}
-
+	
+	//insert용
+	public IconVO(String fileName) {
+		this.fileName = fileName;
+	}
+	
+	//update, select용
 	public IconVO(int iconId, String fileName) {
 		this.iconId = iconId;
 		this.fileName = fileName;
 	}
+
 
 	public int getIconId() {
 		return iconId;
@@ -31,4 +38,9 @@ public class IconVO {
 		this.fileName = fileName;
 	}
 
+	@Override
+	public String toString() {
+		return "IconVO [iconId=" + iconId + ", fileName=" + fileName + "]";
+	}
+	
 }

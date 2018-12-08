@@ -10,11 +10,15 @@ public class PlatformVO {
 	public PlatformVO() {
 	}
 
+	public PlatformVO(String platform) {
+		this.platform = platform; 
+	}
+	
 	public PlatformVO(int platformId, String platform) {
 		this.platformId = platformId;
 		this.platform = platform;
 	}
-
+	
 	public int getPlatformId() {
 		return platformId;
 	}
@@ -31,4 +35,9 @@ public class PlatformVO {
 		this.platform = platform;
 	}
 
+	@Override
+	public String toString() {
+		return "PlatformVO [platformId=" + platformId + ", platform=" + platform + "]";
+	}
+	
 }

@@ -11,6 +11,17 @@ public class BoardVO {
 
 	public BoardVO() {
 	}
+	
+	public BoardVO(int boardId) {
+		this.boardId = boardId;
+	}
+	
+	public BoardVO(int boardId, String boardName, String cSSFileName) {
+		this.boardId = boardId;
+		this.boardName = boardName;
+		CSSFileName = cSSFileName;
+	}
+
 
 	public BoardVO(int boardId, String boardName, String cSSFileName, int ownerId) {
 		this.boardId = boardId;
@@ -19,7 +30,8 @@ public class BoardVO {
 		this.ownerId = ownerId;
 	}
 
-	public BoardVO(String boardName) {
+	public BoardVO(int ownerId, String boardName) {
+		this.ownerId = ownerId;
 		this.boardName = boardName;
 	}
 
@@ -53,6 +65,11 @@ public class BoardVO {
 
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardVO [boardId=" + boardId + ", boardName=" + boardName + ", CSSFileName=" + CSSFileName + ", ownerId=" + ownerId + "]";
 	}
 	
 	

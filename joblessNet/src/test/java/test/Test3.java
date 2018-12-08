@@ -9,10 +9,19 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import jobless.dao.BoardDAO;
 import jobless.dao.ClipDAO;
+import jobless.dao.CommentDAO;
+import jobless.dao.PlatformDAO;
+import jobless.model.BoardVO;
 import jobless.model.ClipVO;
+import jobless.model.CommentVO;
+import jobless.model.PlatformVO;
+import jobless.service.post.PostRequest;
+import jobless.service.post.WritePostService;
 
-//clip, comment, content //test~~~By Daeheon//
+//clip, comment, content 
+//test By YooDaeheon
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
 public class Test3 {
@@ -21,6 +30,15 @@ public class Test3 {
 	
 	@Autowired
 	ClipDAO clipDao;
+	
+	@Autowired
+	CommentDAO commentDao;
+	
+	@Autowired
+	PlatformDAO platformDao;
+	
+	@Autowired
+	BoardDAO boardDao;
 	
 	//clip
 	@org.junit.Test
@@ -59,8 +77,120 @@ public class Test3 {
 		}*/
 	}
 	
+	//comment
 	@org.junit.Test
+	@Ignore
 	public void commentTest() {
+		//*insert comment into Clip Test*
+		//commentDao.insertIntoClip(new CommentVO("클립에 댓글", 1, 0, 2));
 		
+		//*insert comment into Post Test*
+		//commentDao.insertIntoPost(new CommentVO("게시물에 댓글", 1, 1, 0));
+		
+		//*readAll Post Test*
+		/*List<CommentVO> comment = commentDao.readAll();
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
+		//*readAll Post Test*
+		/*List<CommentVO> comment = commentDao.readAllByPostId(1);
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
+		
+		//*readAll Clip Test*
+		/*List<CommentVO> comment = commentDao.readAllByClipId(2);
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
+		
+		//*readAll User Test*
+		/*List<CommentVO> comment = commentDao.readAllByUserId(2);
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
+		
+		//*select Comment Test*
+		/*CommentVO comment = commentDao.read(3);
+		System.out.println(comment);*/
+		
+		//*delete Test*
+		/*commentDao.delete(2);
+		List<CommentVO> comment = commentDao.readAll();
+		for (CommentVO commentVO : comment) {
+			System.out.println(comment);
+		}*/
+	}
+	
+	//platform
+	@org.junit.Test
+	@Ignore
+	public void platformTest() {
+		//*insert Test*
+		//platformDao.insert(new PlatformVO("에러다"));
+		
+		//*readAll Test*
+		/*List<PlatformVO> platform = platformDao.readAll();
+		for (PlatformVO platformVO : platform) {
+			System.out.println(platformVO);
+		}*/
+		
+		//*update
+		/*platformDao.update(new PlatformVO(5, "수정"));
+		List<PlatformVO> platform = platformDao.readAll();
+		for (PlatformVO platformVO : platform) {
+			System.out.println(platformVO);
+		}*/
+		
+		//*delete
+		/*platformDao.delete(6);
+		List<PlatformVO> platform = platformDao.readAll();
+		for (PlatformVO platformVO : platform) {
+			System.out.println(platformVO);
+		}*/
+	}
+	
+	//board
+	@org.junit.Test
+	public void boardTest() {
+		//*insert*
+		/*boardDao.insert(new BoardVO(1,"수빈갤3"));
+		List<BoardVO> board = boardDao.readAll();
+		for (BoardVO boardVO : board) {
+			System.out.println(boardVO);
+		}*/
+		
+		//*readAll*
+		/*List<BoardVO> board = boardDao.readAll();
+		for (BoardVO boardVO : board) {
+			System.out.println(boardVO);
+		}*/
+		
+		//*read*
+		/*BoardVO board = boardDao.read(2);
+		System.out.println(board);*/
+		
+		//*update*
+		/*boardDao.update(new BoardVO(4, "수빈갤3", "수빈갤3css"));
+		List<BoardVO> board = boardDao.readAll();
+		for (BoardVO boardVO : board) {
+			System.out.println(boardVO);
+		}*/
+		
+		//*delete*
+		/*boardDao.delete(4);
+		List<BoardVO> board = boardDao.readAll();
+		for (BoardVO boardVO : board) {
+			System.out.println(boardVO);
+		}*/
+	}
+	
+
+	@Autowired
+	WritePostService writePost;
+	
+	public void writeServiceTest() {
+		PostRequest postReq	= new PostRequest();
+		writePost.writePost(postReq);
 	}
 }

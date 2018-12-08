@@ -3,5 +3,32 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IPlatformMapper">
-
+<!-- T -->
+	<insert id="insertPlatform" parameterType="Platform">
+		INSERT INTO platform (platform_name) 
+		VALUES (#{platform});
+	</insert>
+	
+	<!-- T -->
+	<update id="updatePlatform" parameterType="Platform">
+		update platform 
+		set 
+			platform_name = #{platform}
+		where 
+			platform_id = #{platformId}
+	</update>
+	
+	<!-- T -->
+	<delete id="deletePlatform" parameterType="int">
+		delete from platform where platform_id = #{platformId}
+	</delete>
+	
+	<!-- T -->
+	<select id="selectPlatformList" resultType="Platform">
+		select 
+			platform_id platformId, 
+			platform_name platform 
+		from 
+			platform
+	</select>
 </mapper>

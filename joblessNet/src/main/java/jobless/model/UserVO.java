@@ -20,30 +20,6 @@ public class UserVO {
 	public UserVO() {
 	}
 
-	//insert용
-	public UserVO(String loginId, String nickName, String password, String email, int platformId) {
-		this.loginId = loginId;
-		this.nickName = nickName;
-		this.password = password;
-		this.email = email;
-		this.platformId = platformId;
-	}
-	
-	//select, update용
-	public UserVO(int userId, String loginId, String nickName, String password, String email, int point,
-			LocalDate regDate, boolean admin, boolean ban, int platformId) {
-		this.userId = userId;
-		this.loginId = loginId;
-		this.nickName = nickName;
-		this.password = password;
-		this.email = email;
-		this.point = point;
-		this.regDate = regDate;
-		this.admin = admin;
-		this.ban = ban;
-		this.platformId = platformId;
-	}
-
 	public int getUserId() {
 		return userId;
 	}
@@ -116,12 +92,57 @@ public class UserVO {
 		this.ban = ban;
 	}
 
-	public int getPlatform() {
+	public int getPlatformId() {
 		return platformId;
 	}
 
-	public void setPlatform(int platformId) {
+	public void setPlatformId(int platformId) {
 		this.platformId = platformId;
 	}
+
+	// insert용
+	public UserVO(String loginId, String nickName, String password, String email, int platformId) {
+		super();
+		this.loginId = loginId;
+		this.nickName = nickName;
+		this.password = password;
+		this.email = email;
+		this.platformId = platformId;
+	}
+
+	// update 용
+	public UserVO(int userId, String nickName, String password, String email) {
+		super();
+		this.userId = userId;
+		this.nickName = nickName;
+		this.password = password;
+		this.email = email;
+	}
+
+	// select용
+	public UserVO(int userId, String loginId, String nickName, String password, String email, int point,
+			LocalDate regDate, boolean admin, boolean ban, int platformId) {
+		super();
+		this.userId = userId;
+		this.loginId = loginId;
+		this.nickName = nickName;
+		this.password = password;
+		this.email = email;
+		this.point = point;
+		this.regDate = regDate;
+		this.admin = admin;
+		this.ban = ban;
+		this.platformId = platformId;
+	}
+
+	@Override
+	public String toString() {
+		return "UserVO [userId=" + userId + ", loginId=" + loginId + ", nickName=" + nickName + ", password=" + password
+				+ ", email=" + email + ", point=" + point + ", regDate=" + regDate + ", admin=" + admin + ", ban=" + ban
+				+ ", platformId=" + platformId + "]";
+	}
+
+
+
 
 }

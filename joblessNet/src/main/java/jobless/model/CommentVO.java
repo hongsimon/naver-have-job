@@ -68,4 +68,9 @@ public class CommentVO {
 		this.clipId = clipId;
 	}
 
+	@Override
+	public String toString() {
+		return "CommentVO [commentId=" + commentId + ", content=" + content + ", userId=" + userId + ", postId=" + postId + ", clipId=" + clipId + "]";
+	}
+	
 }

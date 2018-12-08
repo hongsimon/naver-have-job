@@ -14,27 +14,42 @@ public class UserDAOImplJDBC implements UserDAO {
 	private IUserMapper mapper;
 
 	public void insert(UserVO user) {
-		// TODO Auto-generated method stub
-		
+		mapper.insertUser(user);
 	}
 
-	public UserVO select(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserVO selectUserId(int userId) {
+		UserVO user = mapper.selectUserByUserId(userId);
+		return user;
+	}
+	
+	public UserVO selectLoginId(String loginId) {
+		UserVO user = mapper.selectUserByLoginId(loginId);
+		return user;
+	}
+	
+	@Override
+	public UserVO selectNickName(String nickName) {
+		UserVO user = mapper.selectUserByLoginId(nickName);
+		return user;
 	}
 
-	public List<UserVO> select() {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public UserVO selectEmail(String email) {
+		UserVO user = mapper.selectUserByLoginId(email);
+		return user;
+	}
+
+	public List<UserVO> selectAll() {
+		List<UserVO> user = mapper.selectAllUser();
+		return user;
 	}
 
 	public void delete(int userId) {
-		// TODO Auto-generated method stub
-		
+		mapper.deleteUser(userId);
 	}
 
 	public void update(UserVO user) {
-		// TODO Auto-generated method stub
+		mapper.updateUser(user);
 		
 	}
 

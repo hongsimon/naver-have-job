@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller("userController")
 public class UserController {
-	
 	@RequestMapping(value="/main")
 	public String controllerMain() {
 		System.out.println("메인 페이지");

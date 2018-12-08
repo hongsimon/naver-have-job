@@ -3,5 +3,51 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IBoardCategoryMapper">
-
+<insert id="insertBoardCategory" parameterType="BoardCategory">
+		insert 
+		into 
+			board_category(
+				category_name, 
+				board_id
+			)
+				
+			values(
+				#{categoryName}, 
+				#{boardId}
+			)
+	</insert>
+	<select id="selectBoardCategoryById" resultType="BoardCategory" parameterType="int">
+		select 
+			category_id as boardCategoryId, 
+			category_name as categoryName, 
+			board_id as boardId
+		from 
+			board_category 
+		where 
+			category_id = #{boardCategoryId}
+	</select>
+	<select id="selectAllBoardCategory" resultType="BoardCategory">	
+		select 
+			category_id as boardCategoryId, 
+			category_name as categoryName, 
+			board_id as boardId
+		from 
+			board_category
+	</select>
+	<delete id="deleteBoardCategory" parameterType="int">
+		delete 
+		from 
+			board_category 
+		where 
+			category_id = #{boardCategoryId}
+	</delete>
+	<update id="updateBoardCategory" parameterType="BoardCategory">
+		update 
+			board_category 
+		set  
+			category_name = #{categoryName}, 
+			board_id = #{boardId}
+		where 
+			category_id = #{boardCategoryId};
+	</update>
 </mapper>

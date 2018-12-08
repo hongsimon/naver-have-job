@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<context:component-scan base-package="jobless.dao" />
+	<context:component-scan base-package="jobless.dao.condition" />
 	<context:component-scan base-package="jobless.model" />
 	<context:component-scan base-package="jobless.service" />
 	<context:component-scan base-package="jobless.controller" />
@@ -36,6 +37,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:mapper/boardCategoryMapper.xml</value>
+				<value>classpath:mapper/boardApplyMapper.xml</value>
 				<value>classpath:mapper/boardMapper.xml</value>
 				<value>classpath:mapper/clipMapper.xml</value>
 				<value>classpath:mapper/commentMapper.xml</value>
@@ -60,6 +62,7 @@
 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
+			<tx:method name="auth*" rollback-for="RuntimeException" />
 			<tx:method name="insert*" rollback-for="RuntimeException" />
 			<tx:method name="write*" rollback-for="RuntimeException" />
 			<tx:method name="add*" rollback-for="RuntimeException" />
@@ -76,11 +79,12 @@
 			<tx:method name="read*" read-only="true" />
 			<tx:method name="select*" read-only="true" />
 			<tx:method name="get*" read-only="true" />
+			<tx:method name="auth*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
 	
 	<aop:config>
-		<aop:pointcut id="transactionPoint" expression="execution(public * jobless.service.*Impl.*(..))"/>
+		<aop:pointcut id="transactionPoint" expression="execution(public * jobless.service.*.*Service.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPoint"/>
 	</aop:config>
 	

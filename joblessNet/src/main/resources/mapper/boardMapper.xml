@@ -3,5 +3,48 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IBoardMapper">
-
+	<!-- T -->
+	<insert id="insertBoard" parameterType="Board">
+		INSERT INTO board (board_name, user_id) 
+		VALUES (#{boardName}, #{ownerId});
+	</insert>
+	
+	<!-- T -->
+	<update id="updateBoard" parameterType="Board">
+		update board 
+		set 
+			board_name = #{boardName},
+			css_filename = #{CSSFileName}
+		where 
+			board_id = #{boardId}
+	</update>
+	
+	<!-- T -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where board_id = #{boardId}
+	</delete>
+	
+	<!-- T -->
+	<select id="selectBoard" resultType="Board">
+		select 
+			board_id boardId, 
+			board_name boardName,
+			css_filename CSSFileName,
+			user_id ownerId 
+		from 
+			board
+		where
+			board_id = #{boardId};
+	</select>
+	
+	<!-- T -->
+	<select id="selectBoardList" resultType="Board">
+		select 
+			board_id boardId, 
+			board_name boardName,
+			css_filename CSSFileName,
+			user_id ownerId 
+		from 
+			board
+	</select>
 </mapper>

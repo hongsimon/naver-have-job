@@ -4,18 +4,122 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IUserMapper">
 	<insert id="insertUser" parameterType="User">
-		insert into taku.user(login_id, nickName, password, email, platform_id) values(#{login_id}, #{nickName}, #{password}, #{email}, #{platform_id})
+		insert 
+		into 
+			user(
+				login_id, 
+				nickName, 
+				password, 
+				email,
+				platform_id
+				)
+				
+			values(
+				#{loginId}, 
+				#{nickName}, 
+				#{password}, 
+				#{email},
+				#{platformId}
+				)
 	</insert>
-	<select id="selectUserById" resultType="User" parameterType="int">
-		select * from user where userId = #{userId}
+	<select id="selectUserByUserId" resultType="User" parameterType="int">
+		select 
+			user_id as userId, 
+			login_id as loginId, 
+			nickname as nickName, 
+			password, 
+			email, 
+			point, 
+			is_admin, 
+			reg_date as regDate, 
+			is_banned, 
+			platform_id as platformId 
+		from 
+			user 
+		where 
+			user_id = #{userId}
+	</select>
+	<select id="selectUserByLoginId" resultType="User" parameterType="String">
+		select 
+			user_id as userId, 
+			login_id as loginId, 
+			nickname as nickName, 
+			password, 
+			email, 
+			point, 
+			is_admin, 
+			reg_date as regDate, 
+			is_banned, 
+			platform_id as platformId 
+		from 
+			user 
+		where 
+			login_id = #{loginId}
+	</select>
+	<select id="selectUserByNickName" resultType="User" parameterType="String">
+		select 
+			user_id as userId, 
+			login_id as loginId, 
+			nickname as nickName, 
+			password, 
+			email, 
+			point, 
+			is_admin, 
+			reg_date as regDate, 
+			is_banned, 
+			platform_id as platformId 
+		from 
+			user 
+		where 
+			nickname = #{nickName}
+	</select>
+		<select id="selectUserByEmail" resultType="User" parameterType="String">
+		select 
+			user_id as userId, 
+			login_id as loginId, 
+			nickname as nickName, 
+			password, 
+			email, 
+			point, 
+			is_admin, 
+			reg_date as regDate, 
+			is_banned, 
+			platform_id as platformId 
+		from 
+			user 
+		where 
+			email = #{email}
 	</select>
 	<select id="selectAllUser" resultType="User">	
-		select * from user
+		select 
+			user_id as userId, 
+			login_id as loginId, 
+			nickname as nickName, 
+			password, 
+			email, 
+			point, 
+			is_admin, 
+			reg_date as regDate, 
+			is_banned, 
+			platform_id as platformId 
+		from 
+			user
 	</select>
 	<delete id="deleteUser" parameterType="int">
-		delete from user where userId = ${userId}
+		delete 
+		from 
+			user 
+		where 
+			user_id = #{userId}
 	</delete>
 	<update id="updateUser" parameterType="User">
-		update user set nickName = ${nickName} where userId = ${userId}
+		update 
+			user 
+		set 
+			nickname = #{nickName}, 
+			password = #{password}, 
+			email = #{email} 
+		where 
+			user_id = #{userId};
 	</update>
 </mapper>
