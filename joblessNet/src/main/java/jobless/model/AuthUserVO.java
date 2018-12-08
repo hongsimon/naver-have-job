@@ -1,5 +1,8 @@
 package jobless.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("AuthUser")
 public class AuthUserVO {
 
 	private int userId;

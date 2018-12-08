@@ -12,7 +12,6 @@
 		<param-value>classpath:beans.xml</param-value>
 	</context-param>
 
-
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -55,4 +54,14 @@
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/view/error/404.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/view/error/500.jsp</location>
+	</error-page>
 </web-app>

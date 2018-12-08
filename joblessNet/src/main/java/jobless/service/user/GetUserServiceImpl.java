@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import jobless.dao.UserDAO;
 import jobless.exception.UserNotFoundException;
+import jobless.model.AuthUserVO;
 import jobless.model.UserVO;
 
 @Repository("getUserService")
@@ -76,7 +77,7 @@ public class GetUserServiceImpl implements GetUserService {
 		}
 		return user;
 	}
-
+	
 	@Override
 	public List<UserVO> getAllUser() {
 		List<UserVO> user = userdao.selectAll();
@@ -92,6 +93,7 @@ public class GetUserServiceImpl implements GetUserService {
 		
 		return user;
 	}
+
 
 
 }

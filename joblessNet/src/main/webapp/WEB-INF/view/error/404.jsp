@@ -1,8 +1,11 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isErrorPage="true"%>
+    
+    
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+  <%@include file="../header_Service/pageContextService.jsp"%>
     <link rel="stylesheet" href="../css/error.css">
     <meta charset="utf-8">
     <title></title>

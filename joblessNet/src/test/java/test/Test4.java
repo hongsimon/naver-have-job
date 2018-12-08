@@ -20,6 +20,7 @@ import jobless.exception.UserNotFoundException;
 import jobless.model.BoardCategoryVO;
 import jobless.model.IconVO;
 import jobless.model.UserVO;
+import jobless.service.authuser.LoginService;
 import jobless.service.board.CreateBoardCategoryService;
 import jobless.service.board.DeleteBoardCategoryService;
 import jobless.service.board.ModifyBoardCategoryService;
@@ -32,6 +33,7 @@ import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.JoinUserService;
 import jobless.service.user.ModifyUserService;
+import jobless.service.user.UserRequest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
@@ -73,7 +75,7 @@ public class Test4 {
 	SelectBoardCategoryService selectBoardCategoryService;
 	
 	//boardCategory기능 테스트
-	@Test
+	@Test  @Ignore                    
 	public void BoardCategoryTest() {
 		//카테고리 조회 테스트(ByAll)
 //		List<BoardCategoryVO> boardCategory = selectBoardCategoryService.selectBoardCategotyByAll();
@@ -152,9 +154,13 @@ public class Test4 {
 	@Autowired
 	GetUserService getUserService;
 	
+	@Autowired
+	LoginService loginService;
+	
 	//User기능 테스트
-	@Test @Ignore
+	@Test
 	public void UserTest() {
+		
 		//회원 검색 테스트(All)
 //		List<UserVO> user = getUserService.getAllUser();
 //		for (UserVO userVO : user) {
