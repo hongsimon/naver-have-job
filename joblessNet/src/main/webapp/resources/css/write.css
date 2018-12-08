@@ -1,0 +1,29 @@
+
+/*---------------------------핫클립-----------------------------------------*/
+.writeHotClip{
+  background-color: #ffffff;
+}
+
+.back{
+  display: block;
+  font-size: 15px;
+}
+
+.clip-write input{
+display: block;
+}
+
+.clip-write div{
+  padding: 15px;
+}
+
+/*---------------------------커뮤니티-----------------------------------------*/
+
+.writeCommunity{
+  background-color: #ffffff;
+}
+
+
+.borderSelect{
+  
+}

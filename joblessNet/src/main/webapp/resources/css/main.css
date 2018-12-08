@@ -1,32 +1,157 @@
 /* 인기 게시판 */
 .best-content{
   background-color: #ffffff;
-
+  height: 280px;
 }
 
+.best-content ul{
+  list-style: none;
+  padding:0;
+}
+
+.board-name a,.board-name a:hover,.board-name a:link,.board-name a:active{
+  font-weight: bold;
+  font-size: 15px;
+  color: #287A72;
+}
+
+.content{
+  margin-left: 5px;
+}
+
+.content a,.content a:hover,.content a:hover:link{
+  font-size: 15px;
+  color: #626262;
+}
+
+
+.board-comment{
+  font-weight: bold;
+  font-size: 15px;
+  color: #287A72;
+  display: inline-block;
+}
+
+/* Q&A 게시판 */
 .q-and-a{
   background-color: #ffffff;
+  height: 280px;
 }
+
+.q-and-a ul{
+  list-style: none;
+  padding: 0px;
+}
+
+.writer{
+  display: inline-block;
+  float: right;
+}
+
+.writer a,.writer a:hover,.writer a:link,.writer a:visited,.writer a:active{
+ text-decoration: none;
+ color: #c7c7c7;
+}
+
+
+
 
 /* 공지 게시판 */
 .notice{
   background-color: #ffffff;
+  height: 70px;
+}
 
+.notice-border{
+  list-style: none;
+  padding: 0px;
+}
+
+.notice-border div{
+  display: inline-block;
 }
 
 /* 놀러와요 게시판 */
 .play{
   background-color: #ffffff;
+  height: 230px;
+}
+.play-border{
+    list-style: none;
+    padding: 0;
+}
 
 /* 함께일해요 게시판 */
-}
 .working{
   background-color: #ffffff;
+  height: 230px;
+}
 
+.working-border{
+  list-style: none;
+  padding: 0;
 }
 
 /* 핫클립 */
 .hotclip{
     background-color: #ffffff;
 
+}
+
+.hotclip>div{
+  display: inline-block;
+}
+
+.hotclip-border-video{
+  width: 130px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.hotclip ul {
+  margin-bottom: -10px;
+  list-style: none;
+  padding: 0;
+  padding: 8;
+}
+
+.hotclip li{
+  margin: 10px;
+  display: inline-flex;
+
+}
+
+.hotclip-box>a{
+  cursor: pointer;
+}
+
+
+.hotclip-title-size{
+  width: 130px;
+  text-align: center;
+  font-size: 12px;
+  height: 40px;
+  word-break:break-all;
+}
+
+.chevron{
+ display: inline-block;
+ cursor: pointer;
+ vertical-align: top;
+ margin-top: 70px;
+}
+
+.hotclip-title, .hotclip-title:hover, .hotclip-title:active, .hotclip-title:link, .hotclip-title:visited{
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.border-padding{
+  padding: 10px;
+}
+
+.border_size li{
+  padding: 2px;
 }
