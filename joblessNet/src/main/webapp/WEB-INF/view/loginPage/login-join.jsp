@@ -140,7 +140,7 @@
               </div>
             </a>
           </div>
-
+<%-- 
           <div class="margin-title">
             <a href="#">
               <div id="google_id_login"><img src="${pageContext.request.contextPath}/images/api-img/btn_google_dark_normal_ios@3x.png" />
@@ -149,7 +149,7 @@
                 </div>
               </div>
             </a>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div> --%>
           </div>
 	
      <button type="submit">Check Sign Up</button>

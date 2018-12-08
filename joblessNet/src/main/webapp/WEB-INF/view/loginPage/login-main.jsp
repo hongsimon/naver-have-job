@@ -1,5 +1,6 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -68,31 +69,30 @@
     </div>
     <div class="error-msg text-center">
       Please enter your username and password.
+      <c:if test="${errors.Id_or_Pw_NotMatch }">잘못된 아이디 혹은 비밀번호 입니다.</c:if>
     </div>
     <div>
-      <form class=" margin-l" action="#" method="post">
+      <form class=" margin-l" action="login" method="post">
         <div>
           UserID
         </div>
         <div>
-          <input type="text" name="userId" />
+          <input type="text" name="loginId" />
         </div>
         <div>
           Password
         </div>
         <div>
-          <input type="text" name="userPwd" />
+          <input type="text" name="password" />
         </div>
         <div>
           <a href="#">Trouble logging in?</a>
         </div>
         <div>
-          <form action="?" method="POST">
-            <div id="example3"></div>
-            <br>
-          </form>
           <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
           </script>
+            <div id="example3"></div>
+            <br>
         </div>
 
         <hr class="hr-size" />

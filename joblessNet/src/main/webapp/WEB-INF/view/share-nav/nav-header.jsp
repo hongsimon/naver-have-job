@@ -1,5 +1,6 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -139,12 +140,23 @@
                   <span class="glyphicon glyphicon-chevron-down gly-size-small"></span>
                 </a>
                 <ul class="dropdown-menu userProfile col-xs-12" role="menu" aria-labelledby="dropdownMenu">
-                  <li><div class="emphasis overNick">가자asdasdasdasd</div>(<div class="overflower">sora8270</div>)</li>
-                  <li><div class="emphasis ">0000</div>포인트</li>
-                  <li class="divider"></li>
-                  <li><a href="">설정</a></li>
-                  <li><a href="">아이콘 보관함</a></li>
-                  <li><a href="">로그아웃</a></li>
+                
+                  <!-- 로그아웃상태 -->
+                  <c:if test="${empty authUser }">
+                  <a href="/WEB-INF/view/loginPage/login-main">로그인</a>
+                  	<li><div class="emphasis overNick"><a href="/WEB-INF/view/loginPage/login-main">로그인</a></div></li>
+                  </c:if>
+                  
+                  
+                  <!-- 로그인상태 -->
+                  <c:if test="${!empty authUser }">
+					  <li><div class="emphasis overNick">가자asdasdasdasd</div>(<div class="overflower">sora8270</div>)</li>
+	                  <li><div class="emphasis ">0000</div>포인트</li>
+	                  <li class="divider"></li>
+	                  <li><a href="">설정</a></li>
+	                  <li><a href="">아이콘 보관함</a></li>
+	                  <li><a href="">로그아웃</a></li>
+	              </c:if>
                 </ul>
               </div>
 

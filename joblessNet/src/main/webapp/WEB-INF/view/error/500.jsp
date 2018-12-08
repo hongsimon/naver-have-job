@@ -15,6 +15,6 @@
     <h3>관리자, 미쳤습니까?</h4>
     <h5><%= exception.getMessage() %></h5>
     내부 서버에 오류가 발생했습니다.<br />
-    <a href="/main">메인으로 돌아가시겠습니까?</a>
+    <a href="main">메인으로 돌아가시겠습니까?</a>
   </body>
 </html>

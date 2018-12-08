@@ -118,12 +118,12 @@ public class AccountController {
 		return "redirect:/main";
 	}
 	
-	@RequestMapping(value="selectUser", method=RequestMethod.GET)
+	@RequestMapping(value="/selectUser", method=RequestMethod.GET)
 	public String controllerSelectUser_GET() {
 		return "selectUser";
 	}
 	
-	@RequestMapping(value="selectUser", method=RequestMethod.POST)
+	@RequestMapping(value="/selectUser", method=RequestMethod.POST)
 	public String controllerSelectUser_POST(@RequestParam int userId) {
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -139,12 +139,12 @@ public class AccountController {
 	}
 	
 
-	@RequestMapping(value="loginTest", method=RequestMethod.GET)
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String SessionTest_GET() {
-		return "loginTest";
+		return "view/loginPage/login-main";
 	}
 	
-	@RequestMapping(value="loginTest", method=RequestMethod.POST)
+	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String SessionTest_POST(@RequestParam String loginId,
 								   @RequestParam String password,
 								   HttpSession session
@@ -158,13 +158,8 @@ public class AccountController {
 			e.getMessage();
 			errors.put("Id_or_Pw_NotMatch", true);
 			modelAndView.addObject("errors", errors);
-			return "loginTest";
+			return "view/loginPage/login-main";
 		}
-		return "redirect:/loginTest1";
-	}
-	
-	@RequestMapping(value="loginTest1", method=RequestMethod.GET)
-	public String SessionTest1_GET() {
-		return "loginTest1";
+		return "redirect:/main";
 	}
 }
