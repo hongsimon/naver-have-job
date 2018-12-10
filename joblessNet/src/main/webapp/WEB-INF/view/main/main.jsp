@@ -14,9 +14,6 @@
 
   </head>
   <body>
-  		${authUser}
-  		<br>
-  		${authUser.userId }
         <!-- 우측 메인 메뉴바 -->
         <div class="container margin-nav">
           <div class="row ">

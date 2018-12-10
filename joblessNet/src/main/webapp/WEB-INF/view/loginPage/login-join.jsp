@@ -76,6 +76,7 @@
 		<c:if test="${errors.nickName }">닉넴<br></c:if>
 		<c:if test="${errors.email }">이메일<br></c:if>
 		<c:if test="${errors.platformId }">플랫폼<br></c:if>
+		<br>
       </div>
       <div>
         <form class=" margin-l" action="join" method="post" >

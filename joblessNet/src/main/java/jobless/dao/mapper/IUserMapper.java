@@ -11,7 +11,7 @@ public interface IUserMapper {
 	
 	public UserVO selectUserByUserId(int userId);
 	
-	public UserVO selectUserByLoginId(String LoginId);
+	public UserVO selectUserByLoginId(String loginId);
 	
 	public UserVO selectUserByNickName(String nickName);
 	

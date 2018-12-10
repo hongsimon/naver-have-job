@@ -23,6 +23,7 @@ import jobless.exception.UserNotFoundException;
 import jobless.model.AuthUserVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.LoginService;
+import jobless.service.authuser.LogoutService;
 import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.JoinUserService;
@@ -44,6 +45,8 @@ public class AccountController {
 	@Autowired
 	LoginService loginService;
 	
+	@Autowired
+	LogoutService logoutService;
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String controllerJoin_GET() {
@@ -140,26 +143,41 @@ public class AccountController {
 	
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String SessionTest_GET() {
+	public String login_GET() {
 		return "view/loginPage/login-main";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String SessionTest_POST(@RequestParam String loginId,
+	public String login_POST(@RequestParam String loginId,
 								   @RequestParam String password,
 								   HttpSession session
 								  ) {
+		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			AuthUserVO authUser = loginService.login(loginId, password);
 			session.setAttribute("authUser", authUser);
+			
+			modelAndView.addObject("errors", errors);
 		}catch (SignInFailException e) {
 			e.getMessage();
 			errors.put("Id_or_Pw_NotMatch", true);
-			modelAndView.addObject("errors", errors);
 			return "view/loginPage/login-main";
 		}
+		return "redirect:/main";
+	}
+	
+	
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	public String logout(HttpServletRequest req) {
+		
+		HttpSession session = req.getSession(false);
+		
+		if(session != null) {
+			session.invalidate();
+		}
+		
 		return "redirect:/main";
 	}
 }
