@@ -61,10 +61,10 @@
     <div class="login-logo text-center login-logo"><a href="#"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
     <div class="login-selecter">
       <div>
-        Log In
+        <a href="#" style="color: black; text-decoration:none">Log In</a>
       </div>
       <div>
-        Sign Up
+        <a href="join" style="color: black; text-decoration:none">Sign Up</a>
       </div>
     </div>
     <div class="error-msg text-center">
