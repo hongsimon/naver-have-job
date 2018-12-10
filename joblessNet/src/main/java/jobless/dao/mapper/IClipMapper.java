@@ -13,4 +13,5 @@ public interface IClipMapper {
 	ClipVO selectClipById(int clipId);
 	void updateClip(ClipVO clipVO);
 	void deleteClip(int clipId);
+	void readToIncreaseViews(int clipId);
 }

@@ -57,4 +57,11 @@
   	<delete id="deleteClip" parameterType="int">
   		delete from clip where clip_id = #{clipId}
   	</delete>
+  	<update id="readToIncreaseViews" parameterType="Clip">
+		update clip 
+		set 
+			views = views
+		where 
+			clip_id = #{clipId}
+	</update>
 </mapper>

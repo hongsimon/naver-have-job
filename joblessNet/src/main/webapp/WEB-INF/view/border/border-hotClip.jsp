@@ -1,5 +1,6 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -18,7 +19,7 @@
               <div class="border-hotclip-service ">
                 <ul>
                   <a href="" class="hotclip-service-none">
-                  <li >
+                  <li>
                     <span class="glyphicon glyphicon-home"></span>
                   </li>
                   </a>
@@ -68,27 +69,30 @@
                     <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
                   </form>
                 </div>
-                <div class="border-hotclip-write">
-                  <a><span class="glyphicon glyphicon-pencil"></span>클립 올리기</a>
-                </div>
+                <c:if test="${authUser != null }">
+	                <div class="border-hotclip-write">
+	                  <a href="insertClip"><span class="glyphicon glyphicon-pencil"></span>클립 올리기</a>
+	                </div>
+                </c:if>
               </div>
               <div class="border-hotclip-body">
                 <ul>
                   <li class="">
+                  <c:forEach var="clip" items="${clipList}" varStatus="status">
                       <div>
                           <div class="border-hotclip-body-img">
-                            <a>
-                            <img src="https://img.youtube.com/vi/lV6bHRb52RQ/sddefault.jpg"/>
+                            <a href="selectClip?clipId=${clip.clipId }">
+                            <img src="${clip.thumbURL }"/>
                           </a>
                           </div>
                         <div class="border-hotclip-body-title ">
                           <p>
-                            <a>갱생레바</a>
+                            <a>${clip.broadcasterId }</a>
                           </p>
-                          <a id="clip-list-title">승권이 마약파티</a>
+                          <a href="selectClip?clipId=${clip.clipId }" id="clip-list-title">${clip.title }</a>
                         </div>
                         <div class="border-hotclip-body-writer">
-                          <a>작성자</a>
+                          <a>${clip.writerId }</a>
                         </div>
                         <div class="border-hotclip-body-info">
                           <div>
@@ -106,13 +110,14 @@
                           <div>
                             <span class="glyphicon glyphicon-time"></span>
                             <div>
-                              2018-12-09 / 18:35
+                              ${clip.wdate }
                             </div>
                           </div>
                         </div>
                       </div>
+                      </c:forEach>
                   </li>
-
+				  
 
 
 

@@ -21,4 +21,6 @@ public interface ClipDAO {
 
 	// Clip 정보를 가져오는 메소드
 	public ClipVO read(int clipId);
+	
+	public void readToIncreaseViews(int clipId);
 }

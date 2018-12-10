@@ -54,4 +54,10 @@ public class ClipDAOimplJDBC implements ClipDAO {
 		return clipList;
 	}
 
+	@Override
+	public void readToIncreaseViews(int clipId) {
+		// TODO Auto-generated method stub
+		mapper.readToIncreaseViews(clipId);
+	}
+
 }

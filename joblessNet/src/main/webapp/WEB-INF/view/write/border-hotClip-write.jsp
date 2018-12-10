@@ -64,7 +64,7 @@
                                   <a href="#" class="clip-back">&lt;돌아가기</a>
                                 </div>
                                 <div class="clip-write">
-                                  <form class="" action="#" method="post">
+                                  <form class="" action="writeClip" method="post">
                                     <div>
                                       클립 주소
                                       <input type="text" name="clip" placeholder="https://youtu.be/..." class="clip">
@@ -78,7 +78,7 @@
                                     </div>
                                     <div>
                                       클립 제목
-                                      <input type="text" name="" value="">
+                                      <input type="text" name="title" value="">
                                       <p>
                                         공유하고싶은 동영상의 제목을 자유롭게 기재해주시길 바랍니다.
                                       </p>

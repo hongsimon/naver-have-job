@@ -1,5 +1,6 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -22,22 +23,24 @@
                       <iframe src="https://clips.twitch.tv/embed?autoplay=false&clip=FlirtyCalmBatOneHand&tt_content=embed&tt_medium=clips_embed" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
                     </div>
                     <div class="hotclip-title-view ">
-                      테스트 제목
+                    ${clip.title }
                     </div>
                     <div class="bordcaster-name">
-                      <a>머독</a>
+                      <a>${clip.broadcasterId }</a>
                     </div>
                     <div class="hotclip-views">
                       <div>
                         조회수
                         <p>
-                          0
+                          ${clip.views }
                         </p>
                         회
                       </div>
-                      <div class="con-right hotclip-del-btn">
-                        <a>삭제</a>
-                      </div>
+                      <c:if test="${clip.writerId == authUser.userId }">
+	                      <div class="con-right hotclip-del-btn">
+	                        <a href="deleteClip?clipId=${clip.clipId}">삭제</a>
+	                      </div>
+                      </c:if>
                       <div class="con-right like-btn">
                         <button><span class="glyphicon glyphicon-thumbs-up"></span>0</button>
                       </div>
@@ -69,20 +72,23 @@
                   <div class="hotclip-comment">
                     <div  class="hotclip-likes">
                       댓글<p> 0 </p> 개
-                    </div>
+                    </div>                
                     <div class="hotclip-comment-input">
                       <div class="clip-icon">
                         <img />
                       </div>
                       <div class="">
-                        <form action="#">
-                          <input type="text" name=""placeholder="댓글을 입력하세요..." class="clip-comment-box">
+                        <form method="post" action="insertComment">
+                          <input type="hidden" name="clipId" value="${clip.clipId }">
+                          <input type="hidden" name="userId" value="${authUser.userId }">
+                          <input type="text" name="content" placeholder="댓글을 입력하세요..." class="clip-comment-box">
                           <button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
                         </form>
                       </div>
                     </div>
                     <div class="clip-comments">
                       <ul>
+                      <c:forEach items="comment" var="${commentList}" varStatus="status">                                     
                         <li>
                           <div class="clip-comment-user-info">
                             <div class="clip-comment-user-icon">
@@ -90,39 +96,21 @@
                             </div>
                             <div class="clip-comment-user-comment">
                               <div class="clip-comment-user-writer">
-                                하로
+                               	${comment.userId }
                                 <div class="clip-comment-service">
-                                  <a>삭제</a>
+                                  <c:if test="${comment.userId == authUser.userId }">
+                                  	<a>삭제</a>
+                                  </c:if>
                                   <a>신고</a>
                                 </div>
                               </div>
                               <div class="clip-comment-user-contents ">
-                                ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+                              	${comment.content }
                               </div>
                             </div>
                           </div>
-                        </li>
-
-                        <li>
-                          <div class="clip-comment-user-info">
-                            <div class="clip-comment-user-icon">
-                              <img />
-                            </div>
-                            <div class="clip-comment-user-comment">
-                              <div class="clip-comment-user-writer">
-                                하로
-                                <div class="clip-comment-service">
-                                  <a>삭제</a>
-                                  <a>신고</a>
-                                </div>
-                              </div>
-                              <div class="clip-comment-user-contents ">
-                                ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-
+                        </li> 
+                       </c:forEach>         
                       </ul>
                     </div>
 
