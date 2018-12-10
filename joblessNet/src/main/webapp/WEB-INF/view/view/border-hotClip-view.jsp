@@ -35,6 +35,9 @@
                         </p>
                         회
                       </div>
+                      <div class="con-right hotclip-del-btn">
+                        <a>삭제</a>
+                      </div>
                       <div class="con-right like-btn">
                         <button><span class="glyphicon glyphicon-thumbs-up"></span>0</button>
                       </div>

@@ -254,3 +254,8 @@
   cursor: pointer;
   color: #287A72;
 }
+
+.hotclip-del-btn a{
+  text-decoration: none;
+  cursor: pointer;
+}
