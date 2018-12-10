@@ -2,12 +2,11 @@ package jobless.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -52,7 +51,9 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = "/test2", method = RequestMethod.GET)
-	public String test(@RequestParam String url) {
+	public String test(@RequestParam String url,
+								HttpSession session) {
+		session.setAttribute("aa", "Aa");
 		try {
 			Document doc = Jsoup.connect(url).get();
 			String thumb = doc.select("meta[property=og:image]").attr("content");
