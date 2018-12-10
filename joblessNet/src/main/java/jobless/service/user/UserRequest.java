@@ -17,6 +17,13 @@ public class UserRequest {
 	private int platformId;
 	
 	
+	// 회원가입용
+		public UserRequest(String loginId, String password) {
+			super();
+			this.loginId = loginId;
+			this.password = password;
+		}
+
 	// insert용
 		public UserRequest(String loginId, String nickName, String password, String email, int platformId) {
 			super();

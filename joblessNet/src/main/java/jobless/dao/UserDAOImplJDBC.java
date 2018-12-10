@@ -37,7 +37,7 @@ public class UserDAOImplJDBC implements UserDAO {
 	public UserVO selectEmail(String email) {
 		UserVO user = mapper.selectUserByLoginId(email);
 		return user;
-	}
+ 	} 
 
 	public List<UserVO> selectAll() {
 		List<UserVO> user = mapper.selectAllUser();
@@ -52,5 +52,6 @@ public class UserDAOImplJDBC implements UserDAO {
 		mapper.updateUser(user);
 		
 	}
+
 
 }

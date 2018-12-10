@@ -1,22 +1,74 @@
 
 /*---------------------------핫클립-----------------------------------------*/
+
 .writeHotClip{
   background-color: #ffffff;
 }
 
-.back{
-  display: block;
-  font-size: 15px;
+.hotClip-box{
+  margin: 10px;
+}
+
+.clip-write{
+  margin-top: 20px;
 }
 
 .clip-write input{
 display: block;
 }
 
-.clip-write div{
-  padding: 15px;
+.clip-write>div{
+  margin-top: 20px;
+
 }
 
+.clip-write input{
+  margin-top:5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid#b8b8b8;
+  padding: 8px;
+  width: 100%;
+}
+
+.clip-write input:focus{
+  outline:none;
+}
+
+.clip-write p{
+  color: #818181;
+}
+
+.clip-back{
+  font-weight: none;
+  display: block;
+  font-size: 15px;
+}
+
+.hotClip-upload{
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  background-color: #287A72;
+  color: #ffffff;
+  width: 100px;
+  height: 30px;
+  font-size: 16px
+}
+
+.hotClip-upload>span{
+    padding-right: 5px;
+}
+
+.clip-broadcaster-btn{
+  margin-bottom: -10px;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  background-color: #287A72;
+  color: #ffffff;
+  width: 140px;
+  height: 30px;
+  font-size: 16px
+}
 
 /*---------------------------커뮤니티-----------------------------------------*/
 

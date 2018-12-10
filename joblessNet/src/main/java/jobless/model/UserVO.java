@@ -142,6 +142,9 @@ public class UserVO {
 				+ ", platformId=" + platformId + "]";
 	}
 
+	public boolean matchPassword(String pwd) {
+		return password.equals(pwd);
+	}
 
 
 

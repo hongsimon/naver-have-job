@@ -2,6 +2,7 @@ package jobless.dao.mapper;
 
 import java.util.List;
 
+import jobless.model.AuthUserVO;
 import jobless.model.UserVO;
 
 @MyAnnotMapper
@@ -10,7 +11,7 @@ public interface IUserMapper {
 	
 	public UserVO selectUserByUserId(int userId);
 	
-	public UserVO selectUserByLoginId(String LoginId);
+	public UserVO selectUserByLoginId(String loginId);
 	
 	public UserVO selectUserByNickName(String nickName);
 	

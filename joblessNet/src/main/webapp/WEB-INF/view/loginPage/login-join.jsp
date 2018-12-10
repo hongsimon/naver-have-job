@@ -1,5 +1,6 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -64,27 +65,38 @@
         </div>
       </div>
       <div class="error-msg text-center">
-        Please enter your username and password.
+        <c:if test="${errors.OverlapLoginIdException }">중복된 로그인아이디<br></c:if>
+		<c:if test="${errors.OverlapNickNameException }">중복된 닉네임<br></c:if>
+		<c:if test="${errors.OverlapEmailException }">중복된 이메일<br></c:if>
+		<c:if test="${errors.DuplicateKeyException }">중복된 회원정보<br></c:if>
+		<c:if test="${errors.loginId }">로그인 아이디<br></c:if>
+		<c:if test="${errors.password }">비번<br></c:if>
+		<c:if test="${errors.passwordCheck }">비번체크<br></c:if>
+		<c:if test="${errors.notMatchPassword }">비번체크 틀림!!<br></c:if>
+		<c:if test="${errors.nickName }">닉넴<br></c:if>
+		<c:if test="${errors.email }">이메일<br></c:if>
+		<c:if test="${errors.platformId }">플랫폼<br></c:if>
+		<br>
       </div>
       <div>
-        <form class=" margin-l" action="join" method="post">
+        <form class=" margin-l" action="join" method="post" >
           <div>
             UserID
           </div>
           <div>
-            <input type="text" name="userId" />
+            <input type="text" name="loginId" />
           </div>
           <div>
             Password
           </div>
           <div>
-            <input type="text" name="userPwd" />
+            <input type="text" name="password" />
           </div>
           <div>
             PasswordCheck
           </div>
           <div>
-            <input type="text" name="userPwd" />
+            <input type="text" name="passwordCheck" />
           </div>
           <div>
             Email
@@ -96,31 +108,28 @@
             NickName
           </div>
           <div>
-            <input type="text" name="userPwd" />
+            <input type="text" name="nickName" />
           </div>
           <div>
             Like platform
           </div>
           <div>
-            <select class="" name="">
-              <option value="">Afreeca TV</option>
-              <option value="">YouTube</option>
-              <option value="">Kakao pat</option>
-              <option value="">Twitch</option>
+            <select class="" name="platformId">
+              <option value="1">Afreeca TV</option>
+              <option value="2">YouTube</option>
+              <option value="3">Kakao pat</option>
+              <option value="4">Twitch</option>
             </select>
           </div>
           <div>
             <a href="#">Trouble logging in?</a>
           </div>
           <div>
-            <form action="?" method="POST">
-              <div id="example3"></div>
-              <br>
-            </form>
             <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
             </script>
           </div>
-
+			<div id="example3"></div>
+           	<br>
           <hr class="hr-size" />
 
           <div class="margin-title">
@@ -132,7 +141,7 @@
               </div>
             </a>
           </div>
-
+<%-- 
           <div class="margin-title">
             <a href="#">
               <div id="google_id_login"><img src="${pageContext.request.contextPath}/images/api-img/btn_google_dark_normal_ios@3x.png" />
@@ -141,12 +150,13 @@
                 </div>
               </div>
             </a>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div> --%>
           </div>
-
-          <button type="submit">Check Sign Up</button>
+	
+     <button type="submit">Check Sign Up</button>
 
         </form>
+        
 
       </div>
     </div>
