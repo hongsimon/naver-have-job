@@ -76,15 +76,16 @@ public class UserVO {
 		this.regDate = regDate;
 	}
 
-	public boolean isAdmin() {
+	public boolean getAdmin() {
 		return admin;
 	}
 
 	public void setAdmin(boolean admin) {
+		
 		this.admin = admin;
 	}
 
-	public boolean isBan() {
+	public boolean getBan() {
 		return ban;
 	}
 

@@ -21,6 +21,7 @@ public class LoginServiceImpl implements LoginService {
 	public AuthUserVO login(String loginId, String password) {
 		
 		UserVO user = userDao.selectLoginId(loginId);
+		System.out.println(user);
 		if(user == null) {
 			throw new SignInFailException("존재하지 않은 사용자입니다.");
 		}
@@ -29,7 +30,7 @@ public class LoginServiceImpl implements LoginService {
 			throw new SignInFailException("비밀번호가 일치하지않습니다.");
 		}
 		
-		return new AuthUserVO(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.isAdmin(), user.isBan(), user.getPlatformId());
+		return new AuthUserVO(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.getAdmin(), user.getBan(), user.getPlatformId());
 	}
 
 }
