@@ -51,6 +51,11 @@ public class jspTester_Controller {
 		return "view/view/border-community-view";
 	}
 	
+	@RequestMapping(value="/view_border_hotClip")
+	public String write_border_hotClip_view() {
+		return "view/view/border-hotClip-view";
+	}
+	
 	@RequestMapping(value="/view_Service")
 	public String userServicePage() {
 		return "view/view/user_Service_Page";

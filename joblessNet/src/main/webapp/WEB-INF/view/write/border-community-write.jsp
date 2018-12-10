@@ -3,17 +3,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/write.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
+    
+        <%@include file="../header_Service/pageContextService.jsp"%>
+    
     <meta charset="utf-8" />
 
 	<!-- include summernote css/js -->
@@ -62,29 +54,41 @@
         <!-- 우측 메인 메뉴바 -->
         <div class="container margin-nav">
           <div class="row">
-          <%@include file="../share-nav/nav-service.jsp"%>
+          		<%@include file="../share-nav/nav-service.jsp"%>
 
             <!-- 게시판 메뉴 -->
             <div class="col-xs-10">
 
               <div class="row margin-container">
-                <div class="col-xs-12">
+                <div class="col-xs-12 ">
                   <div class="writeCommunity">
-                    <div class="title-text-more-big ">
-                      [게시판이름]-게시글 작성
-                      
-                      <a href="#" class="back">&lt;&lt;&lt;돌아가기</a>
+                    <div class="border-title">
+                      <div>
+                        [게시판이름]
+                      </div>
+                      -게시글 작성
                     </div>
-                    <div>
-                      	<form name="writeForm" action="summernote_result.jsp" method="post">
-	                      제목
-	                      <input type="text" name="" value="">
-	                      
-							<textarea id="summernote" name="summernote">Hello Summernote</textarea>
-							<input type="submit" value="전송">
-						</form>
+                    <div class="writeCommunity-form">
+                      <form>
+                        <select name="borderName" class="borderSelect">
+                          <option value="none">게시판선택</option>
+                          <option value="freeTalk">자유</option>
+                          <option value="joke">유머</option>
+                          <option value="news">소식</option>
+                          <option value="game">게임</option>
+                        </select>
+                        <div class="writeCommunity-title">
+                          <input type="text" name="" value="" placeholder="제목">
+                        </div>
+                        <div class="writeCommunity-content ">
+							<textarea id="summernote" name="summernote" ></textarea>
+                        </div>
+                        <div class="writeCommunity-btn">
+                          <a><span class="glyphicon glyphicon-repeat"></span>작성취소</a>
+                          <button type="submit" class="con-right"><span class="glyphicon glyphicon-pencil"></span>작성</button>
+                        </div>
+                    </form>
                     </div>
-                    
                   </div>
                 </div>
             </div>
@@ -93,3 +97,4 @@
       </div>
   </body>
 </html>
+

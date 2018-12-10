@@ -20,6 +20,13 @@ $(function() {
         sliceString(".play-border",".content-in",55,30);
         sliceString(".play-border",".writer-in",30,8);
 
+        //view
+        sliceString(".clip-list-view ul","#clip-list-title",90,30);
+
+        //border
+        sliceString(".border-hotclip-body ul:eq(0)","#clip-list-title",90,30);
+        sliceString(".border-hotclip-body ul:eq(1)","#clip-list-title",90,30);
+
 
 
         function sliceString(ulClass,sideClass,maxByte,maxString){

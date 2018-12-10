@@ -71,13 +71,13 @@ $(function(){
   })
 
   $(".clip-broadcaster-btn-down").click(function(){
-    $("#broadcasterList").slideDown();
+    $("#broadcasterList").show();
     $(".clip-broadcaster-btn-up").show();
     $(".clip-broadcaster-btn-down").hide();
   })
 
   $(".clip-broadcaster-btn-up").click(function(){
-    $("#broadcasterList").slideUp();
+    $("#broadcasterList").hide();
     $(".clip-broadcaster-btn-down").show();
     $(".clip-broadcaster-btn-up").hide();
   })

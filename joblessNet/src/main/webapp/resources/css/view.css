@@ -1,8 +1,9 @@
 /*--hotclip--*/
 
-.hotclip{
-  background-color: #ffffff;
+.hotclip-view{
+	background-color: #ffffff;
 }
+
 
 .hotclip-view-frame iframe{
   margin-top: 15px;
@@ -33,4 +34,223 @@
   background: none;
   border: none;
   color: #707070;
+}
+
+
+.hotclip-comment{
+  margin: 5px;
+}
+
+.hotclip-likes>p{
+  padding-left: 5px;
+  display: inline-block;
+}
+
+.hotclip-likes{
+  font-size: 20px;
+
+}
+
+.clip-icon>img{
+  background-color: #737373;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.clip-write-info{
+  margin: 5px;
+}
+
+.clip-write-info>div{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.clip-writer{
+  padding-top: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.clip-write-user{
+  margin-left: 10px;
+}
+
+.clip-write-day>p{
+  display: inline-block;
+}
+
+.clip-write-day{
+  font-size: 12px;
+  padding-top: 0px;
+  vertical-align: bottom;
+}
+
+.clip-comment-user-icon>img{
+  background-color: #737373;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.hotclip-comment-input>div{
+  display: inline-block;
+}
+
+.hotclip-comment-input>form{
+  vertical-align: top;
+}
+
+.clip-comment-box{
+  height: 45px;
+  width: 720px;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid #c4c4c4;
+  outline: none;
+  padding: 10px;
+  color: #616161;
+}
+
+.clip-comment-box-change{
+  height: 45px;
+  width: 650px;
+  border-radius: 5px 0px 0px 5px;
+  border: 1px solid #c4c4c4;
+  outline: none;
+  padding: 10px;
+  color: #616161;
+}
+
+.dis-none{
+  display: none;
+}
+
+.clip-comment-submit{
+  display: inline-block;
+  margin-left: -5px;
+  width: 75px;
+  height: 46px;
+  border-radius: 0px 5px 5px 0px;
+  background-color: #287A72;
+  color: #ffffff;
+  font-size: 18px;
+  border: 1px solid #c4c4c4;
+}
+
+.clip-comment-user-info>div{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.clip-comment-user-info{
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.clip-comments ul{
+  list-style: none;
+  margin-top: 20px;
+  padding: 0px;
+}
+
+.clip-comment-user-writer{
+  font-weight: bold;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.clip-comment-service{
+  display: inline-block;
+  font-weight: 400;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.clip-comment-user-comment{
+  width: 500px;
+  margin-left: 10px;
+  word-break:break-all;
+}
+
+/*---------클립 리스트-----------*/
+
+.clip-list-view ul{
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.clip-list-view{
+  margin-left: -15px;
+  margin-top: 15px;
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.clip-list-view-thumbnails>img{
+  width: 120px;
+  height: 90px;
+}
+
+.clip-list-view-thumbnails{
+  width: 120px;
+  height: 90px;
+}
+
+.clip-list-view-info>div{
+  display: inline-block;
+  margin-top: -10px;
+  padding-left: 10px;
+}
+.clip-list-view-views>p{
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+.clip-list-view-title{
+  width: 250px;
+  height: 50px;
+  display: inline-block;
+  font-size: 16px;
+  padding: 5px;
+  word-break:break-all;
+}
+
+.clip-list-view-title>a{
+  text-decoration: none;
+}
+
+.clip-list-view-video-info div{
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.border-hotclip-view-more{
+  border: 1px solid #acacac;
+  height: 50px;
+  margin-left: -15px;
+  background-color: #287A72;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.border-hotclip-view-more>div{
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.bordcaster-name{
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.bordcaster-name a{
+  text-decoration: none;
+  cursor: pointer;
+  color: #287A72;
 }
