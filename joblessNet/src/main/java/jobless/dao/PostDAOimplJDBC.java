@@ -1,6 +1,8 @@
 package jobless.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -60,8 +62,11 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 
 	@Override
-	public List<PostDetailVO> readDetailAll(Condition condition) {
-		return postMapper.selectDetailPostList(condition);
+	public List<PostDetailVO> readDetailAll(int boardId, Condition condition) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardId", boardId);
+		map.put("condition", condition);
+		return postMapper.selectDetailPostList(map);
 	}
 	
 	@Override

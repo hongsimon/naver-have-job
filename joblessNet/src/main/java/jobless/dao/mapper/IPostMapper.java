@@ -1,8 +1,8 @@
 package jobless.dao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
-import jobless.dao.condition.Condition;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
 
@@ -15,7 +15,7 @@ public interface IPostMapper {
 	List<PostVO> selectPostList();
 	List<PostVO> selectPostOwnList(int id);
 	PostDetailVO selectPostDetail(int id);
-	List<PostDetailVO> selectDetailPostList(Condition condition);
+	List<PostDetailVO> selectDetailPostList(Map<String, Object> map);
 	List<PostVO> selectPostByBoardId(int id);
 	List<PostVO> selectPostByCategoryId(int id);
 	int selectLastInsertId();

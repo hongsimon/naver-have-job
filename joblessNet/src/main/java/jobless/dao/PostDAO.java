@@ -13,7 +13,7 @@ public interface PostDAO {
 	public void delete(int id);
 	public PostVO read(int id);
 	public PostDetailVO readDetail(int id);
-	public List<PostDetailVO> readDetailAll(Condition condition);
+	public List<PostDetailVO> readDetailAll(int boardId, Condition condition);
 	public List<PostVO> readAll();
 	public List<PostVO> readOwnList(int id);
 	public List<PostVO> readBoardIdList(int id);

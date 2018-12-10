@@ -89,4 +89,5 @@
 	</aop:config>
 	
 	<aop:aspectj-autoproxy expose-proxy="true"/>
+	
 </beans>

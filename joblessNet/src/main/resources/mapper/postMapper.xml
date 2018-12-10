@@ -142,14 +142,14 @@
 			p.post_id
 	</select>
 
-	<select id="selectDetailPostList" parameterType="Condition" resultMap="PostMap">
+	<select id="selectDetailPostList" parameterType="map" resultMap="PostMap">
 		select 
 			p.post_id postId, 
 			post_title title, 
 			write_date writeDate, 
 			p.content_id contentId, 
 			board_id boardId, 
-			views, 
+			views,
 			p.user_id writerId,
 			category_id categoryId,
 			u.user_id userId,
@@ -161,29 +161,42 @@
 			join user u on p.user_id = u.user_id
 			join content c on p.content_id = c.content_id
 			left outer join taku.like l on p.post_id = l.post_id
-		<if test="period != null || id != null">
 		WHERE
-			<if test="period != null">
-			write_date &gt; #{period.startDate} AND write_date &lt; #{period.endDate} <if test="id != null">AND</if>
+			board_id = #{boardId}
+			<if test="condition.period != null">
+			AND write_date &gt; #{condition.period.startDate} AND write_date &lt; #{condition.period.endDate}
 			</if>
-			<if test="id != null">
-			
+			<if test="condition.id != null">
+				<if test="condition.id.userId">
+				AND p.user_id = ${condition.id.userId}
+				</if>
+				<if test="condition.id.categoryId">
+				AND category_id = #{condition.id.categoryId}
+				</if>
 			</if>
-		</if>
+			<if test="condition.text != null">
+				<if test="condition.text.title != null">
+				AND post_title LIKE #{condition.text.title}
+				</if>
+				<if test="condition.text.content != null">
+				AND content LIKE #{condition.text.content}
+				</if>
+			</if>
 		GROUP BY
 			p.post_id
-		<if test="order != null">
 		ORDER BY
-			<if test="order.likes">
-			likes desc <if test="order.views">,</if>
+			p.post_id desc
+			<if test="condition.order != null">
+				<if test="condition.order.likes">
+				, likes desc
+				</if>
+				<if test="condition.order.views">
+				, views desc
+				</if>
 			</if>
-			<if test="order.views">
-			views desc
-			</if>
-		</if>
-		<if test="limit != null">
+		<if test="condition.limit != null">
 		LIMIT
-			#{limit.startIndex}, #{limit.offset}
-		</if>
+			#{condition.limit.startIndex}, #{condition.limit.offset}
+		</if>		
 	</select>
 </mapper>
