@@ -97,7 +97,7 @@
                               <!-- 제목 -->
                               <div class="border-comm-title "><a><span class="glyphicon glyphicon-picture"></span><a id="title">제목</a></a></div>
                               <!-- 작성일 -->
-                              <div class="border-comm-day con-right">1971.11.21</div>
+                              <div class="border-comm-day con-right"> 1971.11.21</div>
                               <!-- 작성자 -->
                               <div class="border-comm-writer con-right"><div><img src=""/><a>작성자</a></div></div>
                             </li>
