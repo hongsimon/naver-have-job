@@ -29,15 +29,27 @@ public class ClipVO {
 		this.broadcasterId = broadcasterId;
 	}
 
+	public ClipVO(int clipId, String title, String clipURL, String thumbURL, LocalDateTime writeDate, int views, int writerId,
+			int broadcasterId) {
+		this.clipId = clipId;
+		this.title = title;
+		this.clipURL = clipURL;
+		this.thumbURL = thumbURL;
+		this.writeDate = writeDate;
+		this.views = views;
+		this.writerId = writerId;
+		this.broadcasterId = broadcasterId;
+	}
+	
 	public ClipVO(String title, String clipURL) {
 		this.title = title;
 		this.clipURL = clipURL;
 	}
 	
-	//테스트
-	public ClipVO(String title, String clipURL, int writerId, int broadcasterId) {
+	public ClipVO(String title, String clipURL, String thumbURL, int writerId, int broadcasterId) {
 		this.title = title;
 		this.clipURL = clipURL;
+		this.thumbURL = thumbURL;
 		this.writerId = writerId;
 		this.broadcasterId = broadcasterId;
 	}
@@ -48,6 +60,14 @@ public class ClipVO {
 
 	public void setClipId(int clipId) {
 		this.clipId = clipId;
+	}
+	
+	public String getThumbURL() {
+		return thumbURL;
+	}
+
+	public void setThumbURL(String thumbURL) {
+		this.thumbURL = thumbURL;
 	}
 
 	public String getTitle() {
@@ -100,7 +120,9 @@ public class ClipVO {
 
 	@Override
 	public String toString() {
-		return "ClipVO [clipId=" + clipId + ", title=" + title + ", clipURL=" + clipURL + ", writeDate=" + writeDate + ", views=" + views + ", writerId=" + writerId + ", broadcasterId=" + broadcasterId + "]";
+		return "ClipVO [clipId=" + clipId + ", title=" + title + ", clipURL=" + clipURL + ", thumbURL=" + thumbURL + ", writeDate=" + writeDate + ", views=" + views + ", writerId=" + writerId + ", broadcasterId=" + broadcasterId + "]";
 	}
+
+	
 	
 }
