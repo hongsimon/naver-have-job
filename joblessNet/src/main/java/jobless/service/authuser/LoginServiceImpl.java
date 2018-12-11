@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import jobless.dao.UserDAO;
 import jobless.exception.SignInFailException;
 import jobless.exception.UserNotFoundException;
-import jobless.model.AuthUserVO;
 import jobless.model.UserVO;
 
 @Repository("loginService")
@@ -18,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
 	UserDAO userDao;
 
 	@Override
-	public AuthUserVO login(String loginId, String password) {
+	public AuthUser login(String loginId, String password) {
 		
 		UserVO user = userDao.selectLoginId(loginId);
 		if(user == null) {
@@ -29,7 +28,7 @@ public class LoginServiceImpl implements LoginService {
 			throw new SignInFailException("비밀번호가 일치하지않습니다.");
 		}
 		
-		return new AuthUserVO(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.getAdmin(), user.getBan(), user.getPlatformId());
+		return new AuthUser(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.getAdmin(), user.getPlatformId());
 	}
 
 }

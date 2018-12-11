@@ -66,5 +66,19 @@ public class CommentDAOimplJDBC implements CommentDAO {
 		return commentList;
 	}
 
+	@Override
+	public int readCountClipComment(int clipId) {
+		// TODO Auto-generated method stub
+		int countClip = mapper.readCountClipComment(clipId);
+		return countClip;
+	}
+
+	@Override
+	public int readCountPostComment(int postId) {
+		// TODO Auto-generated method stub
+		int countClip = mapper.readCountPostComment(postId);
+		return countClip;
+	}
+
 	
 }

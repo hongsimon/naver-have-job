@@ -14,4 +14,6 @@ public interface ICommentMapper {
 	List<CommentVO> selectCommentByUserId(int userId);
 	CommentVO selectCommentById(int commentId);
 	void deleteComment(int commentId);
+	int readCountClipComment(int clipId);
+	int readCountPostComment(int postId);
 }

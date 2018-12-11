@@ -22,5 +22,7 @@ public interface CommentDAO {
 
 	public CommentVO read(int commentId);
 	
+	public int readCountClipComment(int clipId);
 	
+	public int readCountPostComment(int postId);
 }

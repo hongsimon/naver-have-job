@@ -20,7 +20,6 @@ public class AuthUser {
 		this.admin = admin;
 		this.platformId = platformId;
 	}
-
 	public int getUserId() {
 		return userId;
 	}

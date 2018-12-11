@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,8 +21,8 @@ import jobless.exception.OverlapNickNameException;
 import jobless.exception.SignInFailException;
 import jobless.exception.UserNotFoundException;
 import jobless.exception.UserRequestNullException;
-import jobless.model.AuthUserVO;
 import jobless.model.UserVO;
+import jobless.service.authuser.AuthUser;
 import jobless.service.authuser.LoginService;
 import jobless.service.authuser.LogoutService;
 import jobless.service.email.EmailSendService;
@@ -174,7 +173,7 @@ public class AccountController {
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		ModelAndView modelAndView = new ModelAndView();
 		try {
-			AuthUserVO authUser = loginService.login(loginId, password);
+			AuthUser authUser = loginService.login(loginId, password);
 			session.setAttribute("authUser", authUser);
 			
 		}catch (SignInFailException e) {

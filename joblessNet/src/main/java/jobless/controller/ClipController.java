@@ -113,7 +113,7 @@ public class ClipController {
 			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
 			mv.setViewName("errorpage");
 		}else {
-			mv.setViewName("view/write/border-hotClip-write");
+			mv.setViewName("redirect:viewClip");
 		}
 		return mv;
 		
@@ -167,10 +167,10 @@ public class ClipController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/deleteClip", method=RequestMethod.POST)
-	public ModelAndView deleteClip_POST(HttpSession session,
+	@RequestMapping(value="/deleteClip", method=RequestMethod.GET)
+	public ModelAndView deleteClip_GET(HttpSession session,
 										@RequestParam int clipId){
-		System.out.println("deleteClip_POST");
+		System.out.println("deleteClip_GET");
 		
 		ModelAndView mv = new ModelAndView();
 		if(session.getAttribute("authUser") == null) {
@@ -179,7 +179,7 @@ public class ClipController {
 		}else {
 			AuthUser authUser = (AuthUser) session.getAttribute("authUser");
 			deleteClip.deleteClip(clipId);
-			mv.setViewName("view/view/border-hotClip-view");
+			mv.setViewName("redirect:viewClip");
 		}
 		return mv;
 	}

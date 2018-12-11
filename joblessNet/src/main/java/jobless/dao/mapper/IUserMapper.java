@@ -2,7 +2,6 @@ package jobless.dao.mapper;
 
 import java.util.List;
 
-import jobless.model.AuthUserVO;
 import jobless.model.UserVO;
 
 @MyAnnotMapper
