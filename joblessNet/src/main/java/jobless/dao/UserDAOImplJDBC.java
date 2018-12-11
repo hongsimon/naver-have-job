@@ -29,7 +29,7 @@ public class UserDAOImplJDBC implements UserDAO {
 	
 	@Override
 	public UserVO selectNickName(String nickName) {
-		UserVO user = mapper.selectUserByLoginId(nickName);
+		UserVO user = mapper.selectUserByNickName(nickName);
 		return user;
 	}
 

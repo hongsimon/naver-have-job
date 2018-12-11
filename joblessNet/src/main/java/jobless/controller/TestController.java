@@ -51,16 +51,7 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = "/test2", method = RequestMethod.GET)
-	public String test(@RequestParam String url,
-								HttpSession session) {
-		session.setAttribute("aa", "Aa");
-		try {
-			Document doc = Jsoup.connect(url).get();
-			String thumb = doc.select("meta[property=og:image]").attr("content");
-			System.out.println(thumb.substring(0, thumb.indexOf("?ts=")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public String test(@RequestParam String url) {
 		return "test2";
 	}
 

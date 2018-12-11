@@ -64,7 +64,7 @@
                                   <a href="#" class="clip-back">&lt;돌아가기</a>
                                 </div>
                                 <div class="clip-write">
-                                  <form class="" action="writeClip" method="post">
+                                  <form class="" action="insertClip" method="post">
                                     <div>
                                       클립 주소
                                       <input type="text" name="clip" placeholder="https://youtu.be/..." class="clip">
@@ -73,6 +73,7 @@
                                       </P>
                                     </div>
                                     <div>
+                                      <input type="hidden" name="writerId" value="${authUser.userId}" />
                                       <input type="hidden" name="clip_url" class="clip_url" />
                                       <input type="hidden" name="clip_Thumbnail" class="clip_Thumbnail" />
                                     </div>
@@ -85,7 +86,7 @@
                                     </div>
                                     <div>
                                       방송인
-                                      <input type="text" name="" value="" class="clip-broadcaster" id="searchBox"/>
+                                      <input type="text" name="broadcasterNick" value="" class="clip-broadcaster" id="searchBox"/>
                                       <p>
                                         공유하고싶은 동영상의 방송인을 정확하게 기재해주시길 바랍니다.
                                       </p>

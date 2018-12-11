@@ -35,7 +35,7 @@
               </div>
 
               <div class="left-nav-sub">
-                <a href="#"><div>
+                <a href="viewClip"><div>
                   D
                 </div>핫클립</a>
               </div>

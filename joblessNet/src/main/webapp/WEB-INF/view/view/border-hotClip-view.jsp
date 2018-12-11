@@ -20,7 +20,7 @@
                 <div class="col-xs-8 hotclip-view-box">
                   <div>
                     <div class="hotclip-view-frame">
-                      <iframe src="https://clips.twitch.tv/embed?autoplay=false&clip=FlirtyCalmBatOneHand&tt_content=embed&tt_medium=clips_embed" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+                      <iframe src="${clip.clipURL }" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
                     </div>
                     <div class="hotclip-title-view ">
                     ${clip.title }
