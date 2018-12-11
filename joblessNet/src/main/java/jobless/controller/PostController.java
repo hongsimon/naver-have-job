@@ -101,7 +101,7 @@ public class PostController {
 			System.out.println("authUser가 null임");
 			mv.setViewName("errorPage");
 		}else {
-			mv.setViewName("insertPost");
+			mv.setViewName("view/write/border-community-write");
 			System.out.println("성공");
 		}
 		return mv;

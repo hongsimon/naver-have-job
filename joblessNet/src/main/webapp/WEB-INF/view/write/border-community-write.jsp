@@ -69,7 +69,7 @@
                       -게시글 작성
                     </div>
                     <div class="writeCommunity-form">
-                      <form>
+                      <form method="post">
                         <select name="borderName" class="borderSelect">
                           <option value="none">게시판선택</option>
                           <option value="freeTalk">자유</option>
@@ -78,10 +78,11 @@
                           <option value="game">게임</option>
                         </select>
                         <div class="writeCommunity-title">
-                          <input type="text" name="" value="" placeholder="제목">
+                          <input type="text" name="postTitle" value="" placeholder="제목">
+                          <input type="hidden" name="writerId" value="${authUser.userId }">
                         </div>
                         <div class="writeCommunity-content ">
-							<textarea id="summernote" name="summernote" ></textarea>
+							<textarea id="summernote" name="content"></textarea>
                         </div>
                         <div class="writeCommunity-btn">
                           <a><span class="glyphicon glyphicon-repeat"></span>작성취소</a>
