@@ -1,6 +1,8 @@
 /*----------------------------------커뮤니티 게시판----------------------------*/
+
 .border-community{
   background-color: #ffffff;
+  padding: 20px;
 }
 
 .hr-color{
@@ -8,10 +10,23 @@
 }
 
 .border-title-hr{
-  margin-left: 20px;
-  margin-right: 20px;
   border-bottom: 1px solid #bdbdbd;
+  font-size: 24px;
 }
+
+.border-comm-favorites{
+  vertical-align: top;
+}
+
+.border-comm-favorites>a{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.border-comm-favorites>a>span{
+  color: #e4c000;
+}
+
 
 .favorites button{
   margin-left: 20px;
@@ -20,9 +35,25 @@
 .category ul li{
   list-style: none;
   display: inline-block;
+  margin-bottom: 5px;
+}
+
+.category a{
+  border-radius: 5px;x;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.category ul{
+  list-style: none;
+  padding: 0px;
 }
 
 .category{
+  padding-top: 20px;
   overflow-x: scroll;
   white-space: nowrap;
 }
@@ -31,9 +62,94 @@
   display: inline-block;
 }
 
-.border-table table{
-  margin: 10px;
-  width: 950px;
+.border-table ul{
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border-top: 5px solid #287A72;
+  list-style: none;
+  padding: 0px;
+}
+
+.border-table li{
+  border-bottom: 1px solid #b1b1b1;
+}
+
+.border-table li>div{
+  display: inline-block;
+}
+
+.border-comm-recomm{
+  padding: 10px;
+  text-align: center;
+}
+
+.border-comm-recomm>div{
+  vertical-align: top;
+  background-color: #287A72;
+  text-align: center;
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 0px 7px;
+}
+
+.border-comm-name{
+  text-align: center;
+  padding: 10px 5px;
+  margin-left: -10px;
+  margin-left: -10px;
+}
+
+.border-comm-name a{
+  cursor: pointer;
+  padding: 0px 10px;
+  border-right: 1px solid #b1b1b1;
+  border-left: 1px solid #b1b1b1;
+}
+
+.border-comm-title span{
+  padding-right: 8px;
+}
+
+.border-comm-title a{
+  color: #000000;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.border-comm-writer{
+  width: 180px;
+  padding: 10px;
+  text-align: center;
+}
+
+.border-comm-writer>div{
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #000000;
+  padding: 0px 5px;
+  border-right: 1px solid #b1b1b1;
+  border-left: 1px solid #b1b1b1;
+}
+
+.border-comm-writer a{
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #000000;
+}
+
+.border-comm-writer img{
+  background-color: #868686;
+  vertical-align: top;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.border-comm-day{
+  padding: 10px 5px;
 }
 
 .service{
@@ -59,6 +175,30 @@
 
 }
 
+.popularW a{
+  cursor: pointer;
+  text-decoration: none;
+  padding: 10px;
+  width: 100px;
+  border: 2px solid #ffd600;
+  color: #e4c000;
+}
+
+.comm-write a{
+  cursor: pointer;
+  text-decoration: none;
+  padding: 10px;
+  width: 100px;
+  border: 2px solid #287A72;
+  color: #287A72;
+}
+
+.border-community-service>div{
+  display: inline-block;
+}
+
+
+
 /*-------------------------------------핫클립-----------------------------------*/
 
 .border-hotClip{
@@ -74,14 +214,39 @@
 .broadcasterList{
   padding-top: 30px;
   max-width: 900px;
-  column-count: 5;
-  column-fill: balance;
   margin-bottom: 30px;
   margin-top: -10px;
+  columns: 5;
+  column-fill: balance;
+}
+
+.broadcasterList_comm{
+  max-width: 900px;
+  margin-bottom: 30px;
+  margin-top: -10px;
+  columns: 4;
+}
+
+.broadcasterList_con{
+  width: 760px;
+  margin: 20px;
+  margin-top: -20px;
+}
+
+.broadcasterList_search input{
+  margin: 40px;
+  margin-bottom: 30px;
+  margin-left: 35px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #c7c7c7;
+  width: 730px;
+  outline: none;
 }
 
 .broadcasterClass{
   margin-top: 30px;
+  position: static;
   display: inline-block;
   vertical-align: top;
   width: 170px;

@@ -25,30 +25,45 @@
               <div class="row margin-container">
                 <div class="col-xs-12">
                   <div class="border-community">
-                    <div class="title-text-more-big border-title-hr">
+                    <div class="border-title-hr">
                       커뮤니티
                     </div>
-                    <div class="favorites">
-                      <button type="button">즐겨찾기</button>
+                    <div class="border-comm-favorites">
+                      <a><span class="glyphicon glyphicon-star-empty"></span>즐겨찾기</a>
                     </div>
                     <div class="row">
                       <div class="col-xs-12">
-                        <div class="category">
+                        <div class="category ">
                           <ul>
-                            <li>
-                              <div>
-                                <button type="button" name="button">전체</button>
-                              </div>
+                            <li class="">
+                              <a href="" style="background-color:#414141;">
+                                  <span class="glyphicon glyphicon-home"></span>
+                              </a>
                             </li>
                             <li>
-                              <div>
-                                <button type="button" name="button">유머</button>
-                              </div>
+                              <a style="background-color: #2e9895;">
+                                  전체
+                              </a>
                             </li>
                             <li>
-                              <div>
-                                <button type="button" name="button">게임</button>
-                              </div>
+                              <a style="background-color: #A6261D;">
+                                  유튜브
+                              </a>
+                            </li>
+                            <li>
+                              <a style="background-color: #472650;">
+                                  트위치
+                              </a>
+                            </li>
+                            <li>
+                              <a style="background-color: #275B78;">
+                                  아프리카TV
+                              </a>
+                            </li>
+                            <li>
+                              <a style="background-color: #F2AA2E;">
+                                  카카오팟
+                              </a>
                             </li>
                           </ul>
                         </div>
@@ -59,64 +74,93 @@
                     <div class="row">
                       <div class="col-xs-12">
                         <div class="border-table">
-                          <table border="1">
-                            <tr>
+                          <ul>
+
+                            <li>
                               <!-- 추천수/공지/인기 -->
-                              <td>1</td>
+                              <div class="border-comm-recomm "><div>50</div></div>
                               <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
-                              <td>유머</td>
+                              <div class="border-comm-name "><a>유튜브</a></div>
                               <!-- 제목 -->
-                              <td>아이콘/<img src="" class="icon"/>제목</td>
-                              <!-- 작성자 -->
-                              <td>작성자</td>
+                              <div class="border-comm-title "><a><span class="glyphicon glyphicon-comment"></span><a id="title">제목</a></a></div>
                               <!-- 작성일 -->
-                              <td>작성일</td>
-                            </tr>
-                          </table>
+                              <div class="border-comm-day con-right">1971.11.21</div>
+                              <!-- 작성자 -->
+                              <div class="border-comm-writer con-right"><div><img src=""/><a>작성자</a></div></div>
+                            </li>
+
+                            <li>
+                              <!-- 추천수/공지/인기 -->
+                              <div class="border-comm-recomm "><div>1</div></div>
+                              <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
+                              <div class="border-comm-name "><a>유튜브</a></div>
+                              <!-- 제목 -->
+                              <div class="border-comm-title "><a><span class="glyphicon glyphicon-picture"></span><a id="title">제목</a></a></div>
+                              <!-- 작성일 -->
+                              <div class="border-comm-day con-right">1971.11.21</div>
+                              <!-- 작성자 -->
+                              <div class="border-comm-writer con-right"><div><img src=""/><a>작성자</a></div></div>
+                            </li>
+
+                          </ul>
+
+
                         </div>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-xs-12">
-                        <div class="service display-in test-border">
-                          <div class="col-xs-2 popularW con-left test-border " >
-                            <a >인기글</a>
+                        <div class="service display-in border-community-service">
+                          <div class="popularW con-left" >
+                            <a ><span class="glyphicon glyphicon-star-empty"></span>인기글</a>
                           </div>
 
-                          <div class="col-xs-8 page-nav test-border ">
-                            <ol>
-                              <li>
-                                <a><</a>
-                              </li>
-                              <li>
-                                <a>1</a>
-                              </li>
-                              <li>
-                                <a>2</a>
-                              </li>
-                              <li>
-                                <a>3</a>
-                              </li>
-                              <li>
-                                <a>4</a>
-                              </li>
-                              <li>
-                                <a>5</a>
-                              </li>
-                              <li>
-                                <a>></a>
-                              </li>
-                            </ol>
+                          <div class="comm-write con-right">
+                            <a><span class="glyphicon glyphicon-pencil"></span>글쓰기</a>
                           </div>
-
-                          <div class="col-xs-2 write con-right test-border ">
-                            <a>글쓰기</a>
-                          </div>
-
                         </div>
                       </div>
                     </div>
+
+                    <div class="border-hotclip-page-list">
+                      <ul class="pagination">
+                        <li class="page-item">
+                          <a href="#"><span class="glyphicon glyphicon-menu-left"></span></a>
+                        </li>
+                        <li class="page-item">
+                          <a href="#" class="page-link">1</a>
+                        </li v>
+                        <li class="page-item">
+                          <a href="#" class="page-link">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a href="#" class="page-link">3</a>
+                        </li>
+                        <li class="page-item">
+                          <a href="#" class="page-link">4</a>
+                        </li>
+                        <li class="page-item">
+                          <a href="#" class="page-link">5</a>
+                        </li>
+                        <li class="page-item">
+                          <a href="#" class="page-link"><span class="glyphicon glyphicon-menu-right"></span></a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="search_box">
+                      <form>
+                        <select name="borderName" class="borderSelect">
+                          <option value="title">제목</option>
+                          <option value="title_contents">제목+내용</option>
+                          <option value="nickname">닉네임</option>
+                        </select>
+                        <input type="text" placeholder="검색어"/>
+                        <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                      </form>
+                    </div>
+
 
 
 
