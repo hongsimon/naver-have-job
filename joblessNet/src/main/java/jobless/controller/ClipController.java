@@ -1,9 +1,12 @@
 package jobless.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -12,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import jobless.dao.UserDAO;
 import jobless.model.ClipVO;
 import jobless.model.CommentVO;
+import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.clip.ClipRequest;
 import jobless.service.clip.DeleteClipService;
@@ -21,6 +26,7 @@ import jobless.service.clip.ModifyClipService;
 import jobless.service.clip.ReadClipService;
 import jobless.service.clip.WriteClipService;
 import jobless.service.comment.ReadCommentService;
+import jobless.service.user.GetUserService;
 
 
 /*
@@ -48,6 +54,10 @@ public class ClipController {
 		
 	@Autowired
 	ReadCommentService readComment;
+	
+	@Autowired
+	GetUserService getUser;
+	
 	@RequestMapping(value="/viewClip", method=RequestMethod.GET)
 	public ModelAndView viewClip_GET() {
 		System.out.println("viewClip_GET");
@@ -107,20 +117,47 @@ public class ClipController {
 	@RequestMapping(value="/insertClip", method=RequestMethod.POST)
 	public ModelAndView insertPost_POST(HttpSession session,
 												  @RequestParam("title") String title, 
+												  @RequestParam("clip") String originURL,
 												  @RequestParam("clip_url") String clipURL,
 												  @RequestParam("clip_Thumbnail") String thumbURL,
 												  @RequestParam("writerId") int writerId,
-												  @RequestParam("broadcasterId") int broadcasterId){
+												  @RequestParam("broadcasterNick") String broadcasterNick){
 		System.out.println("insertClip_POST");
+		UserVO broadcaster = getUser.getUserByNickName(broadcasterNick);
+		int broadcasterId = broadcaster.getUserId();
 		
 		ModelAndView mv = new ModelAndView();
+
+		if(originURL.contains("kakao") || originURL.contains("afree.ca"))
+		{
+			try {
+				if(clipURL.contains("kakao")) {
+					System.out.println("카카오다");
+				}else if(clipURL.contains("afreeca")){
+					System.out.println("아프리카다");
+				}
+				Document doc = Jsoup.connect(originURL).get();
+				String saveURL = doc.select("meta[property=og:video]").attr("content");
+				String thumb = doc.select("meta[property=og:image]").attr("content");
+				//thumb.substring(0, thumb.indexOf("?ts="));
+				System.out.println(thumb);
+				System.out.println(saveURL);
+				
+				if(!saveURL.isEmpty()) {
+					clipURL = saveURL;
+				}
+				thumbURL = thumb;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
 			mv.setViewName("errorpage");
 		}else {
 			ClipRequest clipRequest = new ClipRequest(title, clipURL, thumbURL, writerId, broadcasterId);
 			writeClip.writeClip(clipRequest);
-			mv.setViewName("viewClip");
+			mv.setViewName("redirect:viewClip");
 		}
 		return mv;
 	}
@@ -137,7 +174,7 @@ public class ClipController {
 		}else {
 			AuthUser authUser = (AuthUser) session.getAttribute("authUser");
 			deleteClip.deleteClip(clipId);
-			mv.setViewName("viewClip");
+			mv.setViewName("view/view/border-hotClip-view");
 		}
 		return mv;
 	}

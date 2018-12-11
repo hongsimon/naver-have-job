@@ -5,13 +5,14 @@
 <mapper namespace="jobless.dao.mapper.IClipMapper">
 	<!-- 우리가 jdbc로 작성했던 쿼리문을 여기다가 만들면 됨 -->
   	<insert id="insertClip" parameterType="Clip">
-  		insert into clip(clip_title, clip_url, writer_id, broadcaster_id) values(#{title}, #{clipURL}, #{writerId}, #{broadcasterId})
+  		insert into clip(clip_title, clip_url, thumb_url, writer_id, broadcaster_id) values(#{title}, #{clipURL}, #{thumbURL}, #{writerId}, #{broadcasterId})
   	</insert>
   	<select id="selectClipList" resultType="Clip">
   		select 
   			clip_id clipId, 
   			clip_title title, 
-  			clip_url clipURL, 
+  			clip_url clipURL,
+  			thumb_url thumbURL, 
   			write_date writeDate, 
   			views, 
   			writer_id writerId, 
@@ -23,6 +24,7 @@
   			clip_id clipId, 
   			clip_title title, 
   			clip_url clipURL, 
+  			thumb_url thumbURL,
   			write_date writeDate, 
   			views, 
   			writer_id writerId, 
@@ -35,6 +37,7 @@
   			clip_id clipId, 
   			clip_title title, 
   			clip_url clipURL, 
+  			thumb_url thumbURL,
   			write_date writeDate, 
   			views, 
   			writer_id writerId, 
@@ -47,6 +50,7 @@
   			clip_id clipId, 
   			clip_title title, 
   			clip_url clipURL, 
+  			thumb_url thumbURL,
   			write_date writeDate, 
   			views, 
   			writer_id writerId, 
@@ -74,7 +78,8 @@
   		select 
   			c.clip_id clipId, 
   			clip_title title, 
-  			clip_url clipURL, 
+  			clip_url clipURL,
+  			thumb_url thumbURL, 
   			write_date writeDate, 
   			views, 
   			writer_id writerId, 
