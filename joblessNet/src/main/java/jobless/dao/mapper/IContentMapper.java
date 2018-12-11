@@ -9,4 +9,5 @@ public interface IContentMapper {
 	public void updateContent(ContentVO content);
 	public void deleteContent(int id);
 	public ContentVO selectContentById(int id);
+	public int selectLastInsertId();
 }

@@ -11,6 +11,8 @@ public interface ReadPostService {
 	
 	PostDetailVO readPostByDetail();
 	
+	int readPostLastId();
+	
 	List<PostVO> readAllPost();
 
 	List<PostVO> readPostByUserId(int userId);

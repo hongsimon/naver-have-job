@@ -1,5 +1,5 @@
 package jobless.service.post;
 
 public interface WritePostService {
-	public void writePost(PostRequest postReq);
+	public int writePost(PostRequest postReq);
 }

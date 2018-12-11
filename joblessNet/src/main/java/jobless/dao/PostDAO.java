@@ -10,6 +10,7 @@ public interface PostDAO {
 
 	public void insert(PostVO post);
 	public void update(PostVO post);
+	public void updateViews(PostVO post);
 	public void delete(int id);
 	public PostVO read(int id);
 	public PostDetailVO readDetail(int id);

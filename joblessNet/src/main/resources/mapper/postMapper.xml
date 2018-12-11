@@ -20,6 +20,14 @@
 			post_id = #{postId}
 	</update>
 	
+	<update id="updatePostView" parameterType="Post">
+		update post
+		set
+			views = #{views}
+		where
+			post_id = #{postId}
+	</update>
+	
 	<!-- T -->
 	<delete id="deletePost" parameterType="int">
 		delete from post where post_id = #{postId}

@@ -29,6 +29,11 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
+	public void updateViews(PostVO post) {
+		postMapper.updatePostView(post);
+	}
+	
+	@Override
 	public void delete(int id) {
 		postMapper.deletePost(id);
 	}

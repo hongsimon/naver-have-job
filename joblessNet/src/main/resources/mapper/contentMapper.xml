@@ -33,4 +33,8 @@
 		where 
 			content_id = #{contentId}
 	</select>
+	
+	<select id="selectLastInsertId" resultType="int">
+		select LAST_INSERT_ID() from taku.content limit 1;
+	</select>
 </mapper>

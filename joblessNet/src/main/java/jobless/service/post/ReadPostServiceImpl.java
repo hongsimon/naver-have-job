@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import jobless.dao.ContentDAO;
 import jobless.dao.PostDAO;
 import jobless.exception.ReadPostException;
 import jobless.model.PostDetailVO;
@@ -16,10 +17,18 @@ public class ReadPostServiceImpl implements ReadPostService{
 	@Autowired
 	PostDAO postdao;
 	
+	@Autowired
+	ContentDAO contentdao;
+	
 	@Override
 	public PostVO readPostById(int postId) {
 		
 		PostVO post = postdao.read(postId);
+		int views = post.getViews();
+		views += 1;
+		post.setViews(views);
+		postdao.updateViews(post);
+		post = postdao.read(postId);
 		if(post == null) {
 			throw new ReadPostException("post를 읽어오는데 실패하였습니다.");
 		}
@@ -28,8 +37,13 @@ public class ReadPostServiceImpl implements ReadPostService{
 	
 	@Override
 	public PostDetailVO readPostByDetail() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public int readPostLastId() {
+		int postId = postdao.readLastInsertId();
+		return postId;
 	}
 	
 	@Override
