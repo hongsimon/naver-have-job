@@ -66,12 +66,11 @@ public class AccountController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		
+		UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
+		userRequest.setPasswordCheck(passwordCheck);
+		
 		try {
-			
-			
-			UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
-			userRequest.setPasswordCheck(passwordCheck);
-			
 			//잘못된 정보는 errors라는 맵을 넣어놓기 위해 errors라는 맵을 생성
 			
 			userRequest.validate(errors);
@@ -108,7 +107,9 @@ public class AccountController {
 			e.getMessage();
 			return modelAndView;
 		}
-		modelAndView.setViewName("redirect:/view/main/main");
+		System.out.println(userRequest);
+		modelAndView.addObject("user", userRequest);
+		modelAndView.setViewName("view/loginPage/login-join-check");
 		return modelAndView; 
 	}
 	
@@ -164,10 +165,10 @@ public class AccountController {
 			AuthUserVO authUser = loginService.login(loginId, password);
 			session.setAttribute("authUser", authUser);
 			
-			modelAndView.addObject("errors", errors);
 		}catch (SignInFailException e) {
 			e.getMessage();
 			errors.put("Id_or_Pw_NotMatch", true);
+			modelAndView.addObject("errors", errors);
 			modelAndView.setViewName("view/loginPage/login-main");
 			return modelAndView;
 		}
@@ -175,6 +176,17 @@ public class AccountController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="/join-check", method=RequestMethod.GET)
+	public String loginCheck_GET() {
+		System.out.println("loginCheck_GET");
+		return "view/loginPage/login-join-check";
+	}
+	
+	@RequestMapping(value="/join-check", method=RequestMethod.POST)
+	public String loginCheck_POST() {
+	System.out.println("loginCheck_POST");
+		return "view/loginPage/login-join-check";
+	}
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logout(HttpServletRequest req) {

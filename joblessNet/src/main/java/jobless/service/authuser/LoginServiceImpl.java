@@ -21,7 +21,6 @@ public class LoginServiceImpl implements LoginService {
 	public AuthUserVO login(String loginId, String password) {
 		
 		UserVO user = userDao.selectLoginId(loginId);
-		System.out.println(user);
 		if(user == null) {
 			throw new SignInFailException("존재하지 않은 사용자입니다.");
 		}

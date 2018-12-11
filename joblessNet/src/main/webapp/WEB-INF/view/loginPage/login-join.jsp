@@ -64,20 +64,66 @@
         <a href="#" style="color: black; text-decoration:none">Sign Up</a>
       </div>
       </div>
-      <div class="error-msg text-center">
-        <c:if test="${errors.OverlapLoginIdException }">중복된 로그인아이디</c:if>
-		<c:if test="${errors.OverlapNickNameException }">중복된 닉네임</c:if>
-		<c:if test="${errors.OverlapEmailException }">중복된 이메일</c:if>
-		<c:if test="${errors.DuplicateKeyException }">중복된 회원정보</c:if>
-		<c:if test="${errors.loginId }">로그인 아이디</c:if>
-		<c:if test="${errors.password }">비번</c:if>
-		<c:if test="${errors.passwordCheck }">비번체크</c:if>
-		<c:if test="${errors.notMatchPassword }">비번체크 틀림!!</c:if>
-		<c:if test="${errors.nickName }">닉넴</c:if>
-		<c:if test="${errors.email }">이메일</c:if>
-		<c:if test="${errors.platformId }">플랫폼</c:if>
-		<br>
-      </div>
+      <c:if test="${errors.OverlapLoginIdException }">
+	      <div class="error-msg text-center">
+	      중복된 로그인 아이디입니다.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.OverlapNickNameException }">
+      	 <div class="error-msg text-center">
+	      중복된 닉네임입니다.
+	     </div>
+      </c:if>
+      
+      <c:if test="${errors.OverlapEmailException }">
+	      <div class="error-msg text-center">
+	      중복된 이메일입니다.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.loginId }">
+	      <div class="error-msg text-center">
+	      로그인 아이디를 입력해주세요.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.password }">
+	      <div class="error-msg text-center">
+	      비밀번호를 입력해주세요.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.passwordCheck }">
+	      <div class="error-msg text-center">
+	      비밀번호 확인를 입력해주세요.
+	      </div>
+      </c:if>
+     
+      <c:if test="${errors.notMatchPassword }">
+	      <div class="error-msg text-center">
+	      비밀번호가 일치하지 않습니다.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.nickName }">
+	      <div class="error-msg text-center">
+	      닉네임을 입력해주세요.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.email }">
+	      <div class="error-msg text-center">
+	      이메일을 입력해주세요.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.platformId }">
+	      <div class="error-msg text-center">
+	      잘못된 플랫폼 선택입니다.
+	      </div>
+      </c:if>
+      
       <div>
         <form class=" margin-l" action="join" method="post" >
           <div>

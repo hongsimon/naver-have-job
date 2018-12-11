@@ -31,7 +31,7 @@
         <form class=" margin-l" action="#" method="post">
           <div>
             <div id="email">
-              asd123@naver.com
+              ${user.email}
             </div>
             <div>
               으로 전송된 이메일을 확인하여 가입 절차를 완료해 주세요.
