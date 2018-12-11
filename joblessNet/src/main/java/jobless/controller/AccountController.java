@@ -15,17 +15,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import jobless.exception.DoesNotMatchSecurityCode;
 import jobless.exception.OverlapEmailException;
 import jobless.exception.OverlapLoginIdException;
 import jobless.exception.OverlapNickNameException;
 import jobless.exception.SignInFailException;
 import jobless.exception.UserNotFoundException;
+import jobless.exception.UserRequestNullException;
 import jobless.model.AuthUserVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.LoginService;
 import jobless.service.authuser.LogoutService;
+import jobless.service.email.EmailSendService;
 import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
+import jobless.service.user.JoinCheckService;
 import jobless.service.user.JoinUserService;
 import jobless.service.user.UserRequest;
 
@@ -40,6 +44,9 @@ public class AccountController {
 	GetUserService getUserService;
 	
 	@Autowired
+	JoinCheckService joinCheckService;
+	
+	@Autowired
 	JoinUserService joinUserService;
 	
 	@Autowired
@@ -47,6 +54,9 @@ public class AccountController {
 	
 	@Autowired
 	LogoutService logoutService;
+	
+	@Autowired
+	EmailSendService emailSendService;
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String controllerJoin_GET() {
@@ -82,7 +92,7 @@ public class AccountController {
 				return modelAndView;
 			}
 			
-			joinUserService.joinUser(new UserRequest(userRequest.getLoginId(), userRequest.getNickName(),
+			joinCheckService.joinCheck(new UserRequest(userRequest.getLoginId(), userRequest.getNickName(),
 					userRequest.getPassword(), userRequest.getEmail(),
 					userRequest.getPlatformId()));
 			
@@ -107,7 +117,9 @@ public class AccountController {
 			e.getMessage();
 			return modelAndView;
 		}
-		System.out.println(userRequest);
+		String code = emailSendService.emailService(userRequest.getEmail());
+		
+		modelAndView.addObject("code", code);
 		modelAndView.addObject("user", userRequest);
 		modelAndView.setViewName("view/loginPage/login-join-check");
 		return modelAndView; 
@@ -183,9 +195,36 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/join-check", method=RequestMethod.POST)
-	public String loginCheck_POST() {
-	System.out.println("loginCheck_POST");
-		return "view/loginPage/login-join-check";
+	public ModelAndView loginCheck_POST(@RequestParam String securityCode,
+								  @RequestParam String code,
+								  @RequestParam String loginId,
+								  @RequestParam String nickName,
+								  @RequestParam String password,
+								  @RequestParam String email,
+								  @RequestParam int platformId
+								 ) {
+		System.out.println("loginCheck_POST");
+	
+		UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		ModelAndView modelAndView = new ModelAndView();
+		
+		try {
+			joinUserService.joinUser(userRequest, code, securityCode);
+		}catch (UserRequestNullException e) {
+			e.getMessage();
+			errors.put("UserRequestNullException", true);
+			modelAndView.addObject("errors", errors);
+			modelAndView.setViewName("join-check");
+		}catch (DoesNotMatchSecurityCode e) {
+			e.getMessage();
+			errors.put("DoesNotMatchSecurityCode", true);
+			modelAndView.addObject("errors", errors);
+			modelAndView.setViewName("join-check");
+		}
+		
+		modelAndView.setViewName("redirect:/main");
+		return modelAndView;
 	}
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
