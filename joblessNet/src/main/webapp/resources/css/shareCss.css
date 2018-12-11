@@ -152,3 +152,34 @@ hr{
   margin: 10px;
   border: 1px solid #e2dfdf;
 }
+
+.search_box{
+  text-align: center;
+}
+
+.search_box select{
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #c8c8c8;
+  outline: none;
+}
+
+.search_box input{
+  vertical-align: top;
+  border-radius: 5px 0px 0px 5px;
+  border: 1px solid #c8c8c8;
+  outline: none;
+  padding: 4px 10px;
+}
+
+.search_box button{
+  vertical-align: top;
+  padding: 3px;
+  width: 30px;
+  height: 30px;
+  margin-left: -5px;
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  background-color: #287A72;
+  color: #ffffff;
+}

@@ -110,8 +110,7 @@
 		select LAST_INSERT_ID() from taku.content limit 1;
 	</select>
 	
-	<resultMap type="PostDetail" id="PostMap">
-		<result property="likes" column="likes" javaType="int"/>
+	<resultMap type="PostDetail" id="PostMap" autoMapping="true">
 		<association property="post" javaType="Post" autoMapping="true"/>
 		<association property="user" javaType="User" autoMapping="true"/>
 		<association property="content" javaType="Content" autoMapping="true"/>
@@ -130,7 +129,7 @@
 			u.user_id userId,
 			nickname,
 			content,
-			count(p.post_id) likes
+			count(l.post_id) likes
 		from 
 			post p 
 			join user u on p.user_id = u.user_id

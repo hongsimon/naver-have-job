@@ -1,9 +1,7 @@
 /*--hotclip--*/
-
 .hotclip-view{
-	background-color: #ffffff;
+  background-color: #ffffff;
 }
-
 
 .hotclip-view-frame iframe{
   margin-top: 15px;

@@ -2,6 +2,7 @@ package jobless.dao;
 
 import java.util.List;
 
+import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
 
 
@@ -15,6 +16,8 @@ public interface ClipDAO {
 	public List<ClipVO> readWriterAll(int writerId);
 	
 	public List<ClipVO> readBroadCasterAll(int broadCasterId);
+	
+	public List<ClipDetailVO> readDetailAll();
 
 	// Clip 정보를 삭제하는 메소드
 	public void delete(int clipId);

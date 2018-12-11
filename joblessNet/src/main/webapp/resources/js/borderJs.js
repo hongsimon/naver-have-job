@@ -22,7 +22,25 @@ $(function(){
     console.log($(this).html())
   });
 
-  
+  for(var i=0; i<$(".border-table li").length;i++){
+    var sling = $(".border-table li:eq("+i+")").find(".border-comm-recomm" ).text().split("");
+    sling = sling.length;
+    switch (sling) {
+      case 1:
+          $(".border-table li:eq("+i+")").find(".border-comm-recomm" ).css("padding","10px 16px");
+
+        break;
+      case 2:
+          $(".border-table li:eq("+i+")").find(".border-comm-recomm" ).css("padding","10px 12px");
+
+        break;
+      default:
+          $(".border-table li:eq("+i+")").find(".border-comm-recomm" ).css("padding","10px 8px");
+
+    }
+  }
+
+
 
 
 

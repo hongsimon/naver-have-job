@@ -2,6 +2,7 @@ package jobless.dao.mapper;
 
 import java.util.List;
 
+import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
 
 @MyAnnotMapper
@@ -10,6 +11,7 @@ public interface IClipMapper {
 	List<ClipVO> selectClipList();
 	List<ClipVO> selectClipByWriterId(int writerId);
 	List<ClipVO> selectClipByBroadcasterId(int broadCasterId);
+	List<ClipDetailVO> selectClipDetailList();
 	ClipVO selectClipById(int clipId);
 	void updateClip(ClipVO clipVO);
 	void deleteClip(int clipId);

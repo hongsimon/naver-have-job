@@ -3,12 +3,14 @@ package test;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import jobless.dao.ClipDAO;
 import jobless.dao.ContentDAO;
 import jobless.dao.PostDAO;
 import jobless.dao.condition.Condition;
@@ -17,6 +19,7 @@ import jobless.dao.condition.Limit;
 import jobless.dao.condition.Order;
 import jobless.dao.condition.Period;
 import jobless.dao.condition.Text;
+import jobless.model.ClipDetailVO;
 import jobless.model.PostDetailVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,6 +34,9 @@ public class Test {
 	@Autowired
 	ContentDAO contentdao;
 
+	@Autowired
+	ClipDAO clipdao;
+	
 	@org.junit.Test
 	public void test() {
 		Condition condition = new Condition();
@@ -46,8 +52,6 @@ public class Test {
 		Limit limit = new Limit(0, 5);
 
 		Text text = new Text();
-		text.setTitle("b");
-		text.setContent("a");
 
 		Period period = new Period(LocalDateTime.now().minusDays(10), LocalDateTime.now());
 		condition.setId(id);
@@ -56,14 +60,25 @@ public class Test {
 		condition.setPeriod(period);
 		condition.setText(text);
 
-		List<PostDetailVO> postList = postDao.readDetailAll(1, condition);
-
-		if (!postList.isEmpty()) {
-			for (PostDetailVO post : postList) {
-				System.out.println(post);
-			}
-		} else {
-			System.out.println("결과가 음슴");
+		PostDetailVO post = postDao.readDetail(2);
+		System.out.println(post);
+//		List<PostDetailVO> postList = postDao.readDetailAll(1, condition);
+//
+//		if (!postList.isEmpty()) {
+//			for (PostDetailVO post : postList) {
+//				System.out.println(post);
+//			}
+//		} else {
+//			System.out.println("결과가 음슴");
+//		}
+//		
+	}
+	
+	@org.junit.Test @Ignore
+	public void clipTest() {
+		List<ClipDetailVO> list = clipdao.readDetailAll();
+		for(ClipDetailVO clipDetail : list) {
+			System.out.println(clipDetail);
 		}
 	}
 }

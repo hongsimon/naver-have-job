@@ -30,25 +30,25 @@ $(function(){
           video = splits[3].split("?");
           video = video[0];
           replaceUrl =  "https://clips.twitch.tv/embed?autoplay=false&clip="+video+"&tt_content=embed&tt_medium=clips_embed";
-          
-           $.ajax({
-             url : "https://api.twitch.tv/kraken/clips/"+video+"",
-             type : "GET",
-             headers: {
-               "Client-ID": "9gtev8scgqmtryin1q0jg9o2px6o6m",
-               "Accept": "application/vnd.twitchtv.v5+json"
-             },
-          
-             dataType : "json",
-          
-             success: function(data) {
-               imgUrl = data.thumbnails.small
-             },
-             error: function(status, e) {
-               console.log(status)
-               console.log(e)
-             }
-           });
+          //
+          // $.ajax({
+          //   url : "https://api.twitch.tv/kraken/clips/"+video+""
+          //   type : "GET",
+          //   headers: {
+          //     "Client-ID": "9gtev8scgqmtryin1q0jg9o2px6o6m",
+          //     "Accept": "application/vnd.twitchtv.v5+json"
+          //   },
+          //
+          //   dataType : "json",
+          //
+          //   success: function(data) {
+          //     imgUrl = data.thumbnails.small
+          //   },
+          //   error: function(status, e) {
+          //     console.log(status)
+          //     console.log(e)
+          //   }
+          // });
 
           $(".clip_url").val(replaceUrl);
           $(".clip_Thumbnail").val(imgUrl);
@@ -71,13 +71,13 @@ $(function(){
   })
 
   $(".clip-broadcaster-btn-down").click(function(){
-    $("#broadcasterList").show();
+    $("#broadcasterList").slideDown();
     $(".clip-broadcaster-btn-up").show();
     $(".clip-broadcaster-btn-down").hide();
   })
 
   $(".clip-broadcaster-btn-up").click(function(){
-    $("#broadcasterList").hide();
+    $("#broadcasterList").slideUp();
     $(".clip-broadcaster-btn-down").show();
     $(".clip-broadcaster-btn-up").hide();
   })

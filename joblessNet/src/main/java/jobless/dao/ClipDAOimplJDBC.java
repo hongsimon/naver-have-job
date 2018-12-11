@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jobless.dao.mapper.IClipMapper;
+import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
 
 @Repository("Clip")
 public class ClipDAOimplJDBC implements ClipDAO {
-	
+
 	@Autowired
 	private IClipMapper mapper;
 
@@ -36,7 +37,7 @@ public class ClipDAOimplJDBC implements ClipDAO {
 	@Override
 	public ClipVO read(int clipId) {
 		// TODO Auto-generated method stub
-		ClipVO clip =  mapper.selectClipById(clipId);
+		ClipVO clip = mapper.selectClipById(clipId);
 		return clip;
 	}
 
@@ -51,6 +52,12 @@ public class ClipDAOimplJDBC implements ClipDAO {
 	public List<ClipVO> readBroadCasterAll(int broadCasterId) {
 		// TODO Auto-generated method stub
 		List<ClipVO> clipList = mapper.selectClipByBroadcasterId(broadCasterId);
+		return clipList;
+	}
+
+	@Override
+	public List<ClipDetailVO> readDetailAll() {
+		List<ClipDetailVO> clipList = mapper.selectClipDetailList();
 		return clipList;
 	}
 

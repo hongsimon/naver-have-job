@@ -24,8 +24,10 @@ $(function() {
         sliceString(".clip-list-view ul","#clip-list-title",90,30);
 
         //border
-        sliceString(".border-hotclip-body ul:eq(0)","#clip-list-title",90,30);
-        sliceString(".border-hotclip-body ul:eq(1)","#clip-list-title",90,30);
+        sliceString(".border-hotclip-body ul","#clip-list-title",90,30);
+
+        sliceString(".border-table ul",".border-comm-writer a",22,6);
+          sliceString(".border-table ul","#title",110,35);
 
 
 

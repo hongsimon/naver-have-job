@@ -50,10 +50,102 @@
                           </div>
                         </div>
                       </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동해물과 백두산이 마르고 닳도록 하느님이 보우하사</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동해물과 백두산이 마르고 닳도록 하느님이 보우하사</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동해물과 백두산</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동해물과 백두산이 마르고 닳도록 하느님이 보우하사</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      
 
 
                       <!-- 쌤플 -->
                       <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">IT/컴퓨터</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">123456789123456789123456789123456789123456789</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [18]
+                          </div>
+                        </div>
+                      </li>
+                       <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">IT/컴퓨터</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">123456789123</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [18]
+                          </div>
+                        </div>
+                      </li>
+                       <li>
                         <div>
                           <div class="board-name con-left">
                             <a href="#" class="not-working-a point-color">IT/컴퓨터</a>
