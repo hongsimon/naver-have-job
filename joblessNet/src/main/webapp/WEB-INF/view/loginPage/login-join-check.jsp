@@ -1,5 +1,6 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -24,11 +25,20 @@
           Sign Up
         </div>
       </div>
+      <c:if test="${errors.UserRequestNullException }">
       <div class="error-msg text-center">
-        Please enter your username and password.
+        잘못된 접근입니다.
       </div>
+      </c:if>
+      
+      <c:if test="${errors.DoesNotMatchSecurityCode }">
+      <div class="error-msg text-center">
+        입력하신 코드가 일치하지 않습니다.
+      </div>
+      </c:if>
+      
       <div>
-        <form class=" margin-l" action="#" method="post">
+        <form class=" margin-l" action="join-check" method="post">
           <div>
             <div id="email">
               ${user.email}
@@ -42,7 +52,14 @@
             </div>
           </div>
           <div>
-            <input type="text" name="" value="">
+            <input type="text" name="securityCode">
+            <input type="hidden" name="code" value="${code }">
+            <input type="hidden" name="loginId" value="${user.loginId }">
+            <input type="hidden" name="nickName" value="${user.nickName }">
+            <input type="hidden" name="password" value="${user.password }">
+            <input type="hidden" name="email" value="${user.email }">
+            <input type="hidden" name="platformId" value="${user.platformId }">
+            
           </div>
             이메일을 받지 못하셨나요?
             <button type="button" name="button">이메일 재전송</button>

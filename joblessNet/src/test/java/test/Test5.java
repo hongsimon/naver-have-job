@@ -2,6 +2,8 @@ package test;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,18 +12,28 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import jobless.controller.PostController;
 import jobless.dao.BoardApplyDAO;
 import jobless.dao.ContentDAO;
 import jobless.dao.PostDAO;
+import jobless.dao.UserDAO;
+import jobless.model.AuthUserVO;
 import jobless.model.BoardApplyVO;
 import jobless.model.ContentVO;
 import jobless.model.PostVO;
+import jobless.model.UserVO;
+import jobless.service.authuser.AuthUser;
 import jobless.service.post.PostRequest;
 import jobless.service.post.WritePostService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
 public class Test5 {
+	
+	
+	@Autowired
+	UserDAO userdao;
+	
 	@Autowired
 	ApplicationContext context;
 
@@ -36,6 +48,18 @@ public class Test5 {
 	
 	@Autowired
 	WritePostService writePostService;
+	
+	
+	PostController postController = new PostController();
+
+	@Autowired
+	HttpSession session;
+	
+	
+//	@Test
+//	public void test2() {
+//		UserVO
+//	}
 	
 
 	//-----------------------------------------------------------------------
@@ -235,12 +259,4 @@ public class Test5 {
 	}
 
 	//-----------------------------------------------------------------------
-	
-	
-	@Test
-	public void test() {
-		System.out.println("wriePostService start");
-		writePostService.writePost(new PostRequest(0, "KiKi", "하하", 1, 1, 1));
-		System.out.println("wriePostService end");
-	}
 }

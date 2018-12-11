@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import jobless.dao.condition.Condition;
 import jobless.dao.mapper.IClipMapper;
 import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
@@ -56,7 +57,7 @@ public class ClipDAOimplJDBC implements ClipDAO {
 	}
 
 	@Override
-	public List<ClipDetailVO> readDetailAll() {
+	public List<ClipDetailVO> readDetailList(Condition condition) {
 		List<ClipDetailVO> clipList = mapper.selectClipDetailList();
 		return clipList;
 	}
@@ -65,6 +66,12 @@ public class ClipDAOimplJDBC implements ClipDAO {
 	public void readToIncreaseViews(int clipId) {
 		// TODO Auto-generated method stub
 		mapper.readToIncreaseViews(clipId);
+	}
+
+	@Override
+	public ClipDetailVO readDetail(int clipId) {
+		ClipDetailVO clip = mapper.selectClipDetail(clipId);
+		return clip;
 	}
 
 }

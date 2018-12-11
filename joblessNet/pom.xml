@@ -148,6 +148,13 @@
 			<artifactId>spring-session</artifactId>
 			<version>1.3.2.RELEASE</version>
 		</dependency>
+		
+			<!-- 메일보내는 API -->
+		<dependency>
+	 	   <groupId>javax.mail</groupId>
+	 	   <artifactId>mail</artifactId>
+	 	   <version>1.4.7</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core 
 			<dependency> <groupId>org.apache.logging.log4j</groupId> <artifactId>log4j-core</artifactId> 

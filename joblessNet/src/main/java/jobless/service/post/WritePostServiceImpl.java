@@ -15,23 +15,22 @@ public class WritePostServiceImpl implements WritePostService {
 	@Autowired
 	PostDAO postdao;
 	
-//	@Autowired
-	
 	@Autowired
 	ContentDAO contentdao;
 	
-	// 아직 완성아님
-	
 	@Override
-	public void writePost(PostRequest postReq) {
+	public int writePost(PostRequest postReq) {
+		int postId;
 		try {
 			contentdao.insert(new ContentVO(postReq.getContent()));
-			int contentId = postdao.readLastInsertId();
+			int contentId = contentdao.readLastInsertId();
 			postReq.setContentId(contentId);
 			postdao.insert(new PostVO(postReq.getTitle(), postReq.getContentId(), postReq.getWriterId(), postReq.getBoardId(), postReq.getCategoryId()));
+			postId = postdao.readLastInsertId();	
 		} catch (Exception e) {
 			throw new WritePostException("post 작성 실패" + e);
 		}
+		return postId;
 	}
 
 }

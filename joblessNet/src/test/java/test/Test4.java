@@ -31,7 +31,7 @@ import jobless.service.icon.ModifyIconService;
 import jobless.service.icon.SelectIconService;
 import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
-import jobless.service.user.JoinUserService;
+import jobless.service.user.JoinCheckService;
 import jobless.service.user.ModifyUserService;
 import jobless.service.user.UserRequest;
 
@@ -149,7 +149,7 @@ public class Test4 {
 	ModifyUserService modifyUserService; 
 	
 	@Autowired
-	JoinUserService joinUserService;
+	JoinCheckService joinUserService;
 	
 	@Autowired
 	GetUserService getUserService;

@@ -11,6 +11,7 @@ public interface IClipMapper {
 	List<ClipVO> selectClipList();
 	List<ClipVO> selectClipByWriterId(int writerId);
 	List<ClipVO> selectClipByBroadcasterId(int broadCasterId);
+	ClipDetailVO selectClipDetail(int clipId);
 	List<ClipDetailVO> selectClipDetailList();
 	ClipVO selectClipById(int clipId);
 	void updateClip(ClipVO clipVO);

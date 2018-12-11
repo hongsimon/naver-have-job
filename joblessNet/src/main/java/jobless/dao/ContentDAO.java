@@ -8,4 +8,5 @@ public interface ContentDAO {
 	public void update(ContentVO content);
 	public void delete(int id);
 	public ContentVO read(int id);
+	public int readLastInsertId();
 }

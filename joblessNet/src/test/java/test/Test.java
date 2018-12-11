@@ -37,7 +37,7 @@ public class Test {
 	@Autowired
 	ClipDAO clipdao;
 	
-	@org.junit.Test
+	@org.junit.Test @Ignore
 	public void test() {
 		Condition condition = new Condition();
 
@@ -74,9 +74,14 @@ public class Test {
 //		
 	}
 	
-	@org.junit.Test @Ignore
+	@org.junit.Test
 	public void clipTest() {
-		List<ClipDetailVO> list = clipdao.readDetailAll();
+		
+		ClipDetailVO clip = clipdao.readDetail(5);
+		
+		System.out.println(clip);
+		
+		List<ClipDetailVO> list = clipdao.readDetailList(new Condition());
 		for(ClipDetailVO clipDetail : list) {
 			System.out.println(clipDetail);
 		}

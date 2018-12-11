@@ -27,31 +27,31 @@ $(function(){
         break;
         case "twitch":
 
-          video = splits[3].split("?");
-          video = video[0];
+          video = splits[5]
           replaceUrl =  "https://clips.twitch.tv/embed?autoplay=false&clip="+video+"&tt_content=embed&tt_medium=clips_embed";
-          //
-          // $.ajax({
-          //   url : "https://api.twitch.tv/kraken/clips/"+video+""
-          //   type : "GET",
-          //   headers: {
-          //     "Client-ID": "9gtev8scgqmtryin1q0jg9o2px6o6m",
-          //     "Accept": "application/vnd.twitchtv.v5+json"
-          //   },
-          //
-          //   dataType : "json",
-          //
-          //   success: function(data) {
-          //     imgUrl = data.thumbnails.small
-          //   },
-          //   error: function(status, e) {
-          //     console.log(status)
-          //     console.log(e)
-          //   }
-          // });
+          
+           $.ajax({
+             url : "https://api.twitch.tv/kraken/clips/"+video,
+             type : "GET",
+             headers: {
+               "Client-ID": "9gtev8scgqmtryin1q0jg9o2px6o6m",
+               "Accept": "application/vnd.twitchtv.v5+json"
+             },
+          
+             dataType : "json",
+          
+             success: function(data) {
+               imgUrl = data.thumbnails.small
+               console.log(imgUrl)
+               $(".clip_url").val(replaceUrl);
+               $(".clip_Thumbnail").val(imgUrl);
+             },
+             error: function(status, e) {
+               console.log(status)
+               console.log(e)
+             }
+           });
 
-          $(".clip_url").val(replaceUrl);
-          $(".clip_Thumbnail").val(imgUrl);
 
           break;
           case "kakao":

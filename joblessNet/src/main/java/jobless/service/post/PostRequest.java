@@ -1,6 +1,7 @@
 package jobless.service.post;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 import jobless.model.PostVO;
 
@@ -18,8 +19,7 @@ public class PostRequest {
 	
 	public PostRequest() {}
 	
-	public PostRequest(int contentId, String title, String content, int boardId, int writerId, int categoryId) {
-		this.contentId = contentId;
+	public PostRequest(String title, String content, int boardId, int writerId, int categoryId) {
 		this.title = title;
 		this.content = content;
 		this.boardId = boardId;
@@ -134,7 +134,9 @@ public class PostRequest {
 		this.categoryId = categoryId;
 	}
 
-	public void validate() {
-		
+	public void validate(Map<String, Boolean> errors) {
+		if(title == null || title.trim().isEmpty()) {
+			errors.put("title", true);
+		}
 	}
 }

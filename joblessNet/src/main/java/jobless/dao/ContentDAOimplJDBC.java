@@ -30,4 +30,9 @@ public class ContentDAOimplJDBC implements ContentDAO {
 	public ContentVO read(int id) {
 		return mapper.selectContentById(id);
 	}
+	
+	@Override
+	public int readLastInsertId() {
+		return mapper.selectLastInsertId();
+	}
 }
