@@ -112,9 +112,17 @@
 
         <div class="col-xs-1 login-size">
 
-
+			<!-- 로그아웃상태 -->
             <div class="header-login">
-              <!-- <a href="" class="head-nav-top-dropdown"><span class="glyphicon glyphicon-user"></span>로그인</a>-->
+            
+            <c:if test="${empty authUser }">
+              <a href="login" class="head-nav-top-dropdown"><span class="glyphicon glyphicon-user"></span>로그인</a>
+            </c:if>
+              
+              <!-- 로그인상태 -->
+              <c:if test="${!empty authUser }">
+              
+              <c:if test="${authUser.admin }">
               <div class="manager">
                 <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#">
                   <span class="glyphicon glyphicon-cog"></span>
@@ -127,10 +135,10 @@
                   <li class="divider"></li>
                   <li><a href="">공지사항</a></li>
                   <li><a href="">이벤트</a></li>
-                  
-
                 </ul>
               </div>
+              </c:if>
+              
               <div class="login">
                 <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#">
                   <div class="icon-size">
@@ -140,25 +148,17 @@
                   <span class="glyphicon glyphicon-chevron-down gly-size-small"></span>
                 </a>
                 <ul class="dropdown-menu userProfile col-xs-12" role="menu" aria-labelledby="dropdownMenu">
-                
-                  <!-- 로그아웃상태 -->
-                  <c:if test="${empty authUser }">
-                  <a href="login">로그인</a>
-                  	<li><div class="emphasis overNick"><a href="login">로그인</a></div></li>
-                  </c:if>
                   
                   
-                  <!-- 로그인상태 -->
-                  <c:if test="${!empty authUser }">
 					  <li><div class="emphasis overNick">${authUser.nickName }</div>(<div class="overflower">${authUser.loginId }</div>)</li>
 	                  <li><div class="emphasis ">${authUser.point }</div>포인트</li>
 	                  <li class="divider"></li>
 	                  <li><a href="">설정</a></li>
 	                  <li><a href="">아이콘 보관함</a></li>
 	                  <li><a href="logout">로그아웃</a></li>
-	              </c:if>
                 </ul>
               </div>
+	          </c:if>
 
           </div>
         </div>

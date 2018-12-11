@@ -98,6 +98,14 @@ public class ClipVO {
 		this.broadcasterId = broadcasterId;
 	}
 
+	public String getThumbURL() {
+		return thumbURL;
+	}
+
+	public void setThumbURL(String thumbURL) {
+		this.thumbURL = thumbURL;
+	}
+
 	@Override
 	public String toString() {
 		return "ClipVO [clipId=" + clipId + ", title=" + title + ", clipURL=" + clipURL + ", writeDate=" + writeDate + ", views=" + views + ", writerId=" + writerId + ", broadcasterId=" + broadcasterId + "]";

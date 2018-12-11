@@ -58,8 +58,6 @@
   		delete from clip where clip_id = #{clipId}
   	</delete>
   	
-  	
-  	
 	<resultMap type="ClipDetail" id="ClipMap" autoMapping="true">
 		<association property="clip" javaType="Clip" autoMapping="true"/>
 		<association property="writer" javaType="User">
@@ -91,4 +89,12 @@
   		group by
   			c.clip_id
   	</select>
+  	
+  	<update id="readToIncreaseViews" parameterType="Clip">
+		update clip 
+		set 
+			views = views
+		where 
+			clip_id = #{clipId}
+	</update>
 </mapper>

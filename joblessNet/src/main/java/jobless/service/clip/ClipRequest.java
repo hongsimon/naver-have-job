@@ -7,25 +7,28 @@ public class ClipRequest {
 	private int clipId;
 	private String title;
 	private String clipURL;
+	private String thumbURL;
 	private LocalDateTime writeDate;
 	private int views;
 	private int writerId;
 	private int broadcasterId;
 	
 	
-	public ClipRequest(int clipId, String title, String clipURL, LocalDateTime writeDate, int views, int writerId, int broadcasterId) {
+	public ClipRequest(int clipId, String title, String clipURL, String thumbURL, LocalDateTime writeDate, int views, int writerId, int broadcasterId) {
 		this.clipId = clipId;
 		this.title = title;
 		this.clipURL = clipURL;
+		this.thumbURL = thumbURL;
 		this.writeDate = writeDate;
 		this.views = views;
 		this.writerId = writerId;
 		this.broadcasterId = broadcasterId;
 	}
 	
-	public ClipRequest(String title, String clipURL, int writerId, int broadcasterId) {
+	public ClipRequest(String title, String clipURL, String thumbURL, int writerId, int broadcasterId) {
 		this.title = title;
 		this.clipURL = clipURL;
+		this.thumbURL = thumbURL;
 		this.writerId = writerId;
 		this.broadcasterId = broadcasterId;
 	}
@@ -39,6 +42,11 @@ public class ClipRequest {
 	public String getClipURL() {
 		return clipURL;
 	}
+	
+	public String getThumbURL() {
+		return thumbURL;
+	}
+
 	public LocalDateTime getWriteDate() {
 		return writeDate;
 	}

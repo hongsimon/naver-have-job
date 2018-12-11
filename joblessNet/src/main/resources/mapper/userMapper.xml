@@ -30,9 +30,9 @@
 			password, 
 			email, 
 			point, 
-			is_admin, 
+			is_admin as 'admin', 
 			reg_date as regDate, 
-			is_banned, 
+			is_banned as ban, 
 			platform_id as platformId 
 		from 
 			user 
@@ -47,9 +47,9 @@
 			password, 
 			email, 
 			point, 
-			is_admin, 
+			is_admin as 'admin', 
 			reg_date as regDate, 
-			is_banned, 
+			is_banned as ban, 
 			platform_id as platformId 
 		from 
 			user 
@@ -64,9 +64,9 @@
 			password, 
 			email, 
 			point, 
-			is_admin, 
+			is_admin as 'admin', 
 			reg_date as regDate, 
-			is_banned, 
+			is_banned as ban, 
 			platform_id as platformId 
 		from 
 			user 
@@ -81,9 +81,9 @@
 			password, 
 			email, 
 			point, 
-			is_admin, 
+			is_admin as 'admin', 
 			reg_date as regDate, 
-			is_banned, 
+			is_banned as ban, 
 			platform_id as platformId 
 		from 
 			user 
@@ -98,9 +98,9 @@
 			password, 
 			email, 
 			point, 
-			is_admin, 
+			is_admin as 'admin', 
 			reg_date as regDate, 
-			is_banned, 
+			is_banned as ban, 
 			platform_id as platformId 
 		from 
 			user

@@ -48,9 +48,10 @@ public class ReadClipServiceImpl implements ReadClipService{
 	}
 
 	@Override
-	public ClipVO readClip(int boardId) {
+	public ClipVO readClip(int clipId) {
 		// TODO Auto-generated method stub
-		ClipVO clip = clipdao.read(boardId);
+		clipdao.readToIncreaseViews(clipId);
+		ClipVO clip = clipdao.read(clipId);
 		if(clip == null) {
 			throw new ClipNotFoundException("readAll 할 Clip이 없습니다.");
 		}

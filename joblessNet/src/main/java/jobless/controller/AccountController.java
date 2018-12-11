@@ -55,7 +55,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String controllerJoin_POST(@RequestParam String loginId,
+	public ModelAndView controllerJoin_POST(@RequestParam String loginId,
 									  @RequestParam String nickName,
 									  @RequestParam String password,
 									  @RequestParam String passwordCheck,
@@ -66,20 +66,20 @@ public class AccountController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		
+		UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
+		userRequest.setPasswordCheck(passwordCheck);
+		
 		try {
-			
-			
-			UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
-			userRequest.setPasswordCheck(passwordCheck);
-			
 			//잘못된 정보는 errors라는 맵을 넣어놓기 위해 errors라는 맵을 생성
 			
 			userRequest.validate(errors);
-			
-			//errors는 view에 표출해주기 위해 request라는 속성 값으로 넣어줌\
+			System.out.println(errors);
+			//errors는 view에 표출해주기 위해 request라는 속성 값으로 넣어줌
 			modelAndView.addObject("errors", errors);
+			modelAndView.setViewName("view/loginPage/login-join");
 			if(!errors.isEmpty()) {
-				return "view/loginPage/login-join";
+				return modelAndView;
 			}
 			
 			joinUserService.joinUser(new UserRequest(userRequest.getLoginId(), userRequest.getNickName(),
@@ -88,23 +88,29 @@ public class AccountController {
 			
 		}catch (OverlapLoginIdException e) {
 			errors.put("OverlapLoginIdException", true);
+			System.out.println(errors);
 			e.getMessage();
-			return "view/loginPage/login-join";
+			return modelAndView;
 		}catch (OverlapNickNameException e) {
 			errors.put("OverlapNickNameException", true);
+			System.out.println(errors);
 			e.getMessage();
-			return "view/loginPage/login-join";
+			return modelAndView;
 		}catch (OverlapEmailException e) {
 			errors.put("OverlapEmailException", true);
+			System.out.println(errors);
 			e.getMessage();
-			return "view/loginPage/login-join";
+			return modelAndView;
 		}catch (DuplicateKeyException e) {
 			errors.put("DuplicateKeyException", true);
+			System.out.println(errors);
 			e.getMessage();
-			return "view/loginPage/login-join";
+			return modelAndView;
 		}
-		
-		return "redirect:/view/main/main"; 
+		System.out.println(userRequest);
+		modelAndView.addObject("user", userRequest);
+		modelAndView.setViewName("view/loginPage/login-join-check");
+		return modelAndView; 
 	}
 	
 	@RequestMapping(value="/deleteUser", method=RequestMethod.GET)
@@ -148,7 +154,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login_POST(@RequestParam String loginId,
+	public ModelAndView login_POST(@RequestParam String loginId,
 								   @RequestParam String password,
 								   HttpSession session
 								  ) {
@@ -159,15 +165,28 @@ public class AccountController {
 			AuthUserVO authUser = loginService.login(loginId, password);
 			session.setAttribute("authUser", authUser);
 			
-			modelAndView.addObject("errors", errors);
 		}catch (SignInFailException e) {
 			e.getMessage();
 			errors.put("Id_or_Pw_NotMatch", true);
-			return "view/loginPage/login-main";
+			modelAndView.addObject("errors", errors);
+			modelAndView.setViewName("view/loginPage/login-main");
+			return modelAndView;
 		}
-		return "redirect:/main";
+		modelAndView.setViewName("redirect:/main");
+		return modelAndView;
 	}
 	
+	@RequestMapping(value="/join-check", method=RequestMethod.GET)
+	public String loginCheck_GET() {
+		System.out.println("loginCheck_GET");
+		return "view/loginPage/login-join-check";
+	}
+	
+	@RequestMapping(value="/join-check", method=RequestMethod.POST)
+	public String loginCheck_POST() {
+	System.out.println("loginCheck_POST");
+		return "view/loginPage/login-join-check";
+	}
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logout(HttpServletRequest req) {

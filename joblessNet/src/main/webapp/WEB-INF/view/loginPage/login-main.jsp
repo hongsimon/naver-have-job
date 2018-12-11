@@ -39,11 +39,11 @@
   </script>
   <script type="text/javascript">
     var verifyCallback = function(response) {
-
+		console.log(response);
     };
     var onloadCallback = function() {
 
-      grecaptcha.render('example3', {
+      grecaptcha.render('grecaptcha', {
         'sitekey': '6Lcfp3wUAAAAAPDdrctx6gJd5j9z03zy1TxmoA1D',
         'callback': verifyCallback,
         'theme': 'light'
@@ -61,16 +61,19 @@
     <div class="login-logo text-center login-logo"><a href="#"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
     <div class="login-selecter">
       <div>
-        Log In
+        <a href="#" style="color: black; text-decoration:none">Log In</a>
       </div>
       <div>
-        Sign Up
+        <a href="join" style="color: black; text-decoration:none">Sign Up</a>
       </div>
     </div>
+    
+    <c:if test="${!empty errors }">
     <div class="error-msg text-center">
-      Please enter your username and password.
       <c:if test="${errors.Id_or_Pw_NotMatch }">잘못된 아이디 혹은 비밀번호 입니다.</c:if>
     </div>
+    </c:if>
+    
     <div>
       <form class=" margin-l" action="login" method="post">
         <div>
@@ -91,7 +94,7 @@
         <div>
           <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
           </script>
-            <div id="example3"></div>
+            <div id="grecaptcha"></div>
             <br>
         </div>
 

@@ -12,6 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/view.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">

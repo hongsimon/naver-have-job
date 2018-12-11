@@ -42,8 +42,10 @@ public class JoinUserServiceImpl implements JoinUserService {
 			throw new OverlapEmailException("중복된 이메일입니다.");
 		}
 		
-		userdao.insert(new UserVO(userRequest.getLoginId(), userRequest.getNickName(), userRequest.getPassword(),
-								  userRequest.getEmail(), userRequest.getPlatformId()));
+//		userdao.insert(new UserVO(userRequest.getLoginId(), userRequest.getNickName(), userRequest.getPassword(),
+//								  userRequest.getEmail(), userRequest.getPlatformId()));
+		
+		
 		}catch (RuntimeException e) {
 			throw e;
 		}

@@ -11,7 +11,7 @@ import jobless.model.ClipVO;
 
 @Repository("Clip")
 public class ClipDAOimplJDBC implements ClipDAO {
-	
+
 	@Autowired
 	private IClipMapper mapper;
 
@@ -37,7 +37,7 @@ public class ClipDAOimplJDBC implements ClipDAO {
 	@Override
 	public ClipVO read(int clipId) {
 		// TODO Auto-generated method stub
-		ClipVO clip =  mapper.selectClipById(clipId);
+		ClipVO clip = mapper.selectClipById(clipId);
 		return clip;
 	}
 
@@ -59,6 +59,12 @@ public class ClipDAOimplJDBC implements ClipDAO {
 	public List<ClipDetailVO> readDetailAll() {
 		List<ClipDetailVO> clipList = mapper.selectClipDetailList();
 		return clipList;
+	}
+
+	@Override
+	public void readToIncreaseViews(int clipId) {
+		// TODO Auto-generated method stub
+		mapper.readToIncreaseViews(clipId);
 	}
 
 }

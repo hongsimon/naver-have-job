@@ -1,5 +1,5 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -57,27 +57,73 @@
     <div class="container login-con test-border margin-nav">
       <div class="login-logo text-center login-logo"><a href="#"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
       <div class="login-selecter">
-        <div>
-          Log In
-        </div>
-        <div>
-          Sign Up
-        </div>
+      <div>
+        <a href="login" style="color: black; text-decoration:none">Log In</a>
       </div>
-      <div class="error-msg text-center">
-        <c:if test="${errors.OverlapLoginIdException }">중복된 로그인아이디<br></c:if>
-		<c:if test="${errors.OverlapNickNameException }">중복된 닉네임<br></c:if>
-		<c:if test="${errors.OverlapEmailException }">중복된 이메일<br></c:if>
-		<c:if test="${errors.DuplicateKeyException }">중복된 회원정보<br></c:if>
-		<c:if test="${errors.loginId }">로그인 아이디<br></c:if>
-		<c:if test="${errors.password }">비번<br></c:if>
-		<c:if test="${errors.passwordCheck }">비번체크<br></c:if>
-		<c:if test="${errors.notMatchPassword }">비번체크 틀림!!<br></c:if>
-		<c:if test="${errors.nickName }">닉넴<br></c:if>
-		<c:if test="${errors.email }">이메일<br></c:if>
-		<c:if test="${errors.platformId }">플랫폼<br></c:if>
-		<br>
+      <div>
+        <a href="#" style="color: black; text-decoration:none">Sign Up</a>
       </div>
+      </div>
+      <c:if test="${errors.OverlapLoginIdException }">
+	      <div class="error-msg text-center">
+	      중복된 로그인 아이디입니다.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.OverlapNickNameException }">
+      	 <div class="error-msg text-center">
+	      중복된 닉네임입니다.
+	     </div>
+      </c:if>
+      
+      <c:if test="${errors.OverlapEmailException }">
+	      <div class="error-msg text-center">
+	      중복된 이메일입니다.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.loginId }">
+	      <div class="error-msg text-center">
+	      로그인 아이디를 입력해주세요.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.password }">
+	      <div class="error-msg text-center">
+	      비밀번호를 입력해주세요.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.passwordCheck }">
+	      <div class="error-msg text-center">
+	      비밀번호 확인를 입력해주세요.
+	      </div>
+      </c:if>
+     
+      <c:if test="${errors.notMatchPassword }">
+	      <div class="error-msg text-center">
+	      비밀번호가 일치하지 않습니다.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.nickName }">
+	      <div class="error-msg text-center">
+	      닉네임을 입력해주세요.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.email }">
+	      <div class="error-msg text-center">
+	      이메일을 입력해주세요.
+	      </div>
+      </c:if>
+      
+      <c:if test="${errors.platformId }">
+	      <div class="error-msg text-center">
+	      잘못된 플랫폼 선택입니다.
+	      </div>
+      </c:if>
+      
       <div>
         <form class=" margin-l" action="join" method="post" >
           <div>
@@ -153,7 +199,7 @@
             <div class="g-signin2" data-onsuccess="onSignIn"></div> --%>
           </div>
 	
-     <button type="submit">Check Sign Up</button>
+     <button type="submit">Check Sign Up	</button>
 
         </form>
         

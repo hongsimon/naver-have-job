@@ -74,9 +74,80 @@ display: block;
 
 .writeCommunity{
   background-color: #ffffff;
+  padding: 20px;
 }
 
+.border-title>div{
+  display: inline-block;
+}
 
-.borderSelect{
+.border-title{
+  font-size: 22px;
+  margin-bottom: 20px;
+}
 
+.writeCommunity-form select{
+  display: inline-block;
+  padding: 6px;
+  border-radius: 5px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  text-align: center;
+  margin-right: 12px;
+}
+
+.writeCommunity-form {
+  vertical-align: top;
+}
+
+.writeCommunity-title{
+  display: inline-block;
+}
+
+.writeCommunity-title input{
+  border-radius: 5px;
+  padding: 6px;
+  border: 1px solid #cbcbcb;
+  outline: none;
+  width: 830px;
+}
+
+.writeCommunity-content{
+  margin-top: 15px;
+}
+
+::placeholder{
+  color : #cbcbcb;
+}
+
+.writeCommunity-btn>a, .writeCommunity-btn>button{
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.writeCommunity-btn>a:hover{
+  background-color: #ececec;
+}
+
+.writeCommunity-btn>button:hover{
+  background-color: #1d5953;
+}
+
+.writeCommunity-btn>a>span,.writeCommunity-btn>button>span{
+  padding-right: 5px;
+}
+
+.writeCommunity-btn>button{
+  background-color:  #287A72;
+  color: #ffffff;
+
+}
+
+.writeCommunity-btn{
+  margin-top: 20px;
 }

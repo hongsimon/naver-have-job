@@ -29,7 +29,7 @@ public class LoginServiceImpl implements LoginService {
 			throw new SignInFailException("비밀번호가 일치하지않습니다.");
 		}
 		
-		return new AuthUserVO(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.isAdmin(), user.isBan(), user.getPlatformId());
+		return new AuthUserVO(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.getAdmin(), user.getBan(), user.getPlatformId());
 	}
 
 }

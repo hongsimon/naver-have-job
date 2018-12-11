@@ -16,14 +16,15 @@ $(function(){
     $(".notice-notice>.border_size li:eq("+i+")").css("border-bottom","1px solid #cccccc")
   }
 
-
-
-
   $(".category").find("button").click(function(){
     $(".category").find("button").removeClass("focuse");
     $(this).addClass("focuse");
     console.log($(this).html())
   });
+
+  
+
+
 
 
 });
