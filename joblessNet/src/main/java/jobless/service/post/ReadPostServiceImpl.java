@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jobless.dao.PostDAO;
+import jobless.dao.condition.Condition;
 import jobless.exception.ReadPostException;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
@@ -27,9 +28,12 @@ public class ReadPostServiceImpl implements ReadPostService{
 	}
 	
 	@Override
-	public PostDetailVO readPostByDetail() {
-		// TODO Auto-generated method stub
-		return null;
+	public PostDetailVO readPostByDetail(int postId) {
+		PostDetailVO post = postdao.readDetail(postId);
+		if(post == null) {
+			throw new ReadPostException("post를 읽어오는데 실패하였습니다.");
+		}
+		return post;
 	}
 	
 	@Override
@@ -68,6 +72,14 @@ public class ReadPostServiceImpl implements ReadPostService{
 		if(postList == null) {
 			throw new ReadPostException("CategoryId로 post목록을 읽어오는데 실패하였습니다.");
 		}
+		return postList;
+	}
+
+	//특정 게시판에 쓰여진 게시글 검색
+	//Condition 객체를 이용하여 검색 조건 바꿈
+	@Override
+	public List<PostDetailVO> readAllDetailPost(int boardId, Condition condition) {
+		List<PostDetailVO> postList = postdao.readDetailAll(boardId, condition);
 		return postList;
 	}
 
