@@ -2,6 +2,7 @@ package jobless.dao;
 
 import java.util.List;
 
+import jobless.dao.condition.Condition;
 import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
 
@@ -17,7 +18,9 @@ public interface ClipDAO {
 	
 	public List<ClipVO> readBroadCasterAll(int broadCasterId);
 	
-	public List<ClipDetailVO> readDetailAll();
+	public ClipDetailVO readDetail(int clipId);
+	
+	public List<ClipDetailVO> readDetailList(Condition condition);
 
 	// Clip 정보를 삭제하는 메소드
 	public void delete(int clipId);

@@ -65,6 +65,7 @@ public class ClipController {
 		/* clip 메인페이지 읽어오기 (조건없이 clip 전부 읽어옴)*/
 		List<ClipVO> clipList = readClip.readAllClip();
 		ModelAndView mv = new ModelAndView();
+		System.out.println(clipList);
 		
 		if(clipList == null) {
 			System.out.println("clip List 불러오기 실패");

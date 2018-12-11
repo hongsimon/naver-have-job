@@ -74,6 +74,28 @@
 		</association>
 	</resultMap>
 	
+  	<select id="selectClipDetail" parameterType="int" resultMap="ClipMap">
+  		select 
+  			c.clip_id clipId, 
+  			clip_title title, 
+  			clip_url clipURL, 
+  			write_date writeDate, 
+  			views, 
+  			writer_id writerId, 
+  			broadcaster_id broadcasterId,
+  			w.nickname writerNickname,
+  			b.nickname broadcasterNickname,
+  			count(l.clip_id) likes
+  		from 
+  			clip c join user w on c.writer_id = w.user_id
+  			left outer join user b on c.broadcaster_id = b.user_id
+  			left outer join taku.like l on c.clip_id = l.clip_id
+  		where
+  			c.clip_id = #{clipId}
+  		group by
+  			c.clip_id
+  	</select>
+  	
   	<select id="selectClipDetailList" resultMap="ClipMap">
   		select 
   			c.clip_id clipId, 
