@@ -14,16 +14,21 @@ ${clip}
 <tr>
 	<td>제목</td>
 	<td>url</td>
+	<td>ThumbNail</td>
 	<td>작성자</td>
 	<td>방송인</td>
 </tr>
 <tr>
 	<td>${clip.title}</td>
 	<td>${clip.clipURL}</td>
+	<td>${clip.thumbURL}</td>
 	<td>${clip.writerId }</td>
 	<td>${clip.broadcasterId}</td>
 </tr>
-
+<c:if test="${clip.writerId == authUser.userId}">
+	<a href="deleteClip?clipId=${clip.clipId}">삭제</a>
+</c:if>
+<br>
 <a href="viewClip">리스트로</a>
 
 </table>

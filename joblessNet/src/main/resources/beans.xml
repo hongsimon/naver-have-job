@@ -76,7 +76,7 @@
 			<tx:method name="delete*" rollback-for="RuntimeException" />
 			<tx:method name="remove" rollback-for="RuntimeException" />
 			<tx:method name="terminate*" rollback-for="RuntimeException" />
-			<tx:method name="read*" read-only="true" />
+			<tx:method name="read*" rollback-for="RuntimeException" />
 			<tx:method name="select*" read-only="true" />
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="auth*" read-only="true" />

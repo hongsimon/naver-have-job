@@ -61,7 +61,7 @@ public class ClipController {
 			mv.setViewName("errorPage");
 		}else {
 			mv.addObject("clipList", clipList);
-			mv.setViewName("view/view/clipList");
+			mv.setViewName("view/border/border-hotClip");
 		}
 		
 		return mv;

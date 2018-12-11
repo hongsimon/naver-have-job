@@ -19,18 +19,18 @@ public class IndexController {
 		return "view/main/main";
 	}
 	
-//	@RequestMapping(value="/main")
-//	public ModelAndView controllerMain(HttpSession session) {
-//		System.out.println("메인 페이지");
-//		
-//		ModelAndView mv = new ModelAndView();
-//		
-//		AuthUser authUser = new AuthUser(5, "testLoginId", "testNick", 
-//										"testEmail", 0,	false, 1);
-//		session.setAttribute("authUser", authUser);
-//		
-//		mv.setViewName("view/main/main");
-//		
-//		return mv;
-//	}
+	/*@RequestMapping(value="/main")
+	public ModelAndView controllerMain(HttpSession session) {
+		System.out.println("메인 페이지");
+		
+		ModelAndView mv = new ModelAndView();
+		
+		AuthUser authUser = new AuthUser(1, "testLoginId", "testNick", 
+										"testEmail", 0,	false, 1);
+		session.setAttribute("authUser", authUser);
+		
+		mv.setViewName("view/main/main");
+		
+		return mv;
+	}*/
 }

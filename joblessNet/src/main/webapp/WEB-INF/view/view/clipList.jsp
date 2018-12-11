@@ -14,6 +14,7 @@ ${clipList}
 <tr>
 	<td>제목</td>
 	<td>url</td>
+	<td>thumbNail</td>
 	<td>작성자</td>
 	<td>방송인</td>
 </tr>
@@ -21,6 +22,7 @@ ${clipList}
 <tr>
 	<td><a href="selectClip?clipId=${clip.clipId}">${clip.title}</a></td>
 	<td>${clip.clipURL }</td>
+	<td>${clip.thumbURL}</td>
 	<td>${clip.writerId }</td>
 	<td>${clip.broadcasterId }</td>
 </tr>

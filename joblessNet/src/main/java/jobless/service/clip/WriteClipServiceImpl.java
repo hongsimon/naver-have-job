@@ -17,8 +17,11 @@ public class WriteClipServiceImpl implements WriteClipService {
 	public void writeClip(ClipRequest clipReq) {
 		// TODO Auto-generated method stub
 		try {
-		ClipVO clip = new ClipVO(clipReq.getTitle(), clipReq.getClipURL(), 
-								 clipReq.getWriterId(), clipReq.getBroadcasterId()); 
+		ClipVO clip = new ClipVO(clipReq.getTitle(), 
+								 clipReq.getClipURL(),
+								 clipReq.getThumbURL(),
+								 clipReq.getWriterId(), 
+								 clipReq.getBroadcasterId()); 
 		clipdao.insert(clip);
 		}catch (Exception e) {
 			// TODO: handle exception

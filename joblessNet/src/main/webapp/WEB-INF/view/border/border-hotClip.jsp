@@ -18,13 +18,13 @@
           <div class="border-hotclip-in">
               <div class="border-hotclip-service ">
                 <ul>
-                  <a href="" class="hotclip-service-none">
                   <li>
+                  <a href="" class="hotclip-service-none">
                     <span class="glyphicon glyphicon-home"></span>
-                  </li>
                   </a>
+                  </li>
 
-                  <a class="hotclip-service-active test-berder">
+                  <a class="hotclip-service-active">
                   <li>
                     <span class="glyphicon glyphicon-thumbs-up"></span>요즘 뜨는
                   </li>
@@ -69,16 +69,14 @@
                     <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
                   </form>
                 </div>
-                <c:if test="${authUser != null }">
 	                <div class="border-hotclip-write">
 	                  <a href="insertClip"><span class="glyphicon glyphicon-pencil"></span>클립 올리기</a>
 	                </div>
-                </c:if>
               </div>
               <div class="border-hotclip-body">
                 <ul>
+                 <c:forEach var="clip" items="${clipList}" varStatus="status">
                   <li class="">
-                  <c:forEach var="clip" items="${clipList}" varStatus="status">
                       <div>
                           <div class="border-hotclip-body-img">
                             <a href="selectClip?clipId=${clip.clipId }">
@@ -110,68 +108,15 @@
                           <div>
                             <span class="glyphicon glyphicon-time"></span>
                             <div>
-                              ${clip.wdate }
+                              ${clip.writeDate }
                             </div>
                           </div>
                         </div>
                       </div>
-                      </c:forEach>
+                      
                   </li>
-				  
-
-
-
+			</c:forEach>	  
                 </ul>
-
-                <!-- 4개씩 총 8개 (2줄) -->
-                <hr />
-
-                <ul>
-                  <li class="">
-                      <div>
-                          <div class="border-hotclip-body-img">
-                            <a>
-                            <img src="https://img.youtube.com/vi/lV6bHRb52RQ/sddefault.jpg"/>
-                          </a>
-                          </div>
-                        <div class="border-hotclip-body-title ">
-                          <p>
-                            <a>갱생레바</a>
-                          </p>
-                          <a id="clip-list-title">승권이 마약파티</a>
-                        </div>
-                        <div class="border-hotclip-body-writer">
-                          <a>작성자</a>
-                        </div>
-                        <div class="border-hotclip-body-info">
-                          <div>
-                            <span class="glyphicon glyphicon-thumbs-up"></span>
-                            <div>
-                              0
-                            </div>
-                          </div>
-                          <div>
-                            <span class="glyphicon glyphicon-comment"></span>
-                            <div>
-                              0
-                            </div>
-                          </div>
-                          <div>
-                            <span class="glyphicon glyphicon-time"></span>
-                            <div>
-                              2018-12-09 / 18:35
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                  </li>
-
-
-
-
-                </ul>
-
-                <!-- 4개씩 총 12개 (3줄) -->
               </div>
 
               <div class="border-hotclip-page-list">

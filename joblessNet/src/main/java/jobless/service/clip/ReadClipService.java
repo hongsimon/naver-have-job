@@ -14,4 +14,5 @@ public interface ReadClipService {
 	List<ClipVO> readClipByBoardId(int boardId);
 
 	List<ClipVO> readClipByCategoryId(int categoryId);
+	
 }

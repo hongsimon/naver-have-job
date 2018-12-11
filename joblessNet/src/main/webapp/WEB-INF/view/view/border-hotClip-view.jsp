@@ -88,7 +88,7 @@
                     </div>
                     <div class="clip-comments">
                       <ul>
-                      <c:forEach items="comment" var="${commentList}" varStatus="status">                                     
+                      <c:forEach items="${commentList}" var="comment" varStatus="status">                                     
                         <li>
                           <div class="clip-comment-user-info">
                             <div class="clip-comment-user-icon">

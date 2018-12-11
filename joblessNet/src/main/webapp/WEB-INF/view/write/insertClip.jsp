@@ -11,6 +11,7 @@
 	<input type="hidden" name="writerId" value="${authUser.userId}">
 	제목:<input type="text" name="title"><br>
 	url:<input type="text" name="url" ><br>
+	썸네일:<input type="text" name="thumb" ><br>
 	방송인ID(number):<input type="text" name="broadcasterId"><br>
 	<input type="submit" value="클립작성">
 </form>
