@@ -16,30 +16,9 @@
   <meta name="google-signin-client_id" content="920495483409-1thb96c1e4oasjnl8osmjclqn79d4vi0.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script>
-    function onSignIn(googleUser) {
-      // Useful data for your client-side scripts:
-      var profile = googleUser.getBasicProfile();
-
-      // The ID token you need to pass to your backend:
-      var id_token = googleUser.getAuthResponse().id_token;
-
-      var form = $('<form></form>');
-      form.attr('action', "http://localhost:8090/Day1118_SpringMvcPrj/NewFile1.jsp");
-      form.attr('method', 'get');
-      form.appendTo('body');
-      var id = $("<input type='hidden' value=" + profile.getId() + " name='idx'>");
-      var name = $("<input type='hidden' value=" + profile.getName() + " name='password'>");
-      var email = $("<input type='hidden' value=" + profile.getEmail() + " name='mode'>");
-      form.append(id);
-      form.append(name);
-      form.append(email);
-      form.submit();
-    };
-  </script>
   <script type="text/javascript">
     var verifyCallback = function(response) {
-		console.log(response);
+  	  console.log(response);
     };
     var onloadCallback = function() {
 
@@ -121,7 +100,7 @@
           <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div> --%>
 
-        <button type="submit">Log In</button>
+        <button type="button" id="btn">Log In</button>
 
       </form>
 

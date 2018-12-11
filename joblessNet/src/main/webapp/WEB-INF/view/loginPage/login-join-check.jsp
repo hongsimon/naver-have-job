@@ -60,19 +60,24 @@
             <input type="hidden" name="email" value="${user.email }">
             <input type="hidden" name="platformId" value="${user.platformId }">
             
-          </div>
-            이메일을 받지 못하셨나요?
-            <button type="button" name="button">이메일 재전송</button>
-          <div>
             <a href="#">Trouble logging in?</a>
           </div>
           <div>
-
-
-
           <button type="submit">Sign Up</button>
-
+		</div>
         </form>
+
+        </div>
+            이메일을 받지 못하셨나요?
+            <form action="email-again" method="POST">
+            <input type="hidden" name="loginId" value="${user.loginId }">
+            <input type="hidden" name="nickName" value="${user.nickName }">
+            <input type="hidden" name="password" value="${user.password }">
+            <input type="hidden" name="email" value="${user.email }">
+            <input type="hidden" name="platformId" value="${user.platformId }">
+            <button type="submit" name="button">이메일 재전송</button>
+            </form>
+        <div>
 
       </div>
     </div>

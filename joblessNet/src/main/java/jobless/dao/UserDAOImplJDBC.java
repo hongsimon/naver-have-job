@@ -35,7 +35,7 @@ public class UserDAOImplJDBC implements UserDAO {
 
 	@Override
 	public UserVO selectEmail(String email) {
-		UserVO user = mapper.selectUserByLoginId(email);
+		UserVO user = mapper.selectUserByEmail(email);
 		return user;
  	} 
 
