@@ -1,6 +1,7 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -75,28 +76,31 @@
               </div>
               <div class="border-hotclip-body">
                 <ul>
-                 <c:forEach var="clip" items="${clipList}" varStatus="status">
+                 <c:forEach var="clipDetail" items="${clipDetailList}" varStatus="status">
+                 	<c:set var="wdateStr" value="${clipDetail.clip.writeDate }"></c:set>									
+				 	<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="YYYY-MM-dd'T'HH:mm"></fmt:parseDate>
+				 	<fmt:formatDate var="wdate" value="${parseWdate }" pattern="YYYY-MM-dd HH:mm"></fmt:formatDate>
                   <li class="">
                       <div>
                           <div class="border-hotclip-body-img">
-                            <a href="selectClip?clipId=${clip.clipId }">
-                            <img src="${clip.thumbURL }"/>
+                            <a href="selectClip?clipId=${clipDetail.clip.clipId }">
+                            <img src="${clipDetail.clip.thumbURL }"/>
                           </a>
                           </div>
                         <div class="border-hotclip-body-title ">
                           <p>
-                            <a>${clip.broadcasterId }</a>
+                            <a>${clipDetail.broadcaster.nickName }</a>
                           </p>
-                          <a href="selectClip?clipId=${clip.clipId }" id="clip-list-title">${clip.title }</a>
+                          <a href="selectClip?clipId=${clipDetail.clip.clipId }" id="clip-list-title">${clipDetail.clip.title }</a>
                         </div>
                         <div class="border-hotclip-body-writer">
-                          <a>${clip.writerId }</a>
+                          <a>${clipDetail.writer.nickName }</a>
                         </div>
                         <div class="border-hotclip-body-info">
                           <div>
                             <span class="glyphicon glyphicon-thumbs-up"></span>
                             <div>
-                              0
+                              ${clipDetail.likes }
                             </div>
                           </div>
                           <div>
@@ -108,7 +112,7 @@
                           <div>
                             <span class="glyphicon glyphicon-time"></span>
                             <div>
-                              ${clip.writeDate }
+                              ${wdate}
                             </div>
                           </div>
                         </div>

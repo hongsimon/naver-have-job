@@ -9,14 +9,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import jobless.dao.UserDAO;
-import jobless.model.ClipVO;
+import jobless.dao.condition.Condition;
+import jobless.model.ClipDetailVO;
 import jobless.model.CommentVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
@@ -63,7 +62,9 @@ public class ClipController {
 		System.out.println("viewClip_GET");
 		
 		/* clip 메인페이지 읽어오기 (조건없이 clip 전부 읽어옴)*/
-		List<ClipVO> clipList = readClip.readAllClip();
+//		List<ClipVO> clipList = readClip.readAllClip();
+		Condition condition = new Condition();
+		List<ClipDetailVO> clipList = readClip.readClipDetailList(condition);
 		ModelAndView mv = new ModelAndView();
 		System.out.println(clipList);
 		
@@ -71,7 +72,7 @@ public class ClipController {
 			System.out.println("clip List 불러오기 실패");
 			mv.setViewName("errorPage");
 		}else {
-			mv.addObject("clipList", clipList);
+			mv.addObject("clipDetailList", clipList);
 			mv.setViewName("view/border/border-hotClip");
 		}
 		
@@ -85,14 +86,17 @@ public class ClipController {
 		List<CommentVO> commentList = readComment.readAllByClipId(clipId);
 		
 		/* clip 하나 읽어오기 */
-		ClipVO clip = readClip.readClip(clipId);
+//		ClipVO clip = readClip.readClip(clipId);
+		ClipDetailVO clipDetail = readClip.readClipDetail(clipId);
 		ModelAndView mv = new ModelAndView();
-		
-		if(clip == null) {
+
+//		if(clip == null) {
+		if(clipDetail == null) {
 			System.out.println("clip 불러오기 실패");
 			mv.setViewName("errorPage");
 		}else {
-			mv.addObject("clip", clip);
+//			mv.addObject("clip", clip);
+			mv.addObject("clipDetail", clipDetail);
 			mv.addObject("commentList", commentList);
 			mv.setViewName("view/view/border-hotClip-view");
 		}

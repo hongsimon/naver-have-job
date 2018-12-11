@@ -1,6 +1,7 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -20,29 +21,29 @@
                 <div class="col-xs-8 hotclip-view-box">
                   <div>
                     <div class="hotclip-view-frame">
-                      <iframe src="${clip.clipURL }" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+                      <iframe src="${clipDetail.clip.clipURL }" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
                     </div>
                     <div class="hotclip-title-view ">
-                    ${clip.title }
+                    ${clipDetail.clip.title }
                     </div>
                     <div class="bordcaster-name">
-                      <a>${clip.broadcasterId }</a>
+                      <a>${clipDetail.broadcaster.nickName }</a>
                     </div>
                     <div class="hotclip-views">
                       <div>
                         조회수
                         <p>
-                          ${clip.views }
+                          ${clipDetail.clip.views }
                         </p>
                         회
                       </div>
-                      <c:if test="${clip.writerId == authUser.userId }">
+                      <c:if test="${clipDetail.clip.writerId == authUser.userId }">
 	                      <div class="con-right hotclip-del-btn">
-	                        <a href="deleteClip?clipId=${clip.clipId}">삭제</a>
+	                        <a href="deleteClip?clipId=${clipDetail.clip.clipId}">삭제</a>
 	                      </div>
                       </c:if>
                       <div class="con-right like-btn">
-                        <button><span class="glyphicon glyphicon-thumbs-up"></span>0</button>
+                        <button><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${clipDetail.likes}</button>
                       </div>
                     </div>
                   </div>
@@ -56,12 +57,15 @@
                     </div>
                     <div class="clip-write-user">
                       <div class="clip-writer">
-                        머룽이다룽
+						${clipDetail.writer.nickName}
                       </div>
                       <div class="clip-write-day">
                         게시일 :
                         <p>
-                          2018.12.08
+                        <c:set var="wdateStr" value="${clipDetail.clip.writeDate }"></c:set>									
+						<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="YYYY-MM-dd'T'HH:mm"></fmt:parseDate>
+						<fmt:formatDate var="wdate" value="${parseWdate }" pattern="YYYY-MM-dd HH:mm"></fmt:formatDate>
+                          ${wdate}
                         </p>
                       </div>
                     </div>
@@ -79,7 +83,7 @@
                       </div>
                       <div class="">
                         <form method="post" action="insertComment">
-                          <input type="hidden" name="clipId" value="${clip.clipId }">
+                          <input type="hidden" name="clipId" value="${clipDetail.clip.clipId }">
                           <input type="hidden" name="userId" value="${authUser.userId }">
                           <input type="text" name="content" placeholder="댓글을 입력하세요..." class="clip-comment-box">
                           <button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>

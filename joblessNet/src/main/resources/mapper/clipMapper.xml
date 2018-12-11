@@ -120,7 +120,7 @@
   	<update id="readToIncreaseViews" parameterType="Clip">
 		update clip 
 		set 
-			views = views
+			views = views + 1
 		where 
 			clip_id = #{clipId}
 	</update>

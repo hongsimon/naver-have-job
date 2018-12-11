@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jobless.dao.ClipDAO;
+import jobless.dao.condition.Condition;
 import jobless.exception.ClipNotFoundException;
+import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
 
 @Repository("readClipService")
@@ -56,6 +58,25 @@ public class ReadClipServiceImpl implements ReadClipService{
 			throw new ClipNotFoundException("readAll 할 Clip이 없습니다.");
 		}
 		return clip;
+	}
+
+	@Override
+	public ClipDetailVO readClipDetail(int clipId) {
+		clipdao.readToIncreaseViews(clipId);
+		ClipDetailVO clip = clipdao.readDetail(clipId);
+		if(clip == null) {
+			throw new ClipNotFoundException("readAll 할 Clip이 없습니다.");
+		}
+		return clip;
+	}
+
+	@Override
+	public List<ClipDetailVO> readClipDetailList(Condition condition) {
+		List<ClipDetailVO> clipList = clipdao.readDetailList(condition);
+		if(clipList == null) {
+			throw new ClipNotFoundException("readAll 할 Clip이 없습니다.");
+		}
+		return clipList;
 	}
 
 }
