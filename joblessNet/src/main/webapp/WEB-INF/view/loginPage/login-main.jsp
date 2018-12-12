@@ -33,10 +33,12 @@
       </div>
     </div>
     
+    <c:if test="${!errors.loginId && !errors.password }">
     <c:if test="${errors.Id_or_Pw_NotMatch }">
     <div class="error-msg text-center">
       잘못된 아이디 혹은 비밀번호 입니다.
     </div>
+    </c:if>
     </c:if>
     
     <c:if test="${errors.Not_Running_Recaptcha }">
@@ -45,15 +47,9 @@
     </div>
 	</c:if>
     
-    <c:if test="${errors.loginId }">
+    <c:if test="${errors.loginId || errors.password }">
     <div class="error-msg text-center">
-      시발
-    </div>
-	</c:if>
-	
-	    <c:if test="${errors.password }">
-    <div class="error-msg text-center">
-      시바류
+      아이디 혹은 비밀번호를 입력하세요.
     </div>
 	</c:if>
     
@@ -63,13 +59,13 @@
           UserID
         </div>
         <div>
-          <input type="text" name="loginId" />
+          <input type="text" name="loginId" value="${user.loginId }"/>
         </div>
         <div>
           Password
         </div>
         <div>
-          <input type="text" name="password" />
+          <input type="password" name="password" />
         </div>
         <div>
           <a href="#">Trouble logging in?</a>

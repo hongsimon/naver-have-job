@@ -183,32 +183,32 @@ public class AccountController {
 								  ) {
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		ModelAndView modelAndView = new ModelAndView();
+		UserRequest userRequest = new UserRequest(loginId, password);
 		try {
+			
+			userRequest.validateLogin(errors);
+			
+			modelAndView.addObject("errors", errors);
+			modelAndView.setViewName("view/loginPage/login-main");
 			AuthUser authUser = loginService.login(loginId, password);
 			
 			recaptchaService.recaptcha(recaptcha);
-			
-			UserRequest userRequest = new UserRequest(loginId, password);
-			userRequest.validateLogin(errors);
-			System.out.println(errors);
-			modelAndView.addObject("errors", errors);
-			modelAndView.setViewName("view/loginPage/login-main");
-			if(!errors.isEmpty()) {
-				return modelAndView;
-			}
 			
 			session.setAttribute("authUser", authUser);
 		}catch (SignInFailException e) {
 			e.getMessage();
 			errors.put("Id_or_Pw_NotMatch", true);
 			modelAndView.addObject("errors", errors);
+			modelAndView.addObject("user", userRequest);
 			return modelAndView;
 		}catch (RecaptchaNotRunningException e) {
 			e.getMessage();
 			errors.put("Not_Running_Recaptcha", true);
 			modelAndView.addObject("errors", errors);
+			modelAndView.addObject("user", userRequest);
 			return modelAndView;
 		}
+		
 		modelAndView.setViewName("redirect:/main");
 		return modelAndView;
 	}
