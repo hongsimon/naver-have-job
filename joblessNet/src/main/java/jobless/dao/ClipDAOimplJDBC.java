@@ -59,7 +59,7 @@ public class ClipDAOimplJDBC implements ClipDAO {
 
 	@Override
 	public List<ClipDetailVO> readDetailList(Condition condition) {
-		List<ClipDetailVO> clipList = mapper.selectClipDetailList();
+		List<ClipDetailVO> clipList = mapper.selectClipDetailList(condition);
 		return clipList;
 	}
 

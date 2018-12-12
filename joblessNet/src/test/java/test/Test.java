@@ -42,12 +42,12 @@ public class Test {
 		Condition condition = new Condition();
 
 		Id id = new Id();
-		id.setUserId(1);
+		id.setWriterId(1);
+		id.setBroadcasterId(1);
 		id.setCategoryId(1);
 
 		Order order = new Order();
 		order.setLikes(true);
-		order.setViews(true);
 
 		Limit limit = new Limit(0, 5);
 
@@ -62,26 +62,36 @@ public class Test {
 
 		PostDetailVO post = postDao.readDetail(2);
 		System.out.println(post);
-//		List<PostDetailVO> postList = postDao.readDetailAll(1, condition);
-//
-//		if (!postList.isEmpty()) {
-//			for (PostDetailVO post : postList) {
-//				System.out.println(post);
-//			}
-//		} else {
-//			System.out.println("결과가 음슴");
-//		}
-//		
+		List<PostDetailVO> postList = postDao.readDetailAll(1, condition);
+
+		if (!postList.isEmpty()) {
+			for (PostDetailVO postn : postList) {
+				System.out.println(postn);
+			}
+		} else {
+			System.out.println("결과가 음슴");
+		}
+		
 	}
 	
 	@org.junit.Test
 	public void clipTest() {
-		
+		/*
 		ClipDetailVO clip = clipdao.readDetail(5);
 		
 		System.out.println(clip);
+		*/
+		Condition condition = new Condition();
 		
-		List<ClipDetailVO> list = clipdao.readDetailList(new Condition());
+		Order order = new Order();
+		order.setLikes(true);
+		
+		Period period = new Period(LocalDateTime.now().minusWeeks(1), LocalDateTime.now()); 
+		
+		condition.setOrder(order);
+		condition.setPeriod(period);
+		
+		List<ClipDetailVO> list = clipdao.readDetailList(condition);
 		for(ClipDetailVO clipDetail : list) {
 			System.out.println(clipDetail);
 		}

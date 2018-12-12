@@ -14,6 +14,14 @@ public class Period {
 		this.endDate = endDate;
 	}
 
+	public void setStartDate(LocalDateTime startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(LocalDateTime endDate) {
+		this.endDate = endDate;
+	}
+
 	public LocalDateTime getStartDate() {
 		return startDate;
 	}

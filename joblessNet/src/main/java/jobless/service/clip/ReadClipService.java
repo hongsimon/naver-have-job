@@ -5,6 +5,7 @@ import java.util.List;
 import jobless.dao.condition.Condition;
 import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
+import jobless.model.CriteriaVO;
 
 public interface ReadClipService {
 	ClipVO readClip(int clipId);
@@ -21,4 +22,7 @@ public interface ReadClipService {
 
 	List<ClipDetailVO> readClipDetailList(Condition condition);
 	
+	List<ClipDetailVO> readListCriteria(CriteriaVO cri);
+	
+	Integer readTotalCount();
 }

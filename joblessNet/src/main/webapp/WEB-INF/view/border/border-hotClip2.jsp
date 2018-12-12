@@ -25,49 +25,48 @@
                   </a>
                   </li>
 
-                  <a class="hotclip-service-active" href="viewClip?sortby=likes&term=${param.term}&search=${param.search}&id=${param.id}">
+                  <a class="hotclip-service-active">
                   <li>
-                    <span class="glyphicon glyphicon-thumbs-up"></span>추천수
+                    <span class="glyphicon glyphicon-thumbs-up"></span>요즘 뜨는
                   </li>
                   </a>
 
-                  <a class="hotclip-service-none" href="viewClip?sortby=recent&term=${param.term}&search=${param.search}&id=${param.id}">
+                  <a class="hotclip-service-none">
                   <li>
                     <span class="glyphicon glyphicon-plus"></span>새로운
                   </li>
                   </a>
 
-                  <a class="hotclip-service-none" href="viewClip?sortby=views&term=${param.term}&search=${param.search}&id=${param.id}">
+                  <a class="hotclip-service-none">
                   <li>
-                    <span class="glyphicon glyphicon-heart"></span>조회수
+                    <span class="glyphicon glyphicon-heart"></span>추천
                   </li>
                   </a>
                 </ul>
               </div>
-              <!-- viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id} -->
               <div class="border-hotclip-nav">
                 <div class="border-hotclip-service-day">
                   <ul>
                     <li class="border-hotclip-service-day-start">
-                      <a href="viewClip?sortby=${param.sortby }&term=recent&search=${param.search}&id=${param.id}">6시간</a>
+                      <a>6시간</a>
                     </li>
                     <li class="border-hotclip-service-day-middle">
-                      <a href="viewClip?sortby=${param.sortby }&term=daily&search=${param.search}&id=${param.id}">오늘</a>
+                      <a>오늘</a>
                     </li>
                     <li class="border-hotclip-service-day-middle">
-                      <a href="viewClip?sortby=${param.sortby }&term=weekly&search=${param.search}&id=${param.id}">주</a>
+                      <a>주</a>
                     </li>
                     <li class="border-hotclip-service-day-middle">
-                      <a href="viewClip?sortby=${param.sortby }&term=monthly&search=${param.search}&id=${param.id}">월</a>
+                      <a>월</a>
                     </li>
                     <li class="border-hotclip-service-day-end">
-                      <a href="viewClip?sortby=${param.sortby }&term=yearly&search=${param.search}&id=${param.id}" class="test-border">년</a>
+                      <a class="test-border">년</a>
                     </li>
                   </ul>
                 </div>
                 <div class="border-hotclip-search">
                   <form>
-                    <input type="text" name="search" placeholder="닉네임,태그,키워드..."/>
+                    <input type="text" placeholder="닉네임,태그,키워드..."/>
                     <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
                   </form>
                 </div>
@@ -78,9 +77,9 @@
               <div class="border-hotclip-body">
                 <ul>
                  <c:forEach var="clipDetail" items="${clipDetailList}" varStatus="status">
-                 	<c:set var="wdateStr" value="${clipDetail.clip.writeDate }"></c:set>
-				 	<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
-				 	<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
+                 	<c:set var="wdateStr" value="${clipDetail.clip.writeDate }"></c:set>									
+				 	<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="YYYY-MM-dd'T'HH:mm"></fmt:parseDate>
+				 	<fmt:formatDate var="wdate" value="${parseWdate }" pattern="YYYY-MM-dd HH:mm"></fmt:formatDate>
                   <li class="">
                       <div>
                           <div class="border-hotclip-body-img">
@@ -90,7 +89,7 @@
                           </div>
                         <div class="border-hotclip-body-title ">
                           <p>
-                            <a href="viewClip?id=${clipDetail.broadcaster.userId }">${clipDetail.broadcaster.nickName }</a>
+                            <a>${clipDetail.broadcaster.nickName }</a>
                           </p>
                           <a href="selectClip?clipId=${clipDetail.clip.clipId }" id="clip-list-title">${clipDetail.clip.title }</a>
                         </div>
@@ -126,27 +125,21 @@
 
               <div class="border-hotclip-page-list">
                 <ul class="pagination">
+                  <c:if test="${pageMaker.prev }">
+	                  <li class="page-item">
+	                    <a href="viewClip${pageMaker.makeQuery(pageMaker.startPage - 1)}"><span class="glyphicon glyphicon-menu-left"></span></a>
+	                  </li>
+                  </c:if> 
+                  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="index">                 
                   <li class="page-item">
-                    <a href="#"><span class="glyphicon glyphicon-menu-left"></span></a>
-                  </li>
+                    <a href="viewClip${pageMaker.makeQuery(index)}" class="page-link">${index }</a>
+                  </li v>
+                  <c:if test="${pageMaker.next}">                 
                   <li class="page-item">
-                    <a href="#" class="page-link">1</a>
+                    <a href="viewClip${pageMaker.makeQuery(pageMaker.endPage + 1) }" class="page-link"><span class="glyphicon glyphicon-menu-right"></span></a>
                   </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">4</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">5</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link"><span class="glyphicon glyphicon-menu-right"></span></a>
-                  </li>
+                  </c:if>
+                  </c:forEach>
                 </ul>
               </div>
           </div>

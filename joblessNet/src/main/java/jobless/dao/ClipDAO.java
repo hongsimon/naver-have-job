@@ -5,6 +5,7 @@ import java.util.List;
 import jobless.dao.condition.Condition;
 import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
+import jobless.model.CriteriaVO;
 
 
 public interface ClipDAO {
@@ -29,4 +30,9 @@ public interface ClipDAO {
 	public ClipVO read(int clipId);
 	
 	public void readToIncreaseViews(int clipId);
+	
+	//페이징
+	public List<ClipDetailVO> readListCriteria(CriteriaVO cri);
+
+	public Integer readTotalCount();
 }

@@ -10,6 +10,7 @@ import jobless.dao.condition.Condition;
 import jobless.exception.ClipNotFoundException;
 import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
+import jobless.model.CriteriaVO;
 
 @Repository("readClipService")
 public class ReadClipServiceImpl implements ReadClipService{
@@ -77,6 +78,18 @@ public class ReadClipServiceImpl implements ReadClipService{
 			throw new ClipNotFoundException("readAll 할 Clip이 없습니다.");
 		}
 		return clipList;
+	}
+
+	@Override
+	public List<ClipDetailVO> readListCriteria(CriteriaVO cri) {
+		// TODO Auto-generated method stub
+		return clipdao.readListCriteria(cri);
+	}
+
+	@Override
+	public Integer readTotalCount() {
+		// TODO Auto-generated method stub
+		return clipdao.readTotalCount();
 	}
 
 }
