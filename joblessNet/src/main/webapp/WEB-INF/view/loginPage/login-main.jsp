@@ -14,21 +14,7 @@
 
   <meta name="google-signin-scope" content="profile email">
   <meta name="google-signin-client_id" content="920495483409-1thb96c1e4oasjnl8osmjclqn79d4vi0.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    var verifyCallback = function(response) {
-  	  console.log(response);
-    };
-    var onloadCallback = function() {
-
-      grecaptcha.render('grecaptcha', {
-        'sitekey': '6Lcfp3wUAAAAAPDdrctx6gJd5j9z03zy1TxmoA1D',
-        'callback': verifyCallback,
-        'theme': 'light'
-      });
-    };
-  </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
   <meta charset="utf-8">
@@ -47,11 +33,29 @@
       </div>
     </div>
     
-    <c:if test="${!empty errors }">
+    <c:if test="${errors.Id_or_Pw_NotMatch }">
     <div class="error-msg text-center">
-      <c:if test="${errors.Id_or_Pw_NotMatch }">잘못된 아이디 혹은 비밀번호 입니다.</c:if>
+      잘못된 아이디 혹은 비밀번호 입니다.
     </div>
     </c:if>
+    
+    <c:if test="${errors.Not_Running_Recaptcha }">
+    <div class="error-msg text-center">
+      CAPTCHA를 입력하세요.
+    </div>
+	</c:if>
+    
+    <c:if test="${errors.loginId }">
+    <div class="error-msg text-center">
+      시발
+    </div>
+	</c:if>
+	
+	    <c:if test="${errors.password }">
+    <div class="error-msg text-center">
+      시바류
+    </div>
+	</c:if>
     
     <div>
       <form class=" margin-l" action="login" method="post">
@@ -71,9 +75,7 @@
           <a href="#">Trouble logging in?</a>
         </div>
         <div>
-          <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
-          </script>
-            <div id="grecaptcha"></div>
+            <div class="g-recaptcha" data-sitekey="6Lcfp3wUAAAAAPDdrctx6gJd5j9z03zy1TxmoA1D"></div> 
             <br>
         </div>
 
@@ -100,7 +102,7 @@
           <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div> --%>
 
-        <button type="button" id="btn">Log In</button>
+        <button type="submit">Log In</button>
 
       </form>
 

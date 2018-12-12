@@ -155,6 +155,16 @@
 	 	   <artifactId>mail</artifactId>
 	 	   <version>1.4.7</version>
 		</dependency>
+		
+		<dependency>
+
+			<groupId>net.tanesha.recaptcha4j</groupId>
+
+			<artifactId>recaptcha4j</artifactId>
+
+			<version>0.0.7</version>
+
+		</dependency>
 
 
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core 

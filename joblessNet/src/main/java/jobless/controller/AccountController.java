@@ -18,6 +18,7 @@ import jobless.exception.DoesNotMatchSecurityCode;
 import jobless.exception.OverlapEmailException;
 import jobless.exception.OverlapLoginIdException;
 import jobless.exception.OverlapNickNameException;
+import jobless.exception.RecaptchaNotRunningException;
 import jobless.exception.SignInFailException;
 import jobless.exception.UserNotFoundException;
 import jobless.exception.UserRequestNullException;
@@ -26,6 +27,7 @@ import jobless.service.authuser.AuthUser;
 import jobless.service.authuser.LoginService;
 import jobless.service.authuser.LogoutService;
 import jobless.service.email.EmailSendService;
+import jobless.service.recaptcha.RecaptchaService;
 import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.JoinCheckService;
@@ -57,6 +59,10 @@ public class AccountController {
 	@Autowired
 	EmailSendService emailSendService;
 	
+	@Autowired
+	RecaptchaService recaptchaService;
+	
+	//회원가입 페이지
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String controllerJoin_GET() {
 		System.out.println("회원가입 페이지_GET");
@@ -124,6 +130,8 @@ public class AccountController {
 		return modelAndView; 
 	}
 	
+	
+	//회원탈퇴 페이지
 	@RequestMapping(value="/deleteUser", method=RequestMethod.GET)
 	public String controllerDeleteUser_GET() {
 		System.out.println("회원삭제 페이지_GET");
@@ -138,6 +146,8 @@ public class AccountController {
 		return "redirect:/main";
 	}
 	
+	
+	//회원검색 페이지
 	@RequestMapping(value="/selectUser", method=RequestMethod.GET)
 	public String controllerSelectUser_GET() {
 		return "selectUser";
@@ -159,6 +169,7 @@ public class AccountController {
 	}
 	
 
+	//로그인 페이지
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login_GET() {
 		return "view/loginPage/login-main";
@@ -167,26 +178,43 @@ public class AccountController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public ModelAndView login_POST(@RequestParam String loginId,
 								   @RequestParam String password,
+								   @RequestParam("g-recaptcha-response") String recaptcha,
 								   HttpSession session
 								  ) {
-		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			AuthUser authUser = loginService.login(loginId, password);
-			session.setAttribute("authUser", authUser);
 			
+			recaptchaService.recaptcha(recaptcha);
+			
+			UserRequest userRequest = new UserRequest(loginId, password);
+			userRequest.validateLogin(errors);
+			System.out.println(errors);
+			modelAndView.addObject("errors", errors);
+			modelAndView.setViewName("view/loginPage/login-main");
+			if(!errors.isEmpty()) {
+				return modelAndView;
+			}
+			
+			session.setAttribute("authUser", authUser);
 		}catch (SignInFailException e) {
 			e.getMessage();
 			errors.put("Id_or_Pw_NotMatch", true);
 			modelAndView.addObject("errors", errors);
-			modelAndView.setViewName("view/loginPage/login-main");
+			return modelAndView;
+		}catch (RecaptchaNotRunningException e) {
+			e.getMessage();
+			errors.put("Not_Running_Recaptcha", true);
+			modelAndView.addObject("errors", errors);
 			return modelAndView;
 		}
 		modelAndView.setViewName("redirect:/main");
 		return modelAndView;
 	}
 	
+	
+	//회원가입 이메일 체크 페이지
 	@RequestMapping(value="/join-check", method=RequestMethod.GET)
 	public String loginCheck_GET() {
 		System.out.println("loginCheck_GET");
@@ -210,22 +238,48 @@ public class AccountController {
 		
 		try {
 			joinUserService.joinUser(userRequest, code, securityCode);
+		
+			modelAndView.setViewName("join-check");
 		}catch (UserRequestNullException e) {
 			e.getMessage();
 			errors.put("UserRequestNullException", true);
 			modelAndView.addObject("errors", errors);
-			modelAndView.setViewName("join-check");
+			return modelAndView;
 		}catch (DoesNotMatchSecurityCode e) {
 			e.getMessage();
 			errors.put("DoesNotMatchSecurityCode", true);
 			modelAndView.addObject("errors", errors);
-			modelAndView.setViewName("join-check");
+			return modelAndView;
 		}
 		
 		modelAndView.setViewName("redirect:/main");
 		return modelAndView;
 	}
 	
+	//이메일 재전송 서비스(회원가입 전용)
+	@RequestMapping(value="/email-again" ,method=RequestMethod.POST)
+	public ModelAndView emailAgainSend(
+								  @RequestParam String loginId,
+								  @RequestParam String nickName,
+								  @RequestParam String password,
+								  @RequestParam String email,
+								  @RequestParam int platformId
+								) {
+		ModelAndView modelAndView = new ModelAndView();
+		UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
+		
+		String code = emailSendService.emailService(userRequest.getEmail());
+		
+		System.out.println(code);
+		
+		modelAndView.addObject("code", code);
+		modelAndView.addObject("user", userRequest);
+		modelAndView.setViewName("view/loginPage/login-join-check");
+		
+		return modelAndView;
+	}
+	
+	//로그아웃 페이지
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logout(HttpServletRequest req) {
 		

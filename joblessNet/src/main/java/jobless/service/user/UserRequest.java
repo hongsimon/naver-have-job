@@ -17,7 +17,7 @@ public class UserRequest {
 	private int platformId;
 	
 	
-	// 회원가입용
+	// 로그인용
 		public UserRequest(String loginId, String password) {
 			super();
 			this.loginId = loginId;
@@ -164,6 +164,11 @@ public class UserRequest {
 				errors.put("notMatchPassword", true);
 			}
 		}
+	}
+	
+	public void validateLogin(Map<String, Boolean> errors) {
+		checkEmptyStr(errors, loginId, "loginId");
+		checkEmptyStr(errors, password, "password");
 	}
 	
 	
