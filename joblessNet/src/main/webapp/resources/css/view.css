@@ -102,7 +102,7 @@
 
 .clip-comment-box{
   height: 45px;
-  width: 720px;
+  width: 690px;
   border-radius: 5px 5px 5px 5px;
   border: 1px solid #c4c4c4;
   outline: none;
@@ -112,7 +112,7 @@
 
 .clip-comment-box-change{
   height: 45px;
-  width: 650px;
+  width: 623px;
   border-radius: 5px 0px 0px 5px;
   border: 1px solid #c4c4c4;
   outline: none;
@@ -256,4 +256,80 @@
 .hotclip-del-btn a{
   text-decoration: none;
   cursor: pointer;
+}
+
+/*----------------community-----------------------*/
+.margin-container{
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.border-comm-view-title{
+  border-bottom: 1px solid #b8b8b8;
+}
+
+.border-comm-view-title a{
+  text-decoration: none;
+  color: #000000;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.border-comm-view{
+  margin-top: 50px;
+}
+
+.border-comm-view-title-name{
+  font-size: 20px;
+}
+
+
+.border-comm-view-body{
+  padding: 5px;
+  background-color: #f2f2f2;
+  color: #606060;
+
+}
+
+.border-comm-view-content{
+  border-radius: 5px 5px 0px 0px;
+  border: 1px solid #bbbbbb;
+  border-top: 5px solid #287A72;
+}
+
+.border-comm-content{
+  padding: 15px;
+  min-height: 80px;
+  word-break:break-all;
+}
+
+.border-comm-like{
+  margin: 20px;
+  text-align: center;clip-comment-box
+}
+
+.border-comm-like span{
+  padding-right: 5px;
+}
+
+.border-comm-like>a{
+  text-decoration: none;
+  color: #287A72;
+  border-radius: 5px;
+  border:1px solid #287A72;
+  padding:8px 15px;
+  cursor: pointer;
+}
+
+.border-comm-view-body>div{
+  display: inline-block;
+}
+
+.border-comm-view-body span{
+  padding-right: 5px;
+}
+
+.border-comm-view-info>div{
+  display: inline-block;
+  padding-right: 10px;
 }
