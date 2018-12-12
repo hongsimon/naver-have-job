@@ -124,4 +124,33 @@
 		where 
 			clip_id = #{clipId}
 	</update>
+	
+	<select id="readListCriteria" resultMap="ClipMap">
+  		<![CDATA[
+  		select 
+  			c.clip_id clipId, 
+  			clip_title title, 
+  			clip_url clipURL,
+  			thumb_url thumbURL, 
+  			write_date writeDate, 
+  			views, 
+  			writer_id writerId, 
+  			broadcaster_id broadcasterId,
+  			w.nickname writerNickname,
+  			b.nickname broadcasterNickname,
+  			count(l.clip_id) likes
+  		from 
+  			clip c join user w on c.writer_id = w.user_id
+  			left outer join user b on c.broadcaster_id = b.user_id
+  			left outer join taku.like l on c.clip_id = l.clip_id
+  		where
+  			c.clip_id > 0 order by c.clip_id desc, 
+  			write_date desc limit #{pageStart}, #{perPageNum}
+  		]]>
+  	</select>
+  	
+  	<select id="readTotalCount" resultType="java.lang.Integer">
+  		select count(clip_id) from
+  		clip
+  	</select>
 </mapper>

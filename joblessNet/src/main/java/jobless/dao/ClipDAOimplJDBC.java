@@ -9,6 +9,7 @@ import jobless.dao.condition.Condition;
 import jobless.dao.mapper.IClipMapper;
 import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
+import jobless.model.CriteriaVO;
 
 @Repository("Clip")
 public class ClipDAOimplJDBC implements ClipDAO {
@@ -72,6 +73,18 @@ public class ClipDAOimplJDBC implements ClipDAO {
 	public ClipDetailVO readDetail(int clipId) {
 		ClipDetailVO clip = mapper.selectClipDetail(clipId);
 		return clip;
+	}
+
+	@Override
+	public List<ClipDetailVO> readListCriteria(CriteriaVO cri) {
+		// TODO Auto-generated method stub
+		return mapper.readListCriteria(cri);
+	}
+
+	@Override
+	public Integer readTotalCount() {
+		// TODO Auto-generated method stub
+		return mapper.readTotalCount();
 	}
 
 }

@@ -2,8 +2,10 @@ package jobless.dao.mapper;
 
 import java.util.List;
 
+import jobless.dao.condition.Condition;
 import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
+import jobless.model.CriteriaVO;
 
 @MyAnnotMapper
 public interface IClipMapper {
@@ -17,4 +19,6 @@ public interface IClipMapper {
 	void updateClip(ClipVO clipVO);
 	void deleteClip(int clipId);
 	void readToIncreaseViews(int clipId);
+	List<ClipDetailVO> readListCriteria(CriteriaVO cri);
+	Integer readTotalCount();
 }

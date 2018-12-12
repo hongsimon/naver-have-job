@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,8 @@ import jobless.dao.condition.Condition;
 import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
 import jobless.model.CommentVO;
+import jobless.model.CriteriaVO;
+import jobless.model.PageMakerVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.clip.ClipRequest;
@@ -58,11 +61,11 @@ public class ClipController {
 	@Autowired
 	GetUserService getUser;
 	
-	@RequestMapping(value="/viewClip", method=RequestMethod.GET)
+	/*@RequestMapping(value="/viewClip", method=RequestMethod.GET)
 	public ModelAndView viewClip_GET() {
 		System.out.println("viewClip_GET");
 		
-		/* clip 메인페이지 읽어오기 (조건없이 clip 전부 읽어옴)*/
+		 clip 메인페이지 읽어오기 (조건없이 clip 전부 읽어옴)
 //		List<ClipVO> clipList = readClip.readAllClip();
 		Condition condition = new Condition();
 		List<ClipDetailVO> clipList = readClip.readClipDetailList(condition);
@@ -75,6 +78,35 @@ public class ClipController {
 		}else {
 			mv.addObject("clipDetailList", clipList);
 			mv.setViewName("view/border/border-hotClip");
+		}
+		
+		return mv;
+	}*/
+	
+	@RequestMapping(value="/viewClip", method=RequestMethod.GET)
+	public ModelAndView viewClip_GET(@ModelAttribute("cri") CriteriaVO cri) {
+		System.out.println("viewClip_GET");
+		
+		/* clip 메인페이지 읽어오기 (조건없이 clip 전부 읽어옴)*/
+//		List<ClipVO> clipList = readClip.readAllClip();
+		Condition condition = new Condition();
+		List<ClipDetailVO> clipList = readClip.readListCriteria(cri);
+		ModelAndView mv = new ModelAndView();
+		System.out.println(clipList);
+		
+		PageMakerVO pageMakerVO = new PageMakerVO();
+		
+		pageMakerVO.setCri(cri);
+		Integer totalNum = readClip.readTotalCount();
+		pageMakerVO.setTotalCount(totalNum);
+		
+		if(clipList == null) {
+			System.out.println("clip List 불러오기 실패");
+			mv.setViewName("errorPage");
+		}else {
+			mv.addObject("pageMaker", pageMakerVO);
+			mv.addObject("clipDetailList", clipList);
+			mv.setViewName("view/border/border-hotClip2");
 		}
 		
 		return mv;
