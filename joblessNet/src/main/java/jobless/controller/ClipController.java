@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jobless.dao.condition.Condition;
 import jobless.model.ClipDetailVO;
+import jobless.model.ClipVO;
 import jobless.model.CommentVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
@@ -83,7 +84,9 @@ public class ClipController {
 	public ModelAndView selectClip_GET(@RequestParam int clipId) {
 		System.out.println("selectClip_GET");
 		
+		List<ClipVO> clipList = readClip.readAllClip();
 		List<CommentVO> commentList = readComment.readAllByClipId(clipId);
+		int countComment = readComment.readCountClipComment(clipId);
 		
 		/* clip 하나 읽어오기 */
 //		ClipVO clip = readClip.readClip(clipId);
@@ -96,8 +99,10 @@ public class ClipController {
 			mv.setViewName("errorPage");
 		}else {
 //			mv.addObject("clip", clip);
+			mv.addObject("clipList", clipList);
 			mv.addObject("clipDetail", clipDetail);
 			mv.addObject("commentList", commentList);
+			mv.addObject("countComment", countComment);
 			mv.setViewName("view/view/border-hotClip-view");
 		}
 		return mv;

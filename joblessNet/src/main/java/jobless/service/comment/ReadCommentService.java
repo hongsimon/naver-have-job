@@ -14,4 +14,8 @@ public interface ReadCommentService {
 	public List<CommentVO> readAllByPostId(int postId);
 	
 	public List<CommentVO> readAllByUserId(int userId);
+	
+	public int readCountClipComment(int clipId);
+	
+	public int readCountPostComment(int postId);
 }

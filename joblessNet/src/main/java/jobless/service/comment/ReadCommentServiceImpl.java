@@ -65,4 +65,18 @@ public class ReadCommentServiceImpl implements ReadCommentService{
 		return comment;
 	}
 
+	@Override
+	public int readCountClipComment(int clipId) {
+		// TODO Auto-generated method stub
+		int countComment = commentDao.readCountClipComment(clipId);
+		return countComment;
+	}
+
+	@Override
+	public int readCountPostComment(int postId) {
+		// TODO Auto-generated method stub
+		int countComment = commentDao.readCountPostComment(postId);
+		return countComment;
+	}
+
 }
