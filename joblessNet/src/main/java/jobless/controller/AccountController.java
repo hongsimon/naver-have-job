@@ -3,6 +3,7 @@ package jobless.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -66,6 +67,7 @@ public class AccountController {
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String controllerJoin_GET() {
 		System.out.println("회원가입 페이지_GET");
+		
 		return "view/loginPage/login-join";
 	}
 	
@@ -76,7 +78,9 @@ public class AccountController {
 									  @RequestParam String passwordCheck,
 									  @RequestParam String email,
 									  @RequestParam int platformId,
-									  @RequestParam("g-recaptcha-response") String recaptcha
+									  @RequestParam("g-recaptcha-response") String recaptcha,
+									  HttpSession session
+									  
 									  ) {
 		System.out.println("회원가입 페이지_POST");
 		
@@ -125,9 +129,16 @@ public class AccountController {
 		}
 		String code = emailSendService.emailService(userRequest.getEmail());
 		
-		modelAndView.addObject("code", code);
-		modelAndView.addObject("user", userRequest);
-		modelAndView.setViewName("view/loginPage/login-join-check");
+
+		String[] emailHyperLink = userRequest.getEmail().split("@");
+		System.out.println(emailHyperLink[1]);
+		
+		session.setAttribute("code", code);
+		session.setAttribute("user", userRequest);
+		session.setMaxInactiveInterval(600);
+		
+		modelAndView.addObject("emailHyperLink", emailHyperLink[1]);
+		modelAndView.setViewName("redirect:/join-check");
 		return modelAndView; 
 	}
 	
@@ -260,7 +271,8 @@ public class AccountController {
 								  @RequestParam String nickName,
 								  @RequestParam String password,
 								  @RequestParam String email,
-								  @RequestParam int platformId
+								  @RequestParam int platformId,
+								  HttpSession session
 								) {
 		ModelAndView modelAndView = new ModelAndView();
 		UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
@@ -269,9 +281,11 @@ public class AccountController {
 		
 		System.out.println(code);
 		
-		modelAndView.addObject("code", code);
-		modelAndView.addObject("user", userRequest);
-		modelAndView.setViewName("view/loginPage/login-join-check");
+		session.setAttribute("code", code);
+		session.setAttribute("user", userRequest);
+		session.setMaxInactiveInterval(600);
+
+		modelAndView.setViewName("redirect:/join-check");
 		
 		return modelAndView;
 	}

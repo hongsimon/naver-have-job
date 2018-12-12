@@ -41,17 +41,25 @@
         <form class=" margin-l" action="join-check" method="post">
           <div>
             <div id="email">
-              ${user.email}
+              <a href="http://www.${emailHyperLink }" target="_blank" style="color: black; text-decoration:none">${user.email}</a>
             </div>
             <div>
-              으로 전송된 이메일을 확인하여 가입 절차를 완료해 주세요.
+              으로 전송된 이메일을 확인하여 가입 절차를 완료해 주세요.<br>
+              <br>
             </div>
             <div>
-              이메일은 아이디/비밀번호 찾기 등 고객지원을 위해 사용됩니다.
-              전송된 이메일을 꼭 확인하신 후 인증번호를 입력해주세요
+              이메일은 아이디/비밀번호 찾기 등 고객지원을 위해 사용됩니다.<br>
+              전송된 이메일을 꼭 확인하신 후 인증번호를 입력해주세요.<br>
+              <br>
+            </div>
+            <div>
+            	이 페이지와 인증코드는 10분동안 유효합니다.<br>
+            	유효 기간을 연장하려면 인증코드를 재발급 받아주세요.<br>
             </div>
           </div>
+          <br>
           <div>
+          
             <input type="text" name="securityCode">
             <input type="hidden" name="code" value="${code }">
             <input type="hidden" name="loginId" value="${user.loginId }">
