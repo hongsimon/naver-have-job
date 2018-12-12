@@ -128,7 +128,7 @@
                 <div class="col-xs-4">
                   <div class="clip-list-view">
                     <ul>
-                    <c:forEach var="clip" items="${clipList}" begin="${clipDetail.clip.clipId}" end="${clipDetail.clip.clipId + 20}">
+                    <c:forEach var="clip" items="${clipList}" begin="1" end="20">
                       <li class="">
                         <a>
                           <div class="clip-list-view-video-info">
