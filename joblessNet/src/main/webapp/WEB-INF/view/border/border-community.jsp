@@ -1,5 +1,7 @@
 <%@ page language="java" isELIgnored="false"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -64,7 +66,11 @@
 													<div class="border-comm-title ">
 														<a><span class="glyphicon glyphicon-comment"></span><a href="viewPost?postId=${post.postId}">${post.title}</a></a>
 													</div> <!-- 작성일 -->
-													<div class="border-comm-day con-right">${post.writeDate}</div> <!-- 작성자 -->
+													<div class="border-comm-day con-right">
+														<fmt:parseDate var="parseWdate" value="${post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
+				 										<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
+				 										${wdate }
+													</div> <!-- 작성자 -->
 													<div class="border-comm-writer con-right">
 														<div>
 															<img src="" /><a>${post.writerId}</a>
@@ -87,7 +93,7 @@
 										</div>
 
 										<div class="comm-write con-right">
-											<a href="insertPost"><span class="glyphicon glyphicon-pencil">글쓰기</a>
+											<a href="insertPost?boardId=1"><span class="glyphicon glyphicon-pencil">글쓰기</a>
 										</div>
 									</div>
 								</div>

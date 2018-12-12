@@ -26,6 +26,15 @@ public class PostRequest {
 		this.writerId = writerId;
 		this.categoryId = categoryId;
 	}
+	
+	public PostRequest(int postId, int contentId, String title, String content, int categoryId) {
+		super();
+		this.postId = postId;
+		this.contentId = contentId;
+		this.title = title;
+		this.content = content;
+		this.categoryId = categoryId;
+	}
 
 	public PostRequest(int postId, int contentId, String content, String title, LocalDateTime writeDate, int boardId,
 			int views, int writerId, int categoryId) {

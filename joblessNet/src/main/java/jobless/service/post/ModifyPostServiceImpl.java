@@ -14,16 +14,15 @@ public class ModifyPostServiceImpl implements ModifyPostService {
 
 	@Autowired
 	PostDAO postdao;
-	
+
 	@Autowired
 	ContentDAO contentdao;
 
 	@Override
 	public void modifyPost(PostRequest postReq) {
 		try {
-			postdao.update(
-					new PostVO(postReq.getTitle(), 
-							postReq.getCategoryId()));
+			postdao.update(new PostVO(postReq.getTitle(),postReq.getCategoryId()));
+			contentdao.update(new ContentVO(postReq.getContent()));
 			
 			contentdao.update(new ContentVO(postReq.getContent()));
 		} catch (Exception e) {

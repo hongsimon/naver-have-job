@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import jobless.model.ContentVO;
 import jobless.model.PostVO;
 import jobless.service.post.DeletePostService;
 import jobless.service.post.ModifyPostService;
@@ -35,15 +36,13 @@ public class PostController {
 	@Autowired
 	ModifyPostService modifyService;
 	
+	// 완전 성공(건들지시오)
 	@RequestMapping(value="/viewPostList", method=RequestMethod.GET)
-	public ModelAndView viewClip_GET() {
+	public ModelAndView controllerViewPostList_GET() {
 		System.out.println("viewPostList_GET");
 		
-		/* clip 메인페이지 읽어오기 (조건없이 clip 전부 읽어옴)*/
 		List<PostVO> postList = readService.readAllPost();
 		ModelAndView mv = new ModelAndView();
-		
-		
 		
 		if(postList == null) {
 			System.out.println("clip List 불러오기 실패");
@@ -61,6 +60,7 @@ public class PostController {
 		return mv;
 	}
 	
+	
 	@RequestMapping(value="/viewPost", method=RequestMethod.GET)
 	public ModelAndView controllerViewPost_GET(@RequestParam int postId) {
 		System.out.println("해당 게시글로  이동"+ postId);
@@ -73,9 +73,10 @@ public class PostController {
 			System.out.println("post 못 가져옴");
 			mv.setViewName("errorPage");
 		}else {
+			ContentVO content = readService.readContentById(post.getContentId());
 			PostRequest postReq = new PostRequest(postId, 
-													0, 
-													"고쳐야함", 
+													content.getContentId(), 
+													content.getContent(), 
 													post.getTitle(), 
 													post.getWriteDate(), 
 													post.getBoardId(), 
@@ -91,47 +92,73 @@ public class PostController {
 	
 	// 성공
 	@RequestMapping(value="/insertPost", method=RequestMethod.GET)
-	public ModelAndView controllerInsertPost_GET(HttpSession session) {
+	public ModelAndView controllerInsertPost_GET(HttpSession session, @RequestParam int boardId) {
 		System.out.println("게시글 작성 페이지로 이동");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-		
+		System.out.println(boardId);
 		if(session.getAttribute("authUser") == null) { // 게시글 적성은 로그인 상태에 가능하기에
 			System.out.println("authUser가 null임");
-			mv.setViewName("errorPage");
+			mv.setViewName("view/error/500");
 		}else {
+			PostRequest postReq = new PostRequest(); 
+			postReq.setBoardId(boardId);
+			mv.addObject("postReq", postReq);
 			mv.setViewName("view/write/border-community-write");
 			System.out.println("성공");
 		}
 		return mv;
 	}
 	
-	// 성공 - 하지만 controllerViewPost_GET가 완성이 되야정상 작동됨
+	// 성공
 	@RequestMapping(value="/insertPost", method=RequestMethod.POST)
 	public ModelAndView controllerInsertPost_POST(HttpSession session,
 													@RequestParam String postTitle,
 													@RequestParam int writerId,
+													@RequestParam("borderName") String borderName,
 													@RequestParam int boardId,
-													@RequestParam int categoryId,
 													@RequestParam String content) {
 		System.out.println("게시글 작성한 거 올리는 중");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		PostRequest postReq;
+		int categoryId;
 		
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser가 null임");
 			mv.setViewName("errorPage");
 		}else {
-			postReq = new PostRequest(postTitle, content, boardId, writerId, categoryId);
-			// 적성한 게시글에 정보를 담음
-			int postId = writeService.writePost(postReq);
-			// insert함 그리고 해당 아이디를 가져옴
-			mv = controllerViewPost_GET(postId);
-			// 해당 아이디로 자신이 쓴 글로 이동하게 함
-			System.out.println("성공");
+			System.out.println(borderName);
+			switch (borderName) {
+			case "freeTalk":
+				categoryId = 1;
+				break;
+			case "joke":
+				categoryId = 2;
+				break;
+			case "news":
+				categoryId = 3;
+				break;
+			case "game":
+				categoryId = 4;
+				break;
+			default:
+				categoryId = 0;
+				break;
+			}
+			if(categoryId != 0 && categoryId > 0 && categoryId < 5) {
+				postReq = new PostRequest(postTitle, content, boardId, writerId, categoryId);
+				// 적성한 게시글에 정보를 담음
+				int postId = writeService.writePost(postReq);
+				// insert함 그리고 해당 아이디를 가져옴
+				mv = controllerViewPost_GET(postId);
+				// 해당 아이디로 자신이 쓴 글로 이동하게 함
+				System.out.println("성공");
+			}else {
+				System.out.println("게시판이 선택되지않았거나 오류");
+			}
 		}
 		return mv;
 	}
@@ -150,7 +177,7 @@ public class PostController {
 		}else {
 			deleteService.deletePost(postId, contentId); // 삭제할 아이디를 받아와 삭제
 			System.out.println("삭제 성공");
-			mv.setViewName("deletePost"); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
+			mv = controllerViewPostList_GET(); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
 		}
 		return mv;
 	}
@@ -168,8 +195,11 @@ public class PostController {
 			mv.setViewName("errorPage");
 		}else {
 			PostVO post = readService.readPostById(postId);
-			mv.addObject("post", post); // 게시글 정보를 jsp에 보내기 위해서 
-			mv.setViewName("updatePost");
+			ContentVO content = readService.readContentById(post.getContentId());
+			
+			PostRequest postReq = new PostRequest(post.getTitle(), content.getContent(), post.getBoardId(), post.getWriterId(), post.getCategoryId());
+			mv.addObject("postReq", postReq); // 게시글 정보를 jsp에 보내기 위해서
+			mv.setViewName("view/write/border-community-write");
 		}
 		return mv;
 	}
@@ -189,7 +219,9 @@ public class PostController {
 			System.out.println("authUser가 null임");
 			mv.setViewName("errorPage");
 		}else {
-			
+			PostRequest postReq = new PostRequest(postId, contentId, title, content, categoryId);
+			modifyService.modifyPost(postReq);
+			controllerViewPost_GET(postId);
 		}
 		return mv;	
 	}

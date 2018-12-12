@@ -9,6 +9,7 @@ import jobless.dao.ContentDAO;
 import jobless.dao.PostDAO;
 import jobless.dao.condition.Condition;
 import jobless.exception.ReadPostException;
+import jobless.model.ContentVO;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
 
@@ -34,6 +35,16 @@ public class ReadPostServiceImpl implements ReadPostService{
 			throw new ReadPostException("post를 읽어오는데 실패하였습니다.");
 		}
 		return post;
+	}
+	
+	@Override
+	public ContentVO readContentById(int contentId) {
+		
+		ContentVO content = contentdao.read(contentId);
+		if(content == null) {
+			throw new ReadPostException("content를 읽어오는데 실패하였습니다.");
+		}
+		return content;
 	}
 	
 	@Override

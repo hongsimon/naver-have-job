@@ -24,19 +24,25 @@
 
               <div class="row margin-container">
                 <div class="border-comm-view-title">
-                  <a>유튜브</a>
+                  <a>
+					${postReq.categoryId }                  	
+                  </a>
                 </div>
                 <div class="border-comm-view">
                   <div class="border-comm-view-title-name">
-                    테스트 제목
+                  	${postReq.title }
                   </div>
                   <div>
-                    [작성자]님
+                    [${postReq.writerId }]님
                   </div>
                 <div class=" border-comm-view-content">
                   <div class="border-comm-view-body">
                     <div>
-                      <span class="glyphicon glyphicon-time"></span>1971.11.21 / 12:11
+                      <span class="glyphicon glyphicon-time"></span>
+                      <c:set var="wdateStr" value="${postReq.writeDate }"></c:set>									
+				 		<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="YYYY-MM-dd'T'HH:mm"></fmt:parseDate>
+				 		<fmt:formatDate var="wdate" value="${parseWdate }" pattern="YYYY-MM-dd HH:mm"></fmt:formatDate>
+                    	${wdate}
                     </div>
                     <div class="border-comm-view-info con-right">
                       <div>
@@ -52,25 +58,13 @@
                   </div>
 
                   <div class="border-comm-content">
-                    트수분들 안녕하세요! 기말고사 시즌이라 방송 못하고있는 소겹이에요!
-
-                    어서어서 대기업이 되고싶은 어린 마음에 꾸준하게 홍보글 올리고 있습니다!
-
-                    보통 포트나이트와 롤 방송이 주된 컨텐츠이고, 썰 푸는 방송 혹은 스팀게임 방송도 자주자주 합니다. 요즘은 데바데가 재밌어서 데바데도 많이 하구요!
-
-                    저만이 가진 특징이라면 머리에 쓰고있는 커다란 LED박스, 보기 힘들 정도의 형편없는 게임실력, 엄청난 과몰입, 겁이 너무 많은 것, 젊음(=어림), 동생같은 매력 등등이 있네요!
-
-                    나열해놓고보니 단점처럼 보이긴 하지만, 전 위의 특징들이 전부 저만의 특색있는 방송을 위한 매력포인트라고 생각해요!
-
-                    말로만 하면 별로 와닿지 않으실 것 같아서, 여러가지 클립들도 가져왔습니다
-
-                    맨 처음 클립은 제 LED박스를 조작하는 클립이에요!
+                  	${postReq.content }
                   </div>
                   <div class="border-comm-like">
                     <a><span class="glyphicon glyphicon-thumbs-up"></span>추천</a>
                   </div>
                   <div class="border-comm-service">
-                    <a><span class="glyphicon glyphicon-list-alt"></span>목록</a>
+                    <a href="viewPostList?boardId=${postReq.boardId }"><span class="glyphicon glyphicon-list-alt"></span>목록</a>
                   </div>
                 </div>
             </div>

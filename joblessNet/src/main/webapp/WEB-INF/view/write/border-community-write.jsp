@@ -80,6 +80,7 @@
                         <div class="writeCommunity-title">
                           <input type="text" name="postTitle" value="" placeholder="제목">
                           <input type="hidden" name="writerId" value="${authUser.userId }">
+                          <input type="hidden" name="boardId" value="${postReq.boardId }">
                         </div>
                         <div class="writeCommunity-content ">
 							<textarea id="summernote" name="content"></textarea>

@@ -29,7 +29,7 @@
               </div>
 
               <div class="left-nav-sub">
-                <a href="#"><div>
+                <a href="viewPostList"><div>
                   C
                 </div>커뮤니티</a>
               </div>

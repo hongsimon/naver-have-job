@@ -3,12 +3,15 @@ package jobless.service.post;
 import java.util.List;
 
 import jobless.dao.condition.Condition;
+import jobless.model.ContentVO;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
 
 public interface ReadPostService {
 	
 	PostVO readPostById(int postId);
+	
+	ContentVO readContentById(int contentId);
 	
 	PostDetailVO readPostByDetail(int postId);
 	
