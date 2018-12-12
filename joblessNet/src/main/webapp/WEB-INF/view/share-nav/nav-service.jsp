@@ -36,26 +36,26 @@
 
               <div class="left-nav-sub">
                 <a href="viewClip"><div>
-                  D
+                  H
                 </div>핫클립</a>
               </div>
             </div>
             <div class="box">
               <div class="left-nav-sub">
                 <a href="#"><div>
-                  E
+                  P
                 </div>놀러와요</a>
               </div>
 
               <div class="left-nav-sub">
                 <a href="#"><div>
-                  F
+                  T
                 </div>함께 일해요</a>
               </div>
 
               <div class="left-nav-sub">
                 <a href="#"><div>
-                  G
+                  Q
                 </div>Q&A</a>
               </div>
             </div>
@@ -64,13 +64,13 @@
             </div class="box">
             <div class="left-nav-sub">
               <a href="#"><div>
-                H
+                N
               </div>공지사항</a>
             </div>
 
             <div class="left-nav-sub">
               <a href="#"><div>
-                I
+                E
               </div>이벤트</a>
             </div>
           </div>
@@ -84,27 +84,33 @@
             </div>
 
             <div class="left-nav-sub">
-              <a href="#" ><div>
+              <a href="https://www.jobkorea.co.kr/"  target="_blank"><div>
                 A
               </div>잡코리아</a>
             </div>
 
             <div class="left-nav-sub">
-              <a href="#"><div>
+              <a href="https://www.saramin.co.kr/zf_user/" target="_blank"><div>
                 B
               </div>사람인</a>
             </div>
 
             <div class="left-nav-sub">
-              <a href="#"><div>
+              <a href="https://www.jobplanet.co.kr/welcome/index" target="_blank"><div>
                 C
               </div>잡플래닛</a>
             </div>
 
             <div class="left-nav-sub">
-              <a href="#"><div>
+              <a href="https://www.albamon.com/" target="_blank"><div>
                 D
               </div>알바몬</a>
+            </div>
+            
+            <div class="left-nav-sub">
+              <a href="http://www.alba.co.kr/" target="_blank"><div>
+                E
+              </div>알바천국</a>
             </div>
           </div>
 
@@ -118,25 +124,25 @@
             </div>
 
             <div class="left-nav-sub affrica_TV">
-              <a href="#" ><div>
+              <a href="http://www.afreecatv.com/" target="_blank" ><div>
                 A
               </div>아프리카 TV</a>
             </div>
 
             <div class="left-nav-sub youtube">
-              <a href="#"><div>
+              <a href="https://www.youtube.com/" target="_blank"><div>
                 B
               </div>유튜브</a>
             </div>
 
             <div class="left-nav-sub kakao_TV">
-              <a href="#"><div>
+              <a href="https://play-tv.kakao.com/" target="_blank"><div>
                 C
               </div>카카오TV</a>
             </div>
 
             <div class="left-nav-sub twitch">
-              <a href="#"><div>
+              <a href="https://www.twitch.tv/" target="_blank"><div>
                 D
               </div>트위치</a>
             </div>

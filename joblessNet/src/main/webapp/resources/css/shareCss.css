@@ -101,11 +101,11 @@
 
 /* 로고 */
 .logo a img{
-  margin-left: -50px;
-  width: 250px;
+  margin-left: -15px;
+  width: 180px;
   max-height: inherit;
-  margin-top: -50px;
-  margin-bottom: -70px;
+  margin-top: -30px;
+  margin-bottom: -20px;
   overflow: hidden;
 }
 
@@ -182,4 +182,8 @@ hr{
   border: none;
   background-color: #287A72;
   color: #ffffff;
+}
+
+.col-xs-10{
+	padding-right:0px;
 }

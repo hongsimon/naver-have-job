@@ -3,7 +3,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-   <%@include file="../header_Service/pageContextService.jsp"%>
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/banner.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/count_order.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/change_comm.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
     
     <meta charset="utf-8" />
     <script type="text/javascript">
@@ -295,7 +308,7 @@
                     <span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
                   </a>
                   <div class="hotclip">
-                      <div class="chevron " style="margin-left:8px;">
+                      <div class="chevron chevron-right" style="margin-left:8px;">
                         <a><span class="glyphicon glyphicon-chevron-left"></span></a>
                       </div>
                       <div>
@@ -332,7 +345,7 @@
                         </ul>
                       </div>
 
-                      <div class="chevron con-right" style="margin-right:10px;">
+                      <div class="chevron con-right chevron-left" style="margin-right:10px;">
                         <a><span class="glyphicon glyphicon-chevron-right"></span></a>
                       </div>
 
@@ -350,7 +363,7 @@
                       <p class="title-text-big display-in title-text">놀러와요 </p>
                       <span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
                     </a>
-                    <div class="play">
+                    <div class="play border-padding">
                       <ul class="play-border border_size">
                         <li>
                           <div>
@@ -391,7 +404,7 @@
                       <p class="title-text-big display-in title-text">함께일해요 </p>
                       <span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
                     </a>
-                    <div class="working">
+                    <div class="working border-padding">
                       <ul class="working-border border_size">
                         <li>
                           <div>
