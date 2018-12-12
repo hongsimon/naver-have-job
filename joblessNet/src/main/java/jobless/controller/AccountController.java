@@ -75,7 +75,8 @@ public class AccountController {
 									  @RequestParam String password,
 									  @RequestParam String passwordCheck,
 									  @RequestParam String email,
-									  @RequestParam int platformId
+									  @RequestParam int platformId,
+									  @RequestParam("g-recaptcha-response") String recaptcha
 									  ) {
 		System.out.println("회원가입 페이지_POST");
 		
@@ -86,12 +87,10 @@ public class AccountController {
 		userRequest.setPasswordCheck(passwordCheck);
 		
 		try {
-			//잘못된 정보는 errors라는 맵을 넣어놓기 위해 errors라는 맵을 생성
 			
 			userRequest.validate(errors);
-			System.out.println(errors);
-			//errors는 view에 표출해주기 위해 request라는 속성 값으로 넣어줌
 			modelAndView.addObject("errors", errors);
+			modelAndView.addObject("user", userRequest);
 			modelAndView.setViewName("view/loginPage/login-join");
 			if(!errors.isEmpty()) {
 				return modelAndView;
@@ -101,25 +100,27 @@ public class AccountController {
 					userRequest.getPassword(), userRequest.getEmail(),
 					userRequest.getPlatformId()));
 			
+			recaptchaService.recaptcha(recaptcha);
 		}catch (OverlapLoginIdException e) {
 			errors.put("OverlapLoginIdException", true);
-			System.out.println(errors);
 			e.getMessage();
 			return modelAndView;
 		}catch (OverlapNickNameException e) {
 			errors.put("OverlapNickNameException", true);
-			System.out.println(errors);
 			e.getMessage();
 			return modelAndView;
 		}catch (OverlapEmailException e) {
 			errors.put("OverlapEmailException", true);
-			System.out.println(errors);
 			e.getMessage();
 			return modelAndView;
 		}catch (DuplicateKeyException e) {
 			errors.put("DuplicateKeyException", true);
-			System.out.println(errors);
 			e.getMessage();
+			return modelAndView;
+		}catch (RecaptchaNotRunningException e) {
+			errors.put("Not_Running_Recaptcha", true);
+			e.getMessage();
+			modelAndView.addObject("user", userRequest);
 			return modelAndView;
 		}
 		String code = emailSendService.emailService(userRequest.getEmail());
@@ -189,6 +190,7 @@ public class AccountController {
 			userRequest.validateLogin(errors);
 			
 			modelAndView.addObject("errors", errors);
+			modelAndView.addObject("user", userRequest);
 			modelAndView.setViewName("view/loginPage/login-main");
 			AuthUser authUser = loginService.login(loginId, password);
 			
@@ -198,14 +200,10 @@ public class AccountController {
 		}catch (SignInFailException e) {
 			e.getMessage();
 			errors.put("Id_or_Pw_NotMatch", true);
-			modelAndView.addObject("errors", errors);
-			modelAndView.addObject("user", userRequest);
 			return modelAndView;
 		}catch (RecaptchaNotRunningException e) {
 			e.getMessage();
 			errors.put("Not_Running_Recaptcha", true);
-			modelAndView.addObject("errors", errors);
-			modelAndView.addObject("user", userRequest);
 			return modelAndView;
 		}
 		
@@ -240,15 +238,14 @@ public class AccountController {
 			joinUserService.joinUser(userRequest, code, securityCode);
 		
 			modelAndView.setViewName("join-check");
+			modelAndView.addObject("errors", errors);
 		}catch (UserRequestNullException e) {
 			e.getMessage();
 			errors.put("UserRequestNullException", true);
-			modelAndView.addObject("errors", errors);
 			return modelAndView;
 		}catch (DoesNotMatchSecurityCode e) {
 			e.getMessage();
 			errors.put("DoesNotMatchSecurityCode", true);
-			modelAndView.addObject("errors", errors);
 			return modelAndView;
 		}
 		

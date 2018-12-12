@@ -15,29 +15,14 @@
     <meta name="google-signin-client_id" content="920495483409-1thb96c1e4oasjnl8osmjclqn79d4vi0.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    
-      
-    
-      var verifyCallback = function(response) {
-    	  $("#btn").attr("type", "submit");
-      };
-      var onloadCallback = function() {
-
-        grecaptcha.render('grecaptcha', {
-          'sitekey': '6Lcfp3wUAAAAAPDdrctx6gJd5j9z03zy1TxmoA1D',
-          'callback': verifyCallback,
-          'theme': 'light'
-        });
-      };
-    </script>
+ <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <meta charset="utf-8">
     <title>JobLess - Join</title>
   </head>
   <body>
     <div class="container login-con test-border margin-nav">
-      <div class="login-logo text-center login-logo"><a href="#"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
+      <div class="login-logo text-center login-logo"><a href="main"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
       <div class="login-selecter">
       <div>
         <a href="login" style="color: black; text-decoration:none">Log In</a>
@@ -102,47 +87,54 @@
       
       <c:if test="${errors.platformId }">
 	      <div class="error-msg text-center">
-	      잘못된 플랫폼 선택입니다.
+	      잘못된 플랫폼 입니다.
 	      </div>
+      </c:if>
+      
+      <c:if test="${errors.Not_Running_Recaptcha }">
+      	  <div class="error-msg text-center">
+      	  CAPTCHA를 입력하세요.
+      	  </div>
       </c:if>
       
       <div>
         <form class=" margin-l" action="join" method="post" >
           <div>
-            UserID
+            LoginID
           </div>
           <div>
-            <input type="text" name="loginId" />
+            <input type="text" name="loginId" value="${user.loginId }"/>
           </div>
           <div>
             Password
           </div>
           <div>
-            <input type="text" name="password" />
+            <input type="password" name="password" />
           </div>
           <div>
             PasswordCheck
           </div>
           <div>
-            <input type="text" name="passwordCheck" />
+            <input type="password" name="passwordCheck" />
           </div>
           <div>
             Email
           </div>
           <div>
-            <input type="text" name="email" />
+            <input type="text" name="email" value="${user.email }" />
           </div>
           <div>
             NickName
           </div>
           <div>
-            <input type="text" name="nickName" />
+            <input type="text" name="nickName"  value="${user.nickName }" />
           </div>
           <div>
             Like platform
           </div>
           <div>
-            <select class="" name="platformId">
+            <select class="" name="platformId" >
+              <option value="0">플랫폼 선택</option>
               <option value="1">Afreeca TV</option>
               <option value="2">YouTube</option>
               <option value="3">Kakao pat</option>
@@ -156,7 +148,7 @@
             <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
             </script>
           </div>
-			<div id="grecaptcha"></div>
+			 <div class="g-recaptcha" data-sitekey="6Lcfp3wUAAAAAPDdrctx6gJd5j9z03zy1TxmoA1D"></div>
            	<br>
           <hr class="hr-size" />
 
@@ -181,7 +173,7 @@
             <div class="g-signin2" data-onsuccess="onSignIn"></div> --%>
           </div>
 	
-     <button type="button" id="btn">Check Sign Up</button>
+     <button type="submit" id="btn">Check Sign Up</button>
 
         </form>
         

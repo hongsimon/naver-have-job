@@ -23,7 +23,7 @@
 
 <body>
   <div class="container login-con test-border margin-nav">
-    <div class="login-logo text-center login-logo"><a href="#"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
+    <div class="login-logo text-center login-logo"><a href="main"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
     <div class="login-selecter">
       <div>
         <a href="#" style="color: black; text-decoration:none">Log In</a>
