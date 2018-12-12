@@ -70,7 +70,8 @@ public class ClipController {
 	public ModelAndView viewClip_GET(@RequestParam(value = "sortby", required = false) String sort,
 			@RequestParam(value = "term", required = false) String term,
 			@RequestParam(value = "search", required = false) String search,
-			@RequestParam(value = "id", required = false) String broadcasterId) {
+			@RequestParam(value = "id", required = false) String broadcasterId,
+			@RequestParam(value = "page", required = false) String pageStr) {
 		
 		System.out.println("viewClip_GET");
 		Condition condition = new Condition();
@@ -132,7 +133,29 @@ public class ClipController {
 			condition.setId(id);
 		}
 
-		limit = new Limit(0, 20);
+		int page;
+		if(pageStr == null || pageStr.trim().isEmpty()) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(pageStr);
+		}
+		
+		int clipPerPage = 2;
+		
+		CriteriaVO cri = new CriteriaVO();
+		cri.setPage(page);
+		cri.setPerPageNum(clipPerPage);
+		
+		
+		int index = cri.getPageStart();
+		limit = new Limit(index, clipPerPage);
+		
+		PageMakerVO pageMaker = new PageMakerVO();
+		
+		int totalCount = readClip.readTotalCount();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
 		condition.setLimit(limit);
 
 		List<ClipDetailVO> clipList = readClip.readClipDetailList(condition);
@@ -144,6 +167,7 @@ public class ClipController {
 			mv.setViewName("errorPage");
 		} else {
 			mv.addObject("clipDetailList", clipList);
+			mv.addObject("pageMaker", pageMaker);
 			mv.setViewName("view/border/border-hotClip");
 		}
 

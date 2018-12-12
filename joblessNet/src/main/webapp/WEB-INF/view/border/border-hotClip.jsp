@@ -20,12 +20,12 @@
               <div class="border-hotclip-service ">
                 <ul>
                   <li>
-                  <a href="" class="hotclip-service-none">
+                  <a href="viewClip" class="hotclip-service-none">
                     <span class="glyphicon glyphicon-home"></span>
                   </a>
                   </li>
 
-                  <a class="hotclip-service-active" href="viewClip?sortby=likes&term=${param.term}&search=${param.search}&id=${param.id}">
+                  <a class="hotclip-service-active" href="viewClip?sortby=likes&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page}">
                   <li>
                     <span class="glyphicon glyphicon-thumbs-up"></span>추천수
                   </li>
@@ -126,27 +126,21 @@
 
               <div class="border-hotclip-page-list">
                 <ul class="pagination">
+                  <c:if test="${pageMaker.prev }">
+	                  <li class="page-item">
+	                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page-1}"><span class="glyphicon glyphicon-menu-left"></span></a>
+	                  </li>
+                  </c:if> 
+                  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="index">                 
                   <li class="page-item">
-                    <a href="#"><span class="glyphicon glyphicon-menu-left"></span></a>
+                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}" class="page-link">${index }</a>
                   </li>
+                  </c:forEach>
+                  <c:if test="${pageMaker.next}">                 
                   <li class="page-item">
-                    <a href="#" class="page-link">1</a>
+                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}" class="page-link"><span class="glyphicon glyphicon-menu-right"></span></a>
                   </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">4</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link">5</a>
-                  </li>
-                  <li class="page-item">
-                    <a href="#" class="page-link"><span class="glyphicon glyphicon-menu-right"></span></a>
-                  </li>
+                  </c:if>
                 </ul>
               </div>
           </div>
