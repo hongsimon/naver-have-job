@@ -174,8 +174,8 @@
 			AND write_date &gt; #{condition.period.startDate} AND write_date &lt; #{condition.period.endDate}
 			</if>
 			<if test="condition.id != null">
-				<if test="condition.id.userId">
-				AND p.user_id = ${condition.id.userId}
+				<if test="condition.id.writerId">
+				AND p.user_id = ${condition.id.writerId}
 				</if>
 				<if test="condition.id.categoryId">
 				AND category_id = #{condition.id.categoryId}

@@ -2,6 +2,7 @@ package jobless.dao.mapper;
 
 import java.util.List;
 
+import jobless.dao.condition.Condition;
 import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
 
@@ -12,7 +13,7 @@ public interface IClipMapper {
 	List<ClipVO> selectClipByWriterId(int writerId);
 	List<ClipVO> selectClipByBroadcasterId(int broadCasterId);
 	ClipDetailVO selectClipDetail(int clipId);
-	List<ClipDetailVO> selectClipDetailList();
+	List<ClipDetailVO> selectClipDetailList(Condition condition);
 	ClipVO selectClipById(int clipId);
 	void updateClip(ClipVO clipVO);
 	void deleteClip(int clipId);

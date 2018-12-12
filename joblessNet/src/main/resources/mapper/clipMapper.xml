@@ -96,7 +96,7 @@
   			c.clip_id
   	</select>
   	
-  	<select id="selectClipDetailList" resultMap="ClipMap">
+  	<select id="selectClipDetailList" parameterType="Condition" resultMap="ClipMap">
   		select 
   			c.clip_id clipId, 
   			clip_title title, 
@@ -113,8 +113,41 @@
   			clip c join user w on c.writer_id = w.user_id
   			left outer join user b on c.broadcaster_id = b.user_id
   			left outer join taku.like l on c.clip_id = l.clip_id
-  		group by
+  		where
+  			write_date &gt; 0000-00-00
+			<if test="period != null">
+			AND write_date &gt; #{period.startDate} AND write_date &lt; #{period.endDate}
+			</if>
+			<if test="id != null">
+				<if test="id.writerId">
+				AND writer_id = ${id.writerId}
+				</if>
+				<if test="id.broadcasterId">
+				AND broadcaster_id = ${id.broadcasterId}
+				</if>
+			</if>
+			<if test="text != null">
+				AND (clip_title LIKE #{text.title}
+				OR b.nickname = #{text.nickname})
+			</if>
+  		GROUP BY
   			c.clip_id
+		<if test="order != null">
+		ORDER BY
+			<if test="order.primaryKey">
+			c.clip_id desc
+			</if>
+			<if test="order.likes">
+			likes desc
+			</if>
+			<if test="order.views">
+			views desc
+			</if>
+		</if>
+		<if test="limit != null">
+		LIMIT
+			#{limit.startIndex}, #{limit.offset}
+		</if>		
   	</select>
   	
   	<update id="readToIncreaseViews" parameterType="Clip">

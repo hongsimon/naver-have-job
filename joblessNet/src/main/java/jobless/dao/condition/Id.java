@@ -4,17 +4,26 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("Id")
 public class Id {
-	private int userId;
+	private int writerId;
+	private int broadcasterId;
 	private int categoryId;
 
-	public int getUserId() {
-		return userId;
+	public int getWriterId() {
+		return writerId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setWriterId(int writerId) {
+		this.writerId = writerId;
 	}
-	
+
+	public int getBroadcasterId() {
+		return broadcasterId;
+	}
+
+	public void setBroadcasterId(int broadcasterId) {
+		this.broadcasterId = broadcasterId;
+	}
+
 	public int getCategoryId() {
 		return categoryId;
 	}

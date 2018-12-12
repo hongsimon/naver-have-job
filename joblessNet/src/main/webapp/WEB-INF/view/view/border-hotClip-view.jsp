@@ -62,9 +62,9 @@
                       <div class="clip-write-day">
                         게시일 :
                         <p>
-                        <c:set var="wdateStr" value="${clipDetail.clip.writeDate }"></c:set>									
-						<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="YYYY-MM-dd'T'HH:mm"></fmt:parseDate>
-						<fmt:formatDate var="wdate" value="${parseWdate }" pattern="YYYY-MM-dd HH:mm"></fmt:formatDate>
+                        <c:set var="wdateStr" value="${clipDetail.clip.writeDate.toString() }"></c:set>									
+						<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
+						<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
                           ${wdate}
                         </p>
                       </div>
