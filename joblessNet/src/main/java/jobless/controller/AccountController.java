@@ -1,9 +1,9 @@
 package jobless.controller;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -94,15 +94,13 @@ public class AccountController {
 			
 			userRequest.validate(errors);
 			modelAndView.addObject("errors", errors);
-			modelAndView.addObject("user", userRequest);
+			modelAndView.addObject("value", userRequest);
 			modelAndView.setViewName("view/loginPage/login-join");
 			if(!errors.isEmpty()) {
 				return modelAndView;
 			}
 			
-			joinCheckService.joinCheck(new UserRequest(userRequest.getLoginId(), userRequest.getNickName(),
-					userRequest.getPassword(), userRequest.getEmail(),
-					userRequest.getPlatformId()));
+			joinCheckService.joinCheck(userRequest);
 			
 			recaptchaService.recaptcha(recaptcha);
 		}catch (OverlapLoginIdException e) {
@@ -124,7 +122,6 @@ public class AccountController {
 		}catch (RecaptchaNotRunningException e) {
 			errors.put("Not_Running_Recaptcha", true);
 			e.getMessage();
-			modelAndView.addObject("user", userRequest);
 			return modelAndView;
 		}
 		String code = emailSendService.emailService(userRequest.getEmail());
@@ -195,7 +192,7 @@ public class AccountController {
 			userRequest.validateLogin(errors);
 			
 			modelAndView.addObject("errors", errors);
-			modelAndView.addObject("user", userRequest);
+			modelAndView.addObject("value", userRequest);
 			modelAndView.setViewName("view/loginPage/login-main");
 			AuthUser authUser = loginService.login(loginId, password);
 			
@@ -231,8 +228,7 @@ public class AccountController {
 								  @RequestParam String nickName,
 								  @RequestParam String password,
 								  @RequestParam String email,
-								  @RequestParam int platformId,
-								  HttpServletRequest req
+								  @RequestParam int platformId
 								 ) {
 		System.out.println("loginCheck_POST");
 	
@@ -241,24 +237,22 @@ public class AccountController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		try {
-			joinUserService.joinUser(userRequest, code, securityCode);
-		
-			modelAndView.setViewName("join-check");
+			modelAndView.setViewName("view/loginPage/login-join-check");
+			
+			
+			if(!code.equals(securityCode)) {
+				errors.put("notMatchCode", true);
+				modelAndView.addObject("errors", errors);
+				return modelAndView;
+			}
+			
+			joinUserService.joinUser(userRequest);
 			modelAndView.addObject("errors", errors);
-		}catch (UserRequestNullException e) {
-			e.getMessage();
-			errors.put("UserRequestNullException", true);
-			return modelAndView;
 		}catch (DoesNotMatchSecurityCode e) {
 			e.getMessage();
+			System.out.println("DoesNotMatchSecurityCode");
 			errors.put("DoesNotMatchSecurityCode", true);
 			return modelAndView;
-		}
-		
-		HttpSession session = req.getSession(false);
-		
-		if(session != null) {
-			session.invalidate();
 		}
 		
 		modelAndView.setViewName("redirect:/main");

@@ -54,7 +54,7 @@
       </div>
       </c:if>
       
-      <c:if test="${errors.DoesNotMatchSecurityCode }">
+      <c:if test="${errors.notMatchCode }">
       <div class="error-msg text-center">
         입력하신 코드가 일치하지 않습니다.
       </div>
@@ -64,7 +64,7 @@
         <form class=" margin-l login-email-check" action="join-check" method="post">
           <div>
             <div id="email">
-              ${user.email}${empty user }
+              ${user.email}
             </div>
             <div>
               으로 전송된 이메일을 확인하여 가입 절차를 완료해 주세요.<br>

@@ -115,6 +115,13 @@
 			<!-- 로그아웃상태 -->
             <div class="header-login">
             <c:if test="${empty authUser }">
+            <% 
+            session = request.getSession(false);
+    		
+    		if(session != null) {
+    			session.invalidate();
+    		}
+   		    %>
               <a href="login" class="head-nav-top-dropdown"><span class="glyphicon glyphicon-user"></span>로그인</a>
             </c:if>
               

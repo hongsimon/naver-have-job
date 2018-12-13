@@ -15,14 +15,11 @@ public class JoinUserServiceImpl implements JoinUserService {
 	UserDAO userDao;
 	
 	@Override
-	public void joinUser(UserRequest userRequest, String code, String securityCode) {
+	public void joinUser(UserRequest userRequest) {
 		
 		try {
-			if(userRequest == null) {
+			if(userRequest == null || userRequest.getLoginId().equals("") || userRequest.getNickName().equals("") || userRequest.getPassword().equals("") || userRequest.getEmail().equals("")) {
 				throw new UserRequestNullException("userRequest에 빈값이 있습니다.");
-			}
-			if(!code.equals(securityCode)) {
-				throw new DoesNotMatchSecurityCode("securityCode가 일치하지 않습니다.");
 			}
 			userDao.insert(new UserVO(userRequest.getLoginId(), userRequest.getNickName(), userRequest.getPassword(), userRequest.getEmail(), userRequest.getPlatformId()));
 		}catch (RuntimeException e) {

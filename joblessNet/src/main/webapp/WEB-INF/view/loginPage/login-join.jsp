@@ -110,7 +110,7 @@
 	          <div>
 	            LoginID
 	          </div>
-            <input type="text" name="loginId" value="${user.loginId }"  autocomplete="off"/>
+            <input type="text" name="loginId" value="${value.loginId }"  autocomplete="off"/>
           </div>
           <div>
 	          <div>
@@ -128,7 +128,7 @@
 	          <div>
 	            Email
 	          </div>
-            <input type="text" name="email" value="${user.email }"  autocomplete="off" />
+            <input type="text" name="email" value="${value.email }"  autocomplete="off" />
           </div>
           <div>
 	          <div>

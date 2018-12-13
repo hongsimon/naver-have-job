@@ -66,7 +66,7 @@
 	        <div>
 	          UserID
 	        </div>
-          <input type="text" name="loginId" value="${user.loginId }"  autocomplete="off"/>
+          <input type="text" name="loginId" value="${value.loginId }"  autocomplete="off"/>
         </div>
         <div>
 	        <div>
