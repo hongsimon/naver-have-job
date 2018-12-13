@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.apache.bcel.classfile.Code;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,7 +141,7 @@ public class ClipController {
 			page = Integer.parseInt(pageStr);
 		}
 		
-		int clipPerPage = 2;
+		int clipPerPage = 24;
 		
 		CriteriaVO cri = new CriteriaVO();
 		cri.setPage(page);
@@ -206,23 +207,25 @@ public class ClipController {
 	@RequestMapping(value = "/selectClip", method = RequestMethod.GET)
 	public ModelAndView selectClip_GET(@RequestParam int clipId) {
 		System.out.println("selectClip_GET");
-
-		List<ClipVO> clipList = readClip.readAllClip();
+		
+		Condition condition = new Condition();
+		//List<ClipVO> clipList = readClip.readAllClip();
 		List<CommentVO> commentList = readComment.readAllByClipId(clipId);
 		int countComment = readComment.readCountClipComment(clipId);
-
+		
 		/* clip 하나 읽어오기 */
 		// ClipVO clip = readClip.readClip(clipId);
 		ClipDetailVO clipDetail = readClip.readClipDetail(clipId);
+		List<ClipDetailVO> clipList = readClip.readClipDetailList(condition);
 		ModelAndView mv = new ModelAndView();
-
+		
 		// if(clip == null) {
 		if (clipDetail == null) {
 			System.out.println("clip 불러오기 실패");
 			mv.setViewName("errorPage");
 		} else {
 			// mv.addObject("clip", clip);
-			mv.addObject("clipList", clipList);
+			mv.addObject("clipDetailList", clipList);
 			mv.addObject("clipDetail", clipDetail);
 			mv.addObject("commentList", commentList);
 			mv.addObject("countComment", countComment);

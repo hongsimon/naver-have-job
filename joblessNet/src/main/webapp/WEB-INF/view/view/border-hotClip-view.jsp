@@ -128,26 +128,29 @@
                 <div class="col-xs-4">
                   <div class="clip-list-view">
                     <ul>
-                    <c:forEach var="clip" items="${clipList}" begin="1" end="20">
+                    <c:forEach var="clipDetail" items="${clipDetailList}" varStatus="status" begin="0" end="20">
+                 	<c:set var="wdateStr" value="${clipDetail.clip.writeDate }"></c:set>
+				 	<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
+				 	<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
                       <li class="">
-                        <a>
+                        <a href="selectClip?clipId=${clipDetail.clip.clipId }">
                           <div class="clip-list-view-video-info">
                             <div class="clip-list-view-thumbnails" style="display:inline-block;">
-                              <img src="https://img.youtube.com/vi/lV6bHRb52RQ/sddefault.jpg"/>
+                              <img src="${clipDetail.clip.thumbURL}"/>
                             </div>
                             <div class="" style="display:inline-block;">
                               <div class="clip-list-view-title">
-                                <a id="clip-list-title">${clip.title }</a>
+                                <a href="selectClip?clipId=${clipDetail.clip.clipId }" id="clip-list-title">${clipDetail.clip.title}</a>
                               </div>
                               <div class="clip-list-view-views">
-                                <p>${clip.broadcasterId}</p>${clip.views }<p>0</p>
+                                <p>${clipDetail.writer.nickName }</p>조회수<p>${clipDetail.clip.views }</p>
                               </div>
                               <div class="clip-list-view-info">
                                 <div>
-                                  <span class="glyphicon glyphicon-thumbs-up"></span>0
+                                  <span class="glyphicon glyphicon-thumbs-up"></span>${clipDetail.likes }
                                 </div>
                                 <div>
-                                  <span class="glyphicon glyphicon-comment"></span>0
+                                  <span class="glyphicon glyphicon-comment"></span>${clipDetail.comments }
                                 </div>
                               </div>
                             </div>

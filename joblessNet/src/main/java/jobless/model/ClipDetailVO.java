@@ -8,6 +8,7 @@ public class ClipDetailVO {
 	private UserVO writer;
 	private UserVO broadcaster;
 	private int likes;
+	private int comments;
 
 	public ClipVO getClip() {
 		return clip;
@@ -41,9 +42,18 @@ public class ClipDetailVO {
 		this.likes = likes;
 	}
 
+	public int getComments() {
+		return comments;
+	}
+
+	public void setComments(int comments) {
+		this.comments = comments;
+	}
+
 	@Override
 	public String toString() {
-		return "ClipDetailVO [clip=" + clip + ", writer=" + writer + ", broadcaster=" + broadcaster + ", likes=" + likes
-				+ "]";
+		return "ClipDetailVO [clip=" + clip + ", writer=" + writer + ", broadcaster=" + broadcaster + ", likes=" + likes + ", comments=" + comments + "]";
 	}
+
+
 }

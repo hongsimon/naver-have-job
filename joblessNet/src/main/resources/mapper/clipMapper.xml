@@ -103,16 +103,18 @@
   			clip_url clipURL,
   			thumb_url thumbURL, 
   			write_date writeDate, 
-  			views, 
+  			views,
   			writer_id writerId, 
   			broadcaster_id broadcasterId,
   			w.nickname writerNickname,
   			b.nickname broadcasterNickname,
-  			count(l.clip_id) likes
+  			(select count(user_id) from comment where clip_id = l.clip_id) as likes,
+  			(select count(comment_content) from comment where clip_id = cm.clip_id) as comments
   		from 
   			clip c join user w on c.writer_id = w.user_id
   			left outer join user b on c.broadcaster_id = b.user_id
   			left outer join taku.like l on c.clip_id = l.clip_id
+  			left outer join taku.comment cm on c.clip_id = cm.clip_id
   		where
   			write_date &gt; 0000-00-00
 			<if test="period != null">
@@ -143,6 +145,7 @@
 			<if test="order.views">
 			views desc
 			</if>
+
 		</if>
 		<if test="limit != null">
 		LIMIT

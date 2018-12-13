@@ -19,12 +19,11 @@
           <div class="border-hotclip-in">
               <div class="border-hotclip-service ">
                 <ul>
-                  <li>
                   <a href="viewClip" class="hotclip-service-none">
+                  <li>                  
                     <span class="glyphicon glyphicon-home"></span>
-                  </a>
                   </li>
-
+				  </a>
                   <a class="hotclip-service-active" href="viewClip?sortby=likes&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page}">
                   <li>
                     <span class="glyphicon glyphicon-thumbs-up"></span>추천수
@@ -107,7 +106,7 @@
                           <div>
                             <span class="glyphicon glyphicon-comment"></span>
                             <div>
-                              0
+                              ${clipDetail.comments }
                             </div>
                           </div>
                           <div>
