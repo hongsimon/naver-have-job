@@ -43,6 +43,7 @@
 				<value>classpath:mapper/commentMapper.xml</value>
 				<value>classpath:mapper/contentMapper.xml</value>
 				<value>classpath:mapper/iconMapper.xml</value>
+				<value>classpath:mapper/likeMapper.xml</value>
 				<value>classpath:mapper/platformMapper.xml</value>
 				<value>classpath:mapper/postMapper.xml</value>
 				<value>classpath:mapper/userMapper.xml</value>

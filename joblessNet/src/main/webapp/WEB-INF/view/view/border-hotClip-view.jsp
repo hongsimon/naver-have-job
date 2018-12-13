@@ -9,7 +9,12 @@
 
     <meta charset="utf-8" />
     <script type="text/javascript">
-
+		if(${errors.NotMoreLike}){
+			var link = "selectClip?clipId=";
+				link += ${clip_or_postId};
+			alert("추천은 한번만 가능합니다.");
+			location.href=link	;
+		}
     </script>
     <title>백수넷</title>
 	<%@include file="../share-nav/nav-header.jsp"%>
@@ -43,7 +48,20 @@
 	                      </div>
                       </c:if>
                       <div class="con-right like-btn">
-                        <button><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${clipDetail.likes}</button>
+                      
+                      	<c:if test="${empty authUser }">
+                      		<button type="submit" onclick="window.alert('로그인 후 이용가능합니다.')"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${clipDetail.likes}</button>
+                      	</c:if>
+                      
+                      
+ 						<!-- 로그인상태 -->                     
+                        <c:if test="${!empty authUser }">
+                      	<form action="clipLike" method="Post">
+                      		<input type="hidden" name="userId" value="${authUser.userId }">
+                      		<input type="hidden" name="clip_or_postId" value="${clipDetail.clip.clipId}">
+                        	<button type="submit"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${clipDetail.likes}</button>
+                        </form>
+                        </c:if>
                       </div>
                     </div>
                   </div>

@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import jobless.dao.BoardCategoryDAO;
 import jobless.dao.IconDAO;
 import jobless.dao.UserDAO;
+import jobless.model.LikeVO;
 import jobless.service.authuser.LoginService;
 import jobless.service.board.CreateBoardCategoryService;
 import jobless.service.board.DeleteBoardCategoryService;
@@ -24,6 +25,7 @@ import jobless.service.icon.CreateIconService;
 import jobless.service.icon.DeleteIconService;
 import jobless.service.icon.ModifyIconService;
 import jobless.service.icon.SelectIconService;
+import jobless.service.like.InsertLikeService;
 import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.JoinCheckService;
@@ -68,9 +70,13 @@ public class Test4 {
 	@Autowired
 	SelectBoardCategoryService selectBoardCategoryService;
 	
+	@Autowired
+	InsertLikeService insertLikeService;
+	
 	//boardCategory기능 테스트
-	@Test  @Ignore                    
+	@Test                  
 	public void BoardCategoryTest() {
+		
 		//카테고리 조회 테스트(ByAll)
 //		List<BoardCategoryVO> boardCategory = selectBoardCategoryService.selectBoardCategotyByAll();
 //		for (BoardCategoryVO boardCategoryVO : boardCategory) {
