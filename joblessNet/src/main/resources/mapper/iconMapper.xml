@@ -18,6 +18,7 @@
 			icon 
 		where 
 			icon_id = #{iconId}
+			
 	</select>
 	<select id="selectAllIcon" resultType="Icon">	
 		select 

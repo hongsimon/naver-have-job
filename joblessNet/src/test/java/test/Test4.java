@@ -1,12 +1,11 @@
 package test;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -16,10 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import jobless.dao.BoardCategoryDAO;
 import jobless.dao.IconDAO;
 import jobless.dao.UserDAO;
-import jobless.exception.UserNotFoundException;
-import jobless.model.BoardCategoryVO;
-import jobless.model.IconVO;
-import jobless.model.UserVO;
 import jobless.service.authuser.LoginService;
 import jobless.service.board.CreateBoardCategoryService;
 import jobless.service.board.DeleteBoardCategoryService;
@@ -33,7 +28,6 @@ import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.JoinCheckService;
 import jobless.service.user.ModifyUserService;
-import jobless.service.user.UserRequest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
@@ -158,7 +152,8 @@ public class Test4 {
 	LoginService loginService;
 	
 	//User기능 테스트
-	@Test
+	@Test @Ignore
+	
 	public void UserTest() {
 		
 		//회원 검색 테스트(All)
