@@ -8,14 +8,20 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import jobless.exception.ReadPostException;
+import jobless.model.BoardCategoryVO;
+import jobless.model.CommentVO;
 import jobless.model.ContentVO;
+import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
+import jobless.service.board.SelectBoardCategoryService;
+import jobless.service.comment.ReadCommentService;
 import jobless.service.post.DeletePostService;
 import jobless.service.post.ModifyPostService;
 import jobless.service.post.PostRequest;
@@ -26,7 +32,13 @@ import jobless.service.post.WritePostService;
 public class PostController {
 
 	@Autowired
-	ReadPostService readService;
+	ReadPostService readPost;
+	
+	@Autowired
+	ReadCommentService readComment;
+	
+	@Autowired
+	SelectBoardCategoryService readBoardCategory;
 	
 	@Autowired
 	WritePostService writeService;
@@ -47,7 +59,7 @@ public class PostController {
 		List<PostVO> postList = null;
 		
 		try {
-			postList = readService.readAllPost(); // psot에 모든 정보가져옴
+			postList = readPost.readAllPost(); // psot에 모든 정보가져옴
 		} catch (ReadPostException e) {
 			System.out.println("viewPostList Error");
 			errors.put("ReadPostException", true);
@@ -74,23 +86,37 @@ public class PostController {
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		
+		List<CommentVO> comment;
+		int countComment;
+		PostDetailVO postDetail;
+		BoardCategoryVO boardCategory;
+		
 	
-		PostVO post;
-		ContentVO content;
-		PostRequest postReq;
+//		PostVO post;
+//		ContentVO content;
+//		PostRequest postReq;
 		
 		try {
-			post = readService.readPostById(postId); // 게시글 클릭시, 게시글의 postId로 해당 게시글에 정보를 가져옴 
-			content = readService.readContentById(post.getContentId());
-			postReq = new PostRequest(postId, 
-					content.getContentId(), 
-					content.getContent(), 
-					post.getTitle(), 
-					post.getWriteDate(), 
-					post.getBoardId(), 
-					post.getViews(), 
-					post.getWriterId(), 
-					post.getCategoryId());
+			readPost.readPostById(postId);
+			comment = readComment.readAllByPostId(postId);
+			countComment = readComment.readCountPostComment(postId);
+			postDetail = readPost.readPostByDetail(postId);
+			
+			int boardCategoryId = postDetail.getPost().getCategoryId();
+			
+			boardCategory = readBoardCategory.selectBoardCategotyById(boardCategoryId);
+//			post = readService.readPostById(postId); // 게시글 클릭시, 게시글의 postId로 해당 게시글에 정보를 가져옴 
+//			content = readService.readContentById(post.getContentId());
+//			postReq = new PostRequest(postId, 
+//					content.getContentId(), 
+//					content.getContent(), 
+//					post.getTitle(), 
+//					post.getWriteDate(), 
+//					post.getBoardId(), 
+//					post.getViews(), 
+//					post.getWriterId(), 
+//					post.getCategoryId());
 		} catch (ReadPostException e) {
 			System.out.println("viewPost Error");
 			errors.put("ReadPostException", true);
@@ -100,8 +126,10 @@ public class PostController {
 		}
 		
 		
-			System.out.println(postReq.toString());
-			mv.addObject("postReq", postReq); // 게시글 정보를 jsp에 보내기 위해서 
+			mv.addObject("postDetail", postDetail);
+			mv.addObject("comment", comment);
+			mv.addObject("count", countComment);
+			mv.addObject("boardCategory", boardCategory);
 			mv.setViewName("view/view/border-community-view");
 		return mv;
 	}
@@ -179,16 +207,28 @@ public class PostController {
 		return mv;
 	}
 	
+//	@RequestMapping(value="/insertPostComment", method=RequestMethod.POST)
+//	public ModelAndView controllerinsertPostComment(HttpSession session,
+//													@RequestParam("postId") int postId,
+//													@RequestParam("clipId") int clipId,
+//													@RequestParam("userId") int userId,
+//													@RequestParam("content") String content) {
+//		return null;
+//	}
 	// 성공
-	@RequestMapping(value="/deletePost", method=RequestMethod.POST)
-	public ModelAndView controllerDeletePost_POST(HttpSession session, @RequestParam int postId, @RequestParam int contentId) {
+	@RequestMapping(value="/deletePost", method=RequestMethod.GET)
+	public ModelAndView controllerDeletePost_POST(HttpSession session, 
+													@RequestParam("postId") int postId, 
+													@RequestParam int contentId, 
+													@RequestParam("writerId") int writerId, 
+													@RequestParam("authUserUserId") int userId) {
 		System.out.println("게시글 삭제 진행중");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		
-		if(session.getAttribute("authUser") == null) {
-			System.out.println("authUser가 null임");
+		if(session.getAttribute("authUser") == null || writerId != userId) {
+			System.out.println("authUser가 null임 아니면 자신의 글이 아님");
 			mv.setViewName("errorPage");
 		}else {
 			deleteService.deletePost(postId, contentId); // 삭제할 아이디를 받아와 삭제
@@ -210,8 +250,8 @@ public class PostController {
 			System.out.println("authUser가 null임");
 			mv.setViewName("errorPage");
 		}else {
-			PostVO post = readService.readPostById(postId);
-			ContentVO content = readService.readContentById(post.getContentId());
+			PostVO post = readPost.readPostById(postId);
+			ContentVO content = readPost.readContentById(post.getContentId());
 			
 			PostRequest postReq = new PostRequest(post.getTitle(), content.getContent(), post.getBoardId(), post.getWriterId(), post.getCategoryId());
 			mv.addObject("postReq", postReq); // 게시글 정보를 jsp에 보내기 위해서
