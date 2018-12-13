@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import jobless.exception.ReadPostException;
 import jobless.model.ContentVO;
 import jobless.model.PostVO;
 import jobless.service.post.DeletePostService;
@@ -36,57 +37,72 @@ public class PostController {
 	@Autowired
 	ModifyPostService modifyService;
 	
-	// 완전 성공(건들지시오)
+	// 완전 성공
 	@RequestMapping(value="/viewPostList", method=RequestMethod.GET)
 	public ModelAndView controllerViewPostList_GET() {
 		System.out.println("viewPostList_GET");
 		
-		List<PostVO> postList = readService.readAllPost();
 		ModelAndView mv = new ModelAndView();
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		List<PostVO> postList = null;
 		
-		if(postList == null) {
-			System.out.println("clip List 불러오기 실패");
-			mv.setViewName("errorPage");
-		}else {
-			for(PostVO post : postList) {
-				System.out.println(post.toString());
-			}
-			
-			System.out.println("정상 작동");
-			mv.addObject("postList", postList);
-			mv.setViewName("view/border/border-community");
+		try {
+			postList = readService.readAllPost(); // psot에 모든 정보가져옴
+		} catch (ReadPostException e) {
+			System.out.println("viewPostList Error");
+			errors.put("ReadPostException", true);
+			e.getMessage();
+			mv.setViewName("view/error/500");
+			return mv;
 		}
 		
+		for(PostVO post : postList) {
+			System.out.println(post.toString());
+		}
+		mv.addObject("postList", postList);
+		mv.setViewName("view/border/border-community");
+
+		System.out.println("정상 작동");
 		return mv;
 	}
 	
 	
 	@RequestMapping(value="/viewPost", method=RequestMethod.GET)
 	public ModelAndView controllerViewPost_GET(@RequestParam int postId) {
-		System.out.println("해당 게시글로  이동"+ postId);
+		System.out.println("viewPost_GET");
+		System.out.println("psotId = "+ postId);
 		
-		PostVO post = readService.readPostById(postId); // 게시글 클릭시, 게시글의 postId로 해당 게시글에 정보를 가져옴 
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+	
+		PostVO post;
+		ContentVO content;
+		PostRequest postReq;
 		
-		if(post == null) {
-			System.out.println("post 못 가져옴");
-			mv.setViewName("errorPage");
-		}else {
-			ContentVO content = readService.readContentById(post.getContentId());
-			PostRequest postReq = new PostRequest(postId, 
-													content.getContentId(), 
-													content.getContent(), 
-													post.getTitle(), 
-													post.getWriteDate(), 
-													post.getBoardId(), 
-													post.getViews(), 
-													post.getWriterId(), 
-													post.getCategoryId());
+		try {
+			post = readService.readPostById(postId); // 게시글 클릭시, 게시글의 postId로 해당 게시글에 정보를 가져옴 
+			content = readService.readContentById(post.getContentId());
+			postReq = new PostRequest(postId, 
+					content.getContentId(), 
+					content.getContent(), 
+					post.getTitle(), 
+					post.getWriteDate(), 
+					post.getBoardId(), 
+					post.getViews(), 
+					post.getWriterId(), 
+					post.getCategoryId());
+		} catch (ReadPostException e) {
+			System.out.println("viewPost Error");
+			errors.put("ReadPostException", true);
+			e.getMessage();
+			mv.setViewName("view/error/500");
+			return mv;
+		}
+		
+		
 			System.out.println(postReq.toString());
 			mv.addObject("postReq", postReq); // 게시글 정보를 jsp에 보내기 위해서 
 			mv.setViewName("view/view/border-community-view");
-		}
 		return mv;
 	}
 	

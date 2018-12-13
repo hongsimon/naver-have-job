@@ -64,7 +64,7 @@
 														<a>${post.categoryId }</a>
 													</div> <!-- 제목 -->
 													<div class="border-comm-title ">
-														<a><span class="glyphicon glyphicon-comment"></span><a href="viewPost?postId=${post.postId}">${post.title}</a></a>
+														<a href="viewPost?postId=${post.postId}"><span class="glyphicon glyphicon-comment"></span>${post.title}</a>
 													</div> <!-- 작성일 -->
 													<div class="border-comm-day con-right">
 														<fmt:parseDate var="parseWdate" value="${post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
@@ -93,7 +93,7 @@
 										</div>
 
 										<div class="comm-write con-right">
-											<a href="insertPost?boardId=1"><span class="glyphicon glyphicon-pencil">글쓰기</a>
+											<a href="insertPost?boardId=1"><span class="glyphicon glyphicon-pencil"></span>글쓰기</a>
 										</div>
 									</div>
 								</div>
@@ -104,7 +104,7 @@
 									<li class="page-item"><a href="#"><span
 											class="glyphicon glyphicon-menu-left"></span></a></li>
 									<li class="page-item"><a href="#" class="page-link">1</a>
-									</li v>
+									</li>
 									<li class="page-item"><a href="#" class="page-link">2</a>
 									</li>
 									<li class="page-item"><a href="#" class="page-link">3</a>
