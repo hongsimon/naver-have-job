@@ -93,6 +93,12 @@ public class GetUserServiceImpl implements GetUserService {
 		return user;
 	}
 
+	@Override
+	public List<UserVO> getStreamerAll() {
+		// TODO Auto-generated method stub
+		return userdao.selectStreamerAll();
+	}
+
 
 
 }

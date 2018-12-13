@@ -16,7 +16,9 @@ public class UserVO {
 	private boolean admin;
 	private boolean ban;
 	private int platformId;
-
+	private boolean streamer;
+	
+	
 	public UserVO() {
 	}
 
@@ -100,6 +102,14 @@ public class UserVO {
 	public void setPlatformId(int platformId) {
 		this.platformId = platformId;
 	}
+	
+	public boolean isStreamer() {
+		return streamer;
+	}
+
+	public void setStreamer(boolean streamer) {
+		this.streamer = streamer;
+	}
 
 	// insert용
 	public UserVO(String loginId, String nickName, String password, String email, int platformId) {
@@ -112,15 +122,41 @@ public class UserVO {
 	}
 
 	// update 용
-	public UserVO(int userId, String nickName, String password, String email) {
+		public UserVO(int userId, String nickName, String password, String email) {
+			super();
+			this.userId = userId;
+			this.nickName = nickName;
+			this.password = password;
+			this.email = email;
+		}
+	
+	// update 용
+	public UserVO(int userId, String nickName, String password, String email, boolean streamer) {
 		super();
 		this.userId = userId;
 		this.nickName = nickName;
 		this.password = password;
 		this.email = email;
+		this.streamer = streamer;
 	}
 
 	// select용
+	public UserVO(int userId, String loginId, String nickName, String password, String email, int point,
+			LocalDate regDate, boolean admin, boolean ban, int platformId, boolean streamer) {
+		super();
+		this.userId = userId;
+		this.loginId = loginId;
+		this.nickName = nickName;
+		this.password = password;
+		this.email = email;
+		this.point = point;
+		this.regDate = regDate;
+		this.admin = admin;
+		this.ban = ban;
+		this.platformId = platformId;
+		this.streamer = streamer;
+	}
+	
 	public UserVO(int userId, String loginId, String nickName, String password, String email, int point,
 			LocalDate regDate, boolean admin, boolean ban, int platformId) {
 		super();
@@ -135,12 +171,12 @@ public class UserVO {
 		this.ban = ban;
 		this.platformId = platformId;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "UserVO [userId=" + userId + ", loginId=" + loginId + ", nickName=" + nickName + ", password=" + password
 				+ ", email=" + email + ", point=" + point + ", regDate=" + regDate + ", admin=" + admin + ", ban=" + ban
-				+ ", platformId=" + platformId + "]";
+				+ ", platformId=" + platformId + ", streamer=" + streamer + "]";
 	}
 
 	public boolean matchPassword(String pwd) {

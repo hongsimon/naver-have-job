@@ -18,6 +18,8 @@ public interface IUserMapper {
 	
 	public List<UserVO> selectAllUser();
 	
+	public List<UserVO> selectStreamerAll();
+	
 	public void deleteUser(int userId);
 	
 	public void updateUser(UserVO user);

@@ -9,7 +9,8 @@ public class AuthUser {
 	private int point;
 	private boolean admin;
 	private int platformId;
-
+	private boolean streamer;
+	
 	public AuthUser(int userId, String loginId, String nickName, String email, int point, boolean admin,
 			int platformId) {
 		this.userId = userId;
@@ -19,6 +20,18 @@ public class AuthUser {
 		this.point = point;
 		this.admin = admin;
 		this.platformId = platformId;
+	}
+	
+	public AuthUser(int userId, String loginId, String nickName, String email, int point, boolean admin,
+			int platformId, boolean streamer) {
+		this.userId = userId;
+		this.loginId = loginId;
+		this.nickName = nickName;
+		this.email = email;
+		this.point = point;
+		this.admin = admin;
+		this.platformId = platformId;
+		this.streamer = streamer;
 	}
 	public int getUserId() {
 		return userId;
@@ -76,4 +89,12 @@ public class AuthUser {
 		this.platformId = platformId;
 	}
 
+	public boolean isStreamer() {
+		return streamer;
+	}
+
+	public void setStreamer(boolean streamer) {
+		this.streamer = streamer;
+	}
+	
 }

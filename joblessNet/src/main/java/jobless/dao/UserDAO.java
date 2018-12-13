@@ -17,6 +17,8 @@ public interface UserDAO {
 	
 	public List<UserVO> selectAll();
 	
+	public List<UserVO> selectStreamerAll();
+	
 	public void delete(int userId);
 	
 	public void update(UserVO user);

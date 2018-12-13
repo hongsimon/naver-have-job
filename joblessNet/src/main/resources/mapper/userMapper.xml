@@ -33,7 +33,8 @@
 			is_admin as 'admin', 
 			reg_date as regDate, 
 			is_banned as ban, 
-			platform_id as platformId 
+			platform_id as platformId, 
+			is_streamer as streamer 
 		from 
 			user 
 		where 
@@ -50,7 +51,8 @@
 			is_admin as 'admin', 
 			reg_date as regDate, 
 			is_banned as ban, 
-			platform_id as platformId 
+			platform_id as platformId, 
+			is_streamer as streamer 
 		from 
 			user 
 		where 
@@ -67,7 +69,8 @@
 			is_admin as 'admin', 
 			reg_date as regDate, 
 			is_banned as ban, 
-			platform_id as platformId 
+			platform_id as platformId, 
+			is_streamer as streamer 
 		from 
 			user 
 		where 
@@ -84,7 +87,9 @@
 			is_admin as 'admin', 
 			reg_date as regDate, 
 			is_banned as ban, 
-			platform_id as platformId 
+			platform_id as platformId, 
+			is_streamer as streamer 
+			
 		from 
 			user 
 		where 
@@ -101,9 +106,28 @@
 			is_admin as 'admin', 
 			reg_date as regDate, 
 			is_banned as ban, 
-			platform_id as platformId 
+			platform_id as platformId, 
+			is_streamer as streamer
 		from 
 			user
+	</select>
+	<select id="selectStreamerAll" resultType="User">	
+		select 
+			user_id as userId, 
+			login_id as loginId, 
+			nickname as nickName, 
+			password, 
+			email, 
+			point, 
+			is_admin as 'admin', 
+			reg_date as regDate, 
+			is_banned as ban, 
+			platform_id as platformId, 
+			is_streamer as streamer 
+		from 
+			user
+		where
+			is_streamer = true
 	</select>
 	<delete id="deleteUser" parameterType="int">
 		delete 

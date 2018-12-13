@@ -14,4 +14,6 @@ public interface GetUserService {
 	public UserVO getUserByEmail(String email);
 	
 	public List<UserVO> getAllUser();
+	
+	public List<UserVO> getStreamerAll();
 }
