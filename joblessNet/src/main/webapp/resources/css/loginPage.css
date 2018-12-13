@@ -20,11 +20,18 @@
   display: inline-block;
 }
 
+.login-selecter a{
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+
 .error-msg{
-  background-color: rgba(218, 113, 132, 0.6);
-  color: #5b1414;
+  padding: 8px;
+  background-color: rgba(236, 162, 175, 0.6);
+  color: #a83c3c;
   margin: 15px;
-  border: 1px solid #5b1414;
+  border: 1px solid #a83c3c;
 }
 
 .margin-l{
@@ -32,16 +39,18 @@
 }
 
 .hr-size{
-  width: 420px;
+  width: 440px;
 }
 
 .login-logo a img{
-  width: 400px;
+  width: 200px;
   max-height: inherit;
-  margin-top: -50px;
-  margin-bottom: -70px;
   overflow: hidden;
+  margin-left: -20px;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
+
 
 
 #naver_id_login img{
@@ -90,4 +99,198 @@
   text-align: center;
   display: inline-block;
 
+}
+
+
+.login-active{
+  border-bottom: 2px solid  #287A72;
+  color: #287A72;
+  margin: -2px;
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login-form input{
+  width: 440px;
+  border: 1px solid #cbcbcb;
+  padding: 5px;
+}
+
+.login-form div{
+  margin-top: 20px;
+}
+
+.login_submit{
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.login_submit>button{
+  padding: 10px 15px;
+  background-color: #287A72;
+  color: #ffffff;
+  border: none;
+}
+
+.Sign-active{
+  border-bottom: 2px solid  #287A72;
+  color: #287A72;
+  margin: -2px;
+  width: 70px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.login-email-check>div>div{
+  padding-top: 10px;
+}
+
+.login-email-check input{
+  padding: 5px;
+  width: 150px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.input-login-email{
+    padding-bottom: 10px;
+}
+
+.input-login-email-btn{
+  font-style: 12px;
+}
+
+.input-login-email-btn button{
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  padding: 5px;
+  color: #939393;
+  margin-right: 15px;
+  margin-bottom: 20px;
+}
+
+.search-email-false{
+  background-color: #e4e4e4;
+  border: 1px solid #b4b4b4;
+  padding: 6px 8px;
+  border-radius: 5px;
+}
+
+.search-email-true{
+  background-color: #287A72;
+  border: none;
+  color: #ffffff;
+  padding: 6px 8px;
+  border-radius: 5px;
+}
+
+.search-email-form h1{
+  text-align: center;
+  font-weight: bold;
+}
+
+.search-email-form>div{
+  margin-top: 20px;
+  text-align: center;
+}
+
+.search-email-inner{
+  font-size: 14px;
+  text-align: center;
+}
+
+.search-email-input>div{
+  text-align: left;
+  margin-left: 68px;
+}
+
+.search-email-input>input{
+  width: 320px;
+  padding: 4px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #c6c6c6;
+  margin-top: 10px;
+}
+
+.search-email-input>input::placeholder{
+  color: #d7d7d7
+}
+
+.search-email-btn{
+  margin-bottom: 20px;
+}
+
+.search_login_errorBox{
+  margin-left: 50px;
+  width: 350px;
+}
+
+.search_login_errorBox>div{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.search-email-input>div{
+  margin-top: 10px;
+}
+
+.search-email{
+  font-weight: bold;
+  font-size: 18px;
+  font-family: sans-serif;
+}
+
+.search-email>a{
+  padding-left: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.search-id-btn{
+  display: inline-block;
+}
+
+.search-id-btn>button{
+  background-color: #fff;
+  border: 2px solid #287A72;
+  border-radius: 5px;
+  color: #287A72;
+  padding: 5px;
+}
+
+.search-password-btn{
+  display: inline-block;
+  margin-left: 0px;
+}
+
+.search-email-inner-last>div{
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.search-restart{
+  margin-left: 20px;
+  background-color: #fff;
+  border: 2px solid #287A72;
+  border-radius: 5px;
+  color: #287A72;
+  padding: 4px;
+}
+
+.search-for-login{
+  background-color: #287A72;
+  border: none;
+  color: #ffffff;
+  padding: 8px 9px;
+  border-radius: 5px;
+}
+
+.search-for{
+  margin-top: 20px;
 }
