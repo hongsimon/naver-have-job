@@ -9,6 +9,15 @@ public class CommentVO {
 	private int userId;
 	private int postId;
 	private int clipId;
+	private String writerNickname;
+	
+	public String getWriterNickname() {
+		return writerNickname;
+	}
+
+	public void setWriterNickname(String writerNickname) {
+		this.writerNickname = writerNickname;
+	}
 
 	public CommentVO() {
 	}
@@ -70,7 +79,8 @@ public class CommentVO {
 
 	@Override
 	public String toString() {
-		return "CommentVO [commentId=" + commentId + ", content=" + content + ", userId=" + userId + ", postId=" + postId + ", clipId=" + clipId + "]";
+		return "CommentVO [commentId=" + commentId + ", content=" + content + ", userId=" + userId + ", postId=" + postId + ", clipId=" + clipId + ", writerNickname=" + writerNickname + "]";
 	}
+
 	
 }

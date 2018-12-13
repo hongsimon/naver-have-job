@@ -101,7 +101,7 @@
                             </div>
                             <div class="clip-comment-user-comment">
                               <div class="clip-comment-user-writer">
-                               	${comment.userId }
+                               	${comment.writerNickname }
                                 <div class="clip-comment-service">
                                   <c:if test="${comment.userId == authUser.userId }">
                                   	<a href="deleteComment?commentId=${comment.commentId }">삭제</a>
