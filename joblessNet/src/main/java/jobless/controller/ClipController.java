@@ -244,7 +244,7 @@ public class ClipController {
 			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
 			mv.setViewName("errorpage");
 		} else {
-			mv.setViewName("redirect:viewClip");
+			mv.setViewName("view/write/border-hotClip-write");
 		}
 		return mv;
 

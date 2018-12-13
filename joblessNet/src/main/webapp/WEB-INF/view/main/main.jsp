@@ -314,34 +314,21 @@
                       <div>
 
                         <ul class="hotclip-border">
-
+						<c:forEach var="clipDetail" items="${clipDetailList}" varStatus="status" begin="0" end="20">
                           <li>
                             <div class="hotclip-box ">
-                              <a href="#">
+                              <a href="selectClip?clipId=${clipDetail.clip.clipId }">
                                 <div class="">
-                                  <img class="hotclip-border-video" src="https://img.youtube.com/vi/hAFh1XcwdS4/mqdefault.jpg"></img>
+                                  <img class="hotclip-border-video" src="${clipDetail.clip.thumbURL }"></img>
                                 </div>
                                 <div class="hotclip-title-size">
-                                  <a class="hotclip-title">[HG?] PSYCHO HARO 싸이코 하로 -1부- ハロ プラ</a>
+                                  <a class="hotclip-title">${clipDetail.clip.title }</a>
                                 </div>
                               </a>
                             </div>
                           </li>
-
-                          <li>
-                            <div class="hotclip-box ">
-                              <a  href="#">
-                                <div class="">
-                                  <img class="hotclip-border-video" src="https://img.youtube.com/vi/hAFh1XcwdS4/mqdefault.jpg"></img>
-                                </div>
-                                <div class="hotclip-title-size">
-                                  <a class="hotclip-title">1456687541654798643748546546841324684657498</a>
-                                </div>
-                              </a>
-                            </div>
-                          </li>
-
-
+						</c:forEach>
+                         
                         </ul>
                       </div>
 
