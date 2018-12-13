@@ -4,7 +4,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <%@include file="../header_Service/pageContextService.jsp"%>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginPage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
 
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -21,31 +28,31 @@
     <title>JobLess - Join</title>
   </head>
   <body>
-    <div class="container login-con test-border margin-nav">
-      <div class="login-logo text-center login-logo"><a href="main"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
+    <div class="container login-con  margin-nav">
+      <div class="login-logo text-center "><a href="main"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
       <div class="login-selecter">
       <div>
-        <a href="login" style="color: black; text-decoration:none">Log In</a>
+        <a href="login" >Log In</a>
       </div>
-      <div>
-        <a href="#" style="color: black; text-decoration:none">Sign Up</a>
+      <div class="Sign-active">
+        <a href="#" >Sign Up</a>
       </div>
       </div>
       <c:if test="${errors.OverlapLoginIdException }">
 	      <div class="error-msg text-center">
-	      중복된 로그인 아이디입니다.
+	      	중복된 로그인 아이디입니다.
 	      </div>
       </c:if>
       
       <c:if test="${errors.OverlapNickNameException }">
       	 <div class="error-msg text-center">
-	      중복된 닉네임입니다.
+	     	 중복된 닉네임입니다.
 	     </div>
       </c:if>
       
       <c:if test="${errors.OverlapEmailException }">
 	      <div class="error-msg text-center">
-	      중복된 이메일입니다.
+	      	중복된 이메일입니다.
 	      </div>
       </c:if>
       
@@ -98,36 +105,36 @@
       </c:if>
       
       <div>
-        <form class=" margin-l" action="join" method="post" >
+        <form class=" margin-l login-form" action="join" method="post" >
           <div>
-            LoginID
+	          <div>
+	            LoginID
+	          </div>
+            <input type="text" name="loginId" value="${user.loginId }"  autocomplete="off"/>
           </div>
           <div>
-            <input type="text" name="loginId" value="${user.loginId }"/>
+	          <div>
+	            Password
+	          </div>
+            <input type="password" name="password"  autocomplete="off" />
           </div>
           <div>
-            Password
+	          <div>
+	            PasswordCheck
+	          </div>
+            <input type="password" name="passwordCheck"   autocomplete="off"/>
           </div>
           <div>
-            <input type="password" name="password" />
+	          <div>
+	            Email
+	          </div>
+            <input type="text" name="email" value="${user.email }"  autocomplete="off" />
           </div>
           <div>
-            PasswordCheck
-          </div>
-          <div>
-            <input type="password" name="passwordCheck" />
-          </div>
-          <div>
-            Email
-          </div>
-          <div>
-            <input type="text" name="email" value="${user.email }" />
-          </div>
-          <div>
-            NickName
-          </div>
-          <div>
-            <input type="text" name="nickName"  value="${user.nickName }" />
+	          <div>
+	            NickName
+	          </div>
+            <input type="text" name="nickName"  value="${user.nickName }"  />
           </div>
           <div>
             Like platform
@@ -152,28 +159,9 @@
            	<br>
           <hr class="hr-size" />
 
-          <div class="margin-title">
-            <a href="#">
-              <div id="naver_id_login"><img src="${pageContext.request.contextPath}/images/api-img/네이버 아이디로 로그인_아이콘형_Green.PNG" />
-                <div>
-                  네이버 아이디로 회원가입
-                </div>
-              </div>
-            </a>
-          </div>
-<%-- 
-          <div class="margin-title">
-            <a href="#">
-              <div id="google_id_login"><img src="${pageContext.request.contextPath}/images/api-img/btn_google_dark_normal_ios@3x.png" />
-                <div>
-                  구글 아이디로 회원가입
-                </div>
-              </div>
-            </a>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div> --%>
-          </div>
-	
-     <button type="submit" id="btn">Check Sign Up</button>
+        		<div  class="login_submit">
+            		<button type="submit">Check Sign Up</button>
+         		 </div>
 
         </form>
         

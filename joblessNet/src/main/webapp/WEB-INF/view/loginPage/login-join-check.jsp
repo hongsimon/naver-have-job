@@ -4,7 +4,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <%@include file="../header_Service/pageContextService.jsp"%>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginPage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
 
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -16,19 +23,29 @@
             window.alert("만료된 페이지입니다.")
             location.href="main";
         }
+        
+    </script>
+    <script type="text/javascript">
+	    $(function(){
+	    	$(".input-login-email-btn button").click(function(){;
+	    		$(".login-email-check").attr("action","email-again");
+	    		$(".login-email-check").submit();
+	    	})
+	    	
+	    })
     </script>
     <meta charset="utf-8">
     <title>JobLess - Join</title>
   </head>
   <body>
-    <div class="container login-con test-border margin-nav">
-      <div class="login-logo text-center login-logo"><a href="main"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
+    <div class="container login-con margin-nav">
+      <div class="login-logo text-center "><a href="main"><img src="${pageContext.request.contextPath}/images/logo/joblessLogo-2.png" /></a></div>
       <div class="login-selecter">
 	      <div>
-	        <a href="login" style="color: black; text-decoration:none">Log In</a>
+	        <a href="login" >Log In</a>
 	      </div>
-	      <div>
-	        <a href="#" style="color: black; text-decoration:none">Sign Up</a>
+	      <div class="Sign-active">
+	        <a href="#">Sign Up</a>
 	      </div>
       </div>
       <c:if test="${errors.UserRequestNullException }">
@@ -44,7 +61,7 @@
       </c:if>
       
       <div>
-        <form class=" margin-l" action="join-check" method="post">
+        <form class=" margin-l login-email-check" action="join-check" method="post">
           <div>
             <div id="email">
               ${user.email}${empty user }
@@ -63,38 +80,49 @@
             	유효 기간을 연장하려면 인증코드를 재발급 받아주세요.<br>
             	(유효 기간이 만료된 상태에서는 연장이 불가능합니다.)<br>
             </div>
-          </div>
           <br>
-          <div>
+          </div>
+          <div class="input-login-email">
           
             <input type="text" name="securityCode">
-            <input type="text" name="code" value="${code }">
-            <input type="text" name="loginId" value="${user.loginId }">
-            <input type="text" name="nickName" value="${user.nickName }">
-            <input type="text" name="password" value="${user.password }">
-            <input type="text" name="email" value="${user.email }">
-            <input type="text" name="platformId" value="${user.platformId }">
-            
+            <input type="hidden" name="code" value="${code }">
+            <input type="hidden" name="loginId" value="${user.loginId }">
+            <input type="hidden" name="nickName" value="${user.nickName }">
+            <input type="hidden" name="password" value="${user.password }">
+            <input type="hidden" name="email" value="${user.email }">
+            <input type="hidden" name="platformId" value="${user.platformId }">
+          </div>
+          
+          <div class="input-login-email-btn">
+            이메일을 받지 못하셨나요?
+            <button type="button" name="button" class="con-right">이메일 재전송</button>
+          </div>
+          
+          <div>
             <a href="#">Trouble logging in?</a>
           </div>
-          <div>
-          <button type="submit">Sign Up</button>
-		</div>
+          
+          <hr class="hr-size" style="width:420px;"/>
+          <div  class="login_submit">
+                 <button type="submit">Sign Up</button>
+          </div>
         </form>
 
-        </div>
+        </div >
+        
+        <%-- <div class="input-login-email-btn">
             이메일을 받지 못하셨나요?
             <form action="email-again" method="POST">
-            <input type="text" name="loginId" value="${user.loginId }">
-            <input type="text" name="nickName" value="${user.nickName }">
-            <input type="text" name="password" value="${user.password }">
-            <input type="text" name="email" value="${user.email }">
-            <input type="text" name="platformId" value="${user.platformId }">
-            <button type="submit" name="button">이메일 재전송</button>
+            <input type="hidden" name="loginId" value="${user.loginId }">
+            <input type="hidden" name="nickName" value="${user.nickName }">
+            <input type="hidden" name="password" value="${user.password }">
+            <input type="hidden" name="email" value="${user.email }">
+            <input type="hidden" name="platformId" value="${user.platformId }">
+            <button type="submit" name="button" class="con-right">이메일 재전송</button>
             </form>
-        <div>
 
-      </div>
+        </div> --%>
+
     </div>
   </body>
 </html>
