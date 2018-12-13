@@ -10,7 +10,13 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <script>
+        var boolean = ${empty user};
+        if(boolean == true){
+            window.alert("만료된 페이지입니다.")
+            location.href="main";
+        }
+    </script>
     <meta charset="utf-8">
     <title>JobLess - Join</title>
   </head>
@@ -41,7 +47,7 @@
         <form class=" margin-l" action="join-check" method="post">
           <div>
             <div id="email">
-              <a href="http://www.${emailHyperLink }" target="_blank" style="color: black; text-decoration:none">${user.email}</a>
+              ${user.email}${empty user }
             </div>
             <div>
               으로 전송된 이메일을 확인하여 가입 절차를 완료해 주세요.<br>
@@ -55,18 +61,19 @@
             <div>
             	이 페이지와 인증코드는 10분동안 유효합니다.<br>
             	유효 기간을 연장하려면 인증코드를 재발급 받아주세요.<br>
+            	(유효 기간이 만료된 상태에서는 연장이 불가능합니다.)<br>
             </div>
           </div>
           <br>
           <div>
           
             <input type="text" name="securityCode">
-            <input type="hidden" name="code" value="${code }">
-            <input type="hidden" name="loginId" value="${user.loginId }">
-            <input type="hidden" name="nickName" value="${user.nickName }">
-            <input type="hidden" name="password" value="${user.password }">
-            <input type="hidden" name="email" value="${user.email }">
-            <input type="hidden" name="platformId" value="${user.platformId }">
+            <input type="text" name="code" value="${code }">
+            <input type="text" name="loginId" value="${user.loginId }">
+            <input type="text" name="nickName" value="${user.nickName }">
+            <input type="text" name="password" value="${user.password }">
+            <input type="text" name="email" value="${user.email }">
+            <input type="text" name="platformId" value="${user.platformId }">
             
             <a href="#">Trouble logging in?</a>
           </div>
@@ -78,11 +85,11 @@
         </div>
             이메일을 받지 못하셨나요?
             <form action="email-again" method="POST">
-            <input type="hidden" name="loginId" value="${user.loginId }">
-            <input type="hidden" name="nickName" value="${user.nickName }">
-            <input type="hidden" name="password" value="${user.password }">
-            <input type="hidden" name="email" value="${user.email }">
-            <input type="hidden" name="platformId" value="${user.platformId }">
+            <input type="text" name="loginId" value="${user.loginId }">
+            <input type="text" name="nickName" value="${user.nickName }">
+            <input type="text" name="password" value="${user.password }">
+            <input type="text" name="email" value="${user.email }">
+            <input type="text" name="platformId" value="${user.platformId }">
             <button type="submit" name="button">이메일 재전송</button>
             </form>
         <div>

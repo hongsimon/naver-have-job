@@ -129,15 +129,9 @@ public class AccountController {
 		}
 		String code = emailSendService.emailService(userRequest.getEmail());
 		
-
-		String[] emailHyperLink = userRequest.getEmail().split("@");
-		System.out.println(emailHyperLink[1]);
-		
 		session.setAttribute("code", code);
 		session.setAttribute("user", userRequest);
 		session.setMaxInactiveInterval(600);
-		
-		modelAndView.addObject("emailHyperLink", emailHyperLink[1]);
 		modelAndView.setViewName("redirect:/join-check");
 		return modelAndView; 
 	}
@@ -237,7 +231,8 @@ public class AccountController {
 								  @RequestParam String nickName,
 								  @RequestParam String password,
 								  @RequestParam String email,
-								  @RequestParam int platformId
+								  @RequestParam int platformId,
+								  HttpServletRequest req
 								 ) {
 		System.out.println("loginCheck_POST");
 	
@@ -258,6 +253,12 @@ public class AccountController {
 			e.getMessage();
 			errors.put("DoesNotMatchSecurityCode", true);
 			return modelAndView;
+		}
+		
+		HttpSession session = req.getSession(false);
+		
+		if(session != null) {
+			session.invalidate();
 		}
 		
 		modelAndView.setViewName("redirect:/main");
@@ -286,7 +287,6 @@ public class AccountController {
 		session.setMaxInactiveInterval(600);
 
 		modelAndView.setViewName("redirect:/join-check");
-		
 		return modelAndView;
 	}
 	
