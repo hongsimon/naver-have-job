@@ -159,7 +159,7 @@
 					  <li><div class="emphasis overNick">${authUser.nickName }</div>(<div class="overflower">${authUser.loginId }</div>)</li>
 	                  <li><div class="emphasis ">${authUser.point }</div>포인트</li>
 	                  <li class="divider"></li>
-	                  <li><a href="">설정</a></li>
+	                  <li><a href="Settings">설정</a></li>
 	                  <li><a href="">아이콘 보관함</a></li>
 	                  <li><a href="logout">로그아웃</a></li>
                 </ul>

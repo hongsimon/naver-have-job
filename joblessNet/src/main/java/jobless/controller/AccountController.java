@@ -43,9 +43,6 @@ public class AccountController {
 	DeleteUserService deleteUserService;  
 	
 	@Autowired
-	GetUserService getUserService;
-	
-	@Autowired
 	JoinCheckService joinCheckService;
 	
 	@Autowired
@@ -63,16 +60,75 @@ public class AccountController {
 	@Autowired
 	RecaptchaService recaptchaService;
 	
+	//로그인 페이지
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login_GET() {
+		System.out.println("login_GET");
+		return "view/loginPage/login-main";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public ModelAndView login_POST(@RequestParam String loginId,
+			@RequestParam String password,
+			@RequestParam("g-recaptcha-response") String recaptcha,
+			HttpSession session
+			) {
+		System.out.println("login_POST");
+		
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		ModelAndView modelAndView = new ModelAndView();
+		UserRequest userRequest = new UserRequest(loginId, password);
+		try {
+			
+			userRequest.validateLogin(errors);
+			
+			modelAndView.addObject("errors", errors);
+			modelAndView.addObject("value", userRequest);
+			modelAndView.setViewName("view/loginPage/login-main");
+			AuthUser authUser = loginService.login(loginId, password);
+			
+			recaptchaService.recaptcha(recaptcha);
+			
+			session.setAttribute("authUser", authUser);
+		}catch (SignInFailException e) {
+			e.getMessage();
+			errors.put("Id_or_Pw_NotMatch", true);
+			return modelAndView;
+		}catch (RecaptchaNotRunningException e) {
+			e.getMessage();
+			errors.put("Not_Running_Recaptcha", true);
+			return modelAndView;
+		}
+		
+		modelAndView.setViewName("redirect:/main");
+		return modelAndView;
+	}
+	
+	
+	//로그아웃 페이지
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	public String logout(HttpServletRequest req) {
+		System.out.println("logout_GET");
+		HttpSession session = req.getSession(false);
+		
+		if(session != null) {
+			session.invalidate();
+		}
+		
+		return "redirect:/main";
+	}
+	
+	
 	//회원가입 페이지
 	@RequestMapping(value="/join", method=RequestMethod.GET)
-	public String controllerJoin_GET() {
-		System.out.println("회원가입 페이지_GET");
+	public String userJoin_GET() {
+		System.out.println("userJoin_GET");
 		
 		return "view/loginPage/login-join";
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public ModelAndView controllerJoin_POST(@RequestParam String loginId,
+	public ModelAndView userJoin_POST(@RequestParam String loginId,
 									  @RequestParam String nickName,
 									  @RequestParam String password,
 									  @RequestParam String passwordCheck,
@@ -82,7 +138,7 @@ public class AccountController {
 									  HttpSession session
 									  
 									  ) {
-		System.out.println("회원가입 페이지_POST");
+		System.out.println("userJoin_POST");
 		
 		ModelAndView modelAndView = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
@@ -134,129 +190,72 @@ public class AccountController {
 	}
 	
 	
+	//회원가입 이메일 체크 페이지
+		@RequestMapping(value="/join-check", method=RequestMethod.GET)
+		public String joinCheck_GET() {
+			System.out.println("joinCheck_GET");
+			return "view/loginPage/login-join-check";
+		}
+		
+		@RequestMapping(value="/join-check", method=RequestMethod.POST)
+		public ModelAndView joinCheck_POST(@RequestParam String securityCode,
+									  @RequestParam String code,
+									  @RequestParam String loginId,
+									  @RequestParam String nickName,
+									  @RequestParam String password,
+									  @RequestParam String email,
+									  @RequestParam int platformId
+									 ) {
+			System.out.println("joinCheck_POST");
+		
+			UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
+			Map<String, Boolean> errors = new HashMap<String, Boolean>();
+			ModelAndView modelAndView = new ModelAndView();
+			
+			try {
+				modelAndView.setViewName("view/loginPage/login-join-check");
+				
+				
+				if(!code.equals(securityCode)) {
+					errors.put("notMatchCode", true);
+					modelAndView.addObject("errors", errors);
+					return modelAndView;
+				}
+				
+				joinUserService.joinUser(userRequest);
+				modelAndView.addObject("errors", errors);
+			}catch (DoesNotMatchSecurityCode e) {
+				e.getMessage();
+				System.out.println("DoesNotMatchSecurityCode");
+				errors.put("DoesNotMatchSecurityCode", true);
+				return modelAndView;
+			}
+			
+			modelAndView.setViewName("redirect:/main");
+			return modelAndView;
+		}
+		
+	
 	//회원탈퇴 페이지
 	@RequestMapping(value="/deleteUser", method=RequestMethod.GET)
-	public String controllerDeleteUser_GET() {
-		System.out.println("회원삭제 페이지_GET");
+	public String DeleteUser_GET() {
+		System.out.println("DeleteUser_GET 페이지_GET");
 		return "deleteUser";
 	}
 	
 	@RequestMapping(value="/deleteUser", method=RequestMethod.POST)
-	public String controllerDeleteUser_POST(@RequestParam int userId) {
-		System.out.println("회원삭제 페이지_POST");
+	public String DeleteUser_POST(@RequestParam int userId) {
+		System.out.println("DeleteUser_POST");
 		deleteUserService.deleteUser(userId);
 		
 		return "redirect:/main";
 	}
 	
-	
-	//회원검색 페이지
-	@RequestMapping(value="/selectUser", method=RequestMethod.GET)
-	public String controllerSelectUser_GET() {
-		return "selectUser";
-	}
-	
-	@RequestMapping(value="/selectUser", method=RequestMethod.POST)
-	public String controllerSelectUser_POST(@RequestParam int userId) {
-		ModelAndView modelAndView = new ModelAndView();
-		
-		try {
-			UserVO user = getUserService.getUserByUserId(userId);
-			modelAndView.addObject("user", user);
-		}catch (UserNotFoundException e) {
-			e.getMessage();
-			modelAndView.addObject("user", "찾을수 없는 사용자인 것이에오");
-			return "selectUser";
-		}
-		return "selectUser";
-	}
-	
-
-	//로그인 페이지
-	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String login_GET() {
-		return "view/loginPage/login-main";
-	}
-	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public ModelAndView login_POST(@RequestParam String loginId,
-								   @RequestParam String password,
-								   @RequestParam("g-recaptcha-response") String recaptcha,
-								   HttpSession session
-								  ) {
-		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-		ModelAndView modelAndView = new ModelAndView();
-		UserRequest userRequest = new UserRequest(loginId, password);
-		try {
-			
-			userRequest.validateLogin(errors);
-			
-			modelAndView.addObject("errors", errors);
-			modelAndView.addObject("value", userRequest);
-			modelAndView.setViewName("view/loginPage/login-main");
-			AuthUser authUser = loginService.login(loginId, password);
-			
-			recaptchaService.recaptcha(recaptcha);
-			
-			session.setAttribute("authUser", authUser);
-		}catch (SignInFailException e) {
-			e.getMessage();
-			errors.put("Id_or_Pw_NotMatch", true);
-			return modelAndView;
-		}catch (RecaptchaNotRunningException e) {
-			e.getMessage();
-			errors.put("Not_Running_Recaptcha", true);
-			return modelAndView;
-		}
-		
-		modelAndView.setViewName("redirect:/main");
-		return modelAndView;
-	}
-	
-	
-	//회원가입 이메일 체크 페이지
-	@RequestMapping(value="/join-check", method=RequestMethod.GET)
-	public String loginCheck_GET() {
-		System.out.println("loginCheck_GET");
-		return "view/loginPage/login-join-check";
-	}
-	
-	@RequestMapping(value="/join-check", method=RequestMethod.POST)
-	public ModelAndView loginCheck_POST(@RequestParam String securityCode,
-								  @RequestParam String code,
-								  @RequestParam String loginId,
-								  @RequestParam String nickName,
-								  @RequestParam String password,
-								  @RequestParam String email,
-								  @RequestParam int platformId
-								 ) {
-		System.out.println("loginCheck_POST");
-	
-		UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
-		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-		ModelAndView modelAndView = new ModelAndView();
-		
-		try {
-			modelAndView.setViewName("view/loginPage/login-join-check");
-			
-			
-			if(!code.equals(securityCode)) {
-				errors.put("notMatchCode", true);
-				modelAndView.addObject("errors", errors);
-				return modelAndView;
-			}
-			
-			joinUserService.joinUser(userRequest);
-			modelAndView.addObject("errors", errors);
-		}catch (DoesNotMatchSecurityCode e) {
-			e.getMessage();
-			System.out.println("DoesNotMatchSecurityCode");
-			errors.put("DoesNotMatchSecurityCode", true);
-			return modelAndView;
-		}
-		
-		modelAndView.setViewName("redirect:/main");
-		return modelAndView;
+	//설정페이지
+	@RequestMapping(value="/Settings", method=RequestMethod.GET)
+	public String SettingsPage_GET() {
+		System.out.println("SettingsPage_GET");
+		return "view/service/favoriteList";
 	}
 	
 	//이메일 재전송 서비스(회원가입 전용)
@@ -269,6 +268,7 @@ public class AccountController {
 								  @RequestParam int platformId,
 								  HttpSession session
 								) {
+		System.out.println("emailAgainSend_POST");
 		ModelAndView modelAndView = new ModelAndView();
 		UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
 		
@@ -282,18 +282,5 @@ public class AccountController {
 
 		modelAndView.setViewName("redirect:/join-check");
 		return modelAndView;
-	}
-	
-	//로그아웃 페이지
-	@RequestMapping(value="/logout",method=RequestMethod.GET)
-	public String logout(HttpServletRequest req) {
-		
-		HttpSession session = req.getSession(false);
-		
-		if(session != null) {
-			session.invalidate();
-		}
-		
-		return "redirect:/main";
 	}
 }
