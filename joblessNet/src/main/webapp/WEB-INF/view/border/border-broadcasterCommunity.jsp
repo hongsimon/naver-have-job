@@ -36,6 +36,7 @@
           <div class="row">
 			<%@include file="../share-nav/nav-service.jsp"%>
              <!-- 게시판 메뉴 -->
+             
             <div class="col-xs-10">
 
               <div class="row margin-container">

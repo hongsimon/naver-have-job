@@ -568,3 +568,31 @@
   vertical-align: middle;
   display: inline-block;
 }
+
+.broadcasterList-t{
+  display: none;
+}
+
+
+.broadcaster-list-box{
+  background-color: #fff;
+}
+
+.broadcaster-list-box>ol{
+  list-style: none;
+  padding: 0px;
+}
+
+.broadcaster-list-box>ol>li>div{
+  margin: 5px 10px;
+  display: inline-block;
+  width: 18px;
+  text-align: center;
+  height: 18px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.broadcaster-list-box>ol>li{
+  border-bottom: 1px solid #b0b0b0;
+}
