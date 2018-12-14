@@ -1,10 +1,12 @@
 package jobless.service.board;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import jobless.dao.BoardApplyDAO;
 import jobless.exception.CreateBoardApplyException;
 
+@Repository("createBoardApplyService")
 public class CreateBoardApplyServiceImpl implements CreateBoardApplyService {
 
 	@Autowired

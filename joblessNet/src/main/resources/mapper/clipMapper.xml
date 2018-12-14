@@ -108,7 +108,7 @@
   			broadcaster_id broadcasterId,
   			w.nickname writerNickname,
   			b.nickname broadcasterNickname,
-  			(select count(user_id) from comment where clip_id = l.clip_id) as likes,
+  			(select count(clip_id) from taku.like where clip_id = l.clip_id) as likes,
   			(select count(comment_content) from comment where clip_id = cm.clip_id) as comments
   		from 
   			clip c join user w on c.writer_id = w.user_id

@@ -10,6 +10,12 @@ public class BoardApplyRequest {
 	private String broadcasterURL;
 	private boolean complete;
 	
+	public BoardApplyRequest(int ownerId, String content, String broadcasterURL) {
+		this.ownerId = ownerId;
+		this.content = content;
+		this.broadcasterURL = broadcasterURL;
+	}
+
 	public BoardApplyVO getInsertBoardApplyVO() {
 		return new BoardApplyVO(ownerId, content, broadcasterURL);
 	}
