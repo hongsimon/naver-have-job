@@ -22,12 +22,14 @@ $(function(){
         break;
 
         case "afree":
-          video = splits[4]
 
         break;
         case "twitch":
-
-          video = splits[5]
+          video = splits[3]
+          if(video.indexOf("?tt_medium=clips_api&tt_content=url") != -1){
+        	  video = video.replace("?tt_medium=clips_api&tt_content=url","");
+          }
+          
           replaceUrl =  "https://clips.twitch.tv/embed?autoplay=false&clip="+video+"&tt_content=embed&tt_medium=clips_embed";
           
            $.ajax({

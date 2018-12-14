@@ -1,5 +1,5 @@
 $(function(){
-
+  $(".service-del-btn>button").attr("disabled","true");
   $("#popOpenBtn").click(function(event){  //팝업 Open 버튼 클릭 시
 
             $("#popupDiv").css({
@@ -21,6 +21,18 @@ $(function(){
            $("body").css("overflow","auto");//body 스크롤바 생성
        });
 
+
+$(".service-checkbox>input").change(function(){
+  if($('input:checkbox[id="del-check"]').is(":checked")){
+    $(".service-del-btn>button").removeAttr("disabled");
+    $(".service-del-btn>button").attr("class","del-btn-true");
+    console.log("t")
+  }else{
+    $(".service-del-btn>button").attr("disabled","true");
+    $(".service-del-btn>button").attr("class","del-btn-false");
+  }
+
+})
 
 
 

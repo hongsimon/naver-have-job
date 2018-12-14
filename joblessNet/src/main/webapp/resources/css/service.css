@@ -1,8 +1,8 @@
 #popupDiv {  /* 팝업창 css */
    top : 0px;
    position: absolute;
-   width: 500px;
-   height: 500px;
+   width: 330px;
+   min-height: 340px;
    display: none;
    background-color: #e8e8e8;
    }
@@ -16,4 +16,235 @@
     display: none;
     background-color:rgba(0, 0, 0, 0.45);
     opacity: 0.8;
+}
+
+.popservice h2{
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.service-user{
+  background-color: #ffffff;
+  padding: 30px;
+}
+
+.service-btn{
+  margin-top: 10px;
+  margin-bottom: 18px;
+}
+
+.service-btn>a{
+  padding: 20px;
+  text-decoration: none;
+}
+
+.service-btn-active{
+  border: 3px solid #d0d0d0;
+  border-bottom: none;
+  border-radius: 5px 5px 0px 0px;
+  color: #000;
+  cursor: context-menu;
+  text-decoration: none;
+}
+
+.service-btns{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.service-btns:hover{
+  border-radius: 5px 5px 0px 0px;
+  background-color: #eeeeee;
+}
+
+.service-inner{
+  padding: 20px;
+  border: 1px solid #d0d0d0;
+  border-top:  3px solid #d0d0d0;
+  border-bottom:  3px solid #d0d0d0;
+}
+
+.service-inner input{
+  width: 280px;
+  padding: 5px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #d0d0d0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#focuse_none:focus{
+   box-shadow: 0px 0px 0px 0px #000000;
+}
+
+.chnagePwd{
+  background-color: #fff;
+  border: 1px solid  #287A72;
+  border-radius: 5px;
+  padding: 6px 16px;
+  color: #287A72;
+  margin-bottom: 10px;
+}
+
+.service-compl{
+  text-align: center;
+  background-color: #287A72;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 16px;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.popservice{
+  padding: 25px;
+}
+
+.popdel{
+  margin-left: 154px;
+}
+
+.service-error-msg{
+  background-color: rgba(236, 162, 175, 0.6);
+  color: #a83c3c;
+  margin: 15px;
+  border: 1px solid #a83c3c;
+}
+
+.service-error-msg-in{
+  background-color: rgba(236, 162, 175, 0.6);
+  color: #a83c3c;
+  margin: 15px;
+  border: 1px solid #a83c3c;
+  width: 250px;
+}
+
+.service-delNotice>div{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.service-delNotice span{
+  padding-right: 6px;
+}
+
+.service-delNotice{
+  border-bottom: 2px solid #d0d0d0;
+  border-top: 2px solid #d0d0d0;
+}
+
+.service-waring{
+ color: #e03737;
+}
+
+.service-del-id{
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 5px;
+  background-color: rgb(61, 61, 61);
+  color: #fff;
+}
+
+.service-checkbox>input{
+  width: auto;
+  outline: none;
+}
+
+.del-btn-false{
+  padding: 8px 10px;
+  background-color: #fff;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px ;
+  color: #d0d0d0;
+}
+
+.service-del-btn span{
+  padding-right: 5px;
+}
+
+.del-btn-true{
+  padding: 10px 10px;
+  background-color: #d74343;
+  border: none;
+  border-radius: 5px ;
+  color: #fff;
+}
+
+.write-info-table table{
+  border: 1px solid #d0d0d0;
+  width: 880px;
+}
+
+.write-info-table th{
+  border: 1px solid #d0d0d0;
+  text-align: center;
+  border-top: 3px solid #d0d0d0;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.write-info-table td{
+  padding: 10px;
+  font-size: 12px;
+  border: 1px solid #d0d0d0;
+  text-align: center;
+}
+
+.write-info-table a{
+  cursor: pointer;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.write-info-title{
+  min-width: 500px;
+  max-width: 500px;
+}
+
+.service-appli{
+  margin-bottom: 10px;
+}
+
+.service-appli-nick{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.service-appli-why{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.service-appli-why>textarea{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  outline: none;
+  padding: 10px;
+  resize: none;
+}
+
+.service-appli-why>textarea:focus{
+  box-shadow: 0px 0px 4px 0px #287A72;
+}
+
+
+.service-appli-email>input{
+  width: 880px;
+}
+
+.service-appli-btn>button{
+  margin-top: 20px;
+  background-color: #287A72;
+  color: #fff;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
 }

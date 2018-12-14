@@ -19,7 +19,6 @@ $(function(){
   $(".category").find("button").click(function(){
     $(".category").find("button").removeClass("focuse");
     $(this).addClass("focuse");
-    console.log($(this).html())
   });
 
   for(var i=0; i<$(".border-table li").length;i++){

@@ -3,7 +3,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <%@include file="../header_Service/pageContextService.jsp"%>
+  
+  	  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/hangul.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/broadcaster.js"></script>
+
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/border.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
+
     <meta charset="utf-8" />
     <script type="text/javascript">
 
@@ -18,97 +35,106 @@
         <div class="container margin-nav">
           <div class="row">
 			<%@include file="../share-nav/nav-service.jsp"%>
-            <!-- 게시판 메뉴 -->
+             <!-- 게시판 메뉴 -->
             <div class="col-xs-10">
 
               <div class="row margin-container">
                 <div class="col-xs-10">
                   <div class="broadcasterCommunity">
-                    <div>
-                      <input type="text" placeholder="머독 또는 ㅁㄷ" id="searchBox">
+                    <div class="broadcasterList">
+                     <!-- 닉네임, -->
                     </div>
-                    <div class="container row " >
-                      <div id="broadcasterList">
-                        <div class="broadcasterClass">
+                    <div class="broadcasterList_search">
+                        <input type="text" placeholder="머독 또는 ㅁㄷ" id="searchBox"/>
+                    </div>
+                    <div class="container row broadcasterList_con" >
+                      <div id="broadcasterList" class="broadcasterList_comm ">
+                        <div class="broadcasterClass ">
                             <div class="head-title">
                                 A-Z
                             </div>
-                              <div>
-                                <a href="#">a</a>
-                              </div>
-                              <div>
-                                <a href="#">ab</a>
-                              </div>
-                              <div>
-                                <a href="#">abc</a>
-                              </div>
                           </div>
-                          <div class="broadcasterClass">
+                          <div class="broadcasterClass ">
                               <div class="head-title">
                                   ㄱ
                               </div>
-                                <div>
-                                  <a href="#">가그</a>
-                                </div>
-                                <div>
-                                  <a href="#">가이코</a>
-                                </div>
-                                <div>
-                                  <a href="#">김재원</a>
-                                </div>
-                                <div>
-                                  <a href="#">김도</a>
-                                </div>
                             </div>
-                            <div class="broadcasterClass">
+                            <div class="broadcasterClass ">
                                 <div class="head-title">
                                     ㄴ
                                   </div>
-                                  <div>
-                                    <a href="#">노돌리</a>
-                                  </div>
-                                  <div>
-                                    <a href="#">녹두로</a>
-                                  </div>
-                                  <div>
-                                    <a href="#">눈쟁이</a>
-                                  </div>
                               </div>
-                              <div class="broadcasterClass">
+                              <div class="broadcasterClass ">
                                   <div class="head-title">
                                       ㄷ
                                   </div>
-                                    <div>
-                                      <a href="#">닥터준</a>
-                                    </div>
-                                    <div>
-                                      <a href="#">듀라한</a>
-                                    </div>
                               </div>
-                              <div class="broadcasterClass">
+                              <div class="broadcasterClass ">
                                   <div class="head-title">
                                       ㄹ
                                     </div>
-                                    <div>
-                                      <a href="#">로복</a>
-                                    </div>
-                                    <div>
-                                      <a href="#">레바</a>
-                                    </div>
                               </div>
-                              <div class="broadcasterClass">
+                              <div class="broadcasterClass ">
                                   <div class="head-title">
                                       ㅁ
                                     </div>
-                                    <div>
-                                      <a href="#">마루에몽</a>
-                                    </div>
-                                    <div>
-                                      <a href="#">머독</a>
+                              </div>
+
+                              <div class="broadcasterClass ">
+                                  <div class="head-title">
+                                      ㅂ
                                     </div>
                               </div>
 
-                        </div>
+                              <div class="broadcasterClass ">
+                                  <div class="head-title">
+                                      ㅅ
+                                    </div>
+                              </div>
+
+                              <div class="broadcasterClass ">
+                                  <div class="head-title">
+                                      ㅇ
+                                    </div>
+                              </div>
+
+                              <div class="broadcasterClass ">
+                                  <div class="head-title">
+                                      ㅈ
+                                    </div>
+                              </div>
+
+                              <div class="broadcasterClass ">
+                                  <div class="head-title">
+                                      ㅊ
+                                    </div>
+                              </div>
+
+                              <div class="broadcasterClass ">
+                                  <div class="head-title">
+                                      ㅋ
+                                    </div>
+                              </div>
+
+                              <div class="broadcasterClass ">
+                                  <div class="head-title">
+                                      ㅌ
+                                    </div>
+                              </div>
+
+                              <div class="broadcasterClass ">
+                                  <div class="head-title">
+                                      ㅍ
+                                    </div>
+                              </div>
+
+                              <div class="broadcasterClass ">
+                                  <div class="head-title">
+                                      ㅎ
+                                    </div>
+                              </div>
+
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -127,7 +153,7 @@
                     </ol>
                   </div>
                   <div>
-                    <a href="#">게시판 신청하기</a>  
+                    <a href="#">게시판 신청하기</a>
                   </div>
                 </div>
             </div>

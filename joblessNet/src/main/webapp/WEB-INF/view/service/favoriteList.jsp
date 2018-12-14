@@ -1,29 +1,30 @@
+<%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html>
 <head>
-  <script type="text/javascript" src="../js/jQuery.min.js"></script>
-  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../js/shareJs.js"></script>
-  <script type="text/javascript" src="../js/sliceString.js"></script>
-  <script type="text/javascript" src="../js/changeProfile.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/js/changeProfile.js"></script>
 
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/shareCss.css">
-  <link rel="stylesheet" href="../css/header.css" />
-  <link rel="stylesheet" href="../css/main.css" />
-  <link rel="stylesheet" href="../css/customC.css">
-  <link rel="stylesheet" href="../css/service.css">
-  <meta charset="utf-8" />
-  <title>백수넷</title>
-
+	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
+	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
+	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
+	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/service.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Jobless - Service</title>
 </head>
-
 <body>
+	<%@include file="../share-nav/nav-header.jsp"%>
 
   <!-- 우측 메인 메뉴바 -->
   <div class="container margin-nav">
     <div class="row right-nav-bar">
+    	<%@include file="../share-nav/nav-header.jsp"%>
 
       <!-- 게시판 메뉴 -->
       <div class="col-xs-10">
