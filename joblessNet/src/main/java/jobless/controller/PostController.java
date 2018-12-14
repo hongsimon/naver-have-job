@@ -21,7 +21,9 @@ import jobless.model.ContentVO;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
 import jobless.service.board.SelectBoardCategoryService;
+import jobless.service.comment.CommentRequest;
 import jobless.service.comment.ReadCommentService;
+import jobless.service.comment.WriteCommentService;
 import jobless.service.post.DeletePostService;
 import jobless.service.post.ModifyPostService;
 import jobless.service.post.PostRequest;
@@ -30,6 +32,9 @@ import jobless.service.post.WritePostService;
 
 @Controller("postController")
 public class PostController {
+	
+	@Autowired
+	WriteCommentService writeComment;
 
 	@Autowired
 	ReadPostService readPost;
@@ -68,9 +73,10 @@ public class PostController {
 			return mv;
 		}
 		
-		for(PostDetailVO post : postDetail) {
-			System.out.println(post.toString());
-		}
+		System.out.println(postDetail);
+//		for(PostDetailVO post : postDetail) {
+//			System.out.println(post.toString());
+//		}
 		mv.addObject("postDetail", postDetail);
 		mv.setViewName("view/border/border-community");
 
@@ -91,6 +97,7 @@ public class PostController {
 		List<PostVO> postList = null;
 		int countComment;
 		PostDetailVO postDetail;
+		List<PostDetailVO> postDetailAll;
 		BoardCategoryVO boardCategory;
 		
 	
@@ -103,22 +110,12 @@ public class PostController {
 			comment = readComment.readAllByPostId(postId);
 			countComment = readComment.readCountPostComment(postId);
 			postDetail = readPost.readPostByDetail(postId);
+			postDetailAll = readPost.readDetailPostAll();
 			postList = readPost.readAllPost(); // psot에 모든 정보가져옴
 			
 			int boardCategoryId = postDetail.getPost().getCategoryId();
 			
 			boardCategory = readBoardCategory.selectBoardCategotyById(boardCategoryId);
-//			post = readService.readPostById(postId); // 게시글 클릭시, 게시글의 postId로 해당 게시글에 정보를 가져옴 
-//			content = readService.readContentById(post.getContentId());
-//			postReq = new PostRequest(postId, 
-//					content.getContentId(), 
-//					content.getContent(), 
-//					post.getTitle(), 
-//					post.getWriteDate(), 
-//					post.getBoardId(), 
-//					post.getViews(), 
-//					post.getWriterId(), 
-//					post.getCategoryId());
 		} catch (ReadPostException e) {
 			System.out.println("viewPost Error");
 			errors.put("ReadPostException", true);
@@ -129,6 +126,7 @@ public class PostController {
 		
 		
 			mv.addObject("postDetail", postDetail);
+			mv.addObject("postDetailAll", postDetailAll);
 			mv.addObject("comment", comment);
 			mv.addObject("count", countComment);
 			mv.addObject("boardCategory", boardCategory);
@@ -147,7 +145,7 @@ public class PostController {
 		System.out.println(boardId);
 		if(session.getAttribute("authUser") == null) { // 게시글 적성은 로그인 상태에 가능하기에
 			System.out.println("authUser가 null임");
-			mv.setViewName("view/error/500");
+			mv.setViewName("view/loginPage/login-main");
 		}else {
 			PostRequest postReq = new PostRequest(); 
 			postReq.setBoardId(boardId);
@@ -175,7 +173,7 @@ public class PostController {
 		
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser가 null임");
-			mv.setViewName("errorPage");
+			mv.setViewName("view/loginPage/login-main");
 		}else {
 			System.out.println(borderName);
 			switch (borderName) {
@@ -210,14 +208,6 @@ public class PostController {
 		return mv;
 	}
 	
-//	@RequestMapping(value="/insertPostComment", method=RequestMethod.POST)
-//	public ModelAndView controllerinsertPostComment(HttpSession session,
-//													@RequestParam("postId") int postId,
-//													@RequestParam("clipId") int clipId,
-//													@RequestParam("userId") int userId,
-//													@RequestParam("content") String content) {
-//		return null;
-//	}
 	// 성공
 	@RequestMapping(value="/deletePost", method=RequestMethod.GET)
 	public ModelAndView controllerDeletePost_POST(HttpSession session, 
@@ -232,7 +222,7 @@ public class PostController {
 		
 		if(session.getAttribute("authUser") == null || writerId != userId) {
 			System.out.println("authUser가 null임 아니면 자신의 글이 아님");
-			mv.setViewName("errorPage");
+			mv.setViewName("view/loginPage/login-main");
 		}else {
 			deleteService.deletePost(postId, contentId); // 삭제할 아이디를 받아와 삭제
 			System.out.println("삭제 성공");
@@ -251,7 +241,7 @@ public class PostController {
 		
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser가 null임");
-			mv.setViewName("errorPage");
+			mv.setViewName("view/loginPage/login-main");
 		}else {
 			PostVO post = readPost.readPostById(postId);
 			ContentVO content = readPost.readContentById(post.getContentId());

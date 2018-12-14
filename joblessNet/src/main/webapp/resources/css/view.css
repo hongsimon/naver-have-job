@@ -314,13 +314,14 @@
   padding-right: 5px;
 }
 
-.border-comm-like>a{
+.border-comm-like>form>button{
   text-decoration: none;
   color: #287A72;
   border-radius: 5px;
   border:1px solid #287A72;
   padding:8px 15px;
   cursor: pointer;
+  background-color:#fff;
 }
 
 .border-comm-view-body>div{

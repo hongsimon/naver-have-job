@@ -42,13 +42,38 @@ public class LikeController {
 			
 			insertLikeService.insertLikeClip(new LikeVO(userId, clip_or_postId));
 		}catch (NotMoreLikeException e) {
-			System.out.println("꾸에엥");
 			errors.put("NotMoreLike", true);
 			e.getMessage();
 			modelAndView.setViewName("view/view/border-hotClip-view");
 			return modelAndView;
 		}
 		modelAndView.setViewName("redirect:/selectClip?clipId="+clip_or_postId);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/postLike", method=RequestMethod.POST)
+	public ModelAndView PostLike_POST(
+								@RequestParam int userId,
+								@RequestParam int clip_or_postId
+							   ) {
+		
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		ModelAndView modelAndView = new ModelAndView();
+
+		
+		try {
+			modelAndView.addObject("errors", errors);
+			modelAndView.addObject("clip_or_postId", clip_or_postId);
+			selectLikeService.selectLikePost(new LikeVO(userId, clip_or_postId));
+			
+			insertLikeService.insertLikeClip(new LikeVO(userId, clip_or_postId));
+		}catch (NotMoreLikeException e) {
+			errors.put("NotMoreLike", true);
+			e.getMessage();
+			modelAndView.setViewName("view/view/border-community-view");
+			return modelAndView;
+		}
+		modelAndView.setViewName("redirect:/viewPost?postId="+clip_or_postId);
 		return modelAndView;
 	}
 	

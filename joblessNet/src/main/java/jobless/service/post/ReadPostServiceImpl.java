@@ -104,10 +104,11 @@ public class ReadPostServiceImpl implements ReadPostService{
 	@Override
 	public List<PostDetailVO> readDetailPostAll() {
 		List<PostDetailVO> postDetailAll = postdao.readDetailAll();
+		System.out.println(postDetailAll);
 		if(postDetailAll == null) {
 			throw new ReadPostException("readDetailPostAll 실패");
 		}
-		return null;
+		return postDetailAll;
 	}
 	
 	//특정 게시판에 쓰여진 게시글 검색

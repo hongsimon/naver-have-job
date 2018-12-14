@@ -73,7 +73,7 @@
 													</div> <!-- 작성자 -->
 													<div class="border-comm-writer con-right">
 														<div>
-															<img src="" /><a>${post.post.writerId}</a>
+															<img src="" /><a>${post.user.nickName}</a>
 														</div>
 													</div>
 												</li>

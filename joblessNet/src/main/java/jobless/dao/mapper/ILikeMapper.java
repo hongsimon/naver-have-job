@@ -6,9 +6,9 @@ import jobless.model.LikeVO;
 public interface ILikeMapper {
 	public LikeVO selectClipLike(LikeVO like);
 	
-//	public LikeVO selectPostLike(LikeVO like);
+	public LikeVO selectPostLike(LikeVO like);
 	
 	public void insertClipLike(LikeVO like);
 	
-//	public void insertPostLike(LikeVO like);
+	public void insertPostLike(LikeVO like);
 }

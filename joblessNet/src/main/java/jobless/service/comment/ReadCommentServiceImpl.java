@@ -38,10 +38,12 @@ public class ReadCommentServiceImpl implements ReadCommentService{
 	@Override
 	public List<CommentVO> readAllByPostId(int postId) {
 		// TODO Auto-generated method stub
+		System.out.println("댓글 가죠오기");
 		List<CommentVO> comment = commentDao.readAllByPostId(postId);
 		if(comment == null) {
 			throw new CommentNotFoundException(postId + "번 일반게시물 / readAllByPostId 할 comment 객체들을 불러오지 못했습니다.");
 		}
+		System.out.println("성공");
 		return comment;
 	}
 

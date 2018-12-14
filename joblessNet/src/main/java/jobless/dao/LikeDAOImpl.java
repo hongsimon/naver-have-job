@@ -18,11 +18,11 @@ public class LikeDAOImpl implements LikeDAO {
 		return likeValue;
 	}
 	
-//	@Override
-//	public LikeVO selectPostLike(LikeVO like) {
-//		LikeVO likeValue = mapper.selectPostLike(like);
-//		return likeValue;
-//	}
+	@Override
+	public LikeVO selectPostLike(LikeVO like) {
+		LikeVO likeValue = mapper.selectPostLike(like);
+		return likeValue;
+	}
 	
 	@Override
 	public void LikeClip(LikeVO like) {
@@ -30,11 +30,11 @@ public class LikeDAOImpl implements LikeDAO {
 
 	}
 	
-//	@Override
-//	public void LikePost(LikeVO like) {
-//		mapper.insertPostLike(like);
-//
-//	}
+	@Override
+	public void LikePost(LikeVO like) {
+		mapper.insertPostLike(like);
+
+	}
 
 
 }

@@ -24,13 +24,13 @@ public class SelectLikeServiceImpl implements SelectLikeService {
 		}
 	}
 
-//	@Override
-//	public void selectLikePost(LikeVO like) {
-//		LikeVO likeValue = likeDao.selectPostLike(like);
-//	boolean Schrodinger = likeValue != null;
-//	if(Schrodinger) {
-//		throw new NotMoreLikeException("더 이상 추천할수 없음니다");
-//	}
-//	}
+	@Override
+	public void selectLikePost(LikeVO like) {
+		LikeVO likeValue = likeDao.selectPostLike(like);
+	boolean Schrodinger = likeValue != null;
+		if(Schrodinger) {
+			throw new NotMoreLikeException("더 이상 추천할수 없음니다");
+		}
+	}
 
 }

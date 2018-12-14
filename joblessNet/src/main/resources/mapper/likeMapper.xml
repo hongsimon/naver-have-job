@@ -15,7 +15,7 @@
 			`clip_id` = #{clip_or_postId}
 	</select>
 	
-<!-- 	<select id="selectPostLike" parameterType="Like" resultType="Like">
+ 	<select id="selectPostLike" parameterType="Like" resultType="Like">
 		select 
 			`user_id` as `userId`, 
 			`post_id` as `clip_or_postId` 
@@ -25,13 +25,13 @@
 			`user_id` = #{userId} 
 		and 
 			`post_id` = #{clip_or_postId}
-	</select> -->
+	</select>
 
 	<insert id="insertClipLike" parameterType="Like">
 		INSERT INTO `like` (`user_id`, `clip_id`) VALUES (#{userId}, #{clip_or_postId})
 	</insert>
 	
-<!-- 	<insert id="insertPostLike" parameterType="Like">
+	<insert id="insertPostLike" parameterType="Like">
 		INSERT INTO `like` (`user_id`, `post_id`) VALUES (#{userId}, #{clip_or_postId})
-	</insert> -->
+	</insert>
 </mapper>

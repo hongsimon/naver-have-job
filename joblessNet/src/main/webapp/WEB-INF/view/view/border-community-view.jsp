@@ -59,7 +59,11 @@
 							<div class="border-comm-content">
 								${postDetail.content.content }</div>
 							<div class="border-comm-like">
-								<a><span class="glyphicon glyphicon-thumbs-up"></span>추천</a>
+								<form action="postLike" method="POST">
+									<input type="hidden" name="userId" value="${authUser.userId }">
+									<input type="hidden" name="clip_or_postId" value="${postDetail.post.postId }">
+									<button type="submit"><span class="glyphicon glyphicon-thumbs-up"></span>추천</button>
+								</form>
 							</div>
 							<div class="border-comm-service">
 								<a href="viewPostList?boardId=${postDetail.post.boardId }"><span
@@ -73,51 +77,50 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="border-comm-comments">
-						<div class="border-comm-comment">
-							<span class="glyphicon glyphicon-comment"></span> 댓글 ${count }개
-						</div>
-						<div class="border-comm-comments-div">
-							<ul>
-								<c:forEach var="comments" items="${comment}" varStatus="status">
-									<li>
-										<div class="border-comm-comments-info">
-											<div class="border-comm-comments-icon">
-												<img />
-											</div>
-											<div class="border-comm-comments-writer">${comments.commentId }</div>
-											<div class="con-right border-comm-comments-writer-service">
-												<div>
-													<a>삭제</a>
+					
+					<c:if test="${postDetail.post.boardId != 1 && postDetail.post.boardId != 2 }">
+						<div class="border-comm-comments">
+							<div class="hotclip-comment-input">
+	                      		<div class="clip-icon">
+	                      			<img />
+	                      		</div>
+	                      		<div class="">
+	                        		<form method="post" action="insertClipComment">
+			                          	<input type="hidden" name="clipId" value=0>
+										<input type="hidden" name="postId" value="${postDetail.post.postId }">
+			                          	<input type="hidden" name="userId" value="${authUser.userId }">
+			                          	<input type="text" name="content" placeholder="댓글을 입력하세요..." class="clip-comment-box">
+	                          			<button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
+	                        		</form>
+	                      		</div>
+	                    	</div>
+							<div class="border-comm-comment">
+								<span class="glyphicon glyphicon-comment"></span> 댓글 ${count }개
+							</div>
+							<div class="border-comm-comments-div">
+								<ul>
+									<c:forEach var="comments" items="${comment}" varStatus="status">
+										<li>
+											<div class="border-comm-comments-info">
+												<div class="border-comm-comments-icon">
+													<img />
+												</div>
+												<div class="border-comm-comments-writer">${comments.writerNickname }</div>
+												<div class="con-right border-comm-comments-writer-service">
+													<div>
+														<a>삭제</a>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="border-comm-comments-contents">${comments.content }</div>
-									</li>
-								</c:forEach>
-							</ul>
-
+											<div class="border-comm-comments-contents">${comments.content }</div>
+										</li>
+									</c:forEach>
+								</ul>
+	
+							</div>
+							
 						</div>
-
-
-						<%-- <div class="hotclip-comment-input">
-							<div class="clip-icon">
-								<img />
-							</div>
-							<div class="">
-								<form method="post" action="insertPostComment">
-									<input type="hidden" name="postId" value="${postDetail.post.postId }"> 
-									<input type="hidden" name="clipId" value=0> 
-									<input type="hidden" name="userId" value="${authUser.userId }">
-									<input type="text" name="content" placeholder="댓글을 입력하세요..." class="clip-comment-box">
-									<button type="submit" name="button">
-										<span class="glyphicon glyphicon-pencil"class="clip-comment-submit"></span>작성
-									</button>
-								</form>
-							</div>
-						</div> --%>
-					</div>
+					</c:if>
 
 					<div class="row">
 						<div class="col-xs-12">
@@ -140,26 +143,26 @@
 						<div class="col-xs-12">
 							<div class="border-table">
 								<ul>
-									<c:forEach var="post" items="${postList}" varStatus="status">
+									<c:forEach var="post" items="${postDetailAll}" varStatus="status">
 										<li>
 											<!-- 추천수/공지/인기 -->
 											<div class="border-comm-recomm ">
-												<div>${post.postId }</div>
+												<div>${post.post.postId }</div>
 											</div> <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
 											<div class="border-comm-name ">
-												<a>${post.categoryId }</a>
+												<a>${post.boardCategory.categoryName }</a>
 											</div> <!-- 제목 -->
 											<div class="border-comm-title ">
-												<a href="viewPost?postId=${post.postId}"><span class="glyphicon glyphicon-comment"></span>${post.title}</a>
+												<a href="viewPost?postId=${post.post.postId}"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
 											</div> <!-- 작성일 -->
 											<div class="border-comm-day con-right">
-												<fmt:parseDate var="parseWdate" value="${post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
+												<fmt:parseDate var="parseWdate" value="${post.post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
 				 								<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
 				 								${wdate }
 											</div> <!-- 작성자 -->
 											<div class="border-comm-writer con-right">
 												<div>
-													<img src="" /><a>${post.writerId}</a>
+													<img src="" /><a>${post.user.nickName}</a>
 												</div>
 											</div>
 										</li>
