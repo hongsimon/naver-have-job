@@ -1,5 +1,8 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@
+	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+ %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -42,8 +45,16 @@
               <div class="row margin-container">
                 <div class="col-xs-10">
                   <div class="broadcasterCommunity">
-                    <div class="broadcasterList">
+                    <div class="broadcasterList-t">
                      <!-- 닉네임, -->
+                     테스트1,
+                     테스트2,
+                     테스트3,
+                     <c:forEach var="streamer" items="${streamerList}" varStatus="status">
+                     	${streamer.nickName},
+                     </c:forEach>
+                     테스트4,
+                     테스트5,
                     </div>
                     <div class="broadcasterList_search">
                         <input type="text" placeholder="머독 또는 ㅁㄷ" id="searchBox"/>

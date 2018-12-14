@@ -1,7 +1,7 @@
 $(function() {
 
   //console.log($(".broadcasterList").text())
-  var broadcasters = $(".broadcasterList").text();
+  var broadcasters = $(".broadcasterList-t").text();
 
   var broadcaster = broadcasters.split(",");
 
@@ -95,7 +95,7 @@ $(function() {
       }
     })
 
-    $(".broadcasterList").text("");
+//    $(".broadcasterList").text("");
 
 
 
