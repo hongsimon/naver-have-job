@@ -25,5 +25,8 @@ public interface ReadPostService {
 
 	List<PostVO> readPostByCategoryId(int categoryId);
 	
-	List<PostDetailVO> readAllDetailPost(int boardId, Condition condition);
+	List<PostDetailVO> readDetailPostAll();
+	
+	List<PostDetailVO> readDetailPostList(int boardId, Condition condition);
+	
 }

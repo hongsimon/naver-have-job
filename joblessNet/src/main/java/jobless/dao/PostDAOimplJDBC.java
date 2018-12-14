@@ -50,6 +50,11 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
+	public List<PostDetailVO> readDetailAll() {
+		return postMapper.selectPostDetailAll();
+	}
+	
+	@Override
 	public List<PostVO> readAll() {
 		List<PostVO> postList = postMapper.selectPostList();
 		return postList;
@@ -67,7 +72,7 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 
 	@Override
-	public List<PostDetailVO> readDetailAll(int boardId, Condition condition) {
+	public List<PostDetailVO> readDetailList(int boardId, Condition condition) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("boardId", boardId);
 		map.put("condition", condition);

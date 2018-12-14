@@ -6,8 +6,18 @@ import org.apache.ibatis.type.Alias;
 public class PostDetailVO {
 	private PostVO post;
 	private UserVO user;
+	private BoardCategoryVO boardCategory;
 	private ContentVO content;
 	private int likes;
+	
+
+	public BoardCategoryVO getBoardCategory() {
+		return boardCategory;
+	}
+
+	public void setBoardCategory(BoardCategoryVO boardCategory) {
+		this.boardCategory = boardCategory;
+	}
 
 	public PostVO getPost() {
 		return post;
@@ -43,8 +53,8 @@ public class PostDetailVO {
 
 	@Override
 	public String toString() {
-		return "PostDetailVO [post=" + post + ", user=" + user + ", content=" + content + ", likes=" + likes + "]";
+		return "PostDetailVO [post=" + post + ", user=" + user + ", boardCategory=" + boardCategory + ", content="
+				+ content + ", likes=" + likes + "]";
 	}
-	
 	
 }

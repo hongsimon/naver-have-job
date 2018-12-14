@@ -140,47 +140,30 @@
 						<div class="col-xs-12">
 							<div class="border-table">
 								<ul>
-
-									<li>
-										<!-- 추천수/공지/인기 -->
-										<div class="border-comm-recomm ">
-											<div>1</div>
-										</div> <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
-										<div class="border-comm-name ">
-											<a>유튜브</a>
-										</div> <!-- 제목 -->
-										<div class="border-comm-title ">
-											<span class="glyphicon glyphicon-picture"></span><a href="#"
-												id="title" class="border-comm-title-url">제목a</a>
-										</div> <!-- 작성일 -->
-										<div class="border-comm-day con-right">1971.11.21</div> <!-- 작성자 -->
-										<div class="border-comm-writer con-right">
-											<div>
-												<img src="" /><a>작성자</a>
+									<c:forEach var="post" items="${postList}" varStatus="status">
+										<li>
+											<!-- 추천수/공지/인기 -->
+											<div class="border-comm-recomm ">
+												<div>${post.postId }</div>
+											</div> <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
+											<div class="border-comm-name ">
+												<a>${post.categoryId }</a>
+											</div> <!-- 제목 -->
+											<div class="border-comm-title ">
+												<a href="viewPost?postId=${post.postId}"><span class="glyphicon glyphicon-comment"></span>${post.title}</a>
+											</div> <!-- 작성일 -->
+											<div class="border-comm-day con-right">
+												<fmt:parseDate var="parseWdate" value="${post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
+				 								<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
+				 								${wdate }
+											</div> <!-- 작성자 -->
+											<div class="border-comm-writer con-right">
+												<div>
+													<img src="" /><a>${post.writerId}</a>
+												</div>
 											</div>
-										</div>
-									</li>
-
-									<li>
-										<!-- 추천수/공지/인기 -->
-										<div class="border-comm-recomm ">
-											<div>1</div>
-										</div> <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
-										<div class="border-comm-name ">
-											<a>유튜브</a>
-										</div> <!-- 제목 -->
-										<div class="border-comm-title ">
-											<span class="glyphicon glyphicon-picture"></span><a href="#"
-												id="title" class="border-comm-title-url">제목a</a>
-										</div> <!-- 작성일 -->
-										<div class="border-comm-day con-right">1971.11.21</div> <!-- 작성자 -->
-										<div class="border-comm-writer con-right">
-											<div>
-												<img src="" /><a>작성자</a>
-											</div>
-										</div>
-									</li>
-
+										</li>
+									</c:forEach>
 								</ul>
 
 

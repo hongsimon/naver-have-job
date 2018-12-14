@@ -56,10 +56,10 @@ public class PostController {
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-		List<PostVO> postList = null;
+		List<PostDetailVO> postDetail = null;
 		
 		try {
-			postList = readPost.readAllPost(); // psot에 모든 정보가져옴
+			postDetail = readPost.readDetailPostAll();
 		} catch (ReadPostException e) {
 			System.out.println("viewPostList Error");
 			errors.put("ReadPostException", true);
@@ -68,10 +68,10 @@ public class PostController {
 			return mv;
 		}
 		
-		for(PostVO post : postList) {
+		for(PostDetailVO post : postDetail) {
 			System.out.println(post.toString());
 		}
-		mv.addObject("postList", postList);
+		mv.addObject("postDetail", postDetail);
 		mv.setViewName("view/border/border-community");
 
 		System.out.println("정상 작동");
@@ -88,6 +88,7 @@ public class PostController {
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		
 		List<CommentVO> comment;
+		List<PostVO> postList = null;
 		int countComment;
 		PostDetailVO postDetail;
 		BoardCategoryVO boardCategory;
@@ -102,6 +103,7 @@ public class PostController {
 			comment = readComment.readAllByPostId(postId);
 			countComment = readComment.readCountPostComment(postId);
 			postDetail = readPost.readPostByDetail(postId);
+			postList = readPost.readAllPost(); // psot에 모든 정보가져옴
 			
 			int boardCategoryId = postDetail.getPost().getCategoryId();
 			
@@ -130,6 +132,7 @@ public class PostController {
 			mv.addObject("comment", comment);
 			mv.addObject("count", countComment);
 			mv.addObject("boardCategory", boardCategory);
+			mv.addObject("postList",postList);
 			mv.setViewName("view/view/border-community-view");
 		return mv;
 	}

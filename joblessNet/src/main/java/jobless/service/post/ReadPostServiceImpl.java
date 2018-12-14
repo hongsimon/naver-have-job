@@ -101,11 +101,20 @@ public class ReadPostServiceImpl implements ReadPostService{
 		return postList;
 	}
 
+	@Override
+	public List<PostDetailVO> readDetailPostAll() {
+		List<PostDetailVO> postDetailAll = postdao.readDetailAll();
+		if(postDetailAll == null) {
+			throw new ReadPostException("readDetailPostAll 실패");
+		}
+		return null;
+	}
+	
 	//특정 게시판에 쓰여진 게시글 검색
 	//Condition 객체를 이용하여 검색 조건 바꿈
 	@Override
-	public List<PostDetailVO> readAllDetailPost(int boardId, Condition condition) {
-		List<PostDetailVO> postList = postdao.readDetailAll(boardId, condition);
+	public List<PostDetailVO> readDetailPostList(int boardId, Condition condition) {
+		List<PostDetailVO> postList = postdao.readDetailList(boardId, condition);
 		return postList;
 	}
 

@@ -121,6 +121,7 @@
 	<resultMap type="PostDetail" id="PostMap" autoMapping="true">
 		<association property="post" javaType="Post" autoMapping="true"/>
 		<association property="user" javaType="User" autoMapping="true"/>
+		<association property="boardCategory" javaType="BoardCategory" autoMapping="true"/>
 		<association property="content" javaType="Content" autoMapping="true"/>
 	</resultMap>
 	
@@ -147,6 +148,30 @@
 			p.post_id = #{postId}
 		group by
 			p.post_id
+	</select>
+	
+	<select id="selectPostDetailAll" resultMap="PostMap">
+		select p.post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			p.content_id contentId, 
+			p.board_id boardId, 
+			views,
+			p.user_id writerId,
+			bc.category_id categoryId,
+            bc.category_name,
+			u.user_id userId,
+			nickname,
+			content,
+			count(l.post_id) likes
+		from 
+			post p 
+			join user u on p.user_id = u.user_id
+			join content c on p.content_id = c.content_id
+            join board_category bc on p.category_id = bc.category_id
+			left outer join taku.like l on p.post_id = l.post_id
+		group by
+			p.post_id;
 	</select>
 
 	<select id="selectDetailPostList" parameterType="map" resultMap="PostMap">

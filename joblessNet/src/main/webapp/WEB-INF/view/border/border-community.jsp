@@ -54,26 +54,26 @@
 								<div class="col-xs-12">
 									<div class="border-table">
 										<ul>
-											<c:forEach var="post" items="${postList}" varStatus="status">
+											<c:forEach var="post" items="${postDetail}" varStatus="status">
 												<li>
 													<!-- 추천수/공지/인기 -->
 													<div class="border-comm-recomm ">
-														<div>${post.postId }</div>
+														<div>${post.post.postId }</div>
 													</div> <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
 													<div class="border-comm-name ">
-														<a>${post.categoryId }</a>
+														<a>${post.boardCategory.categoryName }</a>
 													</div> <!-- 제목 -->
 													<div class="border-comm-title ">
-														<a href="viewPost?postId=${post.postId}"><span class="glyphicon glyphicon-comment"></span>${post.title}</a>
+														<a href="viewPost?postId=${post.post.postId}"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
 													</div> <!-- 작성일 -->
 													<div class="border-comm-day con-right">
-														<fmt:parseDate var="parseWdate" value="${post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
+														<fmt:parseDate var="parseWdate" value="${post.post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
 				 										<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
 				 										${wdate }
 													</div> <!-- 작성자 -->
 													<div class="border-comm-writer con-right">
 														<div>
-															<img src="" /><a>${post.writerId}</a>
+															<img src="" /><a>${post.post.writerId}</a>
 														</div>
 													</div>
 												</li>

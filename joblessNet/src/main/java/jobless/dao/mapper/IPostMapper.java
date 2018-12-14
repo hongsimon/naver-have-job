@@ -16,6 +16,7 @@ public interface IPostMapper {
 	List<PostVO> selectPostList();
 	List<PostVO> selectPostOwnList(int id);
 	PostDetailVO selectPostDetail(int id);
+	List<PostDetailVO> selectPostDetailAll();
 	List<PostDetailVO> selectDetailPostList(Map<String, Object> map);
 	List<PostVO> selectPostByBoardId(int id);
 	List<PostVO> selectPostByCategoryId(int id);
