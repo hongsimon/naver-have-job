@@ -21,6 +21,7 @@ import jobless.exception.OverlapLoginIdException;
 import jobless.exception.OverlapNickNameException;
 import jobless.exception.RecaptchaNotRunningException;
 import jobless.exception.SignInFailException;
+import jobless.exception.UserNotDeleteException;
 import jobless.exception.UserNotFoundException;
 import jobless.exception.UserRequestNullException;
 import jobless.model.UserVO;
@@ -33,20 +34,27 @@ import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.JoinCheckService;
 import jobless.service.user.JoinUserService;
+import jobless.service.user.ModifyUserService;
 import jobless.service.user.UserRequest;
 
 
 @Controller("accountController")
 public class AccountController {
-
+	
 	@Autowired
-	DeleteUserService deleteUserService;  
+	GetUserService getUserService;
+	
+	@Autowired
+	JoinUserService joinUserService;
 	
 	@Autowired
 	JoinCheckService joinCheckService;
 	
 	@Autowired
-	JoinUserService joinUserService;
+	ModifyUserService modifyUserService;
+	
+	@Autowired
+	DeleteUserService deleteUserService;  
 	
 	@Autowired
 	LoginService loginService;
@@ -236,26 +244,103 @@ public class AccountController {
 		}
 		
 	
-	//회원탈퇴 페이지
-	@RequestMapping(value="/deleteUser", method=RequestMethod.GET)
-	public String DeleteUser_GET() {
-		System.out.println("DeleteUser_GET 페이지_GET");
-		return "deleteUser";
+	//설정페이지
+	
+	@RequestMapping(value="/config/favoriteList", method=RequestMethod.GET)
+	public String configFavoriteList_GET() {
+		System.out.println("configFavoriteList_GET");
+		return "view/service/favoriteList";
 	}
 	
-	@RequestMapping(value="/deleteUser", method=RequestMethod.POST)
-	public String DeleteUser_POST(@RequestParam int userId) {
-		System.out.println("DeleteUser_POST");
-		deleteUserService.deleteUser(userId);
+	
+	//회원정보수정
+	@RequestMapping(value="/config/changeProfile", method=RequestMethod.GET)
+	public String configChangeProfile_GET() {
+		System.out.println("configChangeProfile_GET");
+		return "view/service/changeProfile";
+	}
+	
+	@RequestMapping(value="/config/changeProfile", method=RequestMethod.POST)
+	public ModelAndView configChangeProfile_POST(
+											@RequestParam int userId,
+											@RequestParam String nickName,
+											@RequestParam String email,
+											HttpSession session
+										  ) {
+		System.out.println("configChangeProfile_POST");
+		
+		
+		ModelAndView modelAndView = new ModelAndView();
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		UserRequest userRequest = new UserRequest(userId, nickName, email);
+		
+			userRequest.validateModify(errors);
+			modelAndView.addObject("errors", errors);
+			modelAndView.setViewName("view/service/changeProfile");
+			
+			UserVO userVO = getUserService.getUserByUserId(userId);
+			UserVO userNickName = getUserService.getUserByNickName(nickName);
+			UserVO userEmail = getUserService.getUserByEmail(email);
+			
+			if(userVO.getNickName().equals(nickName)) {
+				System.out.println("내 닉넴임");
+			}else if(userNickName != null) {
+				System.out.println("누가 쓰고있는 닉넴!!");
+				errors.put("sameNick", true);
+			}
+			
+			if(userVO.getEmail().equals(email)) {
+				System.out.println("내 이멜임");
+			}else if(userEmail != null) {
+				System.out.println("누가 쓰고있는 이멜!!");
+				errors.put("sameEmail", true);
+			}
+			
+			if(!errors.isEmpty()) {
+				return modelAndView;
+			}
+			
+			modifyUserService.modifyUserData(new UserRequest(userId, nickName, email));
+			
+			UserVO user= getUserService.getUserByUserId(userId);
+			AuthUser authUser = new AuthUser(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.getAdmin(), user.getPlatformId());
+			
+			session.setAttribute("authUser", authUser);
+			
+		
+		modelAndView.setViewName("redirect:/config/changeProfile");
+		return modelAndView;
+	}
+	
+	
+	//회원탈퇴
+	@RequestMapping(value="/config/userDel", method=RequestMethod.GET)
+	public String configUserDel_GET() {
+		System.out.println("configUserDel_GET");
+		return "view/service/userDel";
+	}
+	
+	@RequestMapping(value="/config/userDel", method=RequestMethod.POST)
+	public String configUserDel_POST(@RequestParam int userId,
+									 HttpServletRequest req
+									) {
+		System.out.println("configUserDel_POST");
+		
+		try {
+			deleteUserService.deleteUser(userId);
+		}catch (UserNotFoundException e) {
+			e.getMessage();
+		}catch (UserNotDeleteException e) {
+			e.getMessage();
+		}
+		
+		HttpSession session = req.getSession(false);
+		
+		if(session != null) {
+			session.invalidate();
+		}
 		
 		return "redirect:/main";
-	}
-	
-	//설정페이지
-	@RequestMapping(value="/Settings", method=RequestMethod.GET)
-	public String SettingsPage_GET() {
-		System.out.println("SettingsPage_GET");
-		return "view/service/favoriteList";
 	}
 	
 	//이메일 재전송 서비스(회원가입 전용)

@@ -50,7 +50,7 @@
                       <div class="con-right like-btn">
                       
                       	<c:if test="${empty authUser }">
-                      		<button type="submit" onclick="window.alert('로그인 후 이용가능합니다.')"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${clipDetail.likes}</button>
+                      		<button type="submit" onclick="window.alert('로그인이 필요한 서비스입니다.')"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${clipDetail.likes}</button>
                       	</c:if>
                       
                       

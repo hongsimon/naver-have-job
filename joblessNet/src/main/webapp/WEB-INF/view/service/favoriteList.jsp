@@ -3,6 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script type="text/javascript">
+		if(${empty authUser }){
+			alert("로그인이 필요한 서비스입니다.");
+			var like = "${pageContext.request.contextPath}";
+			like += "/main"
+			location.href=like;
+		}
+	</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
@@ -30,9 +38,9 @@
       <div class="col-xs-10">
         <div class="service-user">
           <div class="service-btn">
-            <a class="service-btn-active" id="favoriteList">내가 쓴 게시글</a>
-            <a class="service-btns"  id="changeProfile">회원정보 수정</a>
-            <a class="service-btns" id="userDel">회원 탈퇴</a>
+            <a class="service-btn-active" id="favoriteList" href="favoriteList">내가 쓴 게시글</a>
+            <a class="service-btns"  id="changeProfile" href="changeProfile">회원정보 수정</a>
+            <a class="service-btns" id="userDel" href="userDel">회원 탈퇴</a>
           </div>
           <div class="service-inner">
             <div class="write-info-table">

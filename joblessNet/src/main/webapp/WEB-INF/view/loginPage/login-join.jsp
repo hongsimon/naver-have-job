@@ -134,7 +134,7 @@
 	          <div>
 	            NickName
 	          </div>
-            <input type="text" name="nickName"  value="${user.nickName }"  />
+            <input type="text" name="nickName"  value="${value.nickName }"  />
           </div>
           <div>
             Like platform

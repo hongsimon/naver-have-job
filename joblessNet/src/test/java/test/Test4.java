@@ -30,6 +30,7 @@ import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.JoinCheckService;
 import jobless.service.user.ModifyUserService;
+import jobless.service.user.UserRequest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/beans.xml")
@@ -74,7 +75,7 @@ public class Test4 {
 	InsertLikeService insertLikeService;
 	
 	//boardCategory기능 테스트
-	@Test                  
+	@Test @Ignore
 	public void BoardCategoryTest() {
 		
 		//카테고리 조회 테스트(ByAll)
@@ -158,7 +159,7 @@ public class Test4 {
 	LoginService loginService;
 	
 	//User기능 테스트
-	@Test @Ignore
+	@Test
 	
 	public void UserTest() {
 		
@@ -178,7 +179,7 @@ public class Test4 {
 //		joinUserService.joinUser(new UserVO("나는야", "퉁퉁이", "골목", "대장이라네", 1));
 		
 		//회원 정보 수정 테스트
-//		modifyUserService.modifyUser(new UserVO(8, "포킹닉네임", "포킹패스워드", "포킹이메일"));
+//		modifyUserService.modifyUserData(new UserRequest(2, "동네벌레Mk2", "tjdalsdl1214@naver.com"));
 		
 		//회원 탈퇴 테스트
 //		deleteUserService.deleteUser(19); 

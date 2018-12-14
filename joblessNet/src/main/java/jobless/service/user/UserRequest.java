@@ -35,11 +35,10 @@ public class UserRequest {
 		}
 
 		// update 용
-		public UserRequest(int userId, String nickName, String password, String email) {
+		public UserRequest(int userId, String nickName, String email) {
 			super();
 			this.userId = userId;
 			this.nickName = nickName;
-			this.password = password;
 			this.email = email;
 		}
 
@@ -164,6 +163,12 @@ public class UserRequest {
 				errors.put("notMatchPassword", true);
 			}
 		}
+	}
+	
+	public void validateModify(Map<String, Boolean> errors) {
+		checkEmptyStr(errors, nickName, "nickName");
+		checkEmptyStr(errors, email, "email");
+		
 	}
 	
 	public void validateLogin(Map<String, Boolean> errors) {

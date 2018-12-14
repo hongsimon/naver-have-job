@@ -23,19 +23,19 @@
             </div>
             <div class="box">
               <div class="left-nav-sub">
-                <a href="streamerList"><div>
+                <a href="${pageContext.request.contextPath}/streamerList"><div>
                   B
                 </div>스트리머 게시판</a>
               </div>
 
               <div class="left-nav-sub">
-                <a href="viewPostList"><div>
+                <a href="${pageContext.request.contextPath}/viewPostList"><div>
                   C
                 </div>커뮤니티</a>
               </div>
 
               <div class="left-nav-sub">
-                <a href="viewClip?active=thumbs-up"><div>
+                <a href="${pageContext.request.contextPath}/viewClip?active=thumbs-up"><div>
                   H
                 </div>핫클립</a>
               </div>

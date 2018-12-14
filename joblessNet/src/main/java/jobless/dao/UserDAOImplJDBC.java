@@ -48,8 +48,8 @@ public class UserDAOImplJDBC implements UserDAO {
 		mapper.deleteUser(userId);
 	}
 
-	public void update(UserVO user) {
-		mapper.updateUser(user);
+	public void updateUserData(UserVO user) {
+		mapper.updateUserData(user);
 		
 	}
 

@@ -3,6 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script type="text/javascript">
+		if(${empty authUser }){
+			alert("로그인이 필요한 서비스입니다.");
+			var like = "${pageContext.request.contextPath}";
+			like += "/main"
+			location.href=like;
+		}
+	</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
@@ -29,9 +37,15 @@
       <!-- 게시판 메뉴 -->
       <div class="col-xs-10">
         <div class="service-user">
+          <div class="service-btn">
+            <a class="service-btns" id="favoriteList" href="favoriteList">내가 쓴 게시글</a>
+            <a class="service-btns"  id="changeProfile" href="changeProfile">회원정보 수정</a>
+            <a class="service-btn-active"  id="userDel" href="userDel">회원 탈퇴</a>
+          </div>
+        
           <div class="service-inner">
             <div>
-              <form>
+              <form action="userDel" method="POST">
                 <div>
                   <h2>JobLess 회원탈퇴 안내</h2>
                 </div>
@@ -42,7 +56,7 @@
                   <div>
                     <span class="glyphicon glyphicon-exclamation-sign"></span>사용하고 계신
                     <div class="service-del-id">
-                      sora8270 (sora8270)
+                      ${authUser.nickName } (${authUser.loginId })
                     </div>은 탈퇴할 경우 재사용 및 복구가 불가능합니다.
                   </div>
                   <div>
@@ -74,7 +88,7 @@
                   </div>
                   <div>
                     <span class="glyphicon glyphicon-exclamation-sign"></span>탈퇴 후에는 <div class="service-del-id">
-                      sora8270 (sora8270)
+                      ${authUser.nickName } (${authUser.loginId })
                     </div>로 아이디와 데이터는 복구할 수 없습니다.
                   </div>
                 </div>
@@ -83,6 +97,7 @@
                       <label for="scales">안내 사항을 모두 확인하였으며 이에 동의합니다.</label>
                     </div>
                     <div class="service-del-btn">
+                      <input  type="hidden" name="userId" value="${authUser.userId }">
                       <button type="submit" name="button" class="del-btn-false"><span class="glyphicon glyphicon-trash"></span>회원 탈퇴하기</button>
                     </div>
 

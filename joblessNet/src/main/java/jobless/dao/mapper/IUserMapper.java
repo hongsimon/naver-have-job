@@ -22,5 +22,5 @@ public interface IUserMapper {
 	
 	public void deleteUser(int userId);
 	
-	public void updateUser(UserVO user);
+	public void updateUserData(UserVO user);
 }

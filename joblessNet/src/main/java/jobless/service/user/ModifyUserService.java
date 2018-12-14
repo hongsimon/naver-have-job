@@ -1,7 +1,5 @@
 package jobless.service.user;
 
-import jobless.model.UserVO;
-
 public interface ModifyUserService {
-	public void modifyUser(UserRequest user);
+	public void modifyUserData(UserRequest user);
 }

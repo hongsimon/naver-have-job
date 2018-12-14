@@ -89,7 +89,6 @@
 			is_banned as ban, 
 			platform_id as platformId, 
 			is_streamer as streamer 
-			
 		from 
 			user 
 		where 
@@ -138,12 +137,11 @@
 		where 
 			user_id = #{userId}
 	</delete>
-	<update id="updateUser" parameterType="User">
+	<update id="updateUserData" parameterType="User">
 		update 
 			user 
 		set 
 			nickname = #{nickName}, 
-			password = #{password}, 
 			email = #{email} 
 		where 
 			user_id = #{userId};

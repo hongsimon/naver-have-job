@@ -1,8 +1,17 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
+	<script type="text/javascript">
+		if(${empty authUser }){
+			alert("로그인이 필요한 서비스입니다.");
+			var like = "${pageContext.request.contextPath}";
+			like += "/main"
+			location.href=like;
+		}
+	</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
@@ -30,16 +39,25 @@
       <div class="col-xs-10">
         <div class="service-user">
           <div class="service-btn">
-            <a class="service-btns" id="favoriteList">내가 쓴 게시글</a>
-            <a class="service-btn-active"  id="changeProfile">회원정보 수정</a>
-            <a class="service-btns" id="userDel">회원 탈퇴</a>
+            <a class="service-btns" id="favoriteList" href="favoriteList">내가 쓴 게시글</a>
+            <a class="service-btn-active"  id="changeProfile" href="changeProfile">회원정보 수정</a>
+            <a class="service-btns" id="userDel" href="userDel">회원 탈퇴</a>
           </div>
           <div class="service-inner">
             <div>
-              <form>
+              <form action="${pageContext.request.contextPath}/config/changeProfile" method="POST">
+                
+                <c:if test="${errors.sameNick }">
                 <div class="service-error-msg-in text-center">
-                  Please enter your username and password.
+                  이미 사용중인 닉네임입니다.
                 </div>
+                </c:if>
+                
+                <c:if test="${errors.sameEmail }">
+                <div class="service-error-msg-in text-center">
+                  이미 사용중인 이메일입니다.
+                </div>       
+                </c:if>
                 <div id="changePwd">
                   <div id="Pwd">
                     비밀번호 변경<br />
@@ -51,18 +69,15 @@
 
                 <div id="popup_mask"></div>
                 <div>
-                  이름<br />
-                  <input type="text" autocomplete="false"/>
-                </div>
-                <div>
                   닉네임<br />
-                  <input type="text" autocomplete="false"/>
+                  <input type="text" autocomplete="false" value="${authUser.nickName }" name="nickName"/>
                 </div>
                 <div>
-                  이름<br />
-                  <input type="text" autocomplete="false"/>
+                  이메일<br />
+                  <input type="text" autocomplete="false" value="${authUser.email }" name="email"/>
                 </div>
-
+                <div>
+				  <input type="hidden" name="userId" value="${authUser.userId }">
                 <button type="submit" class="service-compl">변경</button>
 
               </form>

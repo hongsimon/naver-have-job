@@ -21,5 +21,5 @@ public interface UserDAO {
 	
 	public void delete(int userId);
 	
-	public void update(UserVO user);
+	public void updateUserData(UserVO user);
 }

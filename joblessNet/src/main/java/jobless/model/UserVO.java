@@ -122,11 +122,10 @@ public class UserVO {
 	}
 
 	// update 용
-		public UserVO(int userId, String nickName, String password, String email) {
+		public UserVO(int userId, String nickName, String email) {
 			super();
 			this.userId = userId;
 			this.nickName = nickName;
-			this.password = password;
 			this.email = email;
 		}
 	
