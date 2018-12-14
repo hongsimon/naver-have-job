@@ -239,11 +239,17 @@ public class ClipController {
 		System.out.println("insertClip_GET");
 
 		ModelAndView mv = new ModelAndView();
-
+		
+		List<UserVO> streamerList = getUser.getStreamerAll();
+		
+		
+		
+		
 		if (session.getAttribute("authUser") == null) {
 			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
 			mv.setViewName("errorpage");
 		} else {
+			mv.addObject("streamerList", streamerList);
 			mv.setViewName("view/write/border-hotClip-write");
 		}
 		return mv;

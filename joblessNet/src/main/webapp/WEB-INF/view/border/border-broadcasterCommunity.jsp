@@ -13,9 +13,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hangul.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/broadcaster.js"></script>
 
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
@@ -23,6 +21,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/border.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
+
 
     <meta charset="utf-8" />
     <script type="text/javascript">
@@ -47,14 +46,9 @@
                   <div class="broadcasterCommunity">
                     <div class="broadcasterList-t">
                      <!-- 닉네임, -->
-                     테스트1,
-                     테스트2,
-                     테스트3,
                      <c:forEach var="streamer" items="${streamerList}" varStatus="status">
                      	${streamer.nickName},
                      </c:forEach>
-                     테스트4,
-                     테스트5,
                     </div>
                     <div class="broadcasterList_search">
                         <input type="text" placeholder="머독 또는 ㅁㄷ" id="searchBox"/>
