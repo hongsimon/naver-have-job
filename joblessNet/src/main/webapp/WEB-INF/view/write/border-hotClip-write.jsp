@@ -13,6 +13,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hangul.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
 
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
@@ -79,7 +80,7 @@
                               <div class="hotClip-box">
                                 <div class="title-text-more-big ">
                                   클립 올리기
-                                  <a href="#" class="clip-back">&lt;돌아가기</a>
+                                  <a href="viewClip?active=thumbs-up" class="clip-back">&lt;돌아가기</a>
                                 </div>
                                 <div class="clip-write">
                                   <form class="" action="insertClip" method="post">

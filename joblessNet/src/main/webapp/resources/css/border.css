@@ -578,12 +578,12 @@
   background-color: #fff;
 }
 
-.broadcaster-list-box>ol{
+.broadcaster-list-box>ul{
   list-style: none;
   padding: 0px;
 }
 
-.broadcaster-list-box>ol>li>div{
+.broadcaster-list-box>ul>li>div{
   margin: 5px 10px;
   display: inline-block;
   width: 18px;
@@ -591,8 +591,28 @@
   height: 18px;
   color: #fff;
   border-radius: 5px;
+  margin-right: -0px;
 }
 
-.broadcaster-list-box>ol>li{
+.broadcaster-list-box>ul>li{
   border-bottom: 1px solid #b0b0b0;
+}
+
+.broadcaster-application-btn{
+  margin-top: 20px;
+}
+
+.broadcaster-application-btn>a{
+  background-color: #287A72;
+  text-align: center;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  position: absolute;
+  width: 137px;
+}
+
+.hotClip-upload{
+	margin-bottom:10px;
 }

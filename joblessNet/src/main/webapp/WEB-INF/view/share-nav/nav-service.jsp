@@ -23,7 +23,7 @@
             </div>
             <div class="box">
               <div class="left-nav-sub">
-                <a href="#"><div>
+                <a href="streamerList"><div>
                   B
                 </div>스트리머 게시판</a>
               </div>
@@ -35,7 +35,7 @@
               </div>
 
               <div class="left-nav-sub">
-                <a href="viewClip"><div>
+                <a href="viewClip?active=thumbs-up"><div>
                   H
                 </div>핫클립</a>
               </div>

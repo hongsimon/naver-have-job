@@ -10,7 +10,6 @@ $(function(){
     var replaceUrl = "";
     var imgUrl = "";
     var video = "";
-
     for(var i=0; i<brand.length;i++){
       switch (brand[i]) {
         case "youtu":
@@ -25,7 +24,11 @@ $(function(){
 
         break;
         case "twitch":
-          video = splits[3]
+        	if(splits.length==4){     		
+        		video = splits[3]
+        	}else if(splits.length==6){
+        		video = splits[5]
+        	}
           if(video.indexOf("?tt_medium=clips_api&tt_content=url") != -1){
         	  video = video.replace("?tt_medium=clips_api&tt_content=url","");
           }
@@ -73,21 +76,20 @@ $(function(){
   })
 
   $(".clip-broadcaster-btn-down").click(function(){
-    $("#broadcasterList").slideDown();
+    $("#broadcasterList").show();
     $(".clip-broadcaster-btn-up").show();
     $(".clip-broadcaster-btn-down").hide();
   })
 
   $(".clip-broadcaster-btn-up").click(function(){
-    $("#broadcasterList").slideUp();
+    $("#broadcasterList").hide();
     $(".clip-broadcaster-btn-down").show();
     $(".clip-broadcaster-btn-up").hide();
   })
-
-
-
-
-
+  
+ var where = $('.border-hotclip-service>input').val()
+ $(".border-hotclip-service>ul>a").attr("class","hotclip-service-none");
+ $(".border-hotclip-service>ul>a[id='"+where+"']").attr("class","hotclip-service-active");
 
 
 

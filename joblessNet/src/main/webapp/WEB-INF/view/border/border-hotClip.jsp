@@ -2,10 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<% String active = request.getParameter("active"); %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <%@include file="../header_Service/pageContextService.jsp"%>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/hangul.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/border.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
 
     <meta charset="utf-8">
     <title>백수넷 - hotClip</title>
@@ -18,25 +32,26 @@
         <div class="col-xs-12">
           <div class="border-hotclip-in">
               <div class="border-hotclip-service ">
+              	<input type="hidden" value="<%=active %>">
                 <ul>
-                  <a href="viewClip" class="hotclip-service-none">
+                  <a href="main" class="hotclip-service-none">
                   <li>                  
                     <span class="glyphicon glyphicon-home"></span>
                   </li>
 				  </a>
-                  <a class="hotclip-service-active" href="viewClip?sortby=likes&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page}">
+                  <a id="thumbs-up" class="" href="viewClip?sortby=likes&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page}&active=thumbs-up">
                   <li>
                     <span class="glyphicon glyphicon-thumbs-up"></span>추천수
                   </li>
                   </a>
 
-                  <a class="hotclip-service-none" href="viewClip?sortby=recent&term=${param.term}&search=${param.search}&id=${param.id}">
+                  <a id="plus" class="" href="viewClip?sortby=recent&term=${param.term}&search=${param.search}&id=${param.id}&active=plus"">
                   <li>
                     <span class="glyphicon glyphicon-plus"></span>새로운
                   </li>
                   </a>
 
-                  <a class="hotclip-service-none" href="viewClip?sortby=views&term=${param.term}&search=${param.search}&id=${param.id}">
+                  <a id="heart" class="" href="viewClip?sortby=views&term=${param.term}&search=${param.search}&id=${param.id}&active=heart"">
                   <li>
                     <span class="glyphicon glyphicon-heart"></span>조회수
                   </li>

@@ -2,9 +2,7 @@ $(function() {
 
   //console.log($(".broadcasterList").text())
   var broadcasters = $(".broadcasterList-t").text();
-
   var broadcaster = broadcasters.split(",");
-
   var broadcast_List_join = [];
   var firstPont = [];
 
@@ -14,6 +12,8 @@ $(function() {
       "broadcaster": broadcaster[i]
     }
   }
+
+  
   broadcast_List_join.forEach(function(item) {
     var dis = Hangul.disassemble(item.broadcaster, true);
     var cho = dis.reduce(function(prev, elem) {
@@ -29,6 +29,7 @@ $(function() {
       return item.diassembled || item.broadcaster
     })
     .forEach(function(item) {
+
       firstPont = item.diassembled.split("")
       switch (firstPont[0]) {
         case 'ㄱ': case'ㄲ':
@@ -95,7 +96,7 @@ $(function() {
       }
     })
 
-//    $(".broadcasterList").text("");
+  $(".broadcasterList-t").text("");
 
 
 

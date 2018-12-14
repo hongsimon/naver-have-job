@@ -29,6 +29,8 @@ $(function() {
         sliceString(".border-table ul",".border-comm-writer a",22,6);
           sliceString(".border-table ul","#title",110,35);
 
+          //writer
+          sliceString("#broadcaster-lank","#broadcaster-lank-name",12,6);
 
 
         function sliceString(ulClass,sideClass,maxByte,maxString){

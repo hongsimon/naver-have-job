@@ -13,6 +13,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hangul.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
 
 
@@ -148,17 +149,71 @@
                   <div class="title-text-big">
                     게시판 랭킹
                   </div>
-                  <div>
-                    <ol>
+                  <div class="broadcaster-list-box">
+                    <ul id="broadcaster-lank">
                       <li>
-                        <div>
+                        <div style="background-color:#287A72">
                           1
                         </div>
-                        <a href="#">김도</a>
+                        <a href="#" id="broadcaster-lank-name">일이삼사오육칠팔구십</a>
                       </li>
-                    </ol>
+                      <li>
+                        <div style="background-color:rgba(40, 122, 114, 0.90)">
+                          2
+                        </div>
+                        <a href="#" id="broadcaster-lank-name">@@@@@@@@</a>
+                      </li>
+                      <li>
+                        <div style="background-color:rgba(40, 122, 114, 0.80)">
+                          3
+                        </div>
+                        <a href="#"  id="broadcaster-lank-name">김도</a>
+                      </li>
+                      <li>
+                        <div style="background-color:rgba(40, 122, 114, 0.70)">
+                          4
+                        </div>
+                        <a href="#"  id="broadcaster-lank-name">김도</a>
+                      </li>
+                      <li>
+                        <div style="background-color:rgba(63, 145, 137, 0.60)">
+                          5
+                        </div>
+                        <a href="#"  id="broadcaster-lank-name">김도</a>
+                      </li>
+                      <li>
+                        <div style="background-color:#6f6f6f">
+                          6
+                        </div>
+                        <a href="#"  id="broadcaster-lank-name">김도</a>
+                      </li>
+                      <li>
+                        <div style="background-color:#6f6f6f">
+                          7
+                        </div>
+                        <a href="#"  id="broadcaster-lank-name">김도</a>
+                      </li>
+                      <li>
+                        <div style="background-color:#6f6f6f">
+                          8
+                        </div>
+                        <a href="#"  id="broadcaster-lank-name">김도</a>
+                      </li>
+                      <li>
+                        <div style="background-color:#6f6f6f">
+                          9
+                        </div>
+                        <a href="#"  id="broadcaster-lank-name">김도</a>
+                      </li>
+                      <li>
+                        <div style="background-color:#6f6f6f">
+                          10
+                        </div>
+                        <a href="#"  id="broadcaster-lank-name">김도</a>
+                      </li>
+                    </ul>
                   </div>
-                  <div>
+                  <div class="broadcaster-application-btn">
                     <a href="#">게시판 신청하기</a>
                   </div>
                 </div>
