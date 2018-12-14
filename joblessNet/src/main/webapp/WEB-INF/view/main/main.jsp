@@ -314,7 +314,7 @@
                       <div>
 
                         <ul class="hotclip-border">
-						<c:forEach var="clipDetail" items="${clipDetailList}" varStatus="status" begin="0" end="20">
+						<c:forEach var="clipDetail" items="${clipDetailList}" varStatus="status" begin="0" end="24">
                           <li>
                             <div class="hotclip-box ">
                               <a href="selectClip?clipId=${clipDetail.clip.clipId }">
