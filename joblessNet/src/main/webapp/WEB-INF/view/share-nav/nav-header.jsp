@@ -142,11 +142,11 @@ SK매직 2019년 연구개발 및 생산관리부문 신입/경력 채용</div><
                 </a>
                 <ul class="dropdown-menu col-xs-12" role="menu" aria-labelledby="dropdownMenu">
                   <li><a href="">전광판 관리</a></li>
-                  <li><a href="">요청 관리</a></li>
+                  <li><a href="${pageContext.request.contextPath}/adminApplyPage">요청 관리</a></li>
                   <li><a href="">신고 관리</a></li>
                   <li class="divider"></li>
                   <li><a href="">공지사항</a></li>
-                  <li><a href="">이벤트</a></li>
+                  <li><a href="">이벤트</a></li>  
                 </ul>
               </div>
               </c:if>

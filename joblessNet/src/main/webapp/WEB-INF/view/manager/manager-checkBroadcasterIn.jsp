@@ -23,13 +23,13 @@
   <title>백수넷</title>
 
 </head>
-
+	<%@include file="../share-nav/nav-header.jsp"%>
 <body>
 
   <!-- 우측 메인 메뉴바 -->
   <div class="container margin-nav">
     <div class="row right-nav-bar">
-
+		<%@include file="../share-nav/nav-service.jsp"%>
       <!-- 게시판 메뉴 -->
       <div class="col-xs-10">
         <div class="service-user">

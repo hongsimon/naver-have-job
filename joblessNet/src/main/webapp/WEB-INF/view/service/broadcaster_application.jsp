@@ -54,7 +54,7 @@
                   <div class="service-appli-email">
                     방송국 주소<br />
                     <input type="text" name="broadcasterURL">
-                    연락 가능한 이메일 주소를 알려주세요. 게시판 요청 승인 시 메일로 전송됩니다.
+                   	게시판 요청 승인 시 메일로 전송됩니다.
                   </div>
                 </div>
                 <div class="service-appli-btn">

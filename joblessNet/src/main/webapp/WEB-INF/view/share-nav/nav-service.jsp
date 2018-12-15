@@ -15,10 +15,8 @@
                 <span class="glyphicon glyphicon-menu-hamburger"></span>
                 전체 메뉴
               </div>
-            </div>
-            <div class="box">
               <div class="left-nav-sub">
-                <a href="${pageContext.request.contextPath}/streamerList"><div>
+                <a href="${pageContext.request.contextPath}/broadcasterList"><div>
                   B
                 </div>방송인 게시판</a>
               </div>
@@ -34,6 +32,7 @@
                   H
                 </div>핫클립</a>
               </div>
+             
             </div>
             <div class="box">
               <div class="left-nav-sub">

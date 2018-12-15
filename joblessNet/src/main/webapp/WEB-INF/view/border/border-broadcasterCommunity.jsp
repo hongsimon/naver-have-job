@@ -214,7 +214,7 @@
                     </ul>
                   </div>
                   <div class="broadcaster-application-btn">
-                    <a href="#">게시판 신청하기</a>
+                    <a href="${pageContext.request.contextPath}/broadcasterApply">게시판 신청하기</a>
                   </div>
                 </div>
             </div>

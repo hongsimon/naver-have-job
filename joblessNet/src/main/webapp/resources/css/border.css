@@ -108,7 +108,7 @@
 }
 
 .border-comm-title{
-  width: 540px;
+  width: 500px;
 }
 
 .border-comm-title span{
@@ -615,4 +615,9 @@
 
 .hotClip-upload{
 	margin-bottom:10px;
+}
+
+.border-community-m{
+	margin-left:10px;
+	margin-right:0px;
 }

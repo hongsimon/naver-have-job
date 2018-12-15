@@ -3,8 +3,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    
-        <%@include file="../header_Service/pageContextService.jsp"%>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/change_comm.js"></script>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/write.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
+      
     
     <meta charset="utf-8" />
 

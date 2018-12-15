@@ -82,7 +82,6 @@ public class AccountController {
 			HttpSession session
 			) {
 		System.out.println("login_POST");
-		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		ModelAndView modelAndView = new ModelAndView();
 		UserRequest userRequest = new UserRequest(loginId, password);
