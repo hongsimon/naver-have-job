@@ -6,9 +6,18 @@ import org.apache.ibatis.type.Alias;
 public class BoardApplyVO {
 	private int applyId;
 	private int ownerId;
+	private String ownerNickName;
 	private String content;
 	private String broadcasterURL;
 	private boolean complete;
+
+	public String getOwnerNickName() {
+		return ownerNickName;
+	}
+
+	public void setOwnerNickName(String ownerNickName) {
+		this.ownerNickName = ownerNickName;
+	}
 
 	public BoardApplyVO() {
 	}

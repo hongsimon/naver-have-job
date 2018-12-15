@@ -6,6 +6,7 @@ public class BoardApplyRequest {
 
 	private int applyId;
 	private int ownerId;
+	private String ownerNickName;
 	private String content;
 	private String broadcasterURL;
 	private boolean complete;
@@ -14,6 +15,14 @@ public class BoardApplyRequest {
 		this.ownerId = ownerId;
 		this.content = content;
 		this.broadcasterURL = broadcasterURL;
+	}
+
+	public String getOwnerNickName() {
+		return ownerNickName;
+	}
+
+	public void setOwnerNickName(String ownerNickName) {
+		this.ownerNickName = ownerNickName;
 	}
 
 	public BoardApplyVO getInsertBoardApplyVO() {

@@ -18,4 +18,10 @@ public class ModifyUserServiceImpl implements ModifyUserService {
 
 	}
 
+	@Override
+	public void updateIsStreamer(int userId) {
+		// TODO Auto-generated method stub
+		userdao.updateIsStreamer(userId);
+	}
+
 }

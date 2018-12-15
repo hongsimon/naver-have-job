@@ -22,4 +22,6 @@ public interface UserDAO {
 	public void delete(int userId);
 	
 	public void updateUserData(UserVO user);
+	
+	public void updateIsStreamer(int userId);
 }

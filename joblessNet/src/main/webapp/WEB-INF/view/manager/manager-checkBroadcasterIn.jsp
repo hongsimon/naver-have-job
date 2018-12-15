@@ -1,5 +1,8 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@
+	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+ %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -51,21 +54,32 @@
                       </th>
                     </thead>
                     <tbody>
+                      <c:forEach var="boardApply" items="${boardApplyList }" varStatus="status">
                       <tr>
                         <td>
-                          1
+                          ${boardApply.applyId }
                         </td>
                         <td>
-                          sora8270
+                          ${boardApply.ownerNickName}
                         </td>
                         <td>
-                          테스트 사유
+                          ${boardApply.content}
                         </td>
                         <td>
-                          <button type="button" name="button" id="making-ok"><span class="glyphicon glyphicon-ok"></span></button>
-                          <button type="button" name="button" id="making-none"><span class="glyphicon glyphicon-remove"></span></button>
+                        <c:choose>
+                          <c:when test="${boardApply.complete == false}">
+                          	<a href="adminPermission?userId=${boardApply.ownerId}&applyId=${boardApply.applyId }" name="button" id="making-ok"><span class="glyphicon glyphicon-ok"></span></a>
+                          	<a href="deleteAdminPermission?applyId=${boardApply.applyId }" name="button" id="making-none"><span class="glyphicon glyphicon-remove"></span></a>
+                          	<!-- <button type="button" name="button" id="making-ok"><span class="glyphicon glyphicon-ok"></span></button>
+                          	<button type="button" name="button" id="making-none"><span class="glyphicon glyphicon-remove"></span></button> -->
+                          </c:when>
+                          <c:when test="${boardApply.complete == true }">
+                          	<span class="glyphicon glyphicon-ok"></span>
+                          </c:when>
+                        </c:choose>
                         </td>
                       </tr>
+                      </c:forEach>
                     </tbody>
                     </table>
                 </div>

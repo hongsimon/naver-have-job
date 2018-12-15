@@ -122,10 +122,10 @@
 			</if>
 			<if test="id != null">
 				<if test="id.writerId">
-				AND writer_id = ${id.writerId}
+				AND writer_id = #{id.writerId}
 				</if>
 				<if test="id.broadcasterId">
-				AND broadcaster_id = ${id.broadcasterId}
+				AND broadcaster_id = #{id.broadcasterId}
 				</if>
 			</if>
 			<if test="text != null">

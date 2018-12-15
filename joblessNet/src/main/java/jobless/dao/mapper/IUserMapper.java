@@ -23,4 +23,7 @@ public interface IUserMapper {
 	public void deleteUser(int userId);
 	
 	public void updateUserData(UserVO user);
+	
+	public void updateIsStreamer(int userId);
+	
 }

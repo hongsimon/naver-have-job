@@ -11,10 +11,7 @@
 		UPDATE 
 			board_apply 
 		SET 
-			user_id = #{ownerId}, 
-			content = #{content}, 
-			broadcaster_url = #{broadcasterURL}, 
-			is_completed = #{complete} 
+			is_completed = true
 		WHERE 
 			apply_id = #{applyId};
 	</update>
@@ -39,12 +36,13 @@
 	<select id="selectBoardApplyList" resultType="BoardApply">
 		select 
 			apply_id applyId, 
-			user_id ownerId, 
-			content content, 
+			ba.user_id ownerId, 
+			content content,
+			u.nickName ownerNickName, 
 			broadcaster_url broadcasterURL, 
 			is_completed complete
 		from
-			board_apply;
+			board_apply ba join user u on ba.user_id = u.user_id;
 	</select>
 	<select id="selectBoardApplyOwnList" parameterType="int" resultType="BoardApply">
 		select 

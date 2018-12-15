@@ -3,11 +3,13 @@ package jobless.service.board;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import jobless.dao.BoardApplyDAO;
 import jobless.exception.ReadBoardApplyException;
 import jobless.model.BoardApplyVO;
 
+@Repository("readBoardApplyService")
 public class ReadBoardApplyServiceImpl implements ReadBoardApplyService {
 
 	@Autowired

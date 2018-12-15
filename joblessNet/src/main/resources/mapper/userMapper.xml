@@ -146,4 +146,13 @@
 		where 
 			user_id = #{userId};
 	</update>
+	
+	<update id="updateIsStreamer" parameterType="User">
+		update 
+			user 
+		set 
+			is_streamer = true 
+		where 
+			user_id = #{userId};
+	</update>
 </mapper>

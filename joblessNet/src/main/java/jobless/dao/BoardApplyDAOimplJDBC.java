@@ -19,8 +19,8 @@ public class BoardApplyDAOimplJDBC implements BoardApplyDAO {
 	}
 	
 	@Override
-	public void update(BoardApplyVO baV) {
-		mapper.updateBoardApply(baV);
+	public void update(int id) {
+		mapper.updateBoardApply(id);
 	}
 	
 	@Override

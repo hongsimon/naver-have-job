@@ -59,5 +59,11 @@ public class UserDAOImplJDBC implements UserDAO {
 		return mapper.selectStreamerAll();
 	}
 
+	@Override
+	public void updateIsStreamer(int userId) {
+		// TODO Auto-generated method stub
+		mapper.updateIsStreamer(userId);
+	}
+
 
 }

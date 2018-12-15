@@ -7,7 +7,7 @@ import jobless.model.BoardApplyVO;
 @MyAnnotMapper
 public interface IBoardApplyMapper {
 	void insertBoardApply(BoardApplyVO baV);
-	void updateBoardApply(BoardApplyVO baV);
+	void updateBoardApply(int id);
 	void deleteBoardApply(int id);
 	BoardApplyVO selectBoardApplyById(int id);
 	List<BoardApplyVO> selectBoardApplyList();
