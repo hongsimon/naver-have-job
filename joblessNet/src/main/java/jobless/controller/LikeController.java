@@ -66,11 +66,12 @@ public class LikeController {
 			modelAndView.addObject("clip_or_postId", clip_or_postId);
 			selectLikeService.selectLikePost(new LikeVO(userId, clip_or_postId));
 			
-			insertLikeService.insertLikeClip(new LikeVO(userId, clip_or_postId));
+			insertLikeService.insertPostClip(new LikeVO(userId, clip_or_postId));
 		}catch (NotMoreLikeException e) {
 			errors.put("NotMoreLike", true);
 			e.getMessage();
 			modelAndView.setViewName("view/view/border-community-view");
+			System.out.println("더이상 추천할수 없다!!");
 			return modelAndView;
 		}
 		modelAndView.setViewName("redirect:/viewPost?postId="+clip_or_postId);

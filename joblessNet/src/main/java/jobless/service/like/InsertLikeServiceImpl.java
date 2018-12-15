@@ -18,10 +18,10 @@ public class InsertLikeServiceImpl implements InsertLikeService {
 
 	}
 	
-//	@Override
-//	public void insertPostClip(LikeVO like) {
-//		likeDao.LikePost(like);
-//
-//	}
+	@Override
+	public void insertPostClip(LikeVO like) {
+		likeDao.LikePost(like);
+
+	}
 
 }
