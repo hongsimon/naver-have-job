@@ -15,8 +15,11 @@ import jobless.model.BoardApplyVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.board.BoardApplyRequest;
+import jobless.service.board.BoardCategoryRequest;
 import jobless.service.board.CreateBoardApplyService;
+import jobless.service.board.CreateBoardCategoryService;
 import jobless.service.board.DeleteBoardApplyService;
+import jobless.service.board.InsertBoardService;
 import jobless.service.board.ModifyBoardApplyService;
 import jobless.service.board.ReadBoardApplyService;
 import jobless.service.comment.CommentRequest;
@@ -33,6 +36,9 @@ public class BroadcasterController {
 	ModifyUserService modifyUser;
 	
 	@Autowired
+	InsertBoardService insertBoard;
+	
+	@Autowired
 	ReadBoardApplyService readBoardApply;
 	
 	@Autowired
@@ -43,9 +49,14 @@ public class BroadcasterController {
 	
 	@Autowired
 	DeleteBoardApplyService deleteBoardApply;
+
+	@Autowired
+	CreateBoardCategoryService createCategory;
 	
 	@RequestMapping(value="/broadcasterList", method = RequestMethod.GET)
 	public ModelAndView broadcaster_GET() {
+		 
+		
 		ModelAndView mv = new ModelAndView();
 		
 		List<UserVO> streamerList = getUser.getStreamerAll();
@@ -70,6 +81,7 @@ public class BroadcasterController {
 												  @RequestParam("broadcasterURL") String broadcasterURL){
 		
 		ModelAndView mv = new ModelAndView();
+		
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
 			mv.setViewName("errorpage");
@@ -102,12 +114,14 @@ public class BroadcasterController {
 	}
 	
 	@RequestMapping(value="/adminPermission", method = RequestMethod.GET)
-	public ModelAndView adminPermission_GET(HttpSession session, @RequestParam("userId") int userId, @RequestParam("applyId")int applyId) {
+	public ModelAndView adminPermission_GET(HttpSession session, @RequestParam("userId") int userId, 
+											@RequestParam("applyId")int applyId
+											) {
 		ModelAndView mv = new ModelAndView();
 		
 		AuthUser authUser = (AuthUser) session.getAttribute("authUser");
 		List<BoardApplyVO> boardApplyList = readBoardApply.readBoardApplyList();
-		
+		String[] categorys = {"전체", "공지", "이벤트", "유머", "게임", "방송국"};
 		System.out.println(applyId);
 		
 		if(authUser.isAdmin()==false) {
@@ -116,6 +130,11 @@ public class BroadcasterController {
 			System.out.println(authUser.isAdmin());
 			mv.setViewName("errorpage");
 		}else {
+			/*insertBoard.insert(boardRequest);
+			
+			for (String string : categorys) {
+				createCategory.createBoardCategory(new BoardCategoryRequest(categorys[i]));
+			}*/
 			modifyUser.updateIsStreamer(userId);
 			modifyBoardApply.modifyBoardApply(applyId);
 			mv.addObject("boardApplyList", boardApplyList);
