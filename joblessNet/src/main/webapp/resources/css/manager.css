@@ -1,0 +1,60 @@
+
+.nav-bar{
+  background-color:  #287A72;
+}
+
+.nav-logo{
+  display: inline-block;
+}
+
+.nav-logo img{
+  width: 130px;
+  padding: 10px;
+}
+
+.nav-list{
+  display: inline-block;
+}
+
+.nav-list>ul{
+  list-style: none;
+  padding: 0px;
+}
+
+.nav-list>ul>li{
+  display: inline-block;
+  padding: 5px;
+}
+
+.nav-list>ul>li>a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  font-family: sans-serif;
+  cursor: pointer;
+
+}
+
+.why-makeing{
+  width: 510px;
+}
+
+.maker-id{
+  max-width: 90px;
+}
+
+#making-ok{
+  background-color: rgb(54, 163, 233);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+
+#making-none{
+  background-color: rgb(226, 78, 96);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}

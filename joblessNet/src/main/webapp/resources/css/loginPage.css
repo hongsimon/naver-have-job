@@ -295,3 +295,12 @@
 .search-for{
   margin-top: 20px;
 }
+
+.change_password-btn>button{
+  margin-bottom: 10px;
+  background-color: #287A72;
+  padding: 6px 12px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}

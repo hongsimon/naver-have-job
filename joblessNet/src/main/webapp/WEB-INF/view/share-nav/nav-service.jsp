@@ -15,17 +15,12 @@
                 <span class="glyphicon glyphicon-menu-hamburger"></span>
                 전체 메뉴
               </div>
-              <div class="left-nav-sub">
-                <a href="#"><div>
-                  A
-                </div>전체글</a>
-              </div>
             </div>
             <div class="box">
               <div class="left-nav-sub">
                 <a href="${pageContext.request.contextPath}/streamerList"><div>
                   B
-                </div>스트리머 게시판</a>
+                </div>방송인 게시판</a>
               </div>
 
               <div class="left-nav-sub">
