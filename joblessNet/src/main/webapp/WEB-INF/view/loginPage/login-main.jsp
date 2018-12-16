@@ -75,7 +75,7 @@
           <input type="password" name="password"  autocomplete="off"/>
         </div>
         <div>
-          <a href="#">Trouble logging in?</a>
+          <a href="${pageContext.request.contextPath}/userSearch/loginPage">Trouble logging in?</a>
         </div>
         
         <div>

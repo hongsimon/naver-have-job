@@ -187,11 +187,11 @@ public class AccountController {
 			e.getMessage();
 			return modelAndView;
 		}
-		String code = emailSendService.emailService(userRequest.getEmail());
+		String code = emailSendService.emailService(userRequest.getEmail(), "securityCode");
 		
 		session.setAttribute("code", code);
 		session.setAttribute("user", userRequest);
-		session.setMaxInactiveInterval(600);
+		session.setMaxInactiveInterval(60*10);
 		modelAndView.setViewName("redirect:/join-check");
 		return modelAndView; 
 	}
@@ -252,66 +252,6 @@ public class AccountController {
 	}
 	
 	
-	//회원정보수정
-	@RequestMapping(value="/config/changeProfile", method=RequestMethod.GET)
-	public String configChangeProfile_GET() {
-		System.out.println("configChangeProfile_GET");
-		return "view/service/changeProfile";
-	}
-	
-	@RequestMapping(value="/config/changeProfile", method=RequestMethod.POST)
-	public ModelAndView configChangeProfile_POST(
-											@RequestParam int userId,
-											@RequestParam String nickName,
-											@RequestParam String email,
-											HttpSession session
-										  ) {
-		System.out.println("configChangeProfile_POST");
-		
-		
-		ModelAndView modelAndView = new ModelAndView();
-		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-		UserRequest userRequest = new UserRequest(userId, nickName, email);
-		
-			userRequest.validateModify(errors);
-			modelAndView.addObject("errors", errors);
-			modelAndView.setViewName("view/service/changeProfile");
-			
-			UserVO userVO = getUserService.getUserByUserId(userId);
-			UserVO userNickName = getUserService.getUserByNickName(nickName);
-			UserVO userEmail = getUserService.getUserByEmail(email);
-			
-			if(userVO.getNickName().equals(nickName)) {
-				System.out.println("내 닉넴임");
-			}else if(userNickName != null) {
-				System.out.println("누가 쓰고있는 닉넴!!");
-				errors.put("sameNick", true);
-			}
-			
-			if(userVO.getEmail().equals(email)) {
-				System.out.println("내 이멜임");
-			}else if(userEmail != null) {
-				System.out.println("누가 쓰고있는 이멜!!");
-				errors.put("sameEmail", true);
-			}
-			
-			if(!errors.isEmpty()) {
-				return modelAndView;
-			}
-			
-			modifyUserService.modifyUserData(new UserRequest(userId, nickName, email));
-			
-			UserVO user= getUserService.getUserByUserId(userId);
-			AuthUser authUser = new AuthUser(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.getAdmin(), user.getPlatformId());
-			
-			session.setAttribute("authUser", authUser);
-			
-		
-		modelAndView.setViewName("redirect:/config/changeProfile");
-		return modelAndView;
-	}
-	
-	
 	//회원탈퇴
 	@RequestMapping(value="/config/userDel", method=RequestMethod.GET)
 	public String configUserDel_GET() {
@@ -356,15 +296,16 @@ public class AccountController {
 		ModelAndView modelAndView = new ModelAndView();
 		UserRequest userRequest = new UserRequest(loginId, nickName, password, email, platformId);
 		
-		String code = emailSendService.emailService(userRequest.getEmail());
+		String code = emailSendService.emailService(userRequest.getEmail(), "securityCode");
 		
 		System.out.println(code);
 		
 		session.setAttribute("code", code);
 		session.setAttribute("user", userRequest);
-		session.setMaxInactiveInterval(600);
+		session.setMaxInactiveInterval(60*10);
 
 		modelAndView.setViewName("redirect:/join-check");
 		return modelAndView;
 	}
+
 }

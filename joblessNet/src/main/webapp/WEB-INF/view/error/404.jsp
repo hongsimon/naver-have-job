@@ -17,6 +17,6 @@
     <h3>그런데, 짜잔! 페이지를 찾을수 없군요</h4>
     <h5>The page you requested was not found.</h5>
     요청하신 페이지를 찾을 수 없습니다. 링크 주소를 정확히 입력하셨는지 확인해 주세요.<br />
-    <a href="main">메인으로 돌아가시겠습니까?</a>
+    <a href="${pageContext.request.contextPath}/main">메인으로 돌아가시겠습니까?</a>
   </body>
 </html>

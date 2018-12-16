@@ -128,6 +128,13 @@ public class UserVO {
 			this.nickName = nickName;
 			this.email = email;
 		}
+		
+		// update 용
+		public UserVO(int userId, String password) {
+			super();
+			this.userId = userId;
+			this.password = password;
+		}
 	
 	// update 용
 	public UserVO(int userId, String nickName, String password, String email, boolean streamer) {

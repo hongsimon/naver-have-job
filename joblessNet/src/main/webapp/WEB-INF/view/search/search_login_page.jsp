@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" dir="ltr">
@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="container login-con margin-nav">
-      <div class="login-logo text-center login-logo"><a href="#"><img src="../img/logo/joblessLogo-2.png" /></a></div>
+      <div class="login-logo text-center login-logo"><a href="${pageContext.request.contextPath}/main"><img src="../images/logo/joblessLogo-2.png" /></a></div>
       <div class="login_search_div">
         	<div class=" margin-l search-email-form" >
           <div class="search-email-inner">
@@ -29,7 +29,7 @@
             <div>
               이메일 입력
             </div>
-            <input type="text" name="" value="" id="search-email" placeholder="email...">
+            <input type="text" name="email" value="" id="search-email" placeholder="email...">
           </div>
           <div class="search-email-btn">
             <button type="button"  name="button" id="search-eamil-toNext">다음</button>

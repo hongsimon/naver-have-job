@@ -11,6 +11,9 @@
 			like += "/main"
 			location.href=like;
 		}
+		if(${!empty Success}){
+			alert("변경되었습니다.");
+		}
 	</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -47,6 +50,18 @@
             <div>
               <form action="${pageContext.request.contextPath}/config/changeProfile" method="POST">
                 
+                <c:if test="${errors.nickName }">
+                <div class="service-error-msg-in text-center">
+                  닉네임을 입력해주세요.
+                </div>
+                </c:if>
+                
+                <c:if test="${errors.email }">
+                <div class="service-error-msg-in text-center">
+                  이메일을 입력해주세요.
+                </div>       
+                </c:if>
+                
                 <c:if test="${errors.sameNick }">
                 <div class="service-error-msg-in text-center">
                   이미 사용중인 닉네임입니다.
@@ -58,6 +73,15 @@
                   이미 사용중인 이메일입니다.
                 </div>       
                 </c:if>
+                
+                <c:if test="${errors.password || errors.newPw || errors.newPwCk || errors.notMatchPassword || errors.notMatchNewPassword || errors.matchNowPw }">
+                <div class="service-error-msg-in text-center">
+                  비밀번호 변경에 실패했습니다.<br>
+                  비밀번호 변경 창을 확인해주세요.
+                </div>       
+                </c:if>
+                
+                
                 <div id="changePwd">
                   <div id="Pwd">
                     비밀번호 변경<br />
@@ -83,28 +107,65 @@
               </form>
               <div id="popupDiv">
                 <div class="popservice">
-                  <form>
+                
+                  <form action="${pageContext.request.contextPath}/config/changeProfile/password" method="POST">
                     <div>
                       <h2>비밀번호 변경하기</h2>
                     </div>
+                    
+                    <c:if test="${errors.password }">
                     <div class="service-error-msg text-center">
-                      Please enter your username and password.
+                      현재 비밀번호를 입력해주세요.
                     </div>
+                    </c:if>
+                    
+                    <c:if test="${errors.newPw }">
+                    <div class="service-error-msg text-center">
+                      새 비밀번호를 입력해주세요.
+                    </div>
+                    </c:if>
+                    
+                    <c:if test="${errors.newPwCk }">
+                    <div class="service-error-msg text-center">
+                      새 비밀번호 확인을 입력해주세요.
+                    </div>
+                    </c:if>
+                    
+                    <c:if test="${errors.notMatchPassword }">
+                    <div class="service-error-msg text-center">
+                      현재 비밀번호가 일치하지 않습니다.
+                    </div>
+                    </c:if>
+                    
+                    <c:if test="${errors.notMatchNewPassword }">
+                    <div class="service-error-msg text-center">
+                      새 비밀번호가 일치하지 않습니다.
+                    </div>
+                    </c:if>
+                    
+                    <c:if test="${errors.matchNowPw }">
+                    <div class="service-error-msg text-center">
+                      새 비밀번호가 현재 비밀번호와 일치합니다.
+                    </div>
+                    </c:if>
+                    
+                      <input type="hidden" name="userId" value="${authUser.userId }">
                     <div>
                       현제 비밀번호<br />
-                      <input type="password" />
+                      <input type="password" name="nowPw"/>
                     </div>
                     <div>
                       새 비밀번호<br />
-                      <input type="password" />
+                      <input type="password" name="newPw"/>
                     </div>
                     <div>
                       새 비밀번호 확인<br />
-                      <input type="password" />
+                      <input type="password" name="newPwCk"/>
                     </div>
                     <button type="submit" class="popCloseBtn service-compl">변경</button>
                     <button type="button" class="popCloseBtn popdel chnagePwd">취소</button>
                   </form>
+                  
                 </div>
               </div>
             </div>

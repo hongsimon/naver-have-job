@@ -18,13 +18,13 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        var boolean = ${empty user};
+    	var boolean = ${empty user};
         if(boolean == true){
             window.alert("만료된 페이지입니다.")
             location.href="main";
         }
-        
     </script>
+    
     <script type="text/javascript">
 	    $(function(){
 	    	$(".input-login-email-btn button").click(function(){;
@@ -79,6 +79,8 @@
             	이 페이지와 인증코드는 10분동안 유효합니다.<br>
             	유효 기간을 연장하려면 인증코드를 재발급 받아주세요.<br>
             	(유효 기간이 만료된 상태에서는 연장이 불가능합니다.)<br>
+            </div>
+            <div>
             </div>
           <br>
           </div>

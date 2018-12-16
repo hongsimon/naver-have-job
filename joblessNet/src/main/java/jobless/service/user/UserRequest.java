@@ -9,6 +9,8 @@ public class UserRequest {
 	private String nickName;
 	private String password;
 	private String passwordCheck;
+	private String newPw;
+	private String newPwCk;
 	private String email;
 	private int point;
 	private LocalDate regDate;
@@ -34,14 +36,29 @@ public class UserRequest {
 			this.platformId = platformId;
 		}
 
-		// update 용
+		// updateUser 용
 		public UserRequest(int userId, String nickName, String email) {
 			super();
 			this.userId = userId;
 			this.nickName = nickName;
 			this.email = email;
 		}
-
+		
+		// updatePasswordCheck 용
+		public UserRequest(String password, String passwordCheck, String newPw, String newPwCk) {
+			super();
+			this.password = password;
+			this.passwordCheck = passwordCheck;
+			this.newPw = newPw;
+			this.newPwCk = newPwCk;
+		}
+		// updatePassword 용
+		public UserRequest(int userId, String newPw) {
+			super();
+			this.userId = userId;
+			this.newPw = newPw;
+		}
+		
 		// select용
 		public UserRequest(int userId, String loginId, String nickName, String password, String email, int point,
 				LocalDate regDate, boolean admin, boolean ban, int platformId) {
@@ -58,6 +75,7 @@ public class UserRequest {
 			this.platformId = platformId;
 		}
 	
+
 	public int getUserId() {
 		return userId;
 	}
@@ -87,6 +105,18 @@ public class UserRequest {
 	}
 	public void setPasswordCheck(String passwordCheck) {
 		this.passwordCheck = passwordCheck;
+	}
+	public String getNewPw() {
+		return newPw;
+	}
+	public void setNewPw(String newPw) {
+		this.newPw = newPw;
+	}
+	public String getNewPwCk() {
+		return newPwCk;
+	}
+	public void setNewPwCk(String newPwCk) {
+		this.newPwCk = newPwCk;
 	}
 	public String getEmail() {
 		return email;
@@ -130,6 +160,11 @@ public class UserRequest {
 		return password != null && !password.equals(passwordCheck);
 	}
 	
+	public boolean isEqNewPassword() {
+		return newPw != null && !newPw.equals(newPwCk);
+	}
+	
+	
 	//입력받은 데이터가 빈값인지 확인하는 메소드
 	private void checkEmptyStr(Map<String, Boolean> errors, String value, String fiedName) {
 		if(value == null || value.isEmpty()) {
@@ -165,16 +200,44 @@ public class UserRequest {
 		}
 	}
 	
+	public void validateLogin(Map<String, Boolean> errors) {
+		checkEmptyStr(errors, loginId, "loginId");
+		checkEmptyStr(errors, password, "password");
+	}
+	
 	public void validateModify(Map<String, Boolean> errors) {
 		checkEmptyStr(errors, nickName, "nickName");
 		checkEmptyStr(errors, email, "email");
 		
 	}
 	
-	public void validateLogin(Map<String, Boolean> errors) {
-		checkEmptyStr(errors, loginId, "loginId");
+	public void validateModifyPw(Map<String, Boolean> errors) {
 		checkEmptyStr(errors, password, "password");
+		checkEmptyStr(errors, newPw, "newPw");
+		checkEmptyStr(errors, newPwCk, "newPwCk");
+		if(password != null && !password.equals("")) {
+			//두개의 비밀번호를 비교
+			if(isEqPassword()) {
+				errors.put("notMatchPassword", true);
+			}
+		}
+		
+		if(!errors.containsKey(newPwCk)) {
+			//두개의 비밀번호를 비교
+			if(isEqNewPassword()) {
+				errors.put("notMatchNewPassword", true);
+			}
+		}
+			
+		if((password != null && !password.equals("")) && (newPw != null && !newPw.equals("")) && (newPwCk != null && !newPwCk.equals(""))) {
+			if(newPw.equals(password)) {
+				errors.put("matchNowPw", true);
+			}
+		}
+		
+		
 	}
+	
 	
 	
 }

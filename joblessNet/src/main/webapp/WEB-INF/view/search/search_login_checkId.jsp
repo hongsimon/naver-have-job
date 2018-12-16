@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	String email = request.getParameter("email");
-%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" dir="ltr">
 <script type="text/javascript" src="../js/jQuery.min.js"></script>
@@ -22,7 +19,7 @@
           </div>
           <div class="search-email-inner-last">
             <div>
-              <%=email %>
+              ${email }
             </div>
              이메일로 이동해 아이디를 복원하세요.<br /><br />
 
@@ -30,7 +27,7 @@
            다른 편지함에 보관될 수도 있으므로 스팸 편지함과 광고 편지함도 꼭 확인하세요!
           </div>
           <div class="search-email-btn search-for">
-            <a href="" class="search-for-login">로그인</a>
+            <a href="${pageContext.request.contextPath}/login" class="search-for-login">로그인</a>
             <button type="submit" name="button" class="search-restart">다시시작</button>
           </div>
         </div>

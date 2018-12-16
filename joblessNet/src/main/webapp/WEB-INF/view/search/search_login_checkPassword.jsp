@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
 <%
 	String email = request.getParameter("email");
@@ -23,11 +23,11 @@
           </div>
           <div class="search-email-inner-last">
             <div>
-              <%=email %>
+              ${param.email }
             </div>
              이메일로 이동해
             <div>
-              <%=id %>
+              ${param.id }
             </div>
               JobLess 계정을 위해 보낸 비밀번호 재설정 링크를 클릭하세요.<br /><br />
 
@@ -35,7 +35,7 @@
            다른 편지함에 보관될 수도 있으므로 스팸 편지함과 광고 편지함도 꼭 확인하세요!
           </div>
           <div class="search-email-btn search-for">
-            <a href="" class="search-for-login">로그인</a>
+            <a href="${pageContext.request.contextPath}/login" class="search-for-login">로그인</a>
             <button type="submit" name="button" class="search-restart">다시시작</button>
           </div>
         </div>

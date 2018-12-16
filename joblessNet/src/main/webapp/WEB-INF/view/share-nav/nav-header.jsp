@@ -121,13 +121,7 @@ SK매직 2019년 연구개발 및 생산관리부문 신입/경력 채용</div><
 			<!-- 로그아웃상태 -->
             <div class="header-login">
             <c:if test="${empty authUser }">
-            <% 
-            session = request.getSession(false);
-    		
-    		if(session != null) {
-    			session.invalidate();
-    		}
-   		    %>
+
               <a href="login" class="head-nav-top-dropdown"><span class="glyphicon glyphicon-user"></span>로그인</a>
             </c:if>
               

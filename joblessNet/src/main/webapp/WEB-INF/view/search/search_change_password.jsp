@@ -1,8 +1,17 @@
+<%@page import="java.util.TimerTask"%>
+<%@page import="java.util.Timer"%>
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+  	<script type="text/javascript">
+  		if(${empty code }){
+  			alert("만료된 페이지입니다.");
+  			location.href="http://localhost:8090/jobless-net/main";
+  		}
+  	</script>
+  
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
@@ -18,7 +27,7 @@
   </head>
   <body>
     <div class="container login-con margin-nav">
-      <div class="login-logo text-center login-logo"><a href="#"><img src="../img/logo/joblessLogo-2.png" /></a></div>
+      <div class="login-logo text-center login-logo"><a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/img/logo/joblessLogo-2.png" /></a></div>
       <div>
         <form class=" margin-l search-email-form" action="#" method="post">
           <div class="search-email-inner">
@@ -31,19 +40,19 @@
             <div>
               새 비밀번호
             </div>
-            <input type="text" name="" value="" placeholder="new password...">
+            <input type="hidden" name="userId" value="${userId }">
+            <input type="text" name="password" value="" placeholder="new password...">
           </div>
           <div class="search-email-input">
             <div>
               새 비밀번호 확인
             </div>
-            <input type="text" name="" value="" placeholder="password check...">
+            <input type="text" name="passwordCheck" value="" placeholder="password check...">
           </div>
           <div class="change_password-btn">
             <button type="submit" name="button" >확인</button>
           </div>
         </form>
-
       </div>
     </div>
   </body>

@@ -17,6 +17,12 @@ public class ModifyUserServiceImpl implements ModifyUserService {
 		userdao.updateUserData(new UserVO(userRequest.getUserId(), userRequest.getNickName(), userRequest.getEmail()));
 
 	}
+	
+	@Override
+	public void modifyUserPw(UserRequest userRequest) {
+		userdao.updateUserPw(new UserVO(userRequest.getUserId(), userRequest.getNewPw()));
+
+	}
 
 	@Override
 	public void updateIsStreamer(int userId) {

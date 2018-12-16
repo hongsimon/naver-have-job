@@ -147,6 +147,15 @@
 			user_id = #{userId};
 	</update>
 	
+	<update id="updateUserPw" parameterType="User">
+		update 
+			user 
+		set 
+			password = #{password}
+		where 
+			user_id = #{userId};
+	</update>
+	
 	<update id="updateIsStreamer" parameterType="User">
 		update 
 			user 

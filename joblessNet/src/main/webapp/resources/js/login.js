@@ -36,10 +36,25 @@ $("#search-password").keyup(function(){
     }
   })
 
-  $("#search-eamil-toNext").click(function(){
+//  $("#search-eamil-toNext").click(function(){
+//	  $.ajax({
+//		  type : "POST", //전송방식을 지정한다 (POST,GET)
+//		  url : "search_login_check.jsp?emailurl="+email,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+//		  dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+//		  error : function(){
+//			  alert("통신실패!!!!");
+//		  },
+//		  success : function(Parse_data){
+//			  $(".login_search_div").html(Parse_data);
+//		  }
+//	  });
+//  })
+  
+    $("#search-eamil-toNext").click(function(){
 	  $.ajax({
 		  type : "POST", //전송방식을 지정한다 (POST,GET)
-		  url : "search_login_check.jsp?emailurl="+email,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		  url : "/jobless-net/userSearch/search_login_check",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		  data : "emailurl="+email,
 		  dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 		  error : function(){
 			  alert("통신실패!!!!");
@@ -54,7 +69,8 @@ $("#search-password").keyup(function(){
 	   email = $(".search-email input").val()
 	  $.ajax({
 		  type : "POST", //전송방식을 지정한다 (POST,GET)
-		  url : "search_login.jsp?email="+email,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		  url : "/jobless-net/userSearch/search_login",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		  data : "email="+email,
 		  dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 		  error : function(){
 			  alert("통신실패!!!!");
@@ -74,7 +90,8 @@ $("#search-password").keyup(function(){
 	  
 	  $.ajax({
 		  type : "POST", //전송방식을 지정한다 (POST,GET)
-		  url : "search_login_checkPassword.jsp?email="+email+"&id="+id,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		  url : "/jobless-net/userSearch/search_login_checkPassword",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		  data : "email="+email+"&id="+id,
 		  dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 		  error : function(){
 			  alert("통신실패!!!!");
@@ -85,6 +102,7 @@ $("#search-password").keyup(function(){
 		  
 	  });
   });
+  
   
   $(".search-restart").click(function(){
 	  
@@ -107,7 +125,8 @@ $(".search-id-btn button").click(function(){
 	 
 	  $.ajax({
 		  type : "POST", //전송방식을 지정한다 (POST,GET)
-		  url : "search_login_checkId.jsp?email="+email,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		  url : "/jobless-net/userSearch/search_login_checkId",
+		  data : "email="+email,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 		  dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 		  error : function(){
 			  alert("통신실패!!!!");

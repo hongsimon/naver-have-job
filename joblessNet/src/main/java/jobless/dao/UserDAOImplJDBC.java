@@ -52,6 +52,11 @@ public class UserDAOImplJDBC implements UserDAO {
 		mapper.updateUserData(user);
 		
 	}
+	
+	public void updateUserPw(UserVO user) {
+		mapper.updateUserPw(user);
+		
+	}
 
 	@Override
 	public List<UserVO> selectStreamerAll() {
