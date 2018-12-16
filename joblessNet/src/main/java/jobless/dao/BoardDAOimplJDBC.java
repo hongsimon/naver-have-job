@@ -43,5 +43,10 @@ class BoardDAOimplJDBC implements BoardDAO {
 		// TODO Auto-generated method stub
 		mapper.deleteBoard(boardId);
 	}
+
+	@Override
+	public int readLastInsertBoardId() {
+		return mapper.selectLastInsertBoardId();
+	}
 	
 }

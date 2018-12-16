@@ -1,6 +1,8 @@
 package jobless.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import jobless.exception.ReadPostException;
 import jobless.model.BoardApplyVO;
+import jobless.model.PostDetailVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.board.BoardApplyRequest;
 import jobless.service.board.BoardCategoryRequest;
+import jobless.service.board.BoardRequest;
 import jobless.service.board.CreateBoardApplyService;
 import jobless.service.board.CreateBoardCategoryService;
 import jobless.service.board.DeleteBoardApplyService;
@@ -23,11 +28,15 @@ import jobless.service.board.InsertBoardService;
 import jobless.service.board.ModifyBoardApplyService;
 import jobless.service.board.ReadBoardApplyService;
 import jobless.service.comment.CommentRequest;
+import jobless.service.post.ReadPostService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.ModifyUserService;
 
 @Controller("broadcasterController")
 public class BroadcasterController {
+	
+	@Autowired
+	ReadPostService readPost;
 	
 	@Autowired
 	GetUserService getUser;
@@ -52,6 +61,35 @@ public class BroadcasterController {
 
 	@Autowired
 	CreateBoardCategoryService createCategory;
+	
+	@RequestMapping(value="/broadcasterBoardList", method=RequestMethod.GET)
+	public ModelAndView broadcasterBoardList_GET(@RequestParam("boardId")int boardId) {
+		System.out.println("broadcasterBoardList_GET");
+		
+		ModelAndView mv = new ModelAndView();
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		List<PostDetailVO> postDetail = null;
+		
+		try {
+			postDetail = readPost.readDetailPostAll();
+		} catch (ReadPostException e) {
+			System.out.println("viewPostList Error");
+			errors.put("ReadPostException", true);
+			e.getMessage();
+			mv.setViewName("view/error/500");
+			return mv;
+		}
+		
+		System.out.println(postDetail);
+//		for(PostDetailVO post : postDetail) {
+//			System.out.println(post.toString());
+//		}
+		mv.addObject("postDetail", postDetail);
+		mv.setViewName("view/border/border-community");
+
+		System.out.println("정상 작동");
+		return mv;
+	}
 	
 	@RequestMapping(value="/broadcasterList", method = RequestMethod.GET)
 	public ModelAndView broadcaster_GET() {
@@ -121,7 +159,7 @@ public class BroadcasterController {
 		
 		AuthUser authUser = (AuthUser) session.getAttribute("authUser");
 		List<BoardApplyVO> boardApplyList = readBoardApply.readBoardApplyList();
-		String[] categorys = {"전체", "공지", "이벤트", "유머", "게임", "방송국"};
+		String[] categorys = {"공지", "이벤트", "유머", "게임", "방송국"};
 		System.out.println(applyId);
 		
 		if(authUser.isAdmin()==false) {
@@ -130,11 +168,14 @@ public class BroadcasterController {
 			System.out.println(authUser.isAdmin());
 			mv.setViewName("errorpage");
 		}else {
-			/*insertBoard.insert(boardRequest);
-			
+			UserVO user = getUser.getUserByUserId(userId);
+			String boardName = user.getNickName();
+			int lastInsertBoardId = insertBoard.insert(new BoardRequest(boardName, userId));
+						
 			for (String string : categorys) {
-				createCategory.createBoardCategory(new BoardCategoryRequest(categorys[i]));
-			}*/
+				createCategory.createBoardCategory(new BoardCategoryRequest(string, lastInsertBoardId));
+			}
+			
 			modifyUser.updateIsStreamer(userId);
 			modifyBoardApply.modifyBoardApply(applyId);
 			mv.addObject("boardApplyList", boardApplyList);

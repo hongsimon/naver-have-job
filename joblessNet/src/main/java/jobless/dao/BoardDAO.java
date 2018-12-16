@@ -15,4 +15,5 @@ public interface BoardDAO {
 	
 	public void delete(int boardId);
 
+	public int readLastInsertBoardId();
 }

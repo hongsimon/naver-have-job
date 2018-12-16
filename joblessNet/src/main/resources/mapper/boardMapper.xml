@@ -47,4 +47,8 @@
 		from 
 			board
 	</select>
+	
+	<select id="selectLastInsertBoardId" resultType="int">
+		select LAST_INSERT_ID() from taku.board limit 1;
+	</select>
 </mapper>

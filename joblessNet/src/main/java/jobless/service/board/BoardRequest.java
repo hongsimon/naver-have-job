@@ -16,6 +16,11 @@ public class BoardRequest {
 		this.ownerId = ownerId;
 	}
 	
+	public BoardRequest(String boardName, int ownerId) {
+		this.boardName = boardName;
+		this.ownerId = ownerId;
+	}
+	
 	public int getBoardId() {
 		return boardId;
 	}

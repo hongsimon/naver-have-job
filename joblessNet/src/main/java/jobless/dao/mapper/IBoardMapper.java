@@ -11,4 +11,5 @@ public interface IBoardMapper {
 	List<BoardVO> selectBoardList();
 	void updateBoard(BoardVO boardVO);
 	void deleteBoard(int boardId);
+	int selectLastInsertBoardId();
 }

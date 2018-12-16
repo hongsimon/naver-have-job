@@ -14,12 +14,15 @@ public class InsertBoardServiceImpl implements InsertBoardService{
 	BoardDAO boardDao;
 	
 	@Override
-	public void insert(BoardRequest boardRequest) {
+	public int insert(BoardRequest boardRequest) {
+		int lastInsertBoardId;
 		try {
 			boardDao.insert(new BoardVO(boardRequest.getOwnerId(), boardRequest.getBoardName()));
+			lastInsertBoardId = boardDao.readLastInsertBoardId();
 		} catch (Exception e) {
 			throw new InsertBoardException("board에 insert를 실패하였습니다.");
 		}
+		return lastInsertBoardId;
 	}
 	
 }
