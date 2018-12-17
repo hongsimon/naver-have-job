@@ -37,12 +37,6 @@
       <!-- 게시판 메뉴 -->
       <div class="col-xs-10">
         <div class="service-user">
-          <div class="service-btn">
-            <a class="service-btns" id="favoriteList" href="favoriteList">내가 쓴 게시글</a>
-            <a class="service-btns"  id="changeProfile" href="changeProfile">회원정보 수정</a>
-            <a class="service-btn-active"  id="userDel" href="userDel">회원 탈퇴</a>
-          </div>
-        
           <div class="service-inner">
             <div>
               <form action="userDel" method="POST">

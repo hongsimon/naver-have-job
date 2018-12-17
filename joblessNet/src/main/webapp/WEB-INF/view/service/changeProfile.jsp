@@ -45,7 +45,8 @@
         <div class="service-user">
           <div class="service-btn">
             <a class="service-btns" id="favoriteList" href="favoriteList">내가 쓴 게시글</a>
-            <a class="service-btn-active"  id="changeProfile" href="changeProfile">회원정보 수정</a>
+            <a class="service-btns"  id="changeProfile" >내가 쓴 클립</a>
+            <a class="service-btn-active"  id="changeProfile" >회원정보 수정</a>
             <a class="service-btns" id="userDel" href="userDel">회원 탈퇴</a>
           </div>
           <div class="service-inner">
