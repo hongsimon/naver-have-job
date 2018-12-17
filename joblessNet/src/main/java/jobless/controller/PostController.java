@@ -17,12 +17,14 @@ import jobless.exception.ReadPostException;
 import jobless.model.BoardCategoryVO;
 import jobless.model.CommentVO;
 import jobless.model.ContentVO;
+import jobless.model.JobAddVO;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
 import jobless.service.board.ReadBoardService;
 import jobless.service.board.SelectBoardCategoryService;
 import jobless.service.comment.ReadCommentService;
 import jobless.service.comment.WriteCommentService;
+import jobless.service.jobadd.JobAddService;
 import jobless.service.post.DeletePostService;
 import jobless.service.post.ModifyPostService;
 import jobless.service.post.PostRequest;
@@ -56,6 +58,9 @@ public class PostController {
 	@Autowired
 	ModifyPostService modifyService;
 	
+	@Autowired
+	JobAddService jobAddService;
+	
 	// 완전 성공
 	@RequestMapping(value="/viewPostList", method=RequestMethod.GET)
 	public ModelAndView controllerViewPostList_GET(@RequestParam(value="boardId", required=false, defaultValue="0") int boardId,
@@ -82,6 +87,9 @@ public class PostController {
 			mv.addObject("boardCategory", boardCategory);
 			mv.setViewName("view/border/border-community");
 		}
+		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		
 		System.out.println("정상 작동");
 		return mv;
@@ -131,7 +139,8 @@ public class PostController {
 			mv.setViewName("view/error/500");
 			return mv;
 		}
-		
+			List<JobAddVO> add = jobAddService.selectAllAdd();
+			mv.addObject("add", add);
 		
 			mv.addObject("postDetail", postDetail);
 			mv.addObject("postDetailAll", postDetailAll);
@@ -162,6 +171,8 @@ public class PostController {
 			mv.setViewName("view/write/border-community-write");
 			System.out.println("성공");
 		}
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 	
@@ -214,6 +225,8 @@ public class PostController {
 				System.out.println("게시판이 선택되지않았거나 오류");
 			}
 		}
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 	
@@ -237,6 +250,8 @@ public class PostController {
 			System.out.println("삭제 성공");
 			mv.setViewName("view/border/border-community"); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
 		}
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 	
@@ -259,6 +274,8 @@ public class PostController {
 			mv.addObject("postReq", postReq); // 게시글 정보를 jsp에 보내기 위해서
 			mv.setViewName("view/write/border-community-write");
 		}
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 	
@@ -281,6 +298,8 @@ public class PostController {
 			modifyService.modifyPost(postReq);
 			controllerViewPost_GET(postId, 0);
 		}
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;	
 	}
 }

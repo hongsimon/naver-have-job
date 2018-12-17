@@ -155,24 +155,28 @@ public class EmailSendServiceImpl implements EmailSendService {
 			
 			
 			String[] targetArr = target.split(",");
-			String[] loginIdArr = targetArr[1].split("");
-			String loginId = "";
-			
-			int Length = targetArr[1].length();
-			int Cut = Length / 3;
-			Length = Length - Cut;
-		
-			
-			for(int i = 0; i < Length; i++) {
-				System.out.println(loginIdArr[i]);
-				loginId += loginIdArr[i];
-			}
-			for(int i = 0; i < Cut; i++) {
-				loginId += "*";
-			}
 			
 			//아이디 알려주는 메일
 			if(targetArr[0].equals("loginId")) {
+				
+				
+				String[] loginIdArr = targetArr[1].split("");
+				String loginId = "";
+				
+				int Length = targetArr[1].length();
+				int Cut = Length / 3;
+				Length = Length - Cut;
+			
+				
+				for(int i = 0; i < Length; i++) {
+					System.out.println(loginIdArr[i]);
+					loginId += loginIdArr[i];
+				}
+				for(int i = 0; i < Cut; i++) {
+					loginId += "*";
+				}
+				
+				
 				aTag = "http://localhost:8090/jobless-net/changePassword";
 				
 				subject = "[jobless-net] 아이디 찾기";

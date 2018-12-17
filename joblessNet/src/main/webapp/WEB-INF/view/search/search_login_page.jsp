@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/shareCss.css">
     <link rel="stylesheet" href="../css/loginPage.css">
     <link rel="stylesheet" href="../css/customC.css">
-
+	
     <meta charset="utf-8">
     <title>JobLess - Join</title>
   </head>

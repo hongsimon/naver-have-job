@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jobless.dao.mapper.IJobAddMapper">
+	<select id="selelctAllAdd" resultType="JobAdd">
+		select
+			add_id as addId,
+			add_title as addTitle,
+			add_link as addLink
+		from
+			add_job
+	</select>
+</mapper>

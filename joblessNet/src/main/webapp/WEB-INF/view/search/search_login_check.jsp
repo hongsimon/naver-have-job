@@ -23,7 +23,7 @@
           <c:if test="${errors.notMatchUser }">
 	           <div class="error-msg text-center search_login_errorBox">
 	            <div>
-	              계정에 등록된 이메일의 아이디와<br>
+	              계정에 등록된 아이디와<br>
 	              입력하신 아이디가 일치하지 않습니다.
 	            </div>
 	            철자를 확인하거나 다른 아이디로 시도해보세요.

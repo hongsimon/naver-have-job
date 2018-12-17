@@ -27,6 +27,7 @@ import jobless.model.ClipDetailVO;
 import jobless.model.ClipVO;
 import jobless.model.CommentVO;
 import jobless.model.CriteriaVO;
+import jobless.model.JobAddVO;
 import jobless.model.PageMakerVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
@@ -36,6 +37,7 @@ import jobless.service.clip.ModifyClipService;
 import jobless.service.clip.ReadClipService;
 import jobless.service.clip.WriteClipService;
 import jobless.service.comment.ReadCommentService;
+import jobless.service.jobadd.JobAddService;
 import jobless.service.user.GetUserService;
 
 /*
@@ -66,6 +68,9 @@ public class ClipController {
 
 	@Autowired
 	GetUserService getUser;
+	
+	@Autowired
+	JobAddService jobAddService;
 	
 	@RequestMapping(value = "/viewClip", method = RequestMethod.GET)
 	public ModelAndView viewClip_GET(@RequestParam(value = "sortby", required = false) String sort,
@@ -172,6 +177,8 @@ public class ClipController {
 			mv.setViewName("view/border/border-hotClip");
 		}
 
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 	/*
@@ -231,6 +238,9 @@ public class ClipController {
 			mv.addObject("countComment", countComment);
 			mv.setViewName("view/view/border-hotClip-view");
 		}
+		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 
@@ -252,6 +262,8 @@ public class ClipController {
 			mv.addObject("streamerList", streamerList);
 			mv.setViewName("view/write/border-hotClip-write");
 		}
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 
 	}
@@ -297,6 +309,8 @@ public class ClipController {
 			writeClip.writeClip(clipRequest);
 			mv.setViewName("redirect:viewClip");
 		}
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 
@@ -313,6 +327,9 @@ public class ClipController {
 			deleteClip.deleteClip(clipId);
 			mv.setViewName("redirect:viewClip");
 		}
+		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 

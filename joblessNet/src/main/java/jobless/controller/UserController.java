@@ -1,6 +1,7 @@
 package jobless.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import jobless.exception.UserNotFoundException;
+import jobless.model.JobAddVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.authuser.LoginService;
 import jobless.service.authuser.LogoutService;
 import jobless.service.email.EmailSendService;
+import jobless.service.jobadd.JobAddService;
 import jobless.service.recaptcha.RecaptchaService;
 import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
@@ -56,6 +59,9 @@ public class UserController {
 	
 	@Autowired
 	RecaptchaService recaptchaService;
+	
+	@Autowired
+	JobAddService jobAddService;
 	
 	//회원정보수정
 	@RequestMapping(value="/config/changeProfile", method=RequestMethod.GET)
@@ -110,6 +116,8 @@ public class UserController {
 			session.setAttribute("authUser", authUser);
 			
 			modelAndView.addObject("Success", true);
+			List<JobAddVO> add = jobAddService.selectAllAdd();
+			modelAndView.addObject("add", add);
 			modelAndView.setViewName("view/service/changeProfile");
 		return modelAndView;
 	}
@@ -139,6 +147,8 @@ public class UserController {
 		
 		modifyUserService.modifyUserPw(new UserRequest(userId, newPw));
 		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		modelAndView.addObject("add", add);
 		modelAndView.addObject("Success", "Success");
 		modelAndView.setViewName("view/service/changeProfile");
 		return modelAndView;
@@ -184,7 +194,7 @@ public class UserController {
 	
 	// 2.5(아이디를 찾는페이지)
 	@RequestMapping(value="/userSearch/search_login_checkId", method=RequestMethod.POST)
-	public ModelAndView Search_login_checkId_POST(@RequestParam String email,
+	public ModelAndView Search_login_checkId_POST(@RequestParam(required=false, value="email", defaultValue="email..") String email,
 												  HttpSession session) {
 		System.out.println("Search_login_checkId_POST");
 		

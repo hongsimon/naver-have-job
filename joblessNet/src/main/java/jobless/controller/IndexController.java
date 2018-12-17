@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jobless.dao.condition.Condition;
 import jobless.model.ClipDetailVO;
+import jobless.model.JobAddVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.clip.ReadClipService;
+import jobless.service.jobadd.JobAddService;
 
 @Controller("indexController")
 public class IndexController {
@@ -21,13 +23,22 @@ public class IndexController {
 	@Autowired
 	ReadClipService readClip;
 	
+	@Autowired
+	JobAddService jobAddService;
+	
 	@RequestMapping(value="/main")
 	public ModelAndView controllerMain() {
 		System.out.println("메인 페이지");
 		ModelAndView mv = new ModelAndView();
+		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		
+	
+		
 		Condition condition = new Condition();
 		List<ClipDetailVO> clipList = readClip.readClipDetailList(condition);
 		mv.addObject("clipDetailList", clipList);
+		mv.addObject("add", add);
 		
 		mv.setViewName("view/main/main");
 		return mv;
