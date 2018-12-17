@@ -1,26 +1,104 @@
 package jobless.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import jobless.dao.condition.Condition;
+import jobless.dao.mapper.IPostMapper;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
 
-public interface PostDAO {
+@Repository("PostDAO")
+public class PostDAOimplJDBC implements PostDAO {
+	
+	@Autowired
+	private IPostMapper postMapper;
+	
+	@Override
+	public void insert(PostVO post) {
+		postMapper.insertPost(post);
+	}
+	
+	@Override
+	public void update(PostVO post) {
+		postMapper.updatePost(post);
+	}
+	
+	@Override
+	public void updateViews(PostVO post) {
+		postMapper.updatePostView(post);
+	}
+	
+	@Override
+	public void delete(int id) {
+		postMapper.deletePost(id);
+	}
+	
+	@Override
+	public PostVO read(int id) {
+		PostVO post = postMapper.selectPostById(id);
+		return post;
+	}
 
-	public void insert(PostVO post);
-	public void update(PostVO post);
-	public void updateViews(PostVO post);
-	public void delete(int id);
-	public PostVO read(int id);
-	public int readPostTotalCount();
-	public PostDetailVO readDetail(int id);
-	public List<PostDetailVO> readDetailAll();
-	public List<PostDetailVO> readDetailCategory(int categoryId);
-	public List<PostDetailVO> readDetailList(int boardId, Condition condition);
-	public List<PostVO> readAll();
-	public List<PostVO> readOwnList(int id);
-	public List<PostVO> readBoardIdList(int id);
-	public List<PostVO> readCategoryIdList(int id);
-	public int readLastInsertId();
+	@Override
+	public PostDetailVO readDetail(int id) {
+		return postMapper.selectPostDetail(id);
+	}
+	
+	@Override
+	public List<PostDetailVO> readDetailAll() {
+		return postMapper.selectPostDetailAll();
+	}
+	
+	@Override
+	public List<PostVO> readAll() {
+		List<PostVO> postList = postMapper.selectPostList();
+		return postList;
+	}
+	
+	@Override
+	public List<PostVO> readOwnList(int id) {
+		List<PostVO> postList = postMapper.selectPostOwnList(id);
+		return postList;
+	}
+	
+	@Override
+	public List<PostVO> readBoardIdList(int id) {
+		return postMapper.selectPostByBoardId(id);
+	}
+
+	@Override
+	public List<PostDetailVO> readDetailList(int boardId, Condition condition) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardId", boardId);
+		map.put("condition", condition);
+		return postMapper.selectDetailPostList(map);
+	}
+	
+	@Override
+	public List<PostVO> readCategoryIdList(int id) {
+		return postMapper.selectPostByCategoryId(id);
+	}
+
+	@Override
+	public int readLastInsertId() {
+		return postMapper.selectLastInsertId();
+	}
+
+	@Override
+	public int readPostTotalCount() {
+		return 0;
+	}
+
+	@Override
+	public List<PostDetailVO> readDetailCategory(int categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }
