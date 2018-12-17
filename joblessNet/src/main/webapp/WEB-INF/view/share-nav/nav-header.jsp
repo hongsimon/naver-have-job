@@ -18,10 +18,10 @@
         </div>
         <!-- 검색창 -->
         <div class="col-xs-3 con-right">
-          <form action="#" method="post">
+          <!-- <form action="#" method="post">
             <input type="text" name="search" placeholder="search" class="searchBox">
             <button type="submit" name="button" class=" search-nav gly-color"><span class="glyphicon glyphicon-search"></span></button>
-          </form>
+          </form> -->
         </div>
 
       </div>

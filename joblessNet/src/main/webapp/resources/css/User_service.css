@@ -1,0 +1,25 @@
+.controller{
+ position: fixed;
+ right: 50%; top: 720px;
+ margin-right: -680px;
+ text-align:center;
+  text-align: center;
+  padding: 10px;
+}
+
+.controller button,.controller a{
+  display: block;
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #e8e8e8;
+  color:#b5b5b5;
+  outline: none;
+  cursor: pointer;
+}
+
+.controller-top{
+  margin-bottom: 20px;
+}

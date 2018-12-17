@@ -14,6 +14,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hangul.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
 
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/border.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/write.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
     
     <meta charset="utf-8" />
 
@@ -73,7 +75,7 @@
           <div class="row">
           	<%@include file="../share-nav/nav-service.jsp"%>
             <!-- 게시판 메뉴 -->
-                        <div class="col-xs-10 ">
+                        <div class="col-xs-10 setController">
 
                           <div class=" margin-container ">
                             <div class="writeHotClip">
@@ -218,5 +220,7 @@
                       </div>
                     </div>
                   </div>
+                  
+                     
               </body>
             </html>

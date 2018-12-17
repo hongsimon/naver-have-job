@@ -8,6 +8,7 @@
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/changeProfile.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
 
 	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
@@ -15,6 +16,7 @@
 	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
 	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
 	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/service.css">
+	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Jobless - Service</title>
 </head>
@@ -27,7 +29,7 @@
     	<%@include file="../share-nav/nav-service.jsp"%>
 
       <!-- 게시판 메뉴 -->
-      <div class="col-xs-10">
+      <div class="col-xs-10 setController">
         <div class="service-user">
           <div class="service-inner">
             <div>
@@ -69,6 +71,7 @@
 
         </div>
       </div>
+      <%@include file="../share-nav/controller.jsp"%>
 </body>
 
 </html>

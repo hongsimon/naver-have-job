@@ -11,12 +11,15 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/count_order.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/change_comm.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
     
     <meta charset="utf-8" />
     <script type="text/javascript">
@@ -33,7 +36,7 @@
             <%@include file="../share-nav/nav-service.jsp"%>
 
             <!-- 게시판 메뉴 -->
-            <div class="col-xs-10">
+            <div class="col-xs-10 setController">
 
               <div class="row margin-container">
                 <!-- 커뮤니티 인기글 -->
@@ -421,5 +424,7 @@
             </div>
           </div>
         </div>
+        
+        <%@include file="../share-nav/controller.jsp"%>
   </body>
 </html>

@@ -14,12 +14,14 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hangul.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/border.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
 
     <meta charset="utf-8">
     <title>백수넷 - hotClip</title>
@@ -29,7 +31,7 @@
   <body>
     <div class="container margin-nav border-hotClip">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 setController">
           <div class="border-hotclip-in">
               <div class="border-hotclip-service ">
               	<input type="hidden" value="<%=active %>">
@@ -162,5 +164,6 @@
         </div>
       </div>
     </div>
+    <%@include file="../share-nav/controller.jsp"%>
   </body>
 </html>

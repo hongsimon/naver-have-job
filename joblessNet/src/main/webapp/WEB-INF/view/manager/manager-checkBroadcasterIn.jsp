@@ -11,6 +11,7 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
 
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
@@ -19,6 +20,8 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/service.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
+  
   <meta charset="utf-8" />
   <title>백수넷</title>
 
@@ -31,7 +34,7 @@
     <div class="row right-nav-bar">
 		<%@include file="../share-nav/nav-service.jsp"%>
       <!-- 게시판 메뉴 -->
-      <div class="col-xs-10">
+      <div class="col-xs-10 setController">
         <div class="service-user">
           <div class="service-inner">
             <div>
@@ -87,3 +90,9 @@
             </div>
 
           </div>
+         </div>
+        </div>
+         
+         <%@include file="../share-nav/controller.jsp"%>
+ 	</body>
+ </html>

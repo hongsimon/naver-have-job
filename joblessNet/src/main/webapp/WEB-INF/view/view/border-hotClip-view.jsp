@@ -11,6 +11,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/view.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/view.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/write.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
    	
 
     <meta charset="utf-8" />
@@ -35,7 +37,7 @@
 	<%@include file="../share-nav/nav-header.jsp"%>
   </head>
   <body>
-        <div class="container margin-nav">
+        <div class="container margin-nav setController">
           <div class="row">
               <div class="row margin-container hotclip-view">
                 <div class="col-xs-8 hotclip-view-box">
@@ -205,5 +207,6 @@
               </div>
             </div>
           </div>
+           <%@include file="../share-nav/controller.jsp"%>
   </body>
 </html>
