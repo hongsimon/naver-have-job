@@ -37,26 +37,34 @@
 
 }
 
-.why-makeing{
-  width: 510px;
+
+.changer{
+  width: 100px;
 }
 
-.maker-id{
-  max-width: 90px;
+.write-info-table td{
+  word-break: break-all;
 }
 
-#making-ok{
-  background-color: rgb(54, 163, 233);
-  padding : 10px;
-  border: none;
+#url,#text{
+  width: 350px;
+}
+
+#change_true{
+  background-color: #287A72;
   border-radius: 5px;
-  color: #fff;
+  border: none;
+  color:#fff;
+  padding: 5px;
+  outline: none;
 }
 
-#making-none{
-  background-color: rgb(226, 78, 96);
-  padding : 10px;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
+.changearea{
+  width: 100%;
+  padding: 5px;
+  resize: vertical;
+}
+
+.num-only{
+  width: 10px;
 }

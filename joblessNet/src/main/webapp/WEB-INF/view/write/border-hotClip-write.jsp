@@ -114,14 +114,14 @@
                                         <button type="button" class="clip-broadcaster-btn-down clip-broadcaster-btn"><span class="glyphicon glyphicon-chevron-down"></span>방송인 목록</button>
                                         <button type="button" class="clip-broadcaster-btn-up clip-broadcaster-btn"><span class="glyphicon glyphicon-chevron-up"></span>방송인 목록</button>
                                           <div id="broadcasterList" class="broadcasterList ">
-                                            <div class="broadcasterClass ">
                                             <div class="broadcasterList-t">
 	                   							  <!-- 닉네임, -->
 	                    						 <c:forEach var="streamer" items="${streamerList}" varStatus="status">
 	                     							${streamer.nickName},
 						                     	 </c:forEach>
                     						</div>
-			                           		 <div class="head-title">
+                    					<div class="broadcasterClass ">
+			                           		<div class="head-title">
 			                                	A-Z
 			                            	</div>
 			                          		</div>
