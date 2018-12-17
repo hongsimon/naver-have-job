@@ -49,20 +49,14 @@
 								<div class="col-xs-12">
 									<div class="category ">
 										<ul>
-											<li class=""><a href=""
-												style="background-color: #414141;"> <span
-													class="glyphicon glyphicon-home"></span>
-											</a></li>
-											<li><a style="background-color: #2e9895;"> 전체 </a></li>
-											<li><a style="background-color: #A6261D;"> 유튜브 </a></li>
-											<li><a style="background-color: #472650;"> 트위치 </a></li>
-											<li><a style="background-color: #275B78;"> 아프리카TV </a></li>
-											<li><a style="background-color: #F2AA2E;"> 카카오팟 </a></li>
+											<li class=""><a href="main"style="background-color: #414141;"><span class="glyphicon glyphicon-home"></span></a></li>
+											<c:forEach var="category" items="${boardCategory}" varStatus="status">
+												<li><a href="viewPostList?categoryId=${category.boardCategoryId }" style="background-color: #2e9895;"> ${category.categoryName } </a></li>
+											</c:forEach>
 										</ul>
 									</div>
 								</div>
 							</div>
-
 
 							<div class="row">
 								<div class="col-xs-12">

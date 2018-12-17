@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +19,8 @@ import jobless.model.CommentVO;
 import jobless.model.ContentVO;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
+import jobless.service.board.ReadBoardService;
 import jobless.service.board.SelectBoardCategoryService;
-import jobless.service.comment.CommentRequest;
 import jobless.service.comment.ReadCommentService;
 import jobless.service.comment.WriteCommentService;
 import jobless.service.post.DeletePostService;
@@ -35,6 +34,9 @@ public class PostController {
 	
 	@Autowired
 	WriteCommentService writeComment;
+	
+	@Autowired
+	ReadBoardService readBoard;
 
 	@Autowired
 	ReadPostService readPost;
@@ -56,37 +58,39 @@ public class PostController {
 	
 	// 완전 성공
 	@RequestMapping(value="/viewPostList", method=RequestMethod.GET)
-	public ModelAndView controllerViewPostList_GET() {
+	public ModelAndView controllerViewPostList_GET(@RequestParam(value="boardId", required=false, defaultValue="0") int boardId,
+													@RequestParam(value="categoryId", required=false, defaultValue="0") int categoryId) {
 		System.out.println("viewPostList_GET");
-		
+		System.err.println(categoryId);
 		ModelAndView mv = new ModelAndView();
-		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-		List<PostDetailVO> postDetail = null;
+		List<PostDetailVO> postDetail;
+		List<BoardCategoryVO> boardCategory;
 		
-		try {
-			postDetail = readPost.readDetailPostAll();
-		} catch (ReadPostException e) {
-			System.out.println("viewPostList Error");
-			errors.put("ReadPostException", true);
-			e.getMessage();
-			mv.setViewName("view/error/500");
-			return mv;
+		boardCategory = readBoardCategory.selectBoardCategotyByAll(); // 카테고리 모두 가져옴 (카테고리 목록 뽑는데 사용)
+
+		if(categoryId != 0 && categoryId != 1) {
+			postDetail = readPost.readDetailPostByCategoryId(categoryId); // categoryId로 해당된 post 모두 가져옴 (리스트 뽑는데 사용)
+		}else {
+			postDetail = readPost.readDetailPostAll(); // 모든 post를 가져옴
 		}
 		
-		System.out.println(postDetail);
-//		for(PostDetailVO post : postDetail) {
-//			System.out.println(post.toString());
-//		}
-		mv.addObject("postDetail", postDetail);
-		mv.setViewName("view/border/border-community");
-
+		
+		if(postDetail == null) {
+			mv.setViewName("view/error/500");
+		}else {
+			mv.addObject("postDetail", postDetail);
+			mv.addObject("boardCategory", boardCategory);
+			mv.setViewName("view/border/border-community");
+		}
+		
 		System.out.println("정상 작동");
 		return mv;
 	}
 	
 	
 	@RequestMapping(value="/viewPost", method=RequestMethod.GET)
-	public ModelAndView controllerViewPost_GET(@RequestParam int postId) {
+	public ModelAndView controllerViewPost_GET(@RequestParam int postId,
+												@RequestParam(value="categoryId", required=false, defaultValue="0") int categoryId) {
 		System.out.println("viewPost_GET");
 		System.out.println("psotId = "+ postId);
 		
@@ -95,22 +99,26 @@ public class PostController {
 		
 		List<CommentVO> comment;
 		List<PostVO> postList = null;
-		int countComment;
-		PostDetailVO postDetail;
+		List<BoardCategoryVO> boardCategoryList;
 		List<PostDetailVO> postDetailAll;
+
+		PostDetailVO postDetail;
 		BoardCategoryVO boardCategory;
 		
+		int countComment;
 	
-//		PostVO post;
-//		ContentVO content;
-//		PostRequest postReq;
-		
 		try {
-			readPost.readPostById(postId);
-			comment = readComment.readAllByPostId(postId);
-			countComment = readComment.readCountPostComment(postId);
-			postDetail = readPost.readPostByDetail(postId);
-			postDetailAll = readPost.readDetailPostAll();
+			readPost.readPostById(postId); // 조회수 증가
+			comment = readComment.readAllByPostId(postId); // 해당글에 댓글들
+			countComment = readComment.readCountPostComment(postId); // 댓글 개수
+			postDetail = readPost.readPostByDetail(postId); // 해당글 정보
+			boardCategoryList = readBoardCategory.selectBoardCategotyByAll(); // 카테고리 모두 가져옴 (카테고리 목록 뽑는데 사용)
+			
+			if(categoryId != 0 && categoryId != 1) { // 게시물 가져오기
+				postDetailAll = readPost.readDetailPostByCategoryId(categoryId); // categoryId로 해당된 post 모두 가져옴 (리스트 뽑는데 사용)
+			}else {
+				postDetailAll = readPost.readDetailPostAll(); // 모든 post를 가져옴
+			}
 			postList = readPost.readAllPost(); // psot에 모든 정보가져옴
 			
 			int boardCategoryId = postDetail.getPost().getCategoryId();
@@ -131,6 +139,7 @@ public class PostController {
 			mv.addObject("count", countComment);
 			mv.addObject("boardCategory", boardCategory);
 			mv.addObject("postList",postList);
+			mv.addObject("boardCategoryList", boardCategoryList);
 			mv.setViewName("view/view/border-community-view");
 		return mv;
 	}
@@ -198,7 +207,7 @@ public class PostController {
 				// 적성한 게시글에 정보를 담음
 				int postId = writeService.writePost(postReq);
 				// insert함 그리고 해당 아이디를 가져옴
-				mv = controllerViewPost_GET(postId);
+				mv = controllerViewPost_GET(postId, 0);
 				// 해당 아이디로 자신이 쓴 글로 이동하게 함
 				System.out.println("성공");
 			}else {
@@ -226,7 +235,7 @@ public class PostController {
 		}else {
 			deleteService.deletePost(postId, contentId); // 삭제할 아이디를 받아와 삭제
 			System.out.println("삭제 성공");
-			mv = controllerViewPostList_GET(); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
+			mv.setViewName("view/border/border-community"); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
 		}
 		return mv;
 	}
@@ -270,7 +279,7 @@ public class PostController {
 		}else {
 			PostRequest postReq = new PostRequest(postId, contentId, title, content, categoryId);
 			modifyService.modifyPost(postReq);
-			controllerViewPost_GET(postId);
+			controllerViewPost_GET(postId, 0);
 		}
 		return mv;	
 	}

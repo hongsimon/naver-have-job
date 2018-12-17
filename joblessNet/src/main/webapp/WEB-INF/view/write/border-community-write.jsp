@@ -91,12 +91,12 @@
                           <option value="game">게임</option>
                         </select>
                         <div class="writeCommunity-title">
-                          <input type="text" name="postTitle" value="" placeholder="제목">
+                          <input type="text" name="postTitle" value="${postReq.title }" placeholder="제목">
                           <input type="hidden" name="writerId" value="${authUser.userId }">
                           <input type="hidden" name="boardId" value="${postReq.boardId }">
                         </div>
                         <div class="writeCommunity-content ">
-							<textarea id="summernote" name="content"></textarea>
+							<textarea id="summernote" name="content">${postReq.content }</textarea>
                         </div>
                         <div class="writeCommunity-btn">
                           <a><span class="glyphicon glyphicon-repeat"></span>작성취소</a>

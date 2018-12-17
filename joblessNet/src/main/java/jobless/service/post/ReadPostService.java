@@ -17,6 +17,8 @@ public interface ReadPostService {
 	
 	int readPostLastId();
 	
+	int readPostTotalCount();
+	
 	List<PostVO> readAllPost();
 
 	List<PostVO> readPostByUserId(int userId);
@@ -26,6 +28,8 @@ public interface ReadPostService {
 	List<PostVO> readPostByCategoryId(int categoryId);
 	
 	List<PostDetailVO> readDetailPostAll();
+	
+	List<PostDetailVO> readDetailPostByCategoryId(int categoryId);
 	
 	List<PostDetailVO> readDetailPostList(int boardId, Condition condition);
 	

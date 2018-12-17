@@ -81,14 +81,19 @@
 								</form>
 							</div>
 							<div class="border-comm-service">
-								<a href="viewPostList?boardId=${postDetail.post.boardId }"><span
-									class="glyphicon glyphicon-list-alt"></span>목록</a> <a
-									href="deletePost?postId=${postDetail.post.postId }&
-													contentId=${postDetail.content.contentId }&
-													writerId=${postDetail.post.writerId }&
-													authUserUserId=${authUser.userId }
-													"><span
-									class="glyphicon glyphicon-list-alt"></span>삭제</a>
+								<a href="viewPostList?boardId=${postDetail.post.boardId }">
+									<span class="glyphicon glyphicon-list-alt"></span>목록
+								</a>
+								<c:if test="${authUser.userId ==  postDetail.post.writerId}">
+									<a href="updatePost?postId=${postDetail.post.postId }">
+										<span class="glyphicon glyphicon-list-alt"></span>수정
+									</a>
+									<a href="deletePost?postId=${postDetail.post.postId }&
+														contentId=${postDetail.content.contentId }&
+														writerId=${postDetail.post.writerId }&
+														authUserUserId=${authUser.userId }">
+									<span class="glyphicon glyphicon-list-alt"></span>삭제</a>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -141,14 +146,10 @@
 						<div class="col-xs-12">
 							<div class="category ">
 								<ul>
-									<li class=""><a href="" style="background-color: #414141;">
-											<span class="glyphicon glyphicon-home"></span>
-									</a></li>
-									<li><a style="background-color: #2e9895;"> 전체 </a></li>
-									<li><a style="background-color: #A6261D;"> 유튜브 </a></li>
-									<li><a style="background-color: #472650;"> 트위치 </a></li>
-									<li><a style="background-color: #275B78;"> 아프리카TV </a></li>
-									<li><a style="background-color: #F2AA2E;"> 카카오팟 </a></li>
+									<li class=""><a href="main"style="background-color: #414141;"><span class="glyphicon glyphicon-home"></span></a></li>
+									<c:forEach var="category" items="${boardCategoryList}" varStatus="status">
+										<li><a href="viewPost?categoryId=${category.boardCategoryId }&postId=${postDetail.post.postId }" style="background-color: #2e9895;"> ${category.categoryName } </a></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>

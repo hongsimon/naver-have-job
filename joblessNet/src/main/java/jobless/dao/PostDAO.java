@@ -13,8 +13,10 @@ public interface PostDAO {
 	public void updateViews(PostVO post);
 	public void delete(int id);
 	public PostVO read(int id);
+	public int readPostTotalCount();
 	public PostDetailVO readDetail(int id);
 	public List<PostDetailVO> readDetailAll();
+	public List<PostDetailVO> readDetailCategory(int categoryId);
 	public List<PostDetailVO> readDetailList(int boardId, Condition condition);
 	public List<PostVO> readAll();
 	public List<PostVO> readOwnList(int id);

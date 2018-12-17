@@ -38,6 +38,12 @@ public class ReadPostServiceImpl implements ReadPostService{
 	}
 	
 	@Override
+	public int readPostTotalCount() {
+		postdao.readPostTotalCount();
+		return 0;
+	}
+	
+	@Override
 	public ContentVO readContentById(int contentId) {
 		
 		ContentVO content = contentdao.read(contentId);
@@ -109,6 +115,11 @@ public class ReadPostServiceImpl implements ReadPostService{
 			throw new ReadPostException("readDetailPostAll 실패");
 		}
 		return postDetailAll;
+	}
+	
+	@Override
+	public List<PostDetailVO> readDetailPostByCategoryId(int categoryId) {
+		return postdao.readDetailCategory(categoryId);
 	}
 	
 	//특정 게시판에 쓰여진 게시글 검색
