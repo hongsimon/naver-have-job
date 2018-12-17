@@ -13,7 +13,6 @@ public interface PostDAO {
 	public void updateViews(PostVO post);
 	public void delete(int id);
 	public PostVO read(int id);
-	public int readPostTotalCount();
 	public PostDetailVO readDetail(int id);
 	public List<PostDetailVO> readDetailAll();
 	public List<PostDetailVO> readDetailCategory(int categoryId);
@@ -23,4 +22,5 @@ public interface PostDAO {
 	public List<PostVO> readBoardIdList(int id);
 	public List<PostVO> readCategoryIdList(int id);
 	public int readLastInsertId();
+	public int readPostTotalCount(int boardId);
 }

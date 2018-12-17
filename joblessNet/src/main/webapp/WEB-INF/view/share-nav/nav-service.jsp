@@ -22,7 +22,7 @@
               </div>
 
               <div class="left-nav-sub">
-                <a href="${pageContext.request.contextPath}/viewPostList"><div>
+                <a href="${pageContext.request.contextPath}/viewPostList?boardId=1"><div>
                   C
                 </div>커뮤니티</a>
               </div>

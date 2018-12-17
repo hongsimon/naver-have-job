@@ -13,18 +13,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import jobless.dao.condition.Condition;
+import jobless.dao.condition.Id;
+import jobless.dao.condition.Limit;
+import jobless.dao.condition.Order;
+import jobless.dao.condition.Period;
+import jobless.dao.condition.Text;
 import jobless.exception.ReadPostException;
 import jobless.model.BoardCategoryVO;
 import jobless.model.CommentVO;
 import jobless.model.ContentVO;
-import jobless.model.JobAddVO;
+import jobless.model.CriteriaVO;
+import jobless.model.PageMakerVO;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
 import jobless.service.board.ReadBoardService;
 import jobless.service.board.SelectBoardCategoryService;
 import jobless.service.comment.ReadCommentService;
 import jobless.service.comment.WriteCommentService;
-import jobless.service.jobadd.JobAddService;
 import jobless.service.post.DeletePostService;
 import jobless.service.post.ModifyPostService;
 import jobless.service.post.PostRequest;
@@ -58,18 +64,60 @@ public class PostController {
 	@Autowired
 	ModifyPostService modifyService;
 	
-	@Autowired
-	JobAddService jobAddService;
-	
 	// 완전 성공
 	@RequestMapping(value="/viewPostList", method=RequestMethod.GET)
-	public ModelAndView controllerViewPostList_GET(@RequestParam(value="boardId", required=false, defaultValue="0") int boardId,
-													@RequestParam(value="categoryId", required=false, defaultValue="0") int categoryId) {
+	public ModelAndView controllerViewPostList_GET(@RequestParam(value="boardId", required=false, defaultValue="1") int boardId,
+													@RequestParam(value="categoryId", required=false, defaultValue="0") int categoryId,
+													@RequestParam(value = "page", required = false) String pageStr) {
 		System.out.println("viewPostList_GET");
 		System.err.println(categoryId);
 		ModelAndView mv = new ModelAndView();
 		List<PostDetailVO> postDetail;
 		List<BoardCategoryVO> boardCategory;
+		
+		Condition condition = new Condition();
+		Id id;
+		Text text;
+		Period period;
+		Limit limit;
+		Order order;
+		
+		int page;
+		if(pageStr == null || pageStr.trim().isEmpty()) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(pageStr);
+		}
+		
+		int clipPerPage = 2;
+		
+		CriteriaVO cri = new CriteriaVO();
+		cri.setPage(page);
+		cri.setPerPageNum(clipPerPage);
+		
+		
+		int index = cri.getPageStart();
+		limit = new Limit(index, clipPerPage);
+		
+		PageMakerVO pageMaker = new PageMakerVO();
+		
+		int postTotalCountPage = readPost.readPostTotalCount(boardId);
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(postTotalCountPage);
+		
+		condition.setLimit(limit);
+
+		List<PostDetailVO> postList = readPost.readDetailPostList(boardId, condition);
+//		System.out.println("PostList 임" + postList);
+		
+		for(PostDetailVO post :postList) {
+			System.out.println("리스트임"+post.toString());
+		}
+		
+//		System.out.println(boardId);
+//		int postTotalCountPage = readPost.readPostTotalCount(boardId); // 해당 boardId를 가지고 있는 post개수를 가져옴
+//		System.out.println(postTotalCountPage);
+		
 		
 		boardCategory = readBoardCategory.selectBoardCategotyByAll(); // 카테고리 모두 가져옴 (카테고리 목록 뽑는데 사용)
 
@@ -83,13 +131,11 @@ public class PostController {
 		if(postDetail == null) {
 			mv.setViewName("view/error/500");
 		}else {
-			mv.addObject("postDetail", postDetail);
-			mv.addObject("boardCategory", boardCategory);
+			mv.addObject("postDetail", postList); // 페이징하는 것
+			mv.addObject("pageMaker", pageMaker); // 페이징 페이지 개수
+			mv.addObject("boardCategory", boardCategory); // 카테고리 한것
 			mv.setViewName("view/border/border-community");
 		}
-		
-		List<JobAddVO> add = jobAddService.selectAllAdd();
-		mv.addObject("add", add);
 		
 		System.out.println("정상 작동");
 		return mv;
@@ -139,8 +185,7 @@ public class PostController {
 			mv.setViewName("view/error/500");
 			return mv;
 		}
-			List<JobAddVO> add = jobAddService.selectAllAdd();
-			mv.addObject("add", add);
+		
 		
 			mv.addObject("postDetail", postDetail);
 			mv.addObject("postDetailAll", postDetailAll);
@@ -171,8 +216,6 @@ public class PostController {
 			mv.setViewName("view/write/border-community-write");
 			System.out.println("성공");
 		}
-		List<JobAddVO> add = jobAddService.selectAllAdd();
-		mv.addObject("add", add);
 		return mv;
 	}
 	
@@ -225,8 +268,6 @@ public class PostController {
 				System.out.println("게시판이 선택되지않았거나 오류");
 			}
 		}
-		List<JobAddVO> add = jobAddService.selectAllAdd();
-		mv.addObject("add", add);
 		return mv;
 	}
 	
@@ -250,8 +291,6 @@ public class PostController {
 			System.out.println("삭제 성공");
 			mv.setViewName("view/border/border-community"); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
 		}
-		List<JobAddVO> add = jobAddService.selectAllAdd();
-		mv.addObject("add", add);
 		return mv;
 	}
 	
@@ -274,8 +313,6 @@ public class PostController {
 			mv.addObject("postReq", postReq); // 게시글 정보를 jsp에 보내기 위해서
 			mv.setViewName("view/write/border-community-write");
 		}
-		List<JobAddVO> add = jobAddService.selectAllAdd();
-		mv.addObject("add", add);
 		return mv;
 	}
 	
@@ -298,8 +335,7 @@ public class PostController {
 			modifyService.modifyPost(postReq);
 			controllerViewPost_GET(postId, 0);
 		}
-		List<JobAddVO> add = jobAddService.selectAllAdd();
-		mv.addObject("add", add);
 		return mv;	
 	}
 }
+	

@@ -90,15 +90,13 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 
 	@Override
-	public int readPostTotalCount() {
-		return 0;
+	public int readPostTotalCount(int boardId) {
+		return postMapper.selectPostCount(boardId);
 	}
 
 	@Override
 	public List<PostDetailVO> readDetailCategory(int categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+		return postMapper.selectPostDetailByCategoryId(categoryId);
 	}
-	
 	
 }

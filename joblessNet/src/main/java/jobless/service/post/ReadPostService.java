@@ -17,7 +17,7 @@ public interface ReadPostService {
 	
 	int readPostLastId();
 	
-	int readPostTotalCount();
+	int readPostTotalCount(int boardId);
 	
 	List<PostVO> readAllPost();
 
