@@ -84,16 +84,17 @@
 	
 	<select id="selectPostByBoardId" parameterType="int" resultType="Post">
 		select
-			post_id postId, 
+			p.post_id postId, 
 			post_title title, 
 			write_date writeDate, 
 			content_id contentId, 
 			board_id boardId, 
 			views, 
-			user_id writerId,
-			category_id categoryId
+			p.user_id writerId,
+			category_id categoryId,
+			(select count(comment_content) from comment where post_id = cm.post_id) as comments
 		from 
-			post
+			post p join taku.comment cm on p.post_id = cm.post_id
 		where
 			board_id = #{boardId}
 	</select>

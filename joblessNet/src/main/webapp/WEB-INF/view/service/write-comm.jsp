@@ -1,10 +1,11 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<script type="text/javascript">
-		if(${empty authUser }){
+		if(${empty authUser}){
 			alert("로그인이 필요한 서비스입니다.");
 			var like = "${pageContext.request.contextPath}";
 			like += "/main"
@@ -39,7 +40,7 @@
         <div class="service-user">
           <div class="service-btn">
             <a class="service-btn-active" id="favoriteList" >내가 쓴 게시글</a>
-            <a class="service-btns"  id="changeProfile" >내가 쓴 클립</a>
+            <a class="service-btns"  id="changeProfile" href="favoriteListClip?userId=${authUser.userId }">내가 쓴 클립</a>
             <a class="service-btns"  id="changeProfile" href="changeProfile">회원정보 수정</a>
             <a class="service-btns" id="userDel" href="userDel">회원 탈퇴</a>
           </div>
@@ -61,21 +62,25 @@
                       </th>
                     </thead>
                     <tbody>
+                    <c:forEach var="post" items="${postList}">
+                    <c:set var="wdateStr" value="${post.writeDate }"></c:set>
+				 	<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
+				 	<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
                       <tr>
                         <td>
-                          1
+                          ${post.postId }
                         </td>
                         <td class="write-info-title">
-                          <a>테스트 제목</a>
+                          <a href="${pageContext.request.contextPath}/viewPost?postId=${post.postId}">${post.title }</a>
                         </td>
                         <td>
-                          1978.11.21
+                          ${post.writeDate}
                         </td>
                         <td>
-                          20000
+                          ${post.views }
                         </td>
-
                       </tr>
+                     </c:forEach>
                     </tbody>
                     </table>
                 </div>

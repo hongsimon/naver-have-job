@@ -15,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jobless.exception.ReadPostException;
 import jobless.model.BoardApplyVO;
+import jobless.model.BoardCategoryVO;
 import jobless.model.PostDetailVO;
+import jobless.model.PostVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.board.BoardApplyRequest;
@@ -27,6 +29,7 @@ import jobless.service.board.DeleteBoardApplyService;
 import jobless.service.board.InsertBoardService;
 import jobless.service.board.ModifyBoardApplyService;
 import jobless.service.board.ReadBoardApplyService;
+import jobless.service.board.SelectBoardCategoryService;
 import jobless.service.comment.CommentRequest;
 import jobless.service.post.ReadPostService;
 import jobless.service.user.GetUserService;
@@ -37,6 +40,9 @@ public class BroadcasterController {
 	
 	@Autowired
 	ReadPostService readPost;
+	
+	@Autowired
+	SelectBoardCategoryService selectCategory;
 	
 	@Autowired
 	GetUserService getUser;
@@ -68,10 +74,12 @@ public class BroadcasterController {
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-		List<PostDetailVO> postDetail = null;
+		List<PostVO> postList;
+		List<BoardCategoryVO> boardCategory;
 		
 		try {
-			postDetail = readPost.readDetailPostAll();
+			postList = readPost.readPostByBoardId(boardId);
+			//boardCategory = selectCategory.
 		} catch (ReadPostException e) {
 			System.out.println("viewPostList Error");
 			errors.put("ReadPostException", true);
@@ -80,11 +88,10 @@ public class BroadcasterController {
 			return mv;
 		}
 		
-		System.out.println(postDetail);
 //		for(PostDetailVO post : postDetail) {
 //			System.out.println(post.toString());
 //		}
-		mv.addObject("postDetail", postDetail);
+		mv.addObject("postList", postList);
 		mv.setViewName("view/border/border-community");
 
 		System.out.println("정상 작동");

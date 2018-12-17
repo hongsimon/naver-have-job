@@ -159,7 +159,7 @@ SK매직 2019년 연구개발 및 생산관리부문 신입/경력 채용</div><
 					  <li><div class="emphasis overNick">${authUser.nickName }</div>(<div class="overflower">${authUser.loginId }</div>)</li>
 	                  <li><div class="emphasis ">${authUser.point }</div>포인트</li>
 	                  <li class="divider"></li>
-	                  <li><a href="${pageContext.request.contextPath}/config/favoriteList">설정</a></li>
+	                  <li><a href="${pageContext.request.contextPath}/config/favoriteList?userId=${authUser.userId}">설정</a></li>
 	                  <li><a href="">아이콘 보관함</a></li>
 	                  <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
                 </ul>

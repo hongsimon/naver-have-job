@@ -2,6 +2,7 @@ package jobless.controller;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +25,15 @@ import jobless.exception.SignInFailException;
 import jobless.exception.UserNotDeleteException;
 import jobless.exception.UserNotFoundException;
 import jobless.exception.UserRequestNullException;
+import jobless.model.ClipVO;
+import jobless.model.PostVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.authuser.LoginService;
 import jobless.service.authuser.LogoutService;
+import jobless.service.clip.ReadClipService;
 import jobless.service.email.EmailSendService;
+import jobless.service.post.ReadPostService;
 import jobless.service.recaptcha.RecaptchaService;
 import jobless.service.user.DeleteUserService;
 import jobless.service.user.GetUserService;
@@ -40,6 +45,12 @@ import jobless.service.user.UserRequest;
 
 @Controller("accountController")
 public class AccountController {
+	
+	@Autowired
+	ReadPostService readPost;
+	
+	@Autowired
+	ReadClipService readClip;
 	
 	@Autowired
 	GetUserService getUserService;
@@ -246,9 +257,23 @@ public class AccountController {
 	//설정페이지
 	
 	@RequestMapping(value="/config/favoriteList", method=RequestMethod.GET)
-	public String configFavoriteList_GET() {
+	public ModelAndView configFavoriteList_GET(@RequestParam("userId") int userId) {
+		ModelAndView mv = new ModelAndView();
 		System.out.println("configFavoriteList_GET");
-		return "view/service/favoriteList";
+		List<PostVO> postList = readPost.readPostByUserId(userId);
+		mv.addObject("postList", postList);
+		mv.setViewName("view/service/write-comm");
+		return mv;
+	}
+	
+	@RequestMapping(value="/config/favoriteListClip", method=RequestMethod.GET)
+	public ModelAndView configFavoriteListClip_GET(@RequestParam("userId") int userId) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("configFavoriteList_GET");
+		List<ClipVO> clipList = readClip.readClipByUserId(userId);
+		mv.addObject("clipList", clipList);
+		mv.setViewName("view/service/write-clip");
+		return mv;
 	}
 	
 	

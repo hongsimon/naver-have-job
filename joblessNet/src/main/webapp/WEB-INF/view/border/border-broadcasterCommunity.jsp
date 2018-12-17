@@ -215,9 +215,11 @@
                       </li>
                     </ul>
                   </div>
+                  <c:if test="${authUser.streamer == false }">
                   <div class="broadcaster-application-btn">
                     <a href="${pageContext.request.contextPath}/broadcasterApply">게시판 신청하기</a>
                   </div>
+                  </c:if>
                 </div>
             </div>
           </div>

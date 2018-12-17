@@ -26,6 +26,29 @@
 		where 
 			category_id = #{boardCategoryId}
 	</select>
+	
+	<select id="readCategoryId" resultType="int" parameterType="map">
+		select 
+			category_id as boardCategoryId
+		from 
+			board_category 
+		where
+			category_name = #{categoryName}
+			and 
+			board_id = #{boardId}
+	</select>
+	
+	<select id="selectBoardCategoryByBoardId" resultType="BoardCategory" parameterType="map">
+		select 
+			category_id as boardCategoryId,
+			category_name as categoryName, 
+			board_id as boardId
+		from 
+			board_category 
+		where
+			board_id = #{boardId}
+	</select>
+	
 	<select id="selectAllBoardCategory" resultType="BoardCategory">	
 		select 
 			category_id as boardCategoryId, 

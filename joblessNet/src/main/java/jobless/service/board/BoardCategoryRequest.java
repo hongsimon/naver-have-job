@@ -5,6 +5,10 @@ public class BoardCategoryRequest {
 	private String categoryName;
 	private int boardId;
 	
+	public BoardCategoryRequest(String categoryName, int boardId) {
+		this.categoryName = categoryName;
+		this.boardId = boardId;
+	}
 	public int getBoardCategoryId() {
 		return boardCategoryId;
 	}

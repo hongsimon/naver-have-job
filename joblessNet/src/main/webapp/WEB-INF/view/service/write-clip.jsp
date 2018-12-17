@@ -38,7 +38,7 @@
       <div class="col-xs-10">
         <div class="service-user">
           <div class="service-btn">
-            <a class="service-btns" id="favoriteList" href="favoriteList">내가 쓴 게시글</a>
+            <a class="service-btns" id="favoriteList" href="favoriteList?userId=${authUser.userId }">내가 쓴 게시글</a>
              <a class="service-btn-active"  id="changeProfile" >내가 쓴 클립</a>
             <a class="service-btns"  id="changeProfile" href="changeProfile">회원정보 수정</a>
             <a class="service-btns" id="userDel" href="userDel">회원 탈퇴</a>
@@ -61,21 +61,25 @@
                       </th>
                     </thead>
                     <tbody>
+                    <c:forEach var="clip" items="${clipList}" varStatus="status">
+                    <c:set var="wdateStr" value="${clip.writeDate }"></c:set>
+				 	<fmt:parseDate var="parseWdate" value="${wdateStr }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
+				 	<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
                       <tr>
                         <td>
-                          1
+                          ${clip.clipId }
                         </td>
                         <td class="write-info-title">
-                          <a>테스트 제목</a>
+                          <a href="${pageContext.request.contextPath}/selectClip?clipId=${clip.clipId }">${clip.title }</a>
                         </td>
                         <td>
-                          1978.11.21
+                          ${clip.writeDate }
                         </td>
                         <td>
-                          20000
+                          ${clip.views }
                         </td>
-
                       </tr>
+                    </c:forEach> 
                     </tbody>
                     </table>
                 </div>
