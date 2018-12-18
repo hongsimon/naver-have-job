@@ -14,7 +14,8 @@ public class ClipVO {
 	private int views;
 	private int writerId;
 	private int broadcasterId;
-
+	private int platformId;
+	
 	public ClipVO() {
 	}
 
@@ -54,6 +55,14 @@ public class ClipVO {
 		this.broadcasterId = broadcasterId;
 	}
 	
+	public int getPlatformId() {
+		return platformId;
+	}
+
+	public void setPlatformId(int platformId) {
+		this.platformId = platformId;
+	}
+
 	public int getClipId() {
 		return clipId;
 	}

@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
    	
-	
+
     <meta charset="utf-8" />
     <script type="text/javascript">
 		if(${!empty errors.NotMoreLike}){
@@ -88,7 +88,23 @@
 
                   <div class="clip-write-info">
                     <div class="clip-icon ">
-                      <img />
+                      <c:choose>
+	                  <c:when test="${clipDetail.clip.platformId == 1}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-A.png" alt="" class="icon-size">
+	                  </c:when>
+	                  
+	                  <c:when test="${clipDetail.clip.platformId == 2}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-T.png" alt="" class="icon-size">
+	                  </c:when>
+	                  
+	                  <c:when test="${clipDetail.clip.platformId == 3}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-Y.png" alt="" class="icon-size">
+	                  </c:when> 
+	                  
+	                  <c:when test="${clipDetail.clip.platformId == 4}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-K.png" alt="" class="icon-size">
+	                  </c:when>
+                  </c:choose>
                     </div>
                     <div class="clip-write-user">
                       <div class="clip-writer">
@@ -114,10 +130,26 @@
                     </div>                
                     <div class="hotclip-comment-input">
                       <div class="clip-icon">
-                        <img />
+                        <c:choose>
+	                  <c:when test="${authUser.platformId == 1}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-A.png" alt="" class="icon-size">
+	                  </c:when>
+	                  
+	                  <c:when test="${authUser.platformId == 2}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-T.png" alt="" class="icon-size">
+	                  </c:when>
+	                  
+	                  <c:when test="${authUser.platformId == 3}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-Y.png" alt="" class="icon-size">
+	                  </c:when> 
+	                  
+	                  <c:when test="${authUser.platformId == 4}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-K.png" alt="" class="icon-size">
+	                  </c:when>
+                  </c:choose>
                       </div>
-                      <div >
-                        <form method="post" action="insertClipComment" >
+                      <div class="">
+                        <form method="post" action="insertClipComment">
                           <input type="hidden" name="clipId" value="${clipDetail.clip.clipId }">
                           <input type="hidden" name="postId" value=0>
                           <input type="hidden" name="userId" value="${authUser.userId }">
@@ -132,7 +164,23 @@
                         <li>
                           <div class="clip-comment-user-info">
                             <div class="clip-comment-user-icon">
-                              <img />
+                              <c:choose>
+				                  <c:when test="${comment.platformId == 1}">
+				                    <img src="${pageContext.request.contextPath}/images/icon/icon-A.png" alt="" class="icon-size">
+				                  </c:when>
+				                  
+				                  <c:when test="${comment.platformId == 2}">
+				                    <img src="${pageContext.request.contextPath}/images/icon/icon-T.png" alt="" class="icon-size">
+				                  </c:when>
+				                  
+				                  <c:when test="${comment.platformId == 3}">
+				                    <img src="${pageContext.request.contextPath}/images/icon/icon-Y.png" alt="" class="icon-size">
+				                  </c:when> 
+				                  
+				                  <c:when test="${comment.platformId == 4}">
+				                    <img src="${pageContext.request.contextPath}/images/icon/icon-K.png" alt="" class="icon-size">
+				                  </c:when>
+			                  </c:choose>
                             </div>
                             <div class="clip-comment-user-comment">
                               <div class="clip-comment-user-writer">

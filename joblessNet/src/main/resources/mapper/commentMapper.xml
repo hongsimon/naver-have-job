@@ -39,7 +39,8 @@
   			cm.user_id userId, 
   			post_id postId, 
   			clip_id clipId,
-  			u.nickname writerNickname
+  			u.nickname writerNickname,
+  			u.platform_id platformId
   		from comment cm join user u on cm.user_id = u.user_id
   		where clip_id = #{clipId}
   	</select>
@@ -50,7 +51,8 @@
   			u.user_id userId, 
   			post_id postId, 
   			clip_id clipId, 
-  			u.nickname writerNickname
+  			u.nickname writerNickname,
+  			u.platform_id platformId
   		from comment cm join user u on cm.user_id = u.user_id
   		where post_id = #{postId}
   	</select>

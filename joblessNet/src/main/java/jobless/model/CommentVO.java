@@ -10,6 +10,7 @@ public class CommentVO {
 	private int postId;
 	private int clipId;
 	private String writerNickname;
+	private int platformId;
 	
 	public String getWriterNickname() {
 		return writerNickname;
@@ -35,6 +36,15 @@ public class CommentVO {
 		this.userId = userId;
 		this.postId = postId;
 		this.clipId = clipId;
+	}
+	
+	
+	public int getPlatformId() {
+		return platformId;
+	}
+
+	public void setPlatformId(int platformId) {
+		this.platformId = platformId;
 	}
 
 	public int getCommentId() {

@@ -9,7 +9,8 @@ public class ClipDetailVO {
 	private UserVO broadcaster;
 	private int likes;
 	private int comments;
-
+	private int platformId;
+	
 	public ClipVO getClip() {
 		return clip;
 	}
@@ -34,6 +35,14 @@ public class ClipDetailVO {
 		this.broadcaster = broadcaster;
 	}
 	
+	public int getPlatformId() {
+		return platformId;
+	}
+
+	public void setPlatformId(int platformId) {
+		this.platformId = platformId;
+	}
+
 	public int getLikes() {
 		return likes;
 	}

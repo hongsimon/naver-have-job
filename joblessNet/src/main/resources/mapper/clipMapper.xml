@@ -85,7 +85,8 @@
   			broadcaster_id broadcasterId,
   			w.nickname writerNickname,
   			b.nickname broadcasterNickname,
-  			count(l.clip_id) likes
+  			count(l.clip_id) likes,
+  			w.platform_id platformId
   		from 
   			clip c join user w on c.writer_id = w.user_id
   			left outer join user b on c.broadcaster_id = b.user_id
