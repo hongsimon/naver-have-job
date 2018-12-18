@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
    	
-
+	
     <meta charset="utf-8" />
     <script type="text/javascript">
-		if(${errors.NotMoreLike}){
+		if(${empty errors.NotMoreLike}){
 			var link = "selectClip?clipId=";
 				link += ${clip_or_postId};
 			alert("추천은 한번만 가능합니다.");
@@ -116,12 +116,12 @@
                       <div class="clip-icon">
                         <img />
                       </div>
-                      <div class="">
-                        <form method="post" action="insertClipComment">
+                      <div >
+                        <form method="post" action="insertClipComment" >
                           <input type="hidden" name="clipId" value="${clipDetail.clip.clipId }">
                           <input type="hidden" name="postId" value=0>
                           <input type="hidden" name="userId" value="${authUser.userId }">
-                          <input type="text" name="content" placeholder="댓글을 입력하세요..." class="clip-comment-box">
+                          <input type="text" name="content" placeholder="댓글을 입력하세요..." id="hotclip-comment-input" class="clip-comment-box">
                           <button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
                         </form>
                       </div>
