@@ -10,6 +10,8 @@ public interface IBoardCategoryMapper {
 	
 	public BoardCategoryVO selectBoardCategoryById(int boardCategoryId);
 	
+	public List<BoardCategoryVO> selectBoardCategoryByBoardId(int boardId);
+	
 	public List<BoardCategoryVO> selectAllBoardCategory();
 	
 	public void deleteBoardCategory(int boardCategoryId);

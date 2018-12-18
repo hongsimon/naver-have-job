@@ -38,7 +38,7 @@
 			board_id = #{boardId}
 	</select>
 	
-	<select id="selectBoardCategoryByBoardId" resultType="BoardCategory" parameterType="map">
+	<select id="selectBoardCategoryByBoardId" resultType="BoardCategory" parameterType="int">
 		select 
 			category_id as boardCategoryId,
 			category_name as categoryName, 

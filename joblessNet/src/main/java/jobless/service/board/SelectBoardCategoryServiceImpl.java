@@ -19,6 +19,12 @@ public class SelectBoardCategoryServiceImpl implements SelectBoardCategoryServic
 		BoardCategoryVO boardCategory = boardCategoryDao.select(boardCategoryId);
 		return boardCategory;
 	}
+	
+	@Override
+	public List<BoardCategoryVO> selectBoardCategoryByBoardId(int boardId) {
+		List<BoardCategoryVO> boardCategoryList = boardCategoryDao.selectAllByBoardId(boardId);
+		return boardCategoryList;
+	}
 
 	@Override
 	public List<BoardCategoryVO> selectBoardCategotyByAll() {

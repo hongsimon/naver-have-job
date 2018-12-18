@@ -23,6 +23,12 @@ public class BoardCategoryDAOimplJDBC implements BoardCategoryDAO {
 		BoardCategoryVO boardCategory = mapper.selectBoardCategoryById(boardCategoryId);
 		return boardCategory;
 	}
+	
+	@Override
+	public List<BoardCategoryVO> selectAllByBoardId(int boardId) {
+		List<BoardCategoryVO> boardCategoryList = mapper.selectBoardCategoryByBoardId(boardId);
+		return boardCategoryList;
+	}
 
 	@Override
 	public List<BoardCategoryVO> selectAll() {

@@ -29,7 +29,11 @@ public interface ReadPostService {
 	
 	List<PostDetailVO> readDetailPostAll();
 	
+	List<PostDetailVO> readdetailPostByBoardId(int boardId);
+	
 	List<PostDetailVO> readDetailPostByCategoryId(int categoryId);
+	
+	List<PostDetailVO> readDetailPostByBoardIdAndCategoryId(PostDetailVO postDetail);
 	
 	List<PostDetailVO> readDetailPostList(int boardId, Condition condition);
 	

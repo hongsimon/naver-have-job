@@ -117,8 +117,20 @@ public class ReadPostServiceImpl implements ReadPostService{
 	}
 	
 	@Override
+	public List<PostDetailVO> readdetailPostByBoardId(int boardId) {
+		List<PostDetailVO> postDetailList = postdao.readDetailBoard(boardId);
+		return postDetailList;
+	}
+	
+	@Override
 	public List<PostDetailVO> readDetailPostByCategoryId(int categoryId) {
 		return postdao.readDetailCategory(categoryId);
+	}
+	
+	@Override
+	public List<PostDetailVO> readDetailPostByBoardIdAndCategoryId(PostDetailVO postDetail) {
+		List<PostDetailVO> postDetailList = postdao.readDetailBoardAndCategory(postDetail);
+		return postDetailList;
 	}
 	
 	//특정 게시판에 쓰여진 게시글 검색

@@ -50,11 +50,6 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
-	public List<PostDetailVO> readDetailAll() {
-		return postMapper.selectPostDetailAll();
-	}
-	
-	@Override
 	public List<PostVO> readAll() {
 		List<PostVO> postList = postMapper.selectPostList();
 		return postList;
@@ -67,8 +62,18 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
+	public List<PostVO> readCategoryIdList(int id) {
+		return postMapper.selectPostByCategoryId(id);
+	}
+	
+	@Override
 	public List<PostVO> readBoardIdList(int id) {
 		return postMapper.selectPostByBoardId(id);
+	}
+	
+	@Override
+	public List<PostDetailVO> readDetailAll() {
+		return postMapper.selectPostDetailAll();
 	}
 
 	@Override
@@ -80,23 +85,28 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
-	public List<PostVO> readCategoryIdList(int id) {
-		return postMapper.selectPostByCategoryId(id);
-	}
-
-	@Override
-	public int readLastInsertId() {
-		return postMapper.selectLastInsertId();
-	}
-
-	@Override
-	public int readPostTotalCount(int boardId) {
-		return postMapper.selectPostCount(boardId);
+	public List<PostDetailVO> readDetailBoard(int boardId) {
+		return postMapper.selectPostDetailByBoardId(boardId);
 	}
 
 	@Override
 	public List<PostDetailVO> readDetailCategory(int categoryId) {
 		return postMapper.selectPostDetailByCategoryId(categoryId);
+	}
+	
+	@Override
+	public List<PostDetailVO> readDetailBoardAndCategory(PostDetailVO postDetail) {
+		return postMapper.selectPostDetailByBoardIdAndCategoryId(postDetail);
+	}
+	
+	@Override
+	public int readLastInsertId() {
+		return postMapper.selectLastInsertId();
+	}
+	
+	@Override
+	public int readPostTotalCount(int boardId) {
+		return postMapper.selectPostCount(boardId);
 	}
 	
 }

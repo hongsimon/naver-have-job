@@ -175,6 +175,30 @@
 			p.post_id;
 	</select>
 	
+	<select id="selectPostDetailByBoardId" parameterType="int" resultMap="PostMap">
+		select p.post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			p.content_id contentId, 
+			p.board_id boardId, 
+			views,
+			p.user_id writerId,
+			p.category_id boardCategoryId,
+            bc.category_name categoryName,
+			u.user_id writerId,
+			nickname,
+			content,
+			count(l.post_id) likes
+		from 
+			post p 
+			join user u on p.user_id = u.user_id
+			join content c on p.content_id = c.content_id
+            join board_category bc on p.category_id = bc.category_id
+			left outer join taku.like l on p.post_id = l.post_id
+		where
+			p.board_id = #{boardId}
+	</select>
+	
 	<select id="selectPostDetailByCategoryId" parameterType="int" resultMap="PostMap">
 		select p.post_id postId, 
 			post_title title, 
@@ -197,8 +221,31 @@
 			left outer join taku.like l on p.post_id = l.post_id
 		where
 			bc.category_id = #{categoryId}
-		group by
-			p.post_id;
+	</select>
+	
+	<select id="selectPostDetailByBoardIdAndCategoryId" parameterType="PostDetail" resultMap="PostMap">
+		select p.post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			p.content_id contentId, 
+			p.board_id boardId, 
+			views,
+			p.user_id writerId,
+			p.category_id boardCategoryId,
+            bc.category_name categoryName,
+			u.user_id writerId,
+			nickname,
+			content,
+			count(l.post_id) likes
+		from 
+			post p 
+			join user u on p.user_id = u.user_id
+			join content c on p.content_id = c.content_id
+            join board_category bc on p.category_id = bc.category_id
+			left outer join taku.like l on p.post_id = l.post_id
+		where
+			bc.category_id = #{categoryId} 
+			AND p.board_id = #{boardId}
 	</select>
 
 	<select id="selectDetailPostList" parameterType="map" resultMap="PostMap">

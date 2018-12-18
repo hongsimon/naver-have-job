@@ -10,6 +10,8 @@ public interface BoardCategoryDAO {
 	
 	public BoardCategoryVO select(int boardCategoryId);
 	
+	public List<BoardCategoryVO> selectAllByBoardId(int boardId);
+	
 	public List<BoardCategoryVO> selectAll();
 	
 	public void delete(int boardCategoryId);

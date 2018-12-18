@@ -69,13 +69,23 @@ public class PostController {
 	public ModelAndView controllerViewPostList_GET(@RequestParam(value="boardId", required=false, defaultValue="1") int boardId,
 													@RequestParam(value="categoryId", required=false, defaultValue="0") int categoryId,
 													@RequestParam(value = "page", required = false) String pageStr) {
-		System.out.println("viewPostList_GET");
-		System.err.println(categoryId);
-		ModelAndView mv = new ModelAndView();
-		List<PostDetailVO> postDetail;
-		List<BoardCategoryVO> boardCategory;
+//		System.out.println("viewPostList_GET");
+//		System.err.println(categoryId);
 		
+		ModelAndView mv = new ModelAndView();
+		BoardCategoryVO boardCategory = new BoardCategoryVO();
 		Condition condition = new Condition();
+		
+		List<PostDetailVO> postDetailList;
+		List<BoardCategoryVO> boardCategoryList;		
+		List<PostDetailVO> postList;
+		
+		PostVO post;
+		PostDetailVO postDetail;
+		CriteriaVO cri;
+		PageMakerVO pageMaker;
+		
+		
 		Id id;
 		Text text;
 		Period period;
@@ -83,63 +93,76 @@ public class PostController {
 		Order order;
 		
 		int page;
+		int index;
+		int postPerPage;
+		int postTotalCountPage;
+		
+		// 페이징 -------------------------------------------------------------
+		
 		if(pageStr == null || pageStr.trim().isEmpty()) {
 			page = 1;
 		} else {
 			page = Integer.parseInt(pageStr);
 		}
 		
-		int clipPerPage = 2;
+		postPerPage = 2;
 		
-		CriteriaVO cri = new CriteriaVO();
+		cri = new CriteriaVO();
 		cri.setPage(page);
-		cri.setPerPageNum(clipPerPage);
+		cri.setPerPageNum(postPerPage);
 		
 		
-		int index = cri.getPageStart();
-		limit = new Limit(index, clipPerPage);
+		index = cri.getPageStart();
+		limit = new Limit(index, postPerPage);
 		
-		PageMakerVO pageMaker = new PageMakerVO();
+		pageMaker = new PageMakerVO();
 		
-		int postTotalCountPage = readPost.readPostTotalCount(boardId);
+		postTotalCountPage = readPost.readPostTotalCount(boardId);
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(postTotalCountPage);
 		
 		condition.setLimit(limit);
+		
+//		for(PostDetailVO post :postList) {
+//			System.out.println("리스트임"+post.toString());
+//		}
+		
+		// -------------------------------------------------------------------
+		
+		// 카테고리 목록 가져오기
+		boardCategoryList = readBoardCategory.selectBoardCategoryByBoardId(boardId); // 해당 보드에 맞는 카테고리 모두 가져옴 (카테고리 목록 뽑는데 사용)
 
-		List<PostDetailVO> postList = readPost.readDetailPostList(boardId, condition);
-//		System.out.println("PostList 임" + postList);
-		
-		for(PostDetailVO post :postList) {
-			System.out.println("리스트임"+post.toString());
-		}
-		
-//		System.out.println(boardId);
-//		int postTotalCountPage = readPost.readPostTotalCount(boardId); // 해당 boardId를 가지고 있는 post개수를 가져옴
-//		System.out.println(postTotalCountPage);
-		
-		
-		boardCategory = readBoardCategory.selectBoardCategotyByAll(); // 카테고리 모두 가져옴 (카테고리 목록 뽑는데 사용)
-
-		if(categoryId != 0 && categoryId != 1) {
-			postDetail = readPost.readDetailPostByCategoryId(categoryId); // categoryId로 해당된 post 모두 가져옴 (리스트 뽑는데 사용)
-		}else {
-			postDetail = readPost.readDetailPostAll(); // 모든 post를 가져옴
-		}
+//		if(categoryId != 0) {
+//			post = new PostVO();
+//			postDetail = new PostDetailVO();
+//			post.setBoardId(boardId);
+//			post.setCategoryId(categoryId);
+//			postDetail.setPost(post);
+//			
+//			// 맵퍼 수정해야함
+//			postList = readPost.readDetailPostByBoardIdAndCategoryId(postDetail); // boardId and categoryId로 해당된 post 모두 가져옴 (리스트 뽑는데 사용)
+//		}else {
+			id = new Id();
+			id.setCategoryId(categoryId);
+			condition.setId(id);
+			postList = readPost.readDetailPostList(boardId, condition); // 해당 보드에 맞는 모든 post를 가져옴
+//			postList = readPost.readdetailPostByBoardId(boardId); 
+//		}
 		
 		
-		if(postDetail == null) {
+		if(postList == null) {
 			mv.setViewName("view/error/500");
 		}else {
 			mv.addObject("postDetail", postList); // 페이징하는 것
 			mv.addObject("pageMaker", pageMaker); // 페이징 페이지 개수
-			mv.addObject("boardCategory", boardCategory); // 카테고리 한것
+			mv.addObject("boardCategory", boardCategoryList); // 카테고리 한것
 			mv.setViewName("view/border/border-community");
 		}
 		
 		System.out.println("정상 작동");
 		return mv;
 	}
+	
 	
 	
 	@RequestMapping(value="/viewPost", method=RequestMethod.GET)
