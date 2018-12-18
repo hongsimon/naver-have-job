@@ -276,7 +276,7 @@
 				<if test="condition.id.writerId">
 				AND p.user_id = #{condition.id.writerId}
 				</if>
-				<if test="condition.id.categoryId">
+				<if test="condition.id.categoryId > 1">
 				AND category_id = #{condition.id.categoryId}
 				</if>
 			</if>
@@ -304,5 +304,17 @@
 		LIMIT
 			#{condition.limit.startIndex}, #{condition.limit.offset}
 		</if>		
+	</select>
+	
+	<select id="selectPostCount" parameterType="post" resultType="int">
+		select 
+			count(*) 
+		from 
+			post
+		where 
+			board_id = #{boardId}
+			<if test="categoryId > 1">
+				AND category_id = #{categoryId};
+			</if>
 	</select>
 </mapper>

@@ -105,8 +105,8 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
-	public int readPostTotalCount(int boardId) {
-		return postMapper.selectPostCount(boardId);
+	public int readPostTotalCount(PostVO post) {
+		return postMapper.selectPostCount(post);
 	}
 	
 }

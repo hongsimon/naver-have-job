@@ -44,6 +44,15 @@ public class PostController {
 	WriteCommentService writeComment;
 	
 	@Autowired
+	WritePostService writeService;
+
+	@Autowired
+	DeletePostService deleteService;
+	
+	@Autowired
+	ModifyPostService modifyService;
+
+	@Autowired
 	ReadBoardService readBoard;
 
 	@Autowired
@@ -54,15 +63,6 @@ public class PostController {
 	
 	@Autowired
 	SelectBoardCategoryService readBoardCategory;
-	
-	@Autowired
-	WritePostService writeService;
-	
-	@Autowired
-	DeletePostService deleteService;
-	
-	@Autowired
-	ModifyPostService modifyService;
 	
 	// 완전 성공
 	@RequestMapping(value="/viewPostList", method=RequestMethod.GET)
@@ -105,7 +105,7 @@ public class PostController {
 			page = Integer.parseInt(pageStr);
 		}
 		
-		postPerPage = 2;
+		postPerPage = 5;
 		
 		cri = new CriteriaVO();
 		cri.setPage(page);
@@ -117,7 +117,10 @@ public class PostController {
 		
 		pageMaker = new PageMakerVO();
 		
-		postTotalCountPage = readPost.readPostTotalCount(boardId);
+		post = new PostVO();
+		post.setBoardId(boardId);
+		post.setCategoryId(categoryId);
+		postTotalCountPage = readPost.readPostTotalCount(post);
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(postTotalCountPage);
 		
@@ -201,6 +204,7 @@ public class PostController {
 			int boardCategoryId = postDetail.getPost().getCategoryId();
 			
 			boardCategory = readBoardCategory.selectBoardCategotyById(boardCategoryId);
+			System.out.println(boardCategory.getCategoryName());
 		} catch (ReadPostException e) {
 			System.out.println("viewPost Error");
 			errors.put("ReadPostException", true);

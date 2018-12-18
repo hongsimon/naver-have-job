@@ -22,10 +22,44 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/view.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
 
-<meta charset="utf-8" />
-<script type="text/javascript">
+	<!-- include summernote css/js -->
+	<link href="${pageContext.request.contextPath}/summernote/summernote.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/summernote/summernote.js"></script>
+	<script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
 	
-</script>
+<meta charset="utf-8" />
+	<script>
+    	$(document).ready(function() {
+			$('#summernote').summernote({ // summernote를 사용하기 위한 선언
+				height: 400,
+				lang: 'ko-KR',
+				callbacks: {
+					onImageUpload: function(files) {
+						sendFile(files[0]);
+					}
+				}
+			});
+    	});
+    	
+    	function sendFile(file) {
+            // 파일 전송을 위한 폼생성
+	 		data = new FormData();
+	 	    data.append("uploadFile", file);
+	 	    $.ajax({ // ajax를 통해 파일 업로드 처리
+	 	        data : data,
+	 	        type : "POST",
+	 	        url : "imgUpload",
+	 	        enctype : "multipart/form-data",
+	 	        cache : false,
+	 	        contentType : false,
+	 	        processData : false,
+	 	        success : function(data) { // 처리가 성공할 경우
+	 	        	console.log(data)
+                    $("#summernote").summernote('insertImage', data.url);
+	 	        }
+	 	    });
+	 	}
+  	</script>
 <title>백수넷</title>
 <%@include file="../share-nav/nav-header.jsp"%>
 </head>
@@ -98,22 +132,28 @@
 						</div>
 					</div>
 					
-					<c:if test="${postDetail.post.boardId != 1 && postDetail.post.boardId != 2 }">
-						<div class="border-comm-comments">
-							<div class="hotclip-comment-input">
-	                      		<div class="clip-icon">
-	                      			<img />
-	                      		</div>
-	                      		<div class="">
-	                        		<form method="post" action="insertClipComment">
-			                          	<input type="hidden" name="clipId" value=0>
-										<input type="hidden" name="postId" value="${postDetail.post.postId }">
-			                          	<input type="hidden" name="userId" value="${authUser.userId }">
-			                          	<input type="text" name="content" placeholder="댓글을 입력하세요..." class="clip-comment-box">
-	                          			<button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
-	                        		</form>
-	                      		</div>
-	                    	</div>
+					<c:if test="${boardCategory.categoryName ne '공지'}">
+						<c:if test="${boardCategory.categoryName ne '이벤트'}">
+							<c:if test="${!empty authUser.userId }">
+								<div class="border-comm-comments">
+									<div class="hotclip-comment-input">
+			                      		<div class="clip-icon">
+			                      			<img />
+			                      		</div>
+			                      		<div class="">
+			                        		<form method="post" action="insertPostComment">
+					                          	<input type="hidden" name="clipId" value=0>
+												<input type="hidden" name="postId" value="${postDetail.post.postId }">
+					                          	<input type="hidden" name="userId" value="${authUser.userId }">
+					                          	<div class="writeCommunity-content ">
+													<textarea id="summernote" name="content"></textarea>
+	                        					</div>
+			                          			<button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
+			                        		</form>
+			                      		</div>
+			                    	</div>
+								</div>
+							</c:if>
 							<div class="border-comm-comment">
 								<span class="glyphicon glyphicon-comment"></span> 댓글 ${count }개
 							</div>
@@ -127,19 +167,17 @@
 												</div>
 												<div class="border-comm-comments-writer">${comments.writerNickname }</div>
 												<div class="con-right border-comm-comments-writer-service">
-													<div>
-														<a>삭제</a>
-													</div>
+												<div>
+													<a href="deleteCommentPost?commentId=${comments.commentId }">삭제</a>
+												</div>
 												</div>
 											</div>
 											<div class="border-comm-comments-contents">${comments.content }</div>
 										</li>
 									</c:forEach>
 								</ul>
-	
 							</div>
-							
-						</div>
+						</c:if>
 					</c:if>
 
 					<div class="row">

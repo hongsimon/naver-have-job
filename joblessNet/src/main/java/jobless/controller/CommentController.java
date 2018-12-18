@@ -90,4 +90,21 @@ public class CommentController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="/deleteCommentPost", method=RequestMethod.GET)
+	public ModelAndView deleteCommentPost_GET(HttpSession session,
+										@RequestParam int commentId){
+		System.out.println("deleteComment_GET");
+		
+		ModelAndView mv = new ModelAndView();
+		if(session.getAttribute("authUser") == null) {
+			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
+			mv.setViewName("errorpage");
+		}else {
+			AuthUser authUser = (AuthUser) session.getAttribute("authUser");
+			deleteComment.delete(commentId);
+			mv.setViewName("redirect:viewPost");
+		}
+		return mv;
+	}
 }

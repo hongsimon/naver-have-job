@@ -24,5 +24,5 @@ public interface PostDAO {
 	public List<PostDetailVO> readDetailBoardAndCategory(PostDetailVO postDetail);
 	public List<PostDetailVO> readDetailList(int boardId, Condition condition);
 	public int readLastInsertId();
-	public int readPostTotalCount(int boardId);
+	public int readPostTotalCount(PostVO post);
 }

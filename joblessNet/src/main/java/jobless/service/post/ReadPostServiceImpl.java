@@ -38,8 +38,8 @@ public class ReadPostServiceImpl implements ReadPostService{
 	}
 	
 	@Override
-	public int readPostTotalCount(int boardId) {
-		return postdao.readPostTotalCount(boardId);
+	public int readPostTotalCount(PostVO post) {
+		return postdao.readPostTotalCount(post);
 	}
 	
 	@Override
