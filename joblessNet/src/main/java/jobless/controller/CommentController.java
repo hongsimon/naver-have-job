@@ -48,7 +48,7 @@ public class CommentController {
 		}else {
 			CommentRequest commentRequest = new CommentRequest(content, userId, postId, clipId);
 			writeComment.writeClipComment(commentRequest);
-			mv.setViewName("redirect:viewClip");
+			mv.setViewName("redirect:/selectClip?clipId="+clipId);
 		}
 		return mv;
 	}

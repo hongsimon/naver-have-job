@@ -53,7 +53,21 @@ public class AdminController {
 
 	@Autowired
 	CreateBoardCategoryService createCategory;
-
+	
+	
+	//취업공고 설정
+	@RequestMapping(value="/addJobConfig", method=RequestMethod.GET)
+	public ModelAndView addJobConfig_GET() {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		System.out.println("addJobConfig_GET");
+		
+		modelAndView.setViewName("view/manager/manager-banner");
+		return modelAndView;
+	}
+	
+	
+	//요청관리 게시판
 	@RequestMapping(value="/adminApplyPage", method = RequestMethod.GET)
 	public ModelAndView adminApplyPage_GET(HttpSession session) {
 		ModelAndView mv = new ModelAndView();

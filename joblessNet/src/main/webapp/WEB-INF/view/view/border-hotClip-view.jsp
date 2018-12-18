@@ -26,7 +26,7 @@
 	
     <meta charset="utf-8" />
     <script type="text/javascript">
-		if(${empty errors.NotMoreLike}){
+		if(${!empty errors.NotMoreLike}){
 			var link = "selectClip?clipId=";
 				link += ${clip_or_postId};
 			alert("추천은 한번만 가능합니다.");

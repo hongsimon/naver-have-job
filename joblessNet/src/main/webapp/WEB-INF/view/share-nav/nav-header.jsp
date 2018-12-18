@@ -128,6 +128,7 @@ SK매직 2019년 연구개발 및 생산관리부문 신입/경력 채용</div><
               <!-- 로그인상태 -->
               <c:if test="${!empty authUser }">
               
+              <!-- 어드민이면 -->
               <c:if test="${authUser.admin }">
               <div class="manager">
                 <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#">
@@ -135,7 +136,7 @@ SK매직 2019년 연구개발 및 생산관리부문 신입/경력 채용</div><
                   <span class="glyphicon glyphicon-chevron-down gly-size-small"></span>
                 </a>
                 <ul class="dropdown-menu col-xs-12" role="menu" aria-labelledby="dropdownMenu">
-                  <li><a href="">전광판 관리</a></li>
+                  <li><a href="${pageContext.request.contextPath}/addJobConfig">전광판 관리</a></li>
                   <li><a href="${pageContext.request.contextPath}/adminApplyPage">요청 관리</a></li>
                   <li><a href="">신고 관리</a></li>
                   <li class="divider"></li>
