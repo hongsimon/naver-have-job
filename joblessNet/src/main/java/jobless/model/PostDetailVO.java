@@ -9,7 +9,16 @@ public class PostDetailVO {
 	private BoardCategoryVO boardCategory;
 	private ContentVO content;
 	private int likes;
+	private int comments;
 	
+
+	public int getComments() {
+		return comments;
+	}
+
+	public void setComments(int comments) {
+		this.comments = comments;
+	}
 
 	public BoardCategoryVO getBoardCategory() {
 		return boardCategory;

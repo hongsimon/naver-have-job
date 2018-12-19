@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import jobless.model.PostDetailVO;
+import jobless.model.PostVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.clip.ClipRequest;
@@ -59,6 +61,7 @@ public class CommentController {
 												  @RequestParam("content") String content, 
 												  @RequestParam("userId") int userId,
 												  @RequestParam("postId") int postId,
+												  @RequestParam("categoryId") int categoryId,
 												  @RequestParam("clipId") int clipId){
 		System.out.println("insertPostComment_POST");
 		
@@ -69,7 +72,7 @@ public class CommentController {
 		}else {
 			CommentRequest commentRequest = new CommentRequest(content, userId, postId, clipId);
 			writeComment.writePostComment(commentRequest);
-			mv.setViewName("redirect:viewPost");
+			mv.setViewName("redirect:viewPost?postId="+postId+"&categoryId="+categoryId);
 		}
 		return mv;
 	}
@@ -93,8 +96,12 @@ public class CommentController {
 	
 	@RequestMapping(value="/deleteCommentPost", method=RequestMethod.GET)
 	public ModelAndView deleteCommentPost_GET(HttpSession session,
-										@RequestParam int commentId){
+										@RequestParam int commentId,
+										@RequestParam("postId") int postId,
+										@RequestParam("categoryId") int categoryId){
 		System.out.println("deleteComment_GET");
+		System.out.println(postId);
+		System.out.println(categoryId);
 		
 		ModelAndView mv = new ModelAndView();
 		if(session.getAttribute("authUser") == null) {
@@ -103,7 +110,7 @@ public class CommentController {
 		}else {
 			AuthUser authUser = (AuthUser) session.getAttribute("authUser");
 			deleteComment.delete(commentId);
-			mv.setViewName("redirect:viewPost");
+			mv.setViewName("redirect:viewPost?postId="+postId+"&categoryId="+categoryId);
 		}
 		return mv;
 	}

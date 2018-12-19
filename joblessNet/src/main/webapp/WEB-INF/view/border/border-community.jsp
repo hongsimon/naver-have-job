@@ -66,7 +66,12 @@
 												<li>
 													<!-- 추천수/공지/인기 -->
 													<div class="border-comm-recomm ">
-														<div>${post.post.postId }</div>
+														<c:if test="${post.comments != null}">
+															<div>${post.comments }</div>
+														</c:if>
+														<c:if test="${post.comments == null}">
+															<div>0</div>
+														</c:if>
 													</div> <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
 													<div class="border-comm-name ">
 														<a>${post.boardCategory.categoryName }</a>
@@ -101,7 +106,7 @@
 										</div>
 
 										<div class="comm-write con-right">
-											<a href="insertPost?boardId=1"><span class="glyphicon glyphicon-pencil"></span>글쓰기</a>
+											<a href="insertPost?boardId=1&categoryId=${postDetail.post.categoryId }"><span class="glyphicon glyphicon-pencil"></span>글쓰기</a>
 										</div>
 									</div>
 								</div>

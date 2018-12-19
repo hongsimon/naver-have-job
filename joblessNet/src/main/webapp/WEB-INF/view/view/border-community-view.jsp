@@ -72,7 +72,6 @@
 
 			<!-- 게시판 메뉴 -->
 			<div class="col-xs-10 setController">
-
 				<div class="row margin-container ">
 					<div class="border-comm-view-title">
 						<a> ${boardCategory.categoryName } </a>
@@ -142,14 +141,13 @@
 			                      		</div>
 			                      		<div class="">
 			                        		<form method="post" action="insertPostComment">
-					                          	<input type="hidden" name="clipId" value=0>
-												<input type="hidden" name="postId" value="${postDetail.post.postId }">
-					                          	<input type="hidden" name="userId" value="${authUser.userId }">
-					                          	<div class="writeCommunity-content ">
-													<textarea id="summernote" name="content"></textarea>
-	                        					</div>
-			                          			<button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
-			                        		</form>
+                          						<input type="hidden" name="clipId" value=0>
+                          						<input type="hidden" name="categoryId" value="${postDetail.post.categoryId }">
+                          						<input type="hidden" name="postId" value="${postDetail.post.postId }">
+                          						<input type="hidden" name="userId" value="${authUser.userId }">
+                          						<input type="text" name="content" placeholder="댓글을 입력하세요..." id="hotclip-comment-input" class="clip-comment-box">
+                          						<button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
+                        					</form>
 			                      		</div>
 			                    	</div>
 								</div>
@@ -168,7 +166,12 @@
 												<div class="border-comm-comments-writer">${comments.writerNickname }</div>
 												<div class="con-right border-comm-comments-writer-service">
 												<div>
-													<a href="deleteCommentPost?commentId=${comments.commentId }">삭제</a>
+													<form method="get" action="deleteCommentPost">
+                          								<input type="hidden" name="commentId" value=${comments.commentId }>
+                          								<input type="hidden" name="categoryId" value="${postDetail.post.categoryId }">
+                          								<input type="hidden" name="postId" value="${postDetail.post.postId }">
+                          								<button type="submit" name="button">삭제</button>
+                        							</form>
 												</div>
 												</div>
 											</div>

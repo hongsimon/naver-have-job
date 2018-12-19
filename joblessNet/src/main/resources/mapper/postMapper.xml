@@ -254,21 +254,25 @@
 			post_title title, 
 			write_date writeDate, 
 			p.content_id contentId, 
-			board_id boardId, 
+			p.board_id boardId, 
 			views,
 			p.user_id writerId,
-			category_id categoryId,
+			p.category_id categoryId,
+			bc.category_name categoryName,
 			u.user_id writerId,
 			nickname,
 			content,
-			count(l.post_id) likes
+			count(l.post_id) likes,
+			(select count(comment_content) from comment where post_id = cm.post_id) comments
 		from 
 			post p 
 			join user u on p.user_id = u.user_id
 			join content c on p.content_id = c.content_id
+			join board_category bc on p.category_id = bc.category_id
+			left outer join taku.comment cm on cm.post_id = p.post_id
 			left outer join taku.like l on p.post_id = l.post_id
 		WHERE
-			board_id = #{boardId}
+			p.board_id = #{boardId}
 			<if test="condition.period != null">
 			AND write_date &gt; #{condition.period.startDate} AND write_date &lt; #{condition.period.endDate}
 			</if>
