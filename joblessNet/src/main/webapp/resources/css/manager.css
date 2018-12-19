@@ -50,8 +50,17 @@
   width: 350px;
 }
 
-#change_true{
+.change_true{
   background-color: #287A72;
+  border-radius: 5px;
+  border: none;
+  color:#fff;
+  padding: 5px;
+  outline: none;
+}
+
+.change_false{
+  background-color: #bfbfbf;
   border-radius: 5px;
   border: none;
   color:#fff;
