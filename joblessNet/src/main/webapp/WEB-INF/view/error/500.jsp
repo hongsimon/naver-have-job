@@ -9,7 +9,7 @@
     <title></title>
   </head>
   <body class="error">
-    <img  src="${pageContext.request.contextPath}/images/error/500.png"/>
+    <img  src="${pageContext.request.contextPath}/images/error/500.png" class="error-size"/>
     <h1>500 Internal Server Error</h1>
     <hr class="hr-error"/>
     <h3>관리자, 미쳤습니까?</h4>

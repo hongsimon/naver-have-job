@@ -254,6 +254,7 @@
 
               </div>
             </div>
+            <%@include file="../share-nav/nav-bottom.jsp"%>
           </div>
            <%@include file="../share-nav/controller.jsp"%>
   </body>

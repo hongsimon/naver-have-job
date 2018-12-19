@@ -90,6 +90,7 @@
           </div>
 
         </div>
+        <%@include file="../share-nav/nav-bottom.jsp"%>
       </div>
 </body>
 

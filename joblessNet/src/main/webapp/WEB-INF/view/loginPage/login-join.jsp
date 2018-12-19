@@ -143,9 +143,9 @@
             <select class="" name="platformId" >
               <option value="0">플랫폼 선택</option>
               <option value="1">Afreeca TV</option>
-              <option value="2">YouTube</option>
-              <option value="3">Kakao pat</option>
-              <option value="4">Twitch</option>
+              <option value="2">Twitch</option>
+              <option value="3">YouTube</option>
+              <option value="4">Kakao pat</option>
             </select>
           </div>
           <div>

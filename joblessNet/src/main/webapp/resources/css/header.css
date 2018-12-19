@@ -126,7 +126,6 @@
   display: inline-block;
   width: 30px;
   height: 30px;
-  background-color: #7d7d7d;
 }
 
 .userProfile .emphasis{
@@ -194,4 +193,14 @@
 .side-service{
   padding: 0px;
   margin-top: -10px;
+}
+
+.bottom-nav{
+	margin-top:150px;
+  text-align: center;
+  color: rgb(134, 134, 134);
+}
+
+.bottom-nav>div{
+  padding-top: 20px;
 }
