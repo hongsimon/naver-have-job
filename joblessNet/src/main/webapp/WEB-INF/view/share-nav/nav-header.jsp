@@ -131,7 +131,23 @@
               <div class="login">
                 <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#">
                   <div class="icon-size">
-                    <img src="" alt="" class="icon-size">
+                    <c:choose>
+	                  <c:when test="${authUser.platformId == 1}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-A.png" alt="" class="icon-size">
+	                  </c:when>
+	                  
+	                  <c:when test="${authUser.platformId == 2}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-T.png" alt="" class="icon-size">
+	                  </c:when>
+	                  
+	                  <c:when test="${authUser.platformId == 3}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-Y.png" alt="" class="icon-size">
+	                  </c:when> 
+	                  
+	                  <c:when test="${authUser.platformId == 4}">
+	                    <img src="${pageContext.request.contextPath}/images/icon/icon-K.png" alt="" class="icon-size">
+	                  </c:when>
+                  </c:choose>
                   </div>
 
                   <span class="glyphicon glyphicon-chevron-down gly-size-small"></span>
