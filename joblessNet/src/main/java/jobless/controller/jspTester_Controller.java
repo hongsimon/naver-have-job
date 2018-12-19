@@ -61,6 +61,11 @@ public class jspTester_Controller {
 		return "view/view/user_Service_Page";
 	}
 	
+	@RequestMapping(value="/testPage")
+	public String testPage() {
+		return "view/service/attendance_check";
+	}
+	
 	
 	
 	

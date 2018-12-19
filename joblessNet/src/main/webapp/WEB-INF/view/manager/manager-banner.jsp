@@ -1,5 +1,6 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en" dir="ltr">
 
 <head>
@@ -35,7 +36,7 @@
             <div>
               <h2>광고 변경</h2>
             </div>
-          <form action="#" >
+          <form action="addJobConfig" method="POST">
             <div class="write-info-table">
                   <table>
                     <thead>
@@ -53,48 +54,23 @@
                       </th>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          1
-                        </td>
-                        <td >
-                            URL1
-                        </td>
-                        <td >
-                          text1
-                        </td>
-                        <td>
-                          <button type="button" name="button" id="change_true" class="change_true"><span class="glyphicon glyphicon-repeat"></span></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          2
-                        </td>
-                        <td >
-                            URL2
-                        </td>
-                        <td >
-                          text2
-                        </td>
-                        <td>
-                          <button type="button" name="button" id="change_true" class="change_true"><span class="glyphicon glyphicon-repeat"></span></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          3
-                        </td>
-                        <td >
-                            URL3
-                        </td>
-                        <td >
-                          text3
-                        </td>
-                        <td>
-                          <button type="button" name="button" id="change_true" class="change_true"><span class="glyphicon glyphicon-repeat"></span></button>
-                        </td>
-                      </tr>
+                    	
+                    	<c:forEach var="job_add" items="${add }">
+	                       <tr>
+	                        <td>
+	                          ${job_add.addId }
+	                        </td>
+	                        <td >
+	                            ${job_add.addLink }
+	                        </td>
+	                        <td >
+	                          ${job_add.addTitle }
+	                        </td>
+	                        <td>
+	                          <button type="button" name="button" id="change_true" class="change_true"><span class="glyphicon glyphicon-repeat"></span></button>
+	                        </td>
+	                      </tr>
+                    	</c:forEach>
                     </tbody>
                     </table>
                 </div>

@@ -6,4 +6,6 @@ import jobless.model.JobAddVO;
 
 public interface JobAddDAO {
 	public List<JobAddVO> selectAllAdd();
+	
+	public void modifyAdd(JobAddVO jobAdd);
 }

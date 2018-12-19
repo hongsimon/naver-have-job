@@ -248,3 +248,75 @@
   border: none;
   border-radius: 5px;
 }
+
+
+.check_system>div{
+  display: inline-block;
+}
+
+#check_number{
+  width: 60px;
+  padding-left: 0px;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#check_submit{
+  width: 160px;
+  background-color: #287A72;
+  color: #fff;
+}
+
+#check_img>img{
+  width: 60px;
+}
+
+#check_text_box{
+  display: block;
+}
+
+#check_text{
+  width: 100%;
+}
+
+#check_text_font{
+  font-weight: bold;
+}
+
+.check_table>table{
+  width: 100%;
+  margin-top: 20px;
+  border: 2px solid #b4b4b4;
+}
+
+.check_table tr{
+  padding: 5px;
+  border: 2px solid #b4b4b4;
+}
+
+.check_table td{
+  padding: 5px;
+  border: 2px solid #b4b4b4;
+}
+
+.check_table th{
+  padding: 5px;
+  border: 2px solid #b4b4b4;
+}
+
+.check_status{
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#check_nick{
+  text-align: center;
+  word-break: break-all;
+  width: 100px;
+}
+
+#check_talk{
+  text-align: center;
+}

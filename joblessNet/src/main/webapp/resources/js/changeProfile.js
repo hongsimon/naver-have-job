@@ -35,5 +35,51 @@ $(".service-checkbox>input").change(function(){
 })
 
 
+var num1 = Math.floor(Math.random() * 29) - 19;
+var num2 = Math.floor(Math.random() * 29) - 19;
+$("#check_number_1").text(num1);
+$("#check_number_2").text(num2);
+
+var result = num1 + num2 ;
+
+$(".service-inner").submit(function(){
+  if($("#check_number").val()==""){
+    alert("휴먼 제정신입니까?");
+    $("#check_img>img").attr("src","/jobless-net/images/bot/alpago_2.png");
+    $("#check_2").text("?????????")
+
+    num1 = Math.floor(Math.random() * 29) - 19;
+    num2 = Math.floor(Math.random() * 29) - 19;
+    $("#check_number_1").text(num1);
+    $("#check_number_2").text(num2);
+
+    result = num1 + num2 ;
+
+    $("#check_number").val("");
+
+    return false;
+  }else if($("#check_number").val()==result){
+    alert("축하합니다 휴먼");
+    return true;
+  }else{
+    alert("휴먼 제정신입니까?");
+    $("#check_img>img").attr("src","/jobless-net/images/bot/alpago_2.png");
+    $("#check_2").text("?????????")
+
+    num1 = Math.floor(Math.random() * 29) - 19;
+    num2 = Math.floor(Math.random() * 29) - 19;
+    $("#check_number_1").text(num1);
+    $("#check_number_2").text(num2);
+
+    result = num1 + num2 ;
+
+    $("#check_number").val("");
+
+    return false;
+  }
+})
+
+
+
 
 });

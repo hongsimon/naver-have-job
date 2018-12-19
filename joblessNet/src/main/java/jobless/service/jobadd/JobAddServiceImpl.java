@@ -21,4 +21,10 @@ public class JobAddServiceImpl implements JobAddService {
 		return addVOs;
 	}
 
+	@Override
+	public void modifyAdd(JobAddVO jobAdd) {
+		jonAddDAO.modifyAdd(jobAdd);
+		
+	}
+
 }
