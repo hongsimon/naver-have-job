@@ -247,15 +247,25 @@
 
 					<div class="border-hotclip-page-list">
 						<ul class="pagination">
-							<li class="page-item"><a href="#"><span
-									class="glyphicon glyphicon-menu-left"></span></a></li>
-							<li class="page-item"><a href="#" class="page-link">1</a></li v>
-							<li class="page-item"><a href="#" class="page-link">2</a></li>
-							<li class="page-item"><a href="#" class="page-link">3</a></li>
-							<li class="page-item"><a href="#" class="page-link">4</a></li>
-							<li class="page-item"><a href="#" class="page-link">5</a></li>
-							<li class="page-item"><a href="#" class="page-link"><span
-									class="glyphicon glyphicon-menu-right"></span></a></li>
+							<c:if test="${pageMaker.prev }">
+								<li class="page-item">
+									<a href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page-1}">
+										<span class="glyphicon glyphicon-menu-left"></span>
+									</a>
+								</li>
+							</c:if>
+							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="index">
+								<li class="page-item">
+									<a href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}" class="page-link">${index }</a>
+								</li>
+							</c:forEach>
+							<c:if test="${pageMaker.next}">
+								<li class="page-item">
+									<a href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}" class="page-link">
+										<span class="glyphicon glyphicon-menu-right"></span>
+									</a>
+								</li>
+							</c:if>
 						</ul>
 					</div>
 

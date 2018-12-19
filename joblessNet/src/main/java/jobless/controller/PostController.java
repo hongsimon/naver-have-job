@@ -229,17 +229,19 @@ public class PostController {
 	@RequestMapping(value="/insertPost", method=RequestMethod.GET)
 	public ModelAndView controllerInsertPost_GET(HttpSession session, @RequestParam int boardId) {
 		System.out.println("게시글 작성 페이지로 이동");
-		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		List<BoardCategoryVO> boardCategoryList;
 		System.out.println(boardId);
 		if(session.getAttribute("authUser") == null) { // 게시글 적성은 로그인 상태에 가능하기에
 			System.out.println("authUser가 null임");
 			mv.setViewName("view/loginPage/login-main");
 		}else {
+			boardCategoryList = readBoardCategory.selectBoardCategoryByBoardId(boardId); // 해당 보드에 맞는 카테고리 모두 가져옴 (카테고리 목록 뽑는데 사용)
 			PostRequest postReq = new PostRequest(); 
 			postReq.setBoardId(boardId);
 			mv.addObject("postReq", postReq);
+			mv.addObject("boardCategoryList",boardCategoryList);
 			mv.setViewName("view/write/border-community-write");
 			System.out.println("성공");
 		}

@@ -84,6 +84,22 @@
                     <div class="writeCommunity-form">
                       <form method="post">
                         <select name="borderName" class="borderSelect">
+                        	<c:forEach var="category" items="${boardCategoryList}" varStatus="status">
+								<option value="none">게시판선택</option>
+								<c:if test="${category.boardCategoryId > 1 }">
+	                        		<c:choose>
+	                        			<c:when test="${authUser.admin == 1 }">
+	                        				<option value="${category.boardCategoryId }">${category.categoryName }</option>
+	                        			</c:when>
+										<c:when test="${category.boardCategoryId > 2 }">
+											<option value="${category.boardCategoryId }">${category.categoryName }</option>
+										</c:when>
+										<c:otherwise>
+											<option value="none">error</option>
+										</c:otherwise>
+	                        		</c:choose>
+                        		</c:if>
+							</c:forEach>
                           <option value="none">게시판선택</option>
                           <option value="freeTalk">자유</option>
                           <option value="joke">유머</option>
