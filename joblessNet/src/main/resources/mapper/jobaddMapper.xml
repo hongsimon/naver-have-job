@@ -11,4 +11,14 @@
 		from
 			add_job
 	</select>
+	<update id="modifyAdd" parameterType="JobAdd">
+		update 
+			add_job
+		set 
+		    add_title = #{addTitle},
+		    add_link = #{addLink}
+		where
+			add_id = #{addId}
+			
+	</update>
 </mapper>

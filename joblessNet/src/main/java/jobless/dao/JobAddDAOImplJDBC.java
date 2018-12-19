@@ -20,4 +20,10 @@ public class JobAddDAOImplJDBC implements JobAddDAO {
 		return addVOs;
 	}
 
+	@Override
+	public void modifyAdd(JobAddVO jobAdd) {
+		mapper.modifyAdd(jobAdd);
+		
+	}
+
 }

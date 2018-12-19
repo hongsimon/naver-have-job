@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import jobless.exception.ReadPostException;
 import jobless.model.BoardApplyVO;
 import jobless.model.BoardCategoryVO;
+import jobless.model.JobAddVO;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
 import jobless.model.UserVO;
@@ -31,6 +32,7 @@ import jobless.service.board.ModifyBoardApplyService;
 import jobless.service.board.ReadBoardApplyService;
 import jobless.service.board.SelectBoardCategoryService;
 import jobless.service.comment.CommentRequest;
+import jobless.service.jobadd.JobAddService;
 import jobless.service.post.ReadPostService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.ModifyUserService;
@@ -68,6 +70,9 @@ public class BroadcasterController {
 	@Autowired
 	CreateBoardCategoryService createCategory;
 	
+	@Autowired
+	JobAddService jobAddService;
+	
 	@RequestMapping(value="/broadcasterBoardList", method=RequestMethod.GET)
 	public ModelAndView broadcasterBoardList_GET(@RequestParam("boardId")int boardId) {
 		System.out.println("broadcasterBoardList_GET");
@@ -92,6 +97,8 @@ public class BroadcasterController {
 //			System.out.println(post.toString());
 //		}
 		mv.addObject("postList", postList);
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		mv.setViewName("view/border/border-community");
 
 		System.out.println("정상 작동");
@@ -106,6 +113,8 @@ public class BroadcasterController {
 		
 		List<UserVO> streamerList = getUser.getStreamerAll();
 		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		mv.addObject("streamerList", streamerList);
 		mv.setViewName("view/border/border-broadcasterCommunity");
 		return mv;
@@ -114,6 +123,8 @@ public class BroadcasterController {
 	@RequestMapping(value="/broadcasterApply", method = RequestMethod.GET)
 	public ModelAndView streamerList_GET() {
 		ModelAndView mv = new ModelAndView();
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 				
 		mv.setViewName("view/service/broadcaster_application");
 		return mv;
@@ -135,6 +146,9 @@ public class BroadcasterController {
 			createBoardApply.createBoardApply(boardApplyRequest);
 			mv.setViewName("redirect:main");
 		}
+		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 	

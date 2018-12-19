@@ -88,34 +88,16 @@
         <div class="col-xs-8  banner-border ">
           <div class="banner-size">
             <ul class="banner ">
-              <li class="">
-                <a href="http://www.jobkorea.co.kr/Recruit/GI_Read/27108558?Oem_Code=C1&PageGbn=ST"><div class="overflower" >[잡코리아] LS빌드윈㈜
-2018년 각 부문별 신입 및 경력 정규직 채용</div></a>
-              </li>
-              <li class="">
-                <a href="http://www.jobkorea.co.kr/Recruit/GI_Read/27068494?Oem_Code=C1&PageGbn=ST"><div class="overflower" >[잡코리아 ]㈜아이디스
-2018년 하반기 신입 및 경력사원 모집</div></a>
-              </li>
-              <li class="">
-                <a href="http://www.jobkorea.co.kr/Recruit/GI_Read/27117535?Oem_Code=C1&PageGbn=ST"><div class="overflower" >[잡코리아] 이스타항공㈜
-2019년 상반기 객실인턴승무원 채용</div></a>
-              </li>
-              <li class="">
-                <a href="http://www.jobkorea.co.kr/Recruit/GI_Read/27060428?rPageCode=SL"><div class="overflower" >[잡코리아] ㈜아이비케이시스템
-2019년 신입직원 모집</div></a>
-              </li>
-              <li class="">
-                <a href="http://www.saramin.co.kr/zf_user/jobs/relay/view?view_type=etc&rec_idx=35188783&isMypage=no&gz=1&recommend_ids=eJxVj7sRxFAIA6u5HIl%2F7ELcfxf3Ao%2FB4c6CEOq0ROH2rl9e6pRW6KAJuax2w16EKZhjU0viDuKx7jpRqKicYTQruJLZ1gutLQZJxapxLq2ogy7LhlTWoAPdn1361KAEfL1fJu%2BwdUbVqRH4A4UCQJ4%3D&t_ref=recruit&t_ref_content=recruit_bbs"><div class="overflower" >[사람인] 에스케이매직(주)
-SK매직 2019년 연구개발 및 생산관리부문 신입/경력 채용</div></a>
-              </li>
-              <li class="">
-                <a href="http://www.saramin.co.kr/zf_user/jobs/relay/view?view_type=etc&rec_idx=35281326&isMypage=no&gz=1&recommend_ids=eJxNzsENwzAMQ9FpercsUaTOGST7b1GjDRAeHyh8O7F7Sbgx%2BvDKw1TyEH8yuPtGx7N2UXa85ARb85L71CyFLhgzoo0be172xMC5tIzkWBmqkq8YTxXkaxBejko7Pp%2F3h8Dhj1%2B5pkDn&t_ref=recruit&t_ref_content=insa"><div class="overflower" >[사람인] (주)한국금거래소쓰리엠
-온라인몰/홈쇼핑 MD 및 마케팅 담당 (신입/경력2년내) 채용</div></a>
-              </li>
+            	<c:forEach var="job_add" items="${add }">
+            	<c:if test="${! empty job_add.addLink || ! empty job_add.addTitle}">
+     		        <li class="">
+	               		<a href="${job_add.addLink }"><div class="overflower" >${job_add.addTitle }</div></a>
+	                </li>
+            	</c:if>
+            	</c:forEach>
             </ul>
           </div>
         </div>
-
         <div class="col-xs-1 login-size">
 
 			<!-- 로그아웃상태 -->
@@ -149,23 +131,7 @@ SK매직 2019년 연구개발 및 생산관리부문 신입/경력 채용</div><
               <div class="login">
                 <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#">
                   <div class="icon-size">
-                  <c:choose>
-	                  <c:when test="${authUser.platformId == 1}">
-	                    <img src="${pageContext.request.contextPath}/images/icon/icon-A.png" alt="" class="icon-size">
-	                  </c:when>
-	                  
-	                  <c:when test="${authUser.platformId == 2}">
-	                    <img src="${pageContext.request.contextPath}/images/icon/icon-T.png" alt="" class="icon-size">
-	                  </c:when>
-	                  
-	                  <c:when test="${authUser.platformId == 3}">
-	                    <img src="${pageContext.request.contextPath}/images/icon/icon-Y.png" alt="" class="icon-size">
-	                  </c:when> 
-	                  
-	                  <c:when test="${authUser.platformId == 4}">
-	                    <img src="${pageContext.request.contextPath}/images/icon/icon-K.png" alt="" class="icon-size">
-	                  </c:when>
-                  </c:choose>
+                    <img src="" alt="" class="icon-size">
                   </div>
 
                   <span class="glyphicon glyphicon-chevron-down gly-size-small"></span>

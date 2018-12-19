@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import jobless.model.BoardApplyVO;
+import jobless.model.JobAddVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.board.BoardCategoryRequest;
@@ -23,6 +24,7 @@ import jobless.service.board.InsertBoardService;
 import jobless.service.board.ModifyBoardApplyService;
 import jobless.service.board.ReadBoardApplyService;
 import jobless.service.board.SelectBoardCategoryService;
+import jobless.service.jobadd.JobAddService;
 import jobless.service.post.ReadPostService;
 import jobless.service.user.GetUserService;
 import jobless.service.user.ModifyUserService;
@@ -54,15 +56,40 @@ public class AdminController {
 	@Autowired
 	CreateBoardCategoryService createCategory;
 	
+	@Autowired
+	JobAddService jobAddService;
 	
-	//취업공고 설정
+	
+	//광고 설정
 	@RequestMapping(value="/addJobConfig", method=RequestMethod.GET)
 	public ModelAndView addJobConfig_GET() {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		System.out.println("addJobConfig_GET");
-		
+
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		modelAndView.addObject("add", add);
 		modelAndView.setViewName("view/manager/manager-banner");
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/addJobConfig", method=RequestMethod.POST)
+	public ModelAndView addJobConfig_POST(@RequestParam(name="addId") int addId,
+						 				  @RequestParam(name="addTitle") String addTitle,
+						 				  @RequestParam(name="addLink") String addLink) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		System.out.println("addJobConfig_POST");
+		
+			jobAddService.modifyAdd(new JobAddVO(addId, addTitle, addLink));
+		
+		
+		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		modelAndView.addObject("add", add);
+		modelAndView.setViewName("view/manager/manager-banner");
+
 		return modelAndView;
 	}
 	
@@ -81,6 +108,8 @@ public class AdminController {
 			System.out.println(authUser.isAdmin());
 			mv.setViewName("errorpage");
 		}else {
+			List<JobAddVO> add = jobAddService.selectAllAdd();
+			mv.addObject("add", add);
 			mv.addObject("boardApplyList", boardApplyList);
 			mv.setViewName("view/manager/manager-checkBroadcasterIn");
 		}		
@@ -114,6 +143,8 @@ public class AdminController {
 			
 			modifyUser.updateIsStreamer(userId);
 			modifyBoardApply.modifyBoardApply(applyId);
+			List<JobAddVO> add = jobAddService.selectAllAdd();
+			mv.addObject("add", add);
 			mv.addObject("boardApplyList", boardApplyList);
 			mv.setViewName("redirect:adminApplyPage");
 		}		
@@ -134,6 +165,9 @@ public class AdminController {
 			mv.setViewName("errorpage");
 		}else {
 			deleteBoardApply.deleteBoardApply(applyId);
+			
+			List<JobAddVO> add = jobAddService.selectAllAdd();
+			mv.addObject("add", add);
 			mv.addObject("boardApplyList", boardApplyList);
 			mv.setViewName("redirect:adminApplyPage");
 		}		

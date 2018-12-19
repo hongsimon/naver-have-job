@@ -7,4 +7,6 @@ import jobless.model.JobAddVO;
 @MyAnnotMapper
 public interface IJobAddMapper {
 	public List<JobAddVO> selelctAllAdd();
+	
+	public void modifyAdd(JobAddVO jobAdd);
 }

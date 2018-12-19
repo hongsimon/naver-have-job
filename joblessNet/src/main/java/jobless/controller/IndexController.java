@@ -38,6 +38,7 @@ public class IndexController {
 		Condition condition = new Condition();
 		List<ClipDetailVO> clipList = readClip.readClipDetailList(condition);
 		mv.addObject("clipDetailList", clipList);
+		
 		mv.addObject("add", add);
 		
 		mv.setViewName("view/main/main");
