@@ -77,7 +77,7 @@
 														<a>${post.boardCategory.categoryName }</a>
 													</div> <!-- 제목 -->
 													<div class="border-comm-title ">
-														<a href="viewPost?postId=${post.post.postId}"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
+														<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
 													</div> <!-- 작성일 -->
 													<div class="border-comm-day con-right">
 														<fmt:parseDate var="parseWdate" value="${post.post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>

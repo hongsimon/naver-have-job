@@ -75,7 +75,6 @@ public class PostController {
 		BoardCategoryVO boardCategory = new BoardCategoryVO();
 		Condition condition = new Condition();
 		
-		List<PostDetailVO> postDetailList;
 		List<BoardCategoryVO> boardCategoryList;		
 		List<PostDetailVO> postList;
 		
@@ -151,13 +150,13 @@ public class PostController {
 		System.out.println("정상 작동");
 		return mv;
 	}
-	
-	
+
 	
 	@RequestMapping(value="/viewPost", method=RequestMethod.GET)
 	public ModelAndView controllerViewPost_GET(@RequestParam(value="postId") int postId,
+												@RequestParam(value="boardId") int boardId,
 												@RequestParam(value="categoryId", required=false) int categoryId,
-												@RequestParam(value="boardId", required=false) int boardId) {
+												@RequestParam(value = "page", required = false) String pageStr) {
 		System.out.println("viewPost_GET");
 		System.out.println("psotId = "+ postId);
 		System.out.println("categoryId = "+ categoryId);
@@ -165,15 +164,65 @@ public class PostController {
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		Condition condition = new Condition();
 		
 		List<CommentVO> comment;
 		List<BoardCategoryVO> boardCategoryList;
-		List<PostDetailVO> postDetailAll;
-
-		PostDetailVO postDetail;
-		BoardCategoryVO boardCategory;
+		List<PostDetailVO> postList;
 		
+		BoardCategoryVO boardCategory;
+		PostVO post;
+		PostDetailVO postDetail;
+		CriteriaVO cri;
+		PageMakerVO pageMaker;
+		
+		
+		Id id;
+		Text text;
+		Period period;
+		Limit limit;
+		Order order;
+		
+		int page;
+		int index;
+		int postPerPage;
+		int postTotalCountPage;
 		int countComment;
+		
+		// 페이징 -------------------------------------------------------------
+		
+		if(pageStr == null || pageStr.trim().isEmpty()) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(pageStr);
+		}
+				
+		postPerPage = 5;
+			
+		cri = new CriteriaVO();
+		cri.setPage(page);
+		cri.setPerPageNum(postPerPage);
+				
+				
+		index = cri.getPageStart();
+		limit = new Limit(index, postPerPage);
+				
+		pageMaker = new PageMakerVO();
+				
+		post = new PostVO();
+		post.setBoardId(boardId);
+		post.setCategoryId(categoryId);
+		postTotalCountPage = readPost.readPostTotalCount(post);
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(postTotalCountPage);
+				
+		condition.setLimit(limit);
+				
+//		for(PostDetailVO post :postList) {
+//			System.out.println("리스트임"+post.toString());
+//		}
+				
+		// -------------------------------------------------------------------
 	
 		try {
 			postDetail = readPost.readPostByDetail(postId); // 해당글 정보
@@ -185,11 +234,7 @@ public class PostController {
 			comment = readComment.readAllByPostId(postId); // 해당글에 댓글들
 			
 			
-			if(categoryId > 1) { // 게시물 가져오기
-				postDetailAll = readPost.readDetailPostByCategoryId(categoryId); // categoryId로 해당된 post 모두 가져옴 (리스트 뽑는데 사용)
-			}else {
-				postDetailAll = readPost.readDetailPostAll(); // 모든 post를 가져옴
-			}
+			postList = readPost.readDetailPostList(boardId, condition); // 해당 보드에 맞는 모든 post를 가져옴
 			
 			int boardCategoryId = postDetail.getPost().getCategoryId();
 			boardCategory = readBoardCategory.selectBoardCategotyById(boardCategoryId);
@@ -204,13 +249,13 @@ public class PostController {
 		}
 		
 		
-			mv.addObject("postDetail", postDetail);
-			mv.addObject("postDetailAll", postDetailAll);
-			mv.addObject("comment", comment);
-			mv.addObject("count", countComment);
-			mv.addObject("boardCategory", boardCategory);
-			mv.addObject("boardCategoryList", boardCategoryList);
-			mv.setViewName("view/view/border-community-view");
+		mv.addObject("postDetail", postDetail);
+		mv.addObject("postList", postList);
+		mv.addObject("comment", comment);
+		mv.addObject("count", countComment);
+		mv.addObject("boardCategory", boardCategory);
+		mv.addObject("boardCategoryList", boardCategoryList);
+		mv.setViewName("view/view/border-community-view");
 		return mv;
 	}
 	
@@ -220,10 +265,12 @@ public class PostController {
 													@RequestParam int boardId,
 													@RequestParam int categoryId) {
 		System.out.println("게시글 작성 페이지로 이동");
+		System.out.println("boardId"+boardId);
+		
 		ModelAndView mv = new ModelAndView();
-		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		
 		List<BoardCategoryVO> boardCategoryList;
-		System.out.println(boardId);
+		
 		if(session.getAttribute("authUser") == null) { // 게시글 적성은 로그인 상태에 가능하기에
 			System.out.println("authUser가 null임");
 			mv.setViewName("view/loginPage/login-main");
@@ -245,51 +292,27 @@ public class PostController {
 	public ModelAndView controllerInsertPost_POST(HttpSession session,
 													@RequestParam String postTitle,
 													@RequestParam int writerId,
-													@RequestParam("borderName") String borderName,
+													@RequestParam("borderName") int categoryId,
 													@RequestParam String content,
-													@RequestParam int boardId,
-													@RequestParam int postId,
-													@RequestParam int categoryId) {
+													@RequestParam int boardId) {
 		System.out.println("게시글 작성한 거 올리는 중");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		PostRequest postReq;
-//		int categoryId;
 		
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser가 null임");
 			mv.setViewName("view/loginPage/login-main");
 		}else {
-			System.out.println(borderName);
-			switch (borderName) {
-			case "freeTalk":
-				categoryId = 1;
-				break;
-			case "joke":
-				categoryId = 2;
-				break;
-			case "news":
-				categoryId = 3;
-				break;
-			case "game":
-				categoryId = 4;
-				break;
-			default:
-				categoryId = 0;
-				break;
-			}
-			if(categoryId != 0 && categoryId > 0 && categoryId < 5) {
-				postReq = new PostRequest(postTitle, content, boardId, writerId, categoryId);
+			System.out.println("categoryId="+categoryId);
+			postReq = new PostRequest(postTitle, content, boardId, writerId, categoryId);
 				// 적성한 게시글에 정보를 담음
-//				int postId = writeService.writePost(postReq); 수정
+				int postId = writeService.writePost(postReq);
 				// insert함 그리고 해당 아이디를 가져옴
-//				mv = controllerViewPost_GET(postId, 0); 수정
+				mv = controllerViewPost_GET(postId, boardId, 0, null);
 				// 해당 아이디로 자신이 쓴 글로 이동하게 함
 				System.out.println("성공");
-			}else {
-				System.out.println("게시판이 선택되지않았거나 오류");
-			}
 		}
 		return mv;
 	}
@@ -304,7 +327,6 @@ public class PostController {
 		System.out.println("게시글 삭제 진행중");
 		
 		ModelAndView mv = new ModelAndView();
-		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		
 		if(session.getAttribute("authUser") == null || writerId != userId) {
 			System.out.println("authUser가 null임 아니면 자신의 글이 아님");
@@ -319,11 +341,12 @@ public class PostController {
 	
 	// 
 	@RequestMapping(value="/updatePost", method=RequestMethod.GET)
-	public ModelAndView controllerUpdatePost_GET(HttpSession session, @RequestParam int postId) {
+	public ModelAndView controllerUpdatePost_GET(HttpSession session, 
+												@RequestParam int postId,
+												@RequestParam int boardId) {
 		System.out.println("게시글 수정 정보 가져오는 중");
 		
 		ModelAndView mv = new ModelAndView();
-		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser가 null임");
@@ -332,7 +355,7 @@ public class PostController {
 			PostVO post = readPost.readPostById(postId);
 			ContentVO content = readPost.readContentById(post.getContentId());
 			
-			PostRequest postReq = new PostRequest(post.getTitle(), content.getContent(), post.getBoardId(), post.getWriterId(), post.getCategoryId());
+			PostRequest postReq = new PostRequest(postId, content.getContentId(), post.getTitle(), content.getContent(), boardId, post.getCategoryId());
 			mv.addObject("postReq", postReq); // 게시글 정보를 jsp에 보내기 위해서
 			mv.setViewName("view/write/border-community-write");
 		}
@@ -342,6 +365,7 @@ public class PostController {
 	@RequestMapping(value="/updatePost", method=RequestMethod.POST)
 	public ModelAndView controllerUpdatePost_POST(HttpSession session,
 													@RequestParam int postId,
+													@RequestParam int boardId,
 													@RequestParam int contentId,
 													@RequestParam String title,
 													@RequestParam String content,
@@ -356,7 +380,7 @@ public class PostController {
 		}else {
 			PostRequest postReq = new PostRequest(postId, contentId, title, content, categoryId);
 			modifyService.modifyPost(postReq);
-//			controllerViewPost_GET(postId, 0); // 수정
+			mv = controllerViewPost_GET(postId, boardId, categoryId, null); // 수정
 		}
 		return mv;	
 	}

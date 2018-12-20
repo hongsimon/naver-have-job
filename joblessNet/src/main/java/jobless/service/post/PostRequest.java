@@ -19,6 +19,17 @@ public class PostRequest {
 	
 	public PostRequest() {}
 	
+	
+	public PostRequest(int postId, int contentId, String title, String content, int boardId, int categoryId) {
+		super();
+		this.postId = postId;
+		this.contentId = contentId;
+		this.title = title;
+		this.content = content;
+		this.boardId = boardId;
+		this.categoryId = categoryId;
+	}
+
 	public PostRequest(String title, String content, int boardId, int writerId, int categoryId) {
 		this.title = title;
 		this.content = content;

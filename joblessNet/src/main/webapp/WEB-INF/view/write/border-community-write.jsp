@@ -82,43 +82,45 @@
                       -게시글 작성
                     </div>
                     <div class="writeCommunity-form">
-                      <form method="post">
-                        <select name="borderName" class="borderSelect">
-                        	<c:forEach var="category" items="${boardCategoryList}" varStatus="status">
-								<option value="none">게시판선택</option>
-								<c:if test="${category.boardCategoryId > 1 }">
-	                        		<c:choose>
-	                        			<c:when test="${authUser.admin == 1 }">
-	                        				<option value="${category.boardCategoryId }">${category.categoryName }</option>
-	                        			</c:when>
-										<c:when test="${category.boardCategoryId > 2 }">
-											<option value="${category.boardCategoryId }">${category.categoryName }</option>
-										</c:when>
-										<c:otherwise>
-											<option value="none">error</option>
-										</c:otherwise>
-	                        		</c:choose>
-                        		</c:if>
-							</c:forEach>
-                          <option value="none">게시판선택</option>
-                          <option value="freeTalk">자유</option>
-                          <option value="joke">유머</option>
-                          <option value="news">소식</option>
-                          <option value="game">게임</option>
-                        </select>
-                        <div class="writeCommunity-title">
-                          <input type="text" name="postTitle" value="${postReq.title }" placeholder="제목">
-                          <input type="hidden" name="writerId" value="${authUser.userId }">
-                          <input type="hidden" name="boardId" value="${postReq.boardId }">
-                        </div>
-                        <div class="writeCommunity-content ">
-							<textarea id="summernote" name="content">${postReq.content }</textarea>
-                        </div>
-                        <div class="writeCommunity-btn">
-                          <a><span class="glyphicon glyphicon-repeat"></span>작성취소</a>
-                          <button type="submit" class="con-right"><span class="glyphicon glyphicon-pencil"></span>작성</button>
-                        </div>
-                    </form>
+                    	<form method="post">
+                      		<select name="borderName" class="borderSelect">
+	                        	<c:forEach var="category" items="${boardCategoryList}" varStatus="status">
+									<option value="none">게시판선택</option>
+									<c:if test="${category.boardCategoryId > 1 }">
+		                        		<c:choose>
+		                        			<c:when test="${authUser.admin == 1 }">
+		                        				<option value="${category.boardCategoryId }">${category.categoryName }</option>
+		                        			</c:when>
+											<c:when test="${category.boardCategoryId > 2 }">
+												<option value="${category.boardCategoryId }">${category.categoryName }</option>
+											</c:when>
+											<c:otherwise>
+												<option value="none">error</option>
+											</c:otherwise>
+		                        		</c:choose>
+	                        		</c:if>
+								</c:forEach>
+	                          	<!-- <option value="none">게시판선택</option>
+	           	           	    <option value="freeTalk">자유</option>
+	                  	        <option value="joke">유머</option>
+	                      	    <option value="news">소식</option>
+	               				<option value="game">게임</option> -->
+                        	</select>
+	                        <div class="writeCommunity-title">
+	                        	<input type="text" name="postTitle" value="${postReq.title }" placeholder="제목">
+	                        	<input type="hidden" name="writerId" value="${authUser.userId }">
+	                        	<input type="hidden" name="boardId" value="${postReq.boardId }">
+	                        	<input type="hidden" name="postId" value="${postReq.postId }">
+	                        	<input type="hidden" name="categoryId" value="${postReq.categoryId }">
+	                        </div>
+	                        <div class="writeCommunity-content ">
+								<textarea id="summernote" name="content">${postReq.content }</textarea>
+	                        </div>
+	                        <div class="writeCommunity-btn">
+	                        	<a><span class="glyphicon glyphicon-repeat"></span>작성취소</a>
+	                        	<button type="submit" class="con-right"><span class="glyphicon glyphicon-pencil"></span>작성</button>
+	                        </div>
+                    	</form>
                     </div>
                   </div>
                 </div>

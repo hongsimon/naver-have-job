@@ -118,7 +118,7 @@
 									<span class="glyphicon glyphicon-list-alt"></span>목록
 								</a>
 								<c:if test="${authUser.userId ==  postDetail.post.writerId}">
-									<a href="updatePost?postId=${postDetail.post.postId }">
+									<a href="updatePost?postId=${postDetail.post.postId }&boardId=${postDetail.post.boardId }">
 										<span class="glyphicon glyphicon-list-alt"></span>수정
 									</a>
 									<a href="deletePost?postId=${postDetail.post.postId }&
@@ -200,7 +200,7 @@
 						<div class="col-xs-12">
 							<div class="border-table">
 								<ul>
-									<c:forEach var="post" items="${postDetailAll}" varStatus="status">
+									<c:forEach var="post" items="${postList}" varStatus="status">
 										<li>
 											<!-- 추천수/공지/인기 -->
 											<div class="border-comm-recomm ">
@@ -210,7 +210,7 @@
 												<a>${post.boardCategory.categoryName }</a>
 											</div> <!-- 제목 -->
 											<div class="border-comm-title ">
-												<a href="viewPost?postId=${post.post.postId}"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
+												<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
 											</div> <!-- 작성일 -->
 											<div class="border-comm-day con-right">
 												<fmt:parseDate var="parseWdate" value="${post.post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
