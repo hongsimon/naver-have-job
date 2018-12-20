@@ -139,6 +139,42 @@ $(function() {
       });
 
   });
+  
+
+  //-------------------------------------------------------------------------------------------------
+
+  var iconList = [];
+
+  for (var i = 0; i < $(".icon-list-box").length; i++) {
+    iconList[i] = {
+      "icon_Name": $(".icon-name:eq("+i+")").text()
+    }
+  }
+
+  iconList.forEach(function(item) {
+    var dis = Hangul.disassemble(item.icon_Name, true);
+    var cho = dis.reduce(function(prev, elem) {
+      elem = elem[0] ? elem[0] : elem;
+      return prev + elem;
+    }, "");
+    item.diassembled = cho;
+  });
+
+
+  $("#icon-search").keyup(function() {
+    $(".icon-list-box").parent().hide();
+
+    var search = $(this).val();
+    var search1 = Hangul.disassemble(search).join("");
+
+    iconList.filter(function(item) {
+        return item.icon_Name.includes(search) || item.diassembled.includes(search1);
+      })
+      .forEach(function(item) {
+        $(".icon-name:contains('" + item.icon_Name + "')").parent().parent().parent().show();
+      });
+
+  });
 
 
 

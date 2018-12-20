@@ -369,3 +369,53 @@
   margin-top: 20px;
 }
 
+
+.icon-list-box{
+  width: 217px;
+  display: inline-block;
+}
+
+.icon-list-box>div{
+  display: inline-block;
+  vertical-align: top;
+
+}
+
+
+.icon-list-box>img{
+  width: 50px;
+}
+
+.icon-name{
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.icon-point{
+  font-weight: bold;
+}
+
+.service-iconShop-search>input{
+  width: 100%;
+}
+
+
+.icon-buy-box{
+  text-align: center;
+}
+
+.icon-denger{
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.icon-buy-btn{
+  margin-top: 10px;
+  background-color: #287A72;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 8px;
+}
+
