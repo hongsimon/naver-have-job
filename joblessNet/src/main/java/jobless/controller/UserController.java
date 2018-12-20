@@ -238,8 +238,10 @@ public class UserController {
 	 		return modelAndView;
 	 	}
 	 	
+		UserVO user = getUserService.getUserByEmail(email);	
+	 	
 	 	//이 모든것이 완벽하다면.. 이메일 전송!!!!
-	 	String code = emailSendService.emailService(email, "passwordChange");
+	 	String code = emailSendService.emailService(email, "passwordChange,"+ user.getNickName());
 	 	
 	 	session.setAttribute("userId", userEmail.getUserId());
 		session.setAttribute("email", email);
