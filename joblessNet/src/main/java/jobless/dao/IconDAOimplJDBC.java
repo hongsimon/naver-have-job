@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import jobless.dao.mapper.IIconMapper;
 import jobless.model.IconVO;
+import jobless.model.MyIconVO;
 
 @Repository("IconDAO")
 public class IconDAOimplJDBC implements IconDAO {
@@ -41,5 +42,11 @@ public class IconDAOimplJDBC implements IconDAO {
 	public void update(IconVO icon) {
 		mapper.updateIcon(icon);
 		
+	}
+
+	@Override
+	public void insertMyIcon(MyIconVO myIcon) {
+		// TODO Auto-generated method stub
+	
 	}
 }

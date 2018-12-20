@@ -28,7 +28,7 @@ public class LoginServiceImpl implements LoginService {
 			throw new SignInFailException("비밀번호가 일치하지않습니다.");
 		}
 		
-		return new AuthUser(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.getAdmin(), user.getPlatformId() ,user.isStreamer());
+		return new AuthUser(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(), user.getPoint(), user.getAdmin(), user.getPlatformId() ,user.isStreamer(), user.getIconId());
 	}
 
 }

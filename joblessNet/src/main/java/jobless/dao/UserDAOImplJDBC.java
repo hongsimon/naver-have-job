@@ -70,5 +70,11 @@ public class UserDAOImplJDBC implements UserDAO {
 		mapper.updateIsStreamer(userId);
 	}
 
+	@Override
+	public void updateIconId(int iconId, int userId) {
+		// TODO Auto-generated method stub
+		mapper.updateIconId(iconId, userId);
+	}
+
 
 }

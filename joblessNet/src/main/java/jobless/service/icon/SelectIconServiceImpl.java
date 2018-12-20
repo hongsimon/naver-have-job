@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import jobless.dao.IconDAO;
 import jobless.model.IconVO;
 
-@Repository("selectIcnoService")
-public class SelectIcnoServiceImpl implements SelectIconService {
+@Repository("selectIconService")
+public class SelectIconServiceImpl implements SelectIconService {
 
 	@Autowired
 	IconDAO iconDao;

@@ -3,9 +3,12 @@ package jobless.dao;
 import java.util.List;
 
 import jobless.model.IconVO;
+import jobless.model.MyIconVO;
 
 public interface IconDAO {
 	public void insert(IconVO icon);
+	
+	public void insertMyIcon(MyIconVO myIcon);
 	
 	public IconVO select(int iconId);
 	

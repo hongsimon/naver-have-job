@@ -3,17 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jobless.dao.mapper.IIconMapper">
-<insert id="insertIcon" parameterType="Icon">
-		insert 
-		into 
-			icon(filename)
-				
-			values(#{fileName})
+	<insert id="insertIcon" parameterType="Icon">
+			insert 
+			into 
+				icon(filename, icon_name)
+					
+				values(#{fileName}, #{iconName})
 	</insert>
 	<select id="selectIconById" resultType="Icon" parameterType="int">
 		select 
 			icon_id as iconId, 
-			filename as fileName
+			filename as fileName,
+			icon_name as iconName
 		from 
 			icon 
 		where 
@@ -23,7 +24,8 @@
 	<select id="selectAllIcon" resultType="Icon">	
 		select 
 			icon_id as iconId, 
-			filename as fileName
+			filename as fileName,
+			icon_name as iconName
 		from 
 			icon 
 	</select>
@@ -38,8 +40,21 @@
 		update 
 			icon 
 		set 
-			filename = #{fileName}
+			filename = #{fileName},
+			icon_name = #{iconName}
 		where 
 			icon_id = #{iconId};
 	</update>
+	
+	<!-- My Icon -->
+	<insert id="insertMyIcon" parameterType="MyIcon">
+			insert 
+			into 
+				my_icon(user_id, icon_id)
+					
+				values(#{userId}, #{iconId})
+	</insert>
+	
+	
+	
 </mapper>

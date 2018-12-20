@@ -14,8 +14,7 @@ public class ModifyIconImpl implements ModifyIconService {
 	
 	@Override
 	public void ModifyIncon(IconRequest iconRequest) {
-		iconDao.update(new IconVO(iconRequest.getIconId(), iconRequest.getFileName()));
-
+		iconDao.update(new IconVO(iconRequest.getIconId(), iconRequest.getFileName(), iconRequest.getIconName()));
 	}
 
 }

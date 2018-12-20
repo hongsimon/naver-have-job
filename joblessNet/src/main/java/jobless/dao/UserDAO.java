@@ -26,4 +26,6 @@ public interface UserDAO {
 	public void updateUserPw(UserVO user);
 	
 	public void updateIsStreamer(int userId);
+	
+	public void updateIconId(int iconId, int userId);
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@	
+	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+ %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -42,12 +45,13 @@
                       <input type="text" placeholder="검색어 입력" id="icon-search"/>
                     </div>
                     <div class="icon_list">
+                    <c:forEach var="icon" items="${iconList }" varStatus="status">
                       <a href="#">
                       <div class="icon-list-box ">
-                        <images src="${pageContext.request.contextPath}/images/icon/icon1.png" alt="">
+                        <img src="${pageContext.request.contextPath}${icon.fileName}" alt="">
                         <div>
                           <div class="icon-name">
-                            블러드 트레일
+                            ${icon.iconName}
                           </div>
                           <div class="icon-point">
                             500포인트
@@ -55,69 +59,8 @@
                         </div>
                       </div>
                     </a>
-
-                    <a href="#">
-                      <div class="icon-list-box ">
-                      <images src="${pageContext.request.contextPath}/images/icon/icon-A.png" alt="">
-                      <div>
-                        <div class="icon-name">
-                          아프리카TV 기본
-                        </div>
-                        <div class="icon-point">
-                          500포인트
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
-                  <a href="#">
-                    <div class="icon-list-box ">
-                    <images src="${pageContext.request.contextPath}/images/icon/icon-K.png" alt="">
-                    <div>
-                      <div class="icon-name">
-                        카카오팟 기본
-                      </div>
-                      <div class="icon-point">
-                        500포인트
-                      </div>
-                    </div>
-                  </div>
-                </a>
-
-                <a href="#">
-                  <div class="icon-list-box ">
-                  <images src="${pageContext.request.contextPath}/images/icon/icon-T.png" alt="">
-                  <div>
-                    <div class="icon-name">
-                      트위치 기본
-                    </div>
-                    <div class="icon-point">
-                      500포인트
-                    </div>
-                  </div>
-                </div>
-              </a>
-
-              <a href="#">
-                <div class="icon-list-box ">
-                <images src="${pageContext.request.contextPath}/images/icon/icon-Y.png" alt="">
-                <div>
-                  <div class="icon-name">
-                    유튜브 기본
-                  </div>
-                  <div class="icon-point">
-                    500포인트
-                  </div>
-                </div>
-              </div>
-            </a>
-
-
-
-
-
-
-                    </div>
+            	   </c:forEach>
+                   </div>
 
                   </div>
                 </div>
