@@ -76,5 +76,11 @@ public class UserDAOImplJDBC implements UserDAO {
 		mapper.updateIconId(iconId, userId);
 	}
 
+	@Override
+	public void pointPay(int userId) {
+		mapper.pointPay(userId);
+		
+	}
+
 
 }

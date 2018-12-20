@@ -179,4 +179,12 @@
 		where 
 			user_id = #{userId};
 	</update>
+	<update id="pointPay" parameterType="int">
+		update
+			user
+		set
+			point = point + 50
+		where
+			user_id = #{userId};
+	</update>
 </mapper>

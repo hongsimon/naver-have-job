@@ -36,6 +36,7 @@
 		<property name="configLocation" value="classpath:SqlMapConfig.xml" />
 		<property name="mapperLocations">
 			<list>
+				<value>classpath:mapper/attendanceCheckMapper.xml</value>
 				<value>classpath:mapper/boardCategoryMapper.xml</value>
 				<value>classpath:mapper/boardApplyMapper.xml</value>
 				<value>classpath:mapper/boardMapper.xml</value>

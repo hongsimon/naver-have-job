@@ -30,4 +30,10 @@ public class ModifyUserServiceImpl implements ModifyUserService {
 		userdao.updateIsStreamer(userId);
 	}
 
+	@Override
+	public void pointPay(int userId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

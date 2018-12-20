@@ -38,7 +38,16 @@
               <span class="glyphicon glyphicon-chevron-down gly-size-small"></span>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-              <li><a href="">출석체크</a></li>
+            <!-- 로그아웃 -->
+              <c:if test="${empty authUser }">
+              <li><a href="#" onclick="alert('로그인이 필요한 서비스입니다')">출석체크</a></li>
+              </c:if>
+            
+            <!-- 로그인 -->  
+              <c:if test="${!empty authUser }">
+              <li><a href="${pageContext.request.contextPath}/attendanceCheck">출석체크</a></li>
+              </c:if>
+              
               <li><a href="">아이콘 샵</a></li>
             </ul>
            </div>

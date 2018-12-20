@@ -25,7 +25,7 @@ public class EmailSendServiceImpl implements EmailSendService {
 		final String password = "s12141214";
 		
 		String to = email;
-		System.out.println(email);
+		System.out.println(email);  
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", host);
 		properties.put("mail.smtp.auth", "true");

@@ -29,4 +29,6 @@ public interface IUserMapper {
 	public void updateIsStreamer(int userId);
 	
 	public void updateIconId(int iconId, int userId);
+	
+	public void pointPay(int userId);
 }
