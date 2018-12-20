@@ -32,7 +32,7 @@
         <div class="service-user">
           <div class="service-inner">
             <div>
-              <form action="#">
+              <form action="#" class="service-attendance-check">
                 <div>
                   <h2>출석체크</h2>
                   매일 출석체크를 하시면 50포인트씩 드립니다.

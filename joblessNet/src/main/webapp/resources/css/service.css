@@ -320,3 +320,52 @@
 #check_talk{
   text-align: center;
 }
+
+
+.service-icon-radio>input[type=radio]{
+  display: none;
+}
+
+.service-icon-radio>input[type=radio]:checked + label{
+  border: 3px solid #287A72;
+  border-radius: 3px;
+}
+.service-icon-radio>input[type=radio]:checked + label>img{
+  width: 50px;
+}
+
+.service-icon-radio>input[type=radio]+ label{
+  margin: 8px;
+  cursor: pointer;
+}
+
+.service-icon-radio>input[type=radio]+ label>img{
+  width: 40px;
+}
+
+.service-icon-radio{
+  margin-left: 15px;
+}
+
+#service-icon-none{
+  background-color: #e9e9e9;
+  color: #939393;
+  font-size: 16px;
+  border: 1px solid #ababab;
+  border-radius: 5px;
+  padding: 6px 8px;
+}
+
+#service-icon-active{
+  background-color: #287A72;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 8px;
+}
+
+.service-submit-btn{
+  margin-top: 20px;
+}
+

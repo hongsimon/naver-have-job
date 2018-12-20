@@ -42,7 +42,7 @@ $("#check_number_2").text(num2);
 
 var result = num1 + num2 ;
 
-$(".service-inner").submit(function(){
+$(".service-attendance-check").submit(function(){
   if($("#check_number").val()==""){
     alert("휴먼 제정신입니까?");
     $("#check_img>img").attr("src","/jobless-net/images/bot/alpago_2.png");

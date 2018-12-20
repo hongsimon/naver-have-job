@@ -31,48 +31,7 @@
     <div class="container head-nav-top-color ">
       <div class="head-nav-top-size">
         <div class="col-xs-3 headber-size ">
-
-          <div class="col-xs-4 padding-zero mouse_point headber">
-            <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-hourglass"></span>
-              최근
-              <span class="glyphicon glyphicon-chevron-down gly-size-small"></span>
-            </a>
-            <ul class="dropdown-menu drop-menu-size-big lately" role="menu" aria-labelledby="dropdownMenu">
-              <li>
-                <a><div class="overflower" >@$asdasd&@!ㅁㄱ(#&@*)</div><button class="con-right del-btn"><span class="glyphicon glyphicon-remove"></span></button></a>
-              </li>
-              <li>
-                <a><div class="overflower" >%7l잇!</div><button class="con-right del-btn"><span class="glyphicon glyphicon-remove"></span></button></a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-xs-2 padding-zero mouse_point">
-            <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#">
-              <span class="glyphicon glyphicon-star"></span>
-              <span class="glyphicon glyphicon-chevron-down gly-size-small"></span>
-            </a>
-            <ul class="dropdown-menu count-order drop-menu-size-middle favorites" role="menu" aria-labelledby="dropdownMenu">
-              <li>
-                <a><div class="order"></div><div class="overflower" >가나다라마바사아자차카</div><button class="con-right del-btn"><span class="glyphicon glyphicon-remove"></span></button></a>
-              </li>
-              <li>
-                <a><div class="order"></div><div class="overflower" >ASasdjfiASDhsdv</div><button class="con-right del-btn"><span class="glyphicon glyphicon-remove"></span></button></a>
-              </li>
-              <li>
-                <a><div class="order"></div><div class="overflower" >$#^(@&@!#@!)</div><button class="con-right del-btn"><span class="glyphicon glyphicon-remove"></span></button></a>
-              </li>
-              <li>
-                <a><div class="order"></div><div class="overflower" >123456789101112</div><button class="con-right del-btn"><span class="glyphicon glyphicon-remove"></span></button></a>
-              </li>
-              <li>
-                <a><div class="order"></div><div class="overflower" >aㅁ1!~_+++qewaa</div><button class="con-right del-btn"><span class="glyphicon glyphicon-remove"></span></button></a>
-              </li>
-
-            </ul>
-          </div>
-
-          <div class="col-xs-4 padding-zero mouse_point">
+			<div class="padding-zero mouse_point head-nav-left">
             <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#">
               <span class="glyphicon glyphicon-sunglasses"></span>
               아이콘

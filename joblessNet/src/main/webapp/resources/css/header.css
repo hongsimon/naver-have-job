@@ -8,6 +8,12 @@
     zoom:2;
 }
 
+
+.head-nav-left{
+	margin-left:6px;
+}
+
+
 /* 검색 박스 */
 .searchBox{
   border: 3px solid;
