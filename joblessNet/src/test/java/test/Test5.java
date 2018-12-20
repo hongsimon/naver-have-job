@@ -212,7 +212,7 @@ public class Test5 {
 		boardApply.setApplyId(applyId);
 		boardApply.setContent(content);
 		boardApply.setBroadcasterURL(broadcasterURL);
-		boardApplyDao.update(boardApply);
+//		boardApplyDao.update(boardApply);
 		System.out.println(boardApply.toString());
 		System.out.println("update end");
 	}

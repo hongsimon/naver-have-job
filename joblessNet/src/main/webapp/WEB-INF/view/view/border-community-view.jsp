@@ -118,13 +118,14 @@
 									<span class="glyphicon glyphicon-list-alt"></span>목록
 								</a>
 								<c:if test="${authUser.userId ==  postDetail.post.writerId}">
-									<a href="updatePost?postId=${postDetail.post.postId }&boardId=${postDetail.post.boardId }">
+									<a href="updatePost?postId=${postDetail.post.postId }&boardId=${postDetail.post.boardId }&contentId=${postDetail.content.contentId }">
 										<span class="glyphicon glyphicon-list-alt"></span>수정
 									</a>
 									<a href="deletePost?postId=${postDetail.post.postId }&
 														contentId=${postDetail.content.contentId }&
 														writerId=${postDetail.post.writerId }&
-														authUserUserId=${authUser.userId }">
+														authUserUserId=${authUser.userId }&
+														boardId=${postDetail.post.boardId }">
 									<span class="glyphicon glyphicon-list-alt"></span>삭제</a>
 								</c:if>
 							</div>
@@ -145,6 +146,7 @@
                           						<input type="hidden" name="categoryId" value="${postDetail.post.categoryId }">
                           						<input type="hidden" name="postId" value="${postDetail.post.postId }">
                           						<input type="hidden" name="userId" value="${authUser.userId }">
+                          						<input type="hidden" name="boardId" value="${postDetail.post.boardId }">
                           						<input type="text" name="content" placeholder="댓글을 입력하세요..." id="hotclip-comment-input" class="clip-comment-box">
                           						<button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
                         					</form>
@@ -188,8 +190,9 @@
 							<div class="category ">
 								<ul>
 									<li class=""><a href="main"style="background-color: #414141;"><span class="glyphicon glyphicon-home"></span></a></li>
+									<li><a href="viewPost?categoryId=1&postId=${postDetail.post.postId }&boardId=${postDetail.post.boardId }" style="background-color: #2e9895;"> 전체 </a></li>
 									<c:forEach var="category" items="${boardCategoryList}" varStatus="status">
-										<li><a href="viewPost?categoryId=${category.boardCategoryId }&postId=${postDetail.post.postId }" style="background-color: #2e9895;"> ${category.categoryName } </a></li>
+										<li><a href="viewPost?categoryId=${category.boardCategoryId }&postId=${postDetail.post.postId }&boardId=${postDetail.post.boardId }" style="background-color: #2e9895;"> ${category.categoryName } </a></li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -241,7 +244,7 @@
 								</div>
 
 								<div class="comm-write con-right">
-									<a href="insertPost?boardId=1"><span
+									<a href="insertPost?boardId=${postDetail.post.boardId }"><span
 										class="glyphicon glyphicon-pencil"></span>글쓰기</a>
 								</div>
 							</div>
@@ -249,24 +252,21 @@
 					</div>
 
 					<div class="border-hotclip-page-list">
-						<ul class="pagination">
-							<c:if test="${pageMaker.prev }">
-								<li class="page-item">
-									<a href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page-1}">
-										<span class="glyphicon glyphicon-menu-left"></span>
-									</a>
-								</li>
-							</c:if>
-							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="index">
-								<li class="page-item">
-									<a href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}" class="page-link">${index }</a>
-								</li>
-							</c:forEach>
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev }">
+										<li class="page-item"><a
+											href="viewPost?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page-1}&boardId=${postDetail.post.boardId }&postId=${postDetail.post.postId }"><span
+												class="glyphicon glyphicon-menu-left"></span></a></li>
+									</c:if>
+									<c:forEach begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage }" var="index">
+										<li class="page-item"><a
+											href="viewPost?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}&boardId=${postDetail.post.boardId }&postId=${postDetail.post.postId }"
+											class="page-link">${index }</a></li>
+									</c:forEach>
 							<c:if test="${pageMaker.next}">
-								<li class="page-item">
-									<a href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}" class="page-link">
-										<span class="glyphicon glyphicon-menu-right"></span>
-									</a>
+								<li class="page-item"><a href="viewPost?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}&boardId=${postDetail.post.boardId }&postId=${postDetail.post.postId }" class="page-link">
+									<span class="glyphicon glyphicon-menu-right"></span></a>
 								</li>
 							</c:if>
 						</ul>

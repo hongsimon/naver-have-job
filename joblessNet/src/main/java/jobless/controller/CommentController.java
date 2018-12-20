@@ -85,7 +85,7 @@ public class CommentController {
 		ModelAndView mv = new ModelAndView();
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
-			mv.setViewName("errorpage");
+			mv.setViewName("view/loginPage/login-main");
 		}else {
 			AuthUser authUser = (AuthUser) session.getAttribute("authUser");
 			deleteComment.delete(commentId);
@@ -106,7 +106,7 @@ public class CommentController {
 		ModelAndView mv = new ModelAndView();
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
-			mv.setViewName("errorpage");
+			mv.setViewName("view/loginPage/login-main");
 		}else {
 			AuthUser authUser = (AuthUser) session.getAttribute("authUser");
 			deleteComment.delete(commentId);

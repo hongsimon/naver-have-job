@@ -21,10 +21,8 @@ public class ModifyPostServiceImpl implements ModifyPostService {
 	@Override
 	public void modifyPost(PostRequest postReq) {
 		try {
-			postdao.update(new PostVO(postReq.getTitle(),postReq.getCategoryId()));
-			contentdao.update(new ContentVO(postReq.getContent()));
-			
-			contentdao.update(new ContentVO(postReq.getContent()));
+			postdao.update(new PostVO(postReq.getTitle(),postReq.getCategoryId(), postReq.getPostId()));
+			contentdao.update(new ContentVO(postReq.getContentId(), postReq.getContent()));
 		} catch (Exception e) {
 			throw new ModifyPostException("post 수정 실패" + e);
 		}

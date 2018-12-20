@@ -17,8 +17,9 @@ public class PostVO {
 
 	public PostVO() {}
 	
-	public PostVO(String title, int categoryId) {
+	public PostVO(String title, int categoryId, int postId) {
 		super();
+		this.postId = postId;
 		this.title = title;
 		this.categoryId = categoryId;
 	}

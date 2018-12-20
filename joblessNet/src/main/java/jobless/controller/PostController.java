@@ -144,6 +144,7 @@ public class PostController {
 			mv.addObject("postDetail", postList); // 페이징하는 것
 			mv.addObject("pageMaker", pageMaker); // 페이징 페이지 개수
 			mv.addObject("boardCategory", boardCategoryList); // 카테고리 한것
+			mv.addObject("boardIdNumber", boardId);
 			mv.setViewName("view/border/border-community");
 		}
 		
@@ -155,7 +156,7 @@ public class PostController {
 	@RequestMapping(value="/viewPost", method=RequestMethod.GET)
 	public ModelAndView controllerViewPost_GET(@RequestParam(value="postId") int postId,
 												@RequestParam(value="boardId") int boardId,
-												@RequestParam(value="categoryId", required=false) int categoryId,
+												@RequestParam(value="categoryId", required=false, defaultValue="0") int categoryId,
 												@RequestParam(value = "page", required = false) String pageStr) {
 		System.out.println("viewPost_GET");
 		System.out.println("psotId = "+ postId);
@@ -218,9 +219,7 @@ public class PostController {
 				
 		condition.setLimit(limit);
 				
-//		for(PostDetailVO post :postList) {
-//			System.out.println("리스트임"+post.toString());
-//		}
+		
 				
 		// -------------------------------------------------------------------
 	
@@ -233,8 +232,14 @@ public class PostController {
 			countComment = readComment.readCountPostComment(postId); // 댓글 개수
 			comment = readComment.readAllByPostId(postId); // 해당글에 댓글들
 			
-			
+			id = new Id();
+			id.setCategoryId(categoryId);
+			condition.setId(id);
 			postList = readPost.readDetailPostList(boardId, condition); // 해당 보드에 맞는 모든 post를 가져옴
+			
+			for(PostDetailVO post2 :postList) {
+				System.out.println("리스트임"+post2.toString());
+			}
 			
 			int boardCategoryId = postDetail.getPost().getCategoryId();
 			boardCategory = readBoardCategory.selectBoardCategotyById(boardCategoryId);
@@ -248,11 +253,11 @@ public class PostController {
 			return mv;
 		}
 		
-		
 		mv.addObject("postDetail", postDetail);
 		mv.addObject("postList", postList);
 		mv.addObject("comment", comment);
 		mv.addObject("count", countComment);
+		mv.addObject("pageMaker", pageMaker); // 페이징 페이지 개수
 		mv.addObject("boardCategory", boardCategory);
 		mv.addObject("boardCategoryList", boardCategoryList);
 		mv.setViewName("view/view/border-community-view");
@@ -263,9 +268,9 @@ public class PostController {
 	@RequestMapping(value="/insertPost", method=RequestMethod.GET)
 	public ModelAndView controllerInsertPost_GET(HttpSession session, 
 													@RequestParam int boardId,
-													@RequestParam int categoryId) {
+													@RequestParam(value="categoryId", required=false, defaultValue="1") int categoryId) {
 		System.out.println("게시글 작성 페이지로 이동");
-		System.out.println("boardId"+boardId);
+		System.out.println("boardId = "+boardId);
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -276,6 +281,10 @@ public class PostController {
 			mv.setViewName("view/loginPage/login-main");
 		}else {
 			boardCategoryList = readBoardCategory.selectBoardCategoryByBoardId(boardId); // 해당 보드에 맞는 카테고리 모두 가져옴 (카테고리 목록 뽑는데 사용)
+			for(BoardCategoryVO bc : boardCategoryList) {
+				System.out.println(bc.toString());
+			}
+			
 			PostRequest postReq = new PostRequest(); 
 			postReq.setBoardId(boardId);
 			postReq.setCategoryId(categoryId);
@@ -323,7 +332,8 @@ public class PostController {
 													@RequestParam("postId") int postId, 
 													@RequestParam int contentId, 
 													@RequestParam("writerId") int writerId, 
-													@RequestParam("authUserUserId") int userId) {
+													@RequestParam("authUserUserId") int userId,
+													@RequestParam("boardId") int boardId) {
 		System.out.println("게시글 삭제 진행중");
 		
 		ModelAndView mv = new ModelAndView();
@@ -334,12 +344,11 @@ public class PostController {
 		}else {
 			deleteService.deletePost(postId, contentId); // 삭제할 아이디를 받아와 삭제
 			System.out.println("삭제 성공");
-			mv.setViewName("view/border/border-community"); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
+			mv = controllerViewPostList_GET(boardId, 0, null); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
 		}
 		return mv;
 	}
 	
-	// 
 	@RequestMapping(value="/updatePost", method=RequestMethod.GET)
 	public ModelAndView controllerUpdatePost_GET(HttpSession session, 
 												@RequestParam int postId,
@@ -348,15 +357,20 @@ public class PostController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		List<BoardCategoryVO> boardCategoryList;
+		
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser가 null임");
 			mv.setViewName("view/loginPage/login-main");
 		}else {
+			boardCategoryList = readBoardCategory.selectBoardCategoryByBoardId(boardId); // 해당 보드에 맞는 카테고리 모두 가져옴 (카테고리 목록 뽑는데 사용)
+			
 			PostVO post = readPost.readPostById(postId);
 			ContentVO content = readPost.readContentById(post.getContentId());
 			
 			PostRequest postReq = new PostRequest(postId, content.getContentId(), post.getTitle(), content.getContent(), boardId, post.getCategoryId());
 			mv.addObject("postReq", postReq); // 게시글 정보를 jsp에 보내기 위해서
+			mv.addObject("boardCategoryList",boardCategoryList);
 			mv.setViewName("view/write/border-community-write");
 		}
 		return mv;
@@ -367,19 +381,23 @@ public class PostController {
 													@RequestParam int postId,
 													@RequestParam int boardId,
 													@RequestParam int contentId,
-													@RequestParam String title,
+													@RequestParam(value="postTitle") String title,
 													@RequestParam String content,
 													@RequestParam int categoryId) {
 		System.out.println("게시글 수정 정보 가져오는 중");
-		
+		System.out.println(categoryId);
 		ModelAndView mv = new ModelAndView();
+		
+		
 		
 		if(session.getAttribute("authUser") == null) {
 			System.out.println("authUser가 null임");
 			mv.setViewName("errorPage");
 		}else {
+			
 			PostRequest postReq = new PostRequest(postId, contentId, title, content, categoryId);
 			modifyService.modifyPost(postReq);
+			
 			mv = controllerViewPost_GET(postId, boardId, categoryId, null); // 수정
 		}
 		return mv;	

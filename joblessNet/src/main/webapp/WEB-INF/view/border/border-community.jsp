@@ -50,6 +50,7 @@
 									<div class="category ">
 										<ul>
 											<li class=""><a href="main"style="background-color: #414141;"><span class="glyphicon glyphicon-home"></span></a></li>
+											<li><a href="viewPostList?categoryId=1" style="background-color: #2e9895;"> 전체 </a></li>
 											<c:forEach var="category" items="${boardCategory}" varStatus="status">
 												<li><a href="viewPostList?categoryId=${category.boardCategoryId }" style="background-color: #2e9895;"> ${category.categoryName } </a></li>
 											</c:forEach>
@@ -106,7 +107,7 @@
 										</div>
 
 										<div class="comm-write con-right">
-											<a href="insertPost?boardId=1&categoryId=${postDetail.post.categoryId }"><span class="glyphicon glyphicon-pencil"></span>글쓰기</a>
+											<a href="insertPost?boardId=${boardIdNumber }"><span class="glyphicon glyphicon-pencil"></span>글쓰기</a>
 										</div>
 									</div>
 								</div>

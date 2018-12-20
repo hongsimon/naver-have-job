@@ -281,7 +281,7 @@
 				AND p.user_id = #{condition.id.writerId}
 				</if>
 				<if test="condition.id.categoryId > 1">
-				AND category_id = #{condition.id.categoryId}
+				AND p.category_id = #{condition.id.categoryId}
 				</if>
 			</if>
 			<if test="condition.text != null">

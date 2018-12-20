@@ -11,10 +11,12 @@ public class ContentVO {
 	}
 	
 	public ContentVO(String content) {
+		super();
 		this.content = content;
 	}
 
 	public ContentVO(int contentId, String content) {
+		super();
 		this.contentId = contentId;
 		this.content = content;
 	}
