@@ -33,6 +33,12 @@ public class ClipRequest {
 		this.broadcasterId = broadcasterId;
 	}
 	
+	public ClipRequest(String title, String clipURL, String thumbURL) {
+		this.title = title;
+		this.clipURL = clipURL;
+		this.thumbURL = thumbURL;
+	}
+	
 	public int getClipId() {
 		return clipId;
 	}
@@ -60,10 +66,20 @@ public class ClipRequest {
 		return broadcasterId;
 	}
 	
-	public void validate(Map<String, Boolean> errors) {
-		if(title == null || title.trim().isEmpty()) {
-			errors.put("title", true);
+	
+	//입력받은 데이터가 빈값인지 확인하는 메소드
+	private void checkEmptyStr(Map<String, Boolean> errors, String value, String fiedName) {
+		if(value == null || value.isEmpty()) {
+			//빈값이거나 문제가 있다면 그 결과를 다시 전송하기 위해
+			//객체에 담아서 결과를 화면에 보내줌
+			errors.put(fiedName, true);
 		}
+	}
+	
+	public void validate(Map<String, Boolean> errors) {
+		checkEmptyStr(errors, title, "title");
+		checkEmptyStr(errors, clipURL, "clipURL");
+		checkEmptyStr(errors, thumbURL, "thumbURL");
 	}
 	
 	

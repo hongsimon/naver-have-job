@@ -79,16 +79,38 @@
 
                           <div class=" margin-container ">
                             <div class="writeHotClip">
-                              <div class="hotClip-box">
+                              <div class="hotClip-box">                              	
                                 <div class="title-text-more-big ">
                                   클립 올리기
                                   <a href="viewClip?active=thumbs-up" class="clip-back">&lt;돌아가기</a>
                                 </div>
+                                
+                                <c:if test="${errors.title }">
+                              		<div class="post_error_box">클립 제목을 입력해주세요.</div>
+                              	</c:if>
+                              	
+                              	<c:if test="${errors.clipURL }">
+                              		<div class="post_error_box">클립 URL을 입력해주세요</div>
+                              	</c:if>
+                              	
+                              	<c:if test="${errors.thumbURL && !errors.clipURL}">
+                              		<div class="post_error_box">유효하지 않은 클립 URL 입니다.</div>
+                              	</c:if>
+                              	
+                              	<c:if test="${errors.broadcasterNick }">
+                              		<div class="post_error_box">방송인의 닉네임을 입력해주세요</div>
+                              	</c:if>
+                              
+                              	<c:if test="${errors.broadcaster }">
+                              		<div class="post_error_box">해당 방송인을 찾을수 없습니다.</div>
+                              	</c:if>
+                                
+                                
                                 <div class="clip-write">
                                   <form class="" action="insertClip" method="post">
                                     <div>
                                       클립 주소
-                                      <input type="text" name="clip" placeholder="https://youtu.be/..." class="clip">
+                                      <input type="text" name="clip" placeholder="https://youtu.be/..." class="clip" value="${clipURL }">
                                       <P>
                                         동영상 업로드 방식은 <a href="#">튜토리얼</a>을 참고하시길 바랍니다.
                                       </P>
@@ -100,14 +122,14 @@
                                     </div>
                                     <div>
                                       클립 제목
-                                      <input type="text" name="title" value="">
+                                      <input type="text" name="title" value="${title }">
                                       <p>
                                         공유하고싶은 동영상의 제목을 자유롭게 기재해주시길 바랍니다.
                                       </p>
                                     </div>
                                     <div>
                                       방송인
-                                      <input type="text" name="broadcasterNick" value="" class="clip-broadcaster" id="searchBox"/>
+                                      <input type="text" name="broadcasterNick" value="${broadcasterNick }" class="clip-broadcaster" id="searchBox"/>
                                       <p>
                                         공유하고싶은 동영상의 방송인을 정확하게 기재해주시길 바랍니다.
                                       </p>
@@ -210,8 +232,16 @@
                                       음란물/광고 등 부적절한 영상은 임의로 삭제될 수 있으며, 관리를 위해 등록한 시간과 등록자의 IP 주소가 기록됩니다. <br />
                                       IP 주소는 공개적으로 노출되지 않습니다.
                                     </p>
-
+									
+									<!-- 로그인 상태 -->
+									<c:if test="${!empty authUser }">
                                     <button type="submit" name="button" class="hotClip-upload"><span class="glyphicon glyphicon-facetime-video"></span>업로드</button>
+                                    </c:if>
+                                    
+                                    <!-- 로그아웃 상태 -->
+                                    <c:if test="${empty authUser }">
+                                    <button type="button" name="button" class="hotClip-upload" onclick="window.alert('로그인이 필요한 서비스입니다.')"><span class="glyphicon glyphicon-facetime-video"></span>업로드</button>
+                                    </c:if>
                                   </form>
                                 </div>
                                 </div>

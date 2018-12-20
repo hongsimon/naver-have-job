@@ -82,9 +82,14 @@ public class AdminController {
 		
 		System.out.println("addJobConfig_POST");
 		
-			jobAddService.modifyAdd(new JobAddVO(addId, addTitle, addLink));
+		if(addTitle.equals("")) {
+			addTitle = null;
+		}
+		if(addLink.equals("")) {
+			addLink = null;
+		}
 		
-		
+		jobAddService.modifyAdd(new JobAddVO(addId, addTitle, addLink));
 		
 		List<JobAddVO> add = jobAddService.selectAllAdd();
 		modelAndView.addObject("add", add);

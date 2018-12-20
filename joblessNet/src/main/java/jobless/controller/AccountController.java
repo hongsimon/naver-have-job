@@ -81,9 +81,11 @@ public class AccountController {
 	
 	//로그인 페이지
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String login_GET() {
+	public ModelAndView login_GET() {
 		System.out.println("login_GET");
-		return "view/loginPage/login-main";
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("view/loginPage/login-main");
+		return modelAndView;
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)

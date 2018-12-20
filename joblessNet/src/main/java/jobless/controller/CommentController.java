@@ -37,7 +37,7 @@ public class CommentController {
 	
 	@RequestMapping(value="/insertClipComment", method=RequestMethod.POST)
 	public ModelAndView insertClipComment_POST(HttpSession session,
-												  @RequestParam("content") String content, 
+												  @RequestParam(value="content", required=false, defaultValue=" ") String content, 
 												  @RequestParam("userId") int userId,
 												  @RequestParam("postId") int postId,
 												  @RequestParam("clipId") int clipId){

@@ -6,6 +6,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+  
+  	<script type="text/javascript">
+  		if(${!empty errors.notLogin}){
+  			alert("로그인이 필요한 서비스입니다.")
+  			location.href="http://localhost:8090/jobless-net/viewClip";
+  		}
+  	</script>
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
@@ -87,9 +94,20 @@
                     <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
                   </form>
                 </div>
+                
+                	<!-- 로그아웃 상태 -->
+                	<c:if test="${empty authUser }">
+	                <div class="border-hotclip-write">
+	                  <a onclick="window.alert('로그인이 필요한 서비스입니다.')"><span class="glyphicon glyphicon-pencil"></span>클립 올리기</a>
+	                </div>
+	                </c:if>
+                	
+                	<!-- 로그인 상태 -->
+                	<c:if test="${!empty authUser }">
 	                <div class="border-hotclip-write">
 	                  <a href="insertClip"><span class="glyphicon glyphicon-pencil"></span>클립 올리기</a>
 	                </div>
+	                </c:if>
               </div>
               <div class="border-hotclip-body">
                 <ul>

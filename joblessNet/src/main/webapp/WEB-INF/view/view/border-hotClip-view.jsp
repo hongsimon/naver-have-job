@@ -28,7 +28,7 @@
     <script type="text/javascript">
 		if(${!empty errors.NotMoreLike}){
 			var link = "selectClip?clipId=";
-				link += ${clip_or_postId};
+				link += "${clip_or_postId}";
 			alert("추천은 한번만 가능합니다.");
 			location.href=link	;
 		}
@@ -66,8 +66,10 @@
                       </c:if>
                       <div class="con-right like-btn">
                       
+                      
+                      <!-- 로그아웃상태 -->    
                       	<c:if test="${empty authUser }">
-                      		<button type="submit" onclick="window.alert('로그인이 필요한 서비스입니다.')"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${clipDetail.likes}</button>
+                      		<button type="button" onclick="window.alert('로그인이 필요한 서비스입니다.')"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${clipDetail.likes}</button>
                       	</c:if>
                       
                       
@@ -153,7 +155,15 @@
                           <input type="hidden" name="clipId" value="${clipDetail.clip.clipId }">
                           <input type="hidden" name="postId" value=0>
                           <input type="hidden" name="userId" value="${authUser.userId }">
-                          <input type="text" name="content" placeholder="댓글을 입력하세요..." id="hotclip-comment-input" class="clip-comment-box">
+                          <c:choose>
+                          	<c:when test="${!empty authUser }">
+                          		<input type="text" name="content" placeholder="댓글을 입력하세요..." id="hotclip-comment-input" class="clip-comment-box">
+                          	</c:when>
+                          	
+                          	<c:otherwise>
+                          		<div id="hotclip-comment-input" class="clip-comment-box">로그인 후 이용할 수 있습니다.</div>
+                          	</c:otherwise>
+                          </c:choose>
                           <button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
                         </form>
                       </div>

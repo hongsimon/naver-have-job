@@ -2,7 +2,9 @@ package jobless.controller;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -249,15 +251,17 @@ public class ClipController {
 		System.out.println("insertClip_GET");
 
 		ModelAndView mv = new ModelAndView();
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		
 		List<UserVO> streamerList = getUser.getStreamerAll();
 		
 		
-		
+		mv.addObject("errors", errors);
 		
 		if (session.getAttribute("authUser") == null) {
 			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
-			mv.setViewName("errorpage");
+			errors.put("notLogin", true);
+			mv.setViewName("view/border/border-hotClip");
 		} else {
 			mv.addObject("streamerList", streamerList);
 			mv.setViewName("view/write/border-hotClip-write");
@@ -274,11 +278,10 @@ public class ClipController {
 			@RequestParam("clip_Thumbnail") String thumbURL, @RequestParam("writerId") int writerId,
 			@RequestParam("broadcasterNick") String broadcasterNick) {
 		System.out.println("insertClip_POST");
-		UserVO broadcaster = getUser.getUserByNickName(broadcasterNick);
-		int broadcasterId = broadcaster.getUserId();
 
 		ModelAndView mv = new ModelAndView();
-
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		
 		if (originURL.contains("kakao") || originURL.contains("afree.ca")) {
 			try {
 				if (clipURL.contains("kakao")) {
@@ -301,16 +304,38 @@ public class ClipController {
 				e.printStackTrace();
 			}
 		}
-		if (session.getAttribute("authUser") == null) {
-			System.out.println("authUser 객체가 없습니다. 로그인해주세요");
-			mv.setViewName("errorpage");
-		} else {
-			ClipRequest clipRequest = new ClipRequest(title, clipURL, thumbURL, writerId, broadcasterId);
+		
+			mv.addObject("title", title);
+			mv.addObject("originURL", originURL);
+			mv.addObject("broadcasterNick", broadcasterNick);
+			mv.setViewName("view/write/border-hotClip-write");
+			
+			UserVO broadcaster = getUser.getUserByNickName(broadcasterNick);
+			
+			ClipRequest clipRequest = new ClipRequest(title, originURL, thumbURL);
+			
+			clipRequest.validate(errors);
+			
+			if(broadcasterNick.equals("") || broadcasterNick == null) {
+				errors.put("broadcasterNick", true);
+			}
+			if(broadcaster == null && !broadcasterNick.equals("")) {
+				errors.put("broadcaster", true);
+			}
+			
+			
+			if(!errors.isEmpty()) {
+				mv.addObject("errors", errors);
+				return mv;
+			}
+
+			clipRequest = new ClipRequest(title, clipURL, thumbURL, writerId, broadcaster.getUserId());
+			
 			writeClip.writeClip(clipRequest);
-			mv.setViewName("redirect:viewClip");
-		}
+		
 		List<JobAddVO> add = jobAddService.selectAllAdd();
 		mv.addObject("add", add);
+		mv.setViewName("redirect:viewClip");
 		return mv;
 	}
 
