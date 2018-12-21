@@ -30,7 +30,7 @@
 			icon 
 	</select>
 	
-	<select id="selectAllIcon" parameterType="int" resultType="Icon">	
+	<select id="SelectMyIconByAll" parameterType="int" resultType="Icon">	
 		select 
 			i.icon_id as iconId, 
 			filename as fileName,
