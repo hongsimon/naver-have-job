@@ -19,6 +19,7 @@ public class UserVO {
 	private boolean streamer;
 	private int iconId;
 	private int boardId;
+	private String fileName;
 	
 	public UserVO() {
 	}
@@ -128,6 +129,8 @@ public class UserVO {
 		this.boardId = boardId;
 	}
 
+	
+	
 	// insert용
 	public UserVO(String loginId, String nickName, String password, String email, int platformId) {
 		super();
@@ -184,6 +187,25 @@ public class UserVO {
 	}
 	
 	public UserVO(int userId, String loginId, String nickName, String password, String email, int point,
+			LocalDate regDate, boolean admin, boolean ban, int platformId, boolean streamer, int iconId, int boardId, String fileName) {
+		super();
+		this.userId = userId;
+		this.loginId = loginId;
+		this.nickName = nickName;
+		this.password = password;
+		this.email = email;
+		this.point = point;
+		this.regDate = regDate;
+		this.admin = admin;
+		this.ban = ban;
+		this.platformId = platformId;
+		this.streamer = streamer;
+		this.iconId = iconId;
+		this.boardId = boardId;
+		this.fileName = fileName;
+	}
+	
+	public UserVO(int userId, String loginId, String nickName, String password, String email, int point,
 			LocalDate regDate, boolean admin, boolean ban, int platformId) {
 		super();
 		this.userId = userId;
@@ -200,13 +222,26 @@ public class UserVO {
 	
 	
 
-	@Override
-	public String toString() {
-		return "UserVO [userId=" + userId + ", loginId=" + loginId + ", nickName=" + nickName + ", password=" + password + ", email=" + email + ", point=" + point + ", regDate=" + regDate + ", admin=" + admin + ", ban=" + ban + ", platformId=" + platformId + ", streamer=" + streamer + ", iconId=" + iconId + "]";
+	public UserVO(int userId, int point) {
+		this.userId = userId;
+		this.point = point;
 	}
 
 	public boolean matchPassword(String pwd) {
 		return password.equals(pwd);
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	@Override
+	public String toString() {
+		return "UserVO [userId=" + userId + ", loginId=" + loginId + ", nickName=" + nickName + ", password=" + password + ", email=" + email + ", point=" + point + ", regDate=" + regDate + ", admin=" + admin + ", ban=" + ban + ", platformId=" + platformId + ", streamer=" + streamer + ", iconId=" + iconId + ", boardId=" + boardId + ", fileName=" + fileName + "]";
 	}
 
 

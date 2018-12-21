@@ -1,4 +1,4 @@
-package test;
+/*package test;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -76,11 +76,11 @@ public class Test {
 	
 	@org.junit.Test
 	public void clipTest() {
-		/*
+		
 		ClipDetailVO clip = clipdao.readDetail(5);
 		
 		System.out.println(clip);
-		*/
+		
 		Condition condition = new Condition();
 		
 		Order order = new Order();
@@ -97,3 +97,4 @@ public class Test {
 		}
 	}
 }
+*/

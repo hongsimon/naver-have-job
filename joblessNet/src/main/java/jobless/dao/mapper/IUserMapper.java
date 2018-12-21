@@ -31,4 +31,6 @@ public interface IUserMapper {
 	public void updateIconId(int iconId, int userId);
 	
 	public void pointPay(int userId);
+
+	public void updatePoint(int userId);
 }

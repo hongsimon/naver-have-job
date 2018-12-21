@@ -15,6 +15,8 @@ public interface IIconMapper {
 	
 	public List<IconVO> selectAllIcon();
 	
+	public List<IconVO> SelectMyIconByAll(int userId);
+	
 	public void deleteIcon(int iconId);
 	
 	public void updateIcon(IconVO icon);

@@ -42,46 +42,145 @@
                 <!-- 커뮤니티 인기글 -->
                 <div class="col-xs-6 ">
                   <div class="margin-title">
-                    	<a href="viewPostList?boardId=${postDetailList.post.boardId }" class="not-working-a">
-                      		<p class="title-text-big display-in title-text">커뮤니티 인기글</p>
-                      		<span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
-                    	</a>
+                    <a href="#" class="not-working-a">
+                      <p class="title-text-big display-in title-text">커뮤니티 인기글</p>
+                      <span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
+                    </a>
                   </div>
                   <!-- 내용 -->
                   <div class="best-content border-padding">
-                    	<!-- 이곳을 수정하세용 -->
-                    	<ul class="best-content-border border_size">
-                      		<!-- 수정파트  -->
-                      		<c:forEach var="post" items="${postDetailList }">
-                      			<li>
-	                        		<div>
-	                          			<div class="board-name con-left">
-	                            			<a>${post.boardCategory.categoryName }</a>
-	                          			</div>
-	                          			<div class="content con-left">
-	                            			<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
-	                          			</div>
-	                          			<div class="board-comment point-color">
-	                            			<c:if test="${post.comments != null}">
-												<c:choose>
-													<c:when test="${post.comments > 999 }">
-														<div>[999+]</div>
-													</c:when>
-													<c:otherwise>
-														<div>[${post.comments }]</div>
-													</c:otherwise>
-												</c:choose>
-											</c:if>
-											<c:if test="${post.comments == null}">
-												<div>[0]</div>
-											</c:if>
-	                          			</div>
-	                        		</div>
-								</li>
-                      		</c:forEach>
-                    	</ul>
-					</div>
-				</div>
+                    <!-- 이곳을 수정하세용 -->
+                    <ul class="best-content-border border_size">
+
+                      <!-- 수정파트  -->
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동해물과 백두산이 마르고 닳도록 하느님이 보우하사</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동해물과 백두산이 마르고 닳도록 하느님이 보우하사</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동해물과 백두산이 마르고 닳도록 하느님이 보우하사</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동해물과 백두산</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">애니메이션</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">동해물과 백두산이 마르고 닳도록 하느님이 보우하사</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [200]
+                          </div>
+                        </div>
+                      </li>
+                      
+
+
+                      <!-- 쌤플 -->
+                      <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">IT/컴퓨터</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">123456789123456789123456789123456789123456789</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [18]
+                          </div>
+                        </div>
+                      </li>
+                       <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">IT/컴퓨터</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">123456789123</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [18]
+                          </div>
+                        </div>
+                      </li>
+                       <li>
+                        <div>
+                          <div class="board-name con-left">
+                            <a href="#" class="not-working-a point-color">IT/컴퓨터</a>
+                          </div>
+                          <div class="content con-left">
+                            <a href="test" class="content-in">123456789123456789123456789123456789123456789</a>
+                          </div>
+                          <div class="board-comment point-color">
+                            [18]
+                          </div>
+                        </div>
+                      </li>
+
+
+
+                    </ul>
+                  </div>
+
+                </div>
 
                 <!-- Q&A -->
                 <div class="col-xs-6 ">

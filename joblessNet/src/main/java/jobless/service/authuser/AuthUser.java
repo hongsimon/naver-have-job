@@ -11,6 +11,7 @@ public class AuthUser {
 	private int platformId;
 	private boolean streamer;
 	private int iconId;
+	private String fileName;
 	
 	public AuthUser(int userId, String loginId, String nickName, String email, int point, boolean admin,
 			int platformId) {
@@ -35,6 +36,21 @@ public class AuthUser {
 		this.streamer = streamer;
 		this.iconId = iconId;
 	}
+	
+	public AuthUser(int userId, String loginId, String nickName, String email, int point, boolean admin,
+			int platformId, boolean streamer, int iconId, String fileName) {
+		this.userId = userId;
+		this.loginId = loginId;
+		this.nickName = nickName;
+		this.email = email;
+		this.point = point;
+		this.admin = admin;
+		this.platformId = platformId;
+		this.streamer = streamer;
+		this.iconId = iconId;
+		this.fileName = fileName;
+	}
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -105,6 +121,14 @@ public class AuthUser {
 
 	public void setIconId(int iconId) {
 		this.iconId = iconId;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	
 }

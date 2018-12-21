@@ -32,17 +32,19 @@
         <div class="service-user">
           <div class="service-inner">
             <div>
-              <form>
+              <form action="selectIconBuy" method="post">
                   <div class="icon-buy-box">
                     <div>
-                      <h2>블러드 트레일</h2>
+                      <h2>${icon.iconName }</h2>
                     </div>
-                    <image src="${pageContext.request.contextPath}/image/icon/icon1.png"/>
+                    <img src="${pageContext.request.contextPath}${icon.fileName}"/>
                     <div>
+                      <input type="hidden" name = "iconId" value="${icon.iconId }">
+                      <input type="hidden" name = "userId" value="${authUser.userId}">
                       <button type="submit" class="icon-buy-btn">구매하기 (500포인트)</button>
-                      <div class="icon-denger">
-                        구매한 아이콘은 취소할 수 없으니 신중히 결정해주세요
-                      </div>
+                    <div class="icon-denger">
+                      	  구매한 아이콘은 취소할 수 없으니 신중히 결정해주세요
+                     </div>
                     </div>
                   </div>
                   </form>

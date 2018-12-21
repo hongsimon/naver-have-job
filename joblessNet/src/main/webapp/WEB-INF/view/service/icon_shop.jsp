@@ -46,7 +46,7 @@
                     </div>
                     <div class="icon_list">
                     <c:forEach var="icon" items="${iconList }" varStatus="status">
-                      <a href="#">
+                      <a href="selectIconInfo?iconId=${icon.iconId}">
                       <div class="icon-list-box ">
                         <img src="${pageContext.request.contextPath}${icon.fileName}" alt="">
                         <div>
@@ -58,7 +58,7 @@
                           </div>
                         </div>
                       </div>
-                    </a>
+                      </a>
             	   </c:forEach>
                    </div>
 

@@ -17,4 +17,6 @@ public interface IconDAO {
 	public void delete(int iconId);
 	
 	public void update(IconVO icon);
+	
+	public List<IconVO> SelectMyIconByAll(int userId);
 }

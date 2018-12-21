@@ -29,5 +29,7 @@ public interface UserDAO {
 	
 	public void updateIconId(int iconId, int userId);
 	
+	public void updatePoint(int userId);
+	
 	public void pointPay(int userId);
 }

@@ -47,6 +47,12 @@ public class IconDAOimplJDBC implements IconDAO {
 	@Override
 	public void insertMyIcon(MyIconVO myIcon) {
 		// TODO Auto-generated method stub
-	
+		mapper.insertMyIcon(myIcon);
+	}
+
+	@Override
+	public List<IconVO> SelectMyIconByAll(int userId) {
+		// TODO Auto-generated method stub
+		return mapper.SelectMyIconByAll(userId);
 	}
 }

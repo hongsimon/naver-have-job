@@ -26,4 +26,10 @@ public class SelectIconServiceImpl implements SelectIconService {
 		return icon;
 	}
 
+	@Override
+	public List<IconVO> SelectMyIconByAll(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

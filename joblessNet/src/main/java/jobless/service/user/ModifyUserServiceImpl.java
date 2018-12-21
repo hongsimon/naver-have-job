@@ -33,7 +33,19 @@ public class ModifyUserServiceImpl implements ModifyUserService {
 	@Override
 	public void pointPay(int userId) {
 		// TODO Auto-generated method stub
-		
+		userdao.pointPay(userId);
+	}
+
+	@Override
+	public void updatePoint(int userId) {
+		// TODO Auto-generated method stub
+		userdao.updatePoint(userId);
+	}
+
+	@Override
+	public void updateIconId(int iconId, int userId) {
+		// TODO Auto-generated method stub
+		userdao.updateIconId(iconId, userId);
 	}
 
 }

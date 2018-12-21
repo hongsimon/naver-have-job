@@ -82,5 +82,12 @@ public class UserDAOImplJDBC implements UserDAO {
 		
 	}
 
+	@Override
+	public void updatePoint(int userId) {
+		// TODO Auto-generated method stub
+		mapper.updatePoint(userId);
+	}
+
+
 
 }
