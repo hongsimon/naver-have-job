@@ -30,7 +30,7 @@
      <!-- 사용자 헤드 메뉴바  -->
     <div class="container head-nav-top-color ">
       <div class="head-nav-top-size">
-        <div class="col-xs-3 headber-size ">
+        <div class="col-xs-2 headber-size ">
 			<div class="padding-zero mouse_point head-nav-left">
             <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#">
               <span class="glyphicon glyphicon-sunglasses"></span>
@@ -48,12 +48,22 @@
               <li><a href="${pageContext.request.contextPath}/attendanceCheck">출석체크</a></li>
               </c:if>
               
-              <li><a href="">아이콘 샵</a></li>
+              
+               <!-- 로그아웃 -->
+              <c:if test="${empty authUser }">
+              <li><a href="#" onclick="alert('로그인이 필요한 서비스입니다')">아이콘샵</a></li>
+              </c:if>
+            
+            <!-- 로그인 -->  
+              <c:if test="${!empty authUser }">
+              <li><a href="">아이콘샵</a></li>
+              </c:if>
+              
             </ul>
            </div>
         </div>
 
-        <div class="col-xs-8  banner-border ">
+        <div class="col-xs-9  banner-border ">
           <div class="banner-size">
             <ul class="banner ">
             	<c:forEach var="job_add" items="${add }">

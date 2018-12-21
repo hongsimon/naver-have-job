@@ -162,17 +162,17 @@
                 <ul class="pagination">
                   <c:if test="${pageMaker.prev }">
 	                  <li class="page-item">
-	                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page-1}"><span class="glyphicon glyphicon-menu-left"></span></a>
+	                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page-1}&active=<%=active %>"><span class="glyphicon glyphicon-menu-left"></span></a>
 	                  </li>
                   </c:if> 
                   <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="index">                 
                   <li class="page-item">
-                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}" class="page-link">${index }</a>
+                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}&active=<%=active %>" class="page-link">${index }</a>
                   </li>
                   </c:forEach>
                   <c:if test="${pageMaker.next}">                 
                   <li class="page-item">
-                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}" class="page-link"><span class="glyphicon glyphicon-menu-right"></span></a>
+                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}&active=<%=active %>" class="page-link"><span class="glyphicon glyphicon-menu-right"></span></a>
                   </li>
                   </c:if>
                 </ul>

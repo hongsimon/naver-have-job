@@ -419,3 +419,6 @@
   padding: 6px 8px;
 }
 
+.icon_list>a{
+	margin-bottom:10px;
+}

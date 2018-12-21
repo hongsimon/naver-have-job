@@ -192,3 +192,12 @@ hr{
 input:focus{
    box-shadow: 0px 0px 4px 0px #287A72;
 }
+
+.post_error_box{
+	padding: 8px;
+  background-color: rgba(236, 162, 175, 0.6);
+  color: #a83c3c;
+  margin-top: 15px;
+  border: 1px solid #a83c3c;
+  border-radious
+}
