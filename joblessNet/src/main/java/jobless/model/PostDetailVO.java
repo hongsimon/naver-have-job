@@ -11,15 +11,6 @@ public class PostDetailVO {
 	private int likes;
 	private int comments;
 	
-
-	public int getComments() {
-		return comments;
-	}
-
-	public void setComments(int comments) {
-		this.comments = comments;
-	}
-
 	public BoardCategoryVO getBoardCategory() {
 		return boardCategory;
 	}
@@ -60,10 +51,19 @@ public class PostDetailVO {
 		this.likes = likes;
 	}
 
+	public int getComments() {
+		return comments;
+	}
+
+	public void setComments(int comments) {
+		this.comments = comments;
+	}
+	
 	@Override
 	public String toString() {
 		return "PostDetailVO [post=" + post + ", user=" + user + ", boardCategory=" + boardCategory + ", content="
-				+ content + ", likes=" + likes + "]";
+				+ content + ", likes=" + likes + ", comments=" + comments + "]";
 	}
+
 	
 }

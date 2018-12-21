@@ -128,6 +128,11 @@ public class ReadPostServiceImpl implements ReadPostService{
 	}
 	
 	@Override
+	public List<PostDetailVO> readPostDetailCountLikeList(PostVO post) {
+		return postdao.readPostDetailCountLikeList(post);
+	}
+	
+	@Override
 	public List<PostDetailVO> readDetailPostByBoardIdAndCategoryId(PostDetailVO postDetail) {
 		List<PostDetailVO> postDetailList = postdao.readDetailBoardAndCategory(postDetail);
 		return postDetailList;

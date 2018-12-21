@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,7 +69,8 @@ public class PostController {
 	@RequestMapping(value="/viewPostList", method=RequestMethod.GET)
 	public ModelAndView controllerViewPostList_GET(@RequestParam(value="boardId", required=false, defaultValue="1") int boardId,
 													@RequestParam(value="categoryId", required=false, defaultValue="0") int categoryId,
-													@RequestParam(value = "page", required = false) String pageStr) {
+													@RequestParam(value = "page", required = false) String pageStr,
+													@RequestParam(value = "likeN", required = false, defaultValue="0") int likeN) {
 		System.out.println("viewPostList_GET");
 		
 		ModelAndView mv = new ModelAndView();
@@ -135,8 +137,19 @@ public class PostController {
 		id = new Id();
 		id.setCategoryId(categoryId);
 		condition.setId(id);
+		
+		System.out.println("likeN"+likeN);
+		if(likeN == 1) {
+			order = new Order();
+			order.setLikes(true);
+			condition.setOrder(order);
+		}
+		
 		postList = readPost.readDetailPostList(boardId, condition); // 해당 보드에 맞는 모든 post를 가져옴
 		
+		for(PostDetailVO posts : postList) {
+			System.out.println(posts.toString());
+		}
 		
 		if(postList == null) {
 			mv.setViewName("view/error/500");
@@ -344,7 +357,7 @@ public class PostController {
 		}else {
 			deleteService.deletePost(postId, contentId); // 삭제할 아이디를 받아와 삭제
 			System.out.println("삭제 성공");
-			mv = controllerViewPostList_GET(boardId, 0, null); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
+			mv = controllerViewPostList_GET(boardId, 0, null, 0); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
 		}
 		return mv;
 	}

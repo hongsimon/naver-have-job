@@ -95,6 +95,11 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
+	public List<PostDetailVO> readPostDetailCountLikeList(PostVO post) {
+		return postMapper.selectPostDetailCountLikeList(post);
+	}
+	
+	@Override
 	public List<PostDetailVO> readDetailBoardAndCategory(PostDetailVO postDetail) {
 		return postMapper.selectPostDetailByBoardIdAndCategoryId(postDetail);
 	}

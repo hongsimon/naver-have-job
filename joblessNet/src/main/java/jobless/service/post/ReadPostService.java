@@ -33,6 +33,8 @@ public interface ReadPostService {
 	
 	List<PostDetailVO> readDetailPostByCategoryId(int categoryId);
 	
+	List<PostDetailVO> readPostDetailCountLikeList(PostVO post);
+	
 	List<PostDetailVO> readDetailPostByBoardIdAndCategoryId(PostDetailVO postDetail);
 	
 	List<PostDetailVO> readDetailPostList(int boardId, Condition condition);
