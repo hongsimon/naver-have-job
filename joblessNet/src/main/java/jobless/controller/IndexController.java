@@ -13,12 +13,17 @@ import org.springframework.web.servlet.ModelAndView;
 import jobless.dao.condition.Condition;
 import jobless.model.ClipDetailVO;
 import jobless.model.JobAddVO;
+import jobless.model.PostDetailVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.clip.ReadClipService;
 import jobless.service.jobadd.JobAddService;
+import jobless.service.post.ReadPostService;
 
 @Controller("indexController")
 public class IndexController {
+	
+	@Autowired
+	ReadPostService readPost;
 	
 	@Autowired
 	ReadClipService readClip;
@@ -36,8 +41,11 @@ public class IndexController {
 	
 		
 		Condition condition = new Condition();
+		
+		List<PostDetailVO> postList = readPost.readDetailPostList(1, condition);
 		List<ClipDetailVO> clipList = readClip.readClipDetailList(condition);
 		mv.addObject("clipDetailList", clipList);
+		mv.addObject("postDetailList", postList);
 		
 		mv.addObject("add", add);
 		

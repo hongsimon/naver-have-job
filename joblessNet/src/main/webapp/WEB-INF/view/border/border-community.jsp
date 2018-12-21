@@ -68,12 +68,20 @@
 													<!-- 추천수/공지/인기 -->
 													<div class="border-comm-recomm ">
 														<c:if test="${post.comments != null}">
-															<div>${post.comments }</div>
+															<c:choose>
+																<c:when test="${post.comments > 999 }">
+																	<div>999+</div>
+																</c:when>
+																<c:otherwise>
+																	<div>${post.comments }</div>
+																</c:otherwise>
+															</c:choose>
 														</c:if>
 														<c:if test="${post.comments == null}">
 															<div>0</div>
 														</c:if>
-													</div> <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
+													</div> 
+													<!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
 													<div class="border-comm-name ">
 														<a>${post.boardCategory.categoryName }</a>
 													</div> <!-- 제목 -->
