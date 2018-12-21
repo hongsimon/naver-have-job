@@ -117,7 +117,7 @@
 	</select>
 	<select id="selectStreamerAll" resultType="User">	
 		select 
-			user_id as userId, 
+			u.user_id as userId, 
 			login_id as loginId, 
 			nickname as nickName, 
 			password, 
@@ -128,9 +128,10 @@
 			is_banned as ban, 
 			platform_id as platformId, 
 			is_streamer as streamer,
-			icon_id as iconId 
+			icon_id as iconId,
+			board_id as boardId
 		from 
-			user
+			user u join board b on u.user_id = b.user_id
 		where
 			is_streamer = true
 		order by

@@ -50,7 +50,7 @@
                     <div class="broadcasterList-t">
                      <!-- 닉네임, -->
                      <c:forEach var="streamer" items="${streamerList}" varStatus="status">
-                     	${streamer.nickName},
+                     	<a href ="${pageContext.request.contextPath}/viewPostList?boardId=${streamer.boardId}">${streamer.nickName}</a>,
                      </c:forEach>
                     </div>
                     <div class="broadcasterList_search">

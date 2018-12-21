@@ -18,6 +18,7 @@ public class UserVO {
 	private int platformId;
 	private boolean streamer;
 	private int iconId;
+	private int boardId;
 	
 	public UserVO() {
 	}
@@ -119,6 +120,14 @@ public class UserVO {
 		this.iconId = iconId;
 	}
 
+	public int getBoardId() {
+		return boardId;
+	}
+
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
+	}
+
 	// insert용
 	public UserVO(String loginId, String nickName, String password, String email, int platformId) {
 		super();
@@ -157,7 +166,7 @@ public class UserVO {
 
 	// select용
 	public UserVO(int userId, String loginId, String nickName, String password, String email, int point,
-			LocalDate regDate, boolean admin, boolean ban, int platformId, boolean streamer, int iconId) {
+			LocalDate regDate, boolean admin, boolean ban, int platformId, boolean streamer, int iconId, int boardId) {
 		super();
 		this.userId = userId;
 		this.loginId = loginId;
@@ -171,6 +180,7 @@ public class UserVO {
 		this.platformId = platformId;
 		this.streamer = streamer;
 		this.iconId = iconId;
+		this.boardId = boardId;
 	}
 	
 	public UserVO(int userId, String loginId, String nickName, String password, String email, int point,
