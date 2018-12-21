@@ -249,7 +249,7 @@
 	</select>
 
 	<select id="selectDetailPostList" parameterType="map" resultMap="PostMap">
-		select 
+		s<!-- elect 
 			p.post_id postId, 
 			post_title title, 
 			write_date writeDate, 
@@ -270,7 +270,27 @@
 			join content c on p.content_id = c.content_id
 			join board_category bc on p.category_id = bc.category_id
 			left outer join taku.comment cm on cm.post_id = p.post_id
-			left outer join taku.like l on p.post_id = l.post_id
+			left outer join taku.like l on p.post_id = l.post_id -->
+		select 
+			p.post_id postId, 
+			post_title title, 
+			write_date writeDate, 
+			p.content_id contentId, 
+			p.board_id boardId, 
+			views,
+			p.user_id writerId,
+			p.category_id categoryId,
+			bc.category_name categoryName,
+			u.user_id writerId,
+			nickname,
+			content,
+    		(select count(post_id) from taku.like l where post_id = p.post_id) as likes,
+    		(select count(post_id) from comment cm where post_id = p.post_id) as comments
+		from
+			post p
+    		join user u on p.user_id = u.user_id
+    		join content c on p.content_id = c.content_id
+    		join board_category bc on p.category_id = bc.category_id
 		WHERE
 			p.board_id = #{boardId}
 			<if test="condition.period != null">

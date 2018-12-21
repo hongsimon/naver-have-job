@@ -54,33 +54,33 @@
                     <ul class="best-content-border border_size">
 
                       <!-- 수정파트  -->
-                      			<c:forEach var="post" items="${postDetailList }" begin="0" end="9">
-                      				<li>
-	                        			<div>
-	                          				<div class="board-name con-left">
-	                            				<a class="not-working-a point-color">${post.boardCategory.categoryName }</a>
-	                          				</div>
-		                          			<div class="content con-left">
-		                            			<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }" class="content-in">${post.post.title}</a>
-		                          			</div>
-		                          			<div class="board-comment point-color">
-		                            			<c:if test="${post.comments != null}">
-													<c:choose>
-														<c:when test="${post.comments > 999 }">
-															<div>[999+]</div>
-														</c:when>
-														<c:otherwise>
-															<div>[${post.comments }]</div>
-														</c:otherwise>
-													</c:choose>
-												</c:if>
-												<c:if test="${post.comments == null}">
-													<div>[0]</div>
-												</c:if>
-		                          			</div>
-	                        			</div>
-									</li>
-								</c:forEach>
+                      		<c:forEach var="post" items="${postDetailList }">
+                      			<li>
+	                        		<div>
+	                          			<div class="board-name con-left">
+	                            			<a>${post.boardCategory.categoryName }</a>
+	                          			</div>
+	                          			<div class="content con-left">
+	                            			<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
+	                          			</div>
+	                          			<div class="board-comment point-color">
+	                            			<c:if test="${post.comments != null}">
+												<c:choose>
+													<c:when test="${post.comments > 999 }">
+														<div>[999+]</div>
+													</c:when>
+													<c:otherwise>
+														<div>[${post.comments }]</div>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+											<c:if test="${post.comments == null}">
+												<div>[0]</div>
+											</c:if>
+	                          			</div>
+	                        		</div>
+								</li>
+                      		</c:forEach>
                     </ul>
                   </div>
 
