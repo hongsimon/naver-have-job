@@ -12,6 +12,7 @@
 		}
 	</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>

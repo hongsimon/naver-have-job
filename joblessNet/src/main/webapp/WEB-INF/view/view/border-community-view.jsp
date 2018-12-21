@@ -6,6 +6,7 @@
 <html lang="en" dir="ltr">
 <head>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
@@ -14,13 +15,15 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hangul.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/color-set.js"></script>
+	
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/border.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/view.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
 
 	<!-- include summernote css/js -->
 	<link href="${pageContext.request.contextPath}/summernote/summernote.css" rel="stylesheet">
@@ -192,7 +195,7 @@
 									<li class=""><a href="main"style="background-color: #414141;"><span class="glyphicon glyphicon-home"></span></a></li>
 									<li><a href="viewPost?categoryId=1&postId=${postDetail.post.postId }&boardId=${postDetail.post.boardId }" style="background-color: #2e9895;"> 전체 </a></li>
 									<c:forEach var="category" items="${boardCategoryList}" varStatus="status">
-										<li><a href="viewPost?categoryId=${category.boardCategoryId }&postId=${postDetail.post.postId }&boardId=${postDetail.post.boardId }" style="background-color: #2e9895;"> ${category.categoryName } </a></li>
+										<li><a href="viewPost?categoryId=${category.boardCategoryId }&postId=${postDetail.post.postId }&boardId=${postDetail.post.boardId }" class="border-color"style="background-color: #2e9895;"> ${category.categoryName } </a></li>
 									</c:forEach>
 								</ul>
 							</div>

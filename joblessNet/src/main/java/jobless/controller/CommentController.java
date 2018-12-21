@@ -1,5 +1,7 @@
 package jobless.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
@@ -79,7 +81,8 @@ public class CommentController {
 	
 	@RequestMapping(value="/deleteComment", method=RequestMethod.GET)
 	public ModelAndView deleteComment_GET(HttpSession session,
-										@RequestParam int commentId){
+										@RequestParam int commentId,
+										@RequestParam int clipId){
 		System.out.println("deleteComment_GET");
 		
 		ModelAndView mv = new ModelAndView();
@@ -89,7 +92,7 @@ public class CommentController {
 		}else {
 			AuthUser authUser = (AuthUser) session.getAttribute("authUser");
 			deleteComment.delete(commentId);
-			mv.setViewName("redirect:viewClip");
+			mv.setViewName("redirect:selectClip?clipId="+clipId+"");
 		}
 		return mv;
 	}

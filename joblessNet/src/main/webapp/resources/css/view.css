@@ -264,6 +264,7 @@
 .margin-container{
   background-color: #ffffff;
   padding: 20px;
+  margin:0px;
 }
 
 .border-comm-view-title{

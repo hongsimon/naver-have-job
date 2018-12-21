@@ -28,7 +28,7 @@
               </div>
 
               <div class="left-nav-sub">
-                <a href="${pageContext.request.contextPath}/viewClip?active=thumbs-up"><div>
+                <a href="${pageContext.request.contextPath}/viewClip?active=thumbs-up&page=1"><div>
                   H
                 </div>핫클립</a>
               </div>

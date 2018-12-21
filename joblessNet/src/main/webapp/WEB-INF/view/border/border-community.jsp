@@ -6,12 +6,13 @@
 <html lang="en" dir="ltr">
 <head>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/color-set.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
@@ -43,7 +44,7 @@
 						<div class="border-community">
 							<div class="border-title-hr">커뮤니티</div>
 							<div class="border-comm-favorites">
-								<a><span class="glyphicon glyphicon-star-empty"></span>즐겨찾기</a>
+							
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
@@ -52,7 +53,7 @@
 											<li class=""><a href="main"style="background-color: #414141;"><span class="glyphicon glyphicon-home"></span></a></li>
 											<li><a href="viewPostList?categoryId=1" style="background-color: #2e9895;"> 전체 </a></li>
 											<c:forEach var="category" items="${boardCategory}" varStatus="status">
-												<li><a href="viewPostList?categoryId=${category.boardCategoryId }" style="background-color: #2e9895;"> ${category.categoryName } </a></li>
+												<li><a href="viewPostList?categoryId=${category.boardCategoryId }" class="border-color" style="background-color: #2e9895;"> ${category.categoryName } </a></li>
 											</c:forEach>
 										</ul>
 									</div>
@@ -115,7 +116,7 @@
 										</div>
 
 										<div class="comm-write con-right">
-											<a href="insertPost?boardId=${boardIdNumber }"><span class="glyphicon glyphicon-pencil"></span>글쓰기</a>
+											<a href="insertPost?boardId=${boardIdNumber }&sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}"><span class="glyphicon glyphicon-pencil"></span>글쓰기</a>
 										</div>
 									</div>
 								</div>

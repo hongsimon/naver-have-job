@@ -4,12 +4,14 @@
 <html lang="en" dir="ltr">
   <head>
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/change_comm.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/system.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
@@ -82,7 +84,7 @@
                       -게시글 작성
                     </div>
                     <div class="writeCommunity-form">
-                    	<form method="post">
+                    	<form method="post" name="border-community-write">
                       		<select name="borderName" class="borderSelect">
 								<option value="none">게시판선택</option>
 	                        		
@@ -112,7 +114,7 @@
 								<textarea id="summernote" name="content">${postReq.content }</textarea>
 	                        </div>
 	                        <div class="writeCommunity-btn">
-	                        	<a><span class="glyphicon glyphicon-repeat"></span>작성취소</a>
+	                        	<a href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}"><span class="glyphicon glyphicon-repeat"></span>작성취소</a>
 	                        	<button type="submit" class="con-right"><span class="glyphicon glyphicon-pencil"></span>작성</button>
 	                        </div>
                     	</form>

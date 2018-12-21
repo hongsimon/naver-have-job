@@ -34,65 +34,140 @@ $(function() {
 	    .forEach(function(item) {
 	      firstPont = item.diassembled.split("")
 	      switch (firstPont[0]) {
-	        case 'ㄱ': case'ㄲ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㄱ')").parent().append(str);
+	        case 'ㄱ': case'ㄲ': 
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㄱ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㄱ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㄴ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㄴ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㄴ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㄴ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㄷ': case 'ㄸ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㄷ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㄷ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㄷ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㄹ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㄹ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㄹ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㄹ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅁ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅁ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅁ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅁ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅂ': case 'ㅃ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅂ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅂ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅂ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅅ': case 'ㅆ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅅ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅅ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅅ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅇ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅇ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅇ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅇ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅈ': case 'ㅉ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅈ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅈ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅈ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅊ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅊ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅊ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅊ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅋ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅋ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅋ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅋ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅌ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅌ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅌ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅌ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅍ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅍ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅍ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅍ')").parent().append(str);
+		        }
 	          break;
 	        case 'ㅎ':
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('ㅎ')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅎ')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('ㅎ')").parent().append(str);
+		        }
 	          break;
 	        default:
-	          var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
-	          $(".head-title:contains('A-Z')").parent().append(str);
+	        	if(item.href!=undefined){
+		        	var str = "<div><a href='"+item.href+"'>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('A-Z')").parent().append(str);
+		        }else{
+		        	var str = "<div><a>" + item.broadcaster + "</a></div>"
+		        	$(".head-title:contains('A-Z')").parent().append(str);
+		        }
 	          break;
 
 	      }

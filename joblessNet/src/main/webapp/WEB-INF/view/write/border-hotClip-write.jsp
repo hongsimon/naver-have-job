@@ -7,6 +7,7 @@
 <html lang="en" dir="ltr">
   <head>
      	  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+     	  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
@@ -15,6 +16,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/system.js"></script>
 
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
@@ -107,7 +109,7 @@
                                 
                                 
                                 <div class="clip-write">
-                                  <form class="" action="insertClip" method="post">
+                                  <form name="border-hotClip-write" action="insertClip" method="post">
                                     <div>
                                       클립 주소
                                       <input type="text" name="clip" placeholder="https://youtu.be/..." class="clip" value="${clipURL }">
@@ -251,6 +253,7 @@
                     </div>
                     <%@include file="../share-nav/nav-bottom.jsp"%>
                   </div>
+                     <%@include file="../share-nav/controller.jsp"%>
                   
                      
               </body>

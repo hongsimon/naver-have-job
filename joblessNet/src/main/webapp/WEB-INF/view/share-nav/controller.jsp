@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="controller">
+	<div class="controller" >
           <button type="button" class="controller-top"><span class="glyphicon glyphicon-chevron-up"></span></button>
           <a href="main" class="controller-top"><span class="glyphicon glyphicon-home"></span></a>
           <button type="button" class="controller-bottom"><span class="glyphicon glyphicon-chevron-down"></span></button>

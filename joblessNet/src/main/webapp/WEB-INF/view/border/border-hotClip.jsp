@@ -2,7 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<% String active = request.getParameter("active"); %>
+<% 	
+
+	String active = request.getParameter("active"); 
+	String pageNum = request.getParameter("page");
+
+%>
+<c:set var="pageNum" value="<%=pageNum %>"></c:set>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -14,6 +21,7 @@
   		}
   	</script>
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
@@ -22,6 +30,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/transform-videoUri.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/system.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
@@ -54,13 +63,13 @@
                   </li>
                   </a>
 
-                  <a id="plus" class="" href="viewClip?sortby=recent&term=${param.term}&search=${param.search}&id=${param.id}&active=plus"">
+                  <a id="plus" class="" href="viewClip?sortby=recent&term=${param.term}&search=${param.search}&id=${param.id}&active=plus&page=1"">
                   <li>
                     <span class="glyphicon glyphicon-plus"></span>새로운
                   </li>
                   </a>
 
-                  <a id="heart" class="" href="viewClip?sortby=views&term=${param.term}&search=${param.search}&id=${param.id}&active=heart"">
+                  <a id="heart" class="" href="viewClip?sortby=views&term=${param.term}&search=${param.search}&id=${param.id}&active=heart&page=1"">
                   <li>
                     <span class="glyphicon glyphicon-heart"></span>조회수
                   </li>
@@ -72,24 +81,24 @@
                 <div class="border-hotclip-service-day">
                   <ul>
                     <li class="border-hotclip-service-day-start">
-                      <a href="viewClip?sortby=${param.sortby }&term=recent&search=${param.search}&id=${param.id}">6시간</a>
+                      <a href="viewClip?sortby=${param.sortby }&term=recent&search=${param.search}&id=${param.id}&page=1">6시간</a>
                     </li>
                     <li class="border-hotclip-service-day-middle">
-                      <a href="viewClip?sortby=${param.sortby }&term=daily&search=${param.search}&id=${param.id}">오늘</a>
+                      <a href="viewClip?sortby=${param.sortby }&term=daily&search=${param.search}&id=${param.id}&page=1">오늘</a>
                     </li>
                     <li class="border-hotclip-service-day-middle">
-                      <a href="viewClip?sortby=${param.sortby }&term=weekly&search=${param.search}&id=${param.id}">주</a>
+                      <a href="viewClip?sortby=${param.sortby }&term=weekly&search=${param.search}&id=${param.id}&page=1">주</a>
                     </li>
                     <li class="border-hotclip-service-day-middle">
-                      <a href="viewClip?sortby=${param.sortby }&term=monthly&search=${param.search}&id=${param.id}">월</a>
+                      <a href="viewClip?sortby=${param.sortby }&term=monthly&search=${param.search}&id=${param.id}&page=1">월</a>
                     </li>
                     <li class="border-hotclip-service-day-end">
-                      <a href="viewClip?sortby=${param.sortby }&term=yearly&search=${param.search}&id=${param.id}" class="test-border">년</a>
+                      <a href="viewClip?sortby=${param.sortby }&term=yearly&search=${param.search}&id=${param.id}&page=1" class="test-border">년</a>
                     </li>
                   </ul>
                 </div>
                 <div class="border-hotclip-search">
-                  <form>
+                  <form name="search-hotClip">
                     <input type="text" name="search" placeholder="닉네임,태그,키워드..."/>
                     <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
                   </form>
@@ -165,10 +174,20 @@
 	                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page-1}&active=<%=active %>"><span class="glyphicon glyphicon-menu-left"></span></a>
 	                  </li>
                   </c:if> 
-                  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="index">                 
-                  <li class="page-item">
-                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}&active=<%=active %>" class="page-link">${index }</a>
-                  </li>
+                  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="index">
+                  
+                  	<c:if test="${index == pageNum}">
+                  		<li class="page-item active">
+		                  <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}&active=<%=active %>" class="page-link">${index }</a>
+		                </li>
+                  	</c:if> 
+                  	             
+                  	<c:if test="${index != pageNum}">   
+	                  <li class="page-item">
+	                    <a href="viewClip?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}&active=<%=active %>" class="page-link">${index }</a>
+	                  </li>
+                  	</c:if>
+                  	
                   </c:forEach>
                   <c:if test="${pageMaker.next}">                 
                   <li class="page-item">
@@ -181,8 +200,8 @@
 
         </div>
       </div>
-      <%@include file="../share-nav/nav-bottom.jsp"%>
     </div>
+      <%@include file="../share-nav/nav-bottom.jsp"%>
     <%@include file="../share-nav/controller.jsp"%>
   </body>
 </html>

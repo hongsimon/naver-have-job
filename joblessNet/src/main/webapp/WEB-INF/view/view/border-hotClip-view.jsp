@@ -6,12 +6,15 @@
 <html lang="en" dir="ltr">
   <head>
    	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/view.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/color-set.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/system.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
@@ -75,7 +78,7 @@
                       
  						<!-- 로그인상태 -->                     
                         <c:if test="${!empty authUser }">
-                      	<form action="clipLike" method="Post">
+                      	<form name="thumbs-up" action="clipLike" method="Post">
                       		<input type="hidden" name="userId" value="${authUser.userId }">
                       		<input type="hidden" name="clip_or_postId" value="${clipDetail.clip.clipId}">
                         	<button type="submit"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;${clipDetail.likes}</button>
@@ -151,7 +154,7 @@
                   </c:choose>
                       </div>
                       <div class="">
-                        <form method="post" action="insertClipComment">
+                        <form name="hotclip-view-comment" method="post" action="insertClipComment">
                           <input type="hidden" name="clipId" value="${clipDetail.clip.clipId }">
                           <input type="hidden" name="postId" value=0>
                           <input type="hidden" name="userId" value="${authUser.userId }">
@@ -161,7 +164,7 @@
                           	</c:when>
                           	
                           	<c:otherwise>
-                          		<div id="hotclip-comment-input" class="clip-comment-box">로그인 후 이용할 수 있습니다.</div>
+                          		
                           	</c:otherwise>
                           </c:choose>
                           <button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
@@ -197,9 +200,8 @@
                                	${comment.writerNickname }
                                 <div class="clip-comment-service">
                                   <c:if test="${comment.userId == authUser.userId }">
-                                  	<a href="deleteComment?commentId=${comment.commentId }">삭제</a>
+                                  	<a href="deleteComment?commentId=${comment.commentId }&clipId=${clipDetail.clip.clipId}">삭제</a>
                                   </c:if>
-                                  <a>신고</a>
                                 </div>
                               </div>
                               <div class="clip-comment-user-contents ">
