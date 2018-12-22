@@ -1,5 +1,8 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@
+	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+ %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -34,36 +37,26 @@
         <div class="service-user">
           <div class="service-inner">
             <div>
-              <form>
+              <form action="selectMyIconChange" method="post">
+              <input type="hidden" name="userId" value="${authUser.userId }"> 
                 <div>
                   <h2>아이콘 보관함</h2>
-                  아이콘은 <a href="#">아이콘 샵</a>에서 구매할 수 있어요. 적용할 아이콘을 클릭하세요.
+                  아이콘은 <a href="selectIconList">아이콘 샵</a>에서 구매할 수 있어요. 적용할 아이콘을 클릭하세요.
                 </div>
                   <div class="service-delNotice">
                     <div class="service-icon-radio">
                     <!-- id=아이콘 이름, value=아이콘 번호, for=아이콘 이름 -->
-                      <input type="radio" name="icon" id="icon1"  value="1" ><label for="icon1">
-                        <img src="${pageContext.request.contextPath}/images/icon/icon1.png"/>
+                    <c:forEach var="icon" items="${iconList }" varStatus="status">
+                      <input type="radio" name="iconId" id="${icon.iconName }"  value="${icon.iconId }" >
+                      <label for="${icon.iconName }">
+                        <img src="${pageContext.request.contextPath}${icon.fileName}"/>
                       </label>
-                      <input type="radio" name="icon" id="icon-A"  value="2" ><label for="icon-A">
-                        <img src="${pageContext.request.contextPath}/images/icon/icon-A.png"/>
-                      </label>
-                      <input type="radio" name="icon" id="icon-K"  value="3" ><label for="icon-K">
-                        <img src="${pageContext.request.contextPath}/images/icon/icon-K.png"/>
-                      </label>
-                      <input type="radio" name="icon" id="icon-T"  value="4" ><label for="icon-T">
-                        <img src="${pageContext.request.contextPath}/images/icon/icon-T.png"/>
-                      </label>
-                      <input type="radio" name="icon" id="icon-Y"  value="5" ><label for="icon-Y">
-                        <img src="${pageContext.request.contextPath}/images/icon/icon-Y.png"/>
-                      </label>
-
+				   </c:forEach>
                     </div>
-
                   </div>
                 </div>
                   <div class="service-submit-btn">
-                    <button type="submit" id="service-icon-none" disabled="true">적용하기</button>
+                    <button type="submit" id="service-icon-none" >적용하기</button>
                   </div>
                   </form>
                 </div>

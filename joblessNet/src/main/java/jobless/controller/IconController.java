@@ -17,15 +17,20 @@ import jobless.model.CommentVO;
 import jobless.model.IconVO;
 import jobless.model.JobAddVO;
 import jobless.model.MyIconVO;
+import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
 import jobless.service.icon.CreateIconService;
 import jobless.service.icon.IconRequest;
 import jobless.service.icon.SelectIconService;
+import jobless.service.user.GetUserService;
 import jobless.service.user.ModifyUserService;
 
 @Controller("iconController")
 public class IconController {
-
+	
+	@Autowired
+	GetUserService getUserService;
+	
 	@Autowired
 	SelectIconService selectIcon;
 	
@@ -80,13 +85,28 @@ public class IconController {
 		return mv;
 	}
 	@RequestMapping(value = "/selectMyIconList", method = RequestMethod.GET)
-	public ModelAndView selectMyIconList_GET() {
+	public ModelAndView selectMyIconList_GET(@RequestParam("userId") int userId) {
 		ModelAndView mv = new ModelAndView();
-		/*List<IconVO> iconList = selectIcon
-		
+		List<IconVO> iconList = selectIcon.selectMyIconByAll(userId);
+		System.out.println(iconList.isEmpty());
 		mv.addObject("iconList", iconList);
-		mv.setViewName("view/service/icon_shop");
-		*/
+		mv.setViewName("view/service/icon_change");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/selectMyIconChange", method = RequestMethod.POST)
+	public ModelAndView selectMyIconChange_POST(@RequestParam("iconId") int iconId, @RequestParam("userId") int userId, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		UserVO user = getUserService.getUserByUserId(userId);
+		AuthUser authUser = new AuthUser(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(),
+				user.getPoint(), user.getAdmin(), user.getPlatformId(),user.isStreamer(), user.getIconId(), user.getFileName());
+		System.out.println(user.getFileName());
+		System.out.println(user.getIconId());
+		session.setAttribute("authUser", authUser);
+		
+		modifyUser.updateIconId(iconId, userId);
+		mv.setViewName("redirect:/main");
 		return mv;
 	}
 }

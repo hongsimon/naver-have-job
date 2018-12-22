@@ -110,6 +110,7 @@
                 <a class="dropdown-toggle head-nav-top-dropdown" data-toggle="dropdown" href="#">
                   <div class="icon-size">
                     <c:choose>
+                    <c:when test="${authUser.iconId == null }">
 	                  <c:when test="${authUser.platformId == 1}">
 	                    <img src="${pageContext.request.contextPath}/images/icon/icon-A.png" alt="" class="icon-size">
 	                  </c:when>
@@ -125,6 +126,10 @@
 	                  <c:when test="${authUser.platformId == 4}">
 	                    <img src="${pageContext.request.contextPath}/images/icon/icon-K.png" alt="" class="icon-size">
 	                  </c:when>
+	                </c:when>
+	                <c:when test="${authUser.iconId != null }">
+	                	<img src="${pageContext.request.contextPath}${authUser.fileName}" alt="" class="icon-size">
+	                </c:when>
                   </c:choose>
                   </div>
 
@@ -137,7 +142,7 @@
 	                  <li><div class="emphasis ">${authUser.point }</div>포인트</li>
 	                  <li class="divider"></li>
 	                  <li><a href="${pageContext.request.contextPath}/config/favoriteList?userId=${authUser.userId}">설정</a></li>
-	                  <li><a href="">아이콘 보관함</a></li>
+	                  <li><a href="selectMyIconList?userId=${authUser.userId}">아이콘 보관함</a></li>
 	                  <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
                 </ul>
               </div>

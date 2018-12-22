@@ -222,9 +222,9 @@ public class UserVO {
 	
 	
 
-	public UserVO(int userId, int point) {
+	public UserVO(int userId, int iconId) {
 		this.userId = userId;
-		this.point = point;
+		this.iconId = iconId;
 	}
 
 	public boolean matchPassword(String pwd) {

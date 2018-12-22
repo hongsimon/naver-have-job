@@ -27,9 +27,9 @@ public class SelectIconServiceImpl implements SelectIconService {
 	}
 
 	@Override
-	public List<IconVO> SelectMyIconByAll(int userId) {
+	public List<IconVO> selectMyIconByAll(int userId) {
 		// TODO Auto-generated method stub
-		return null;
+		return iconDao.selectMyIconByAll(userId);
 	}
 
 }

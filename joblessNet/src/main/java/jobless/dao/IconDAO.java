@@ -18,5 +18,5 @@ public interface IconDAO {
 	
 	public void update(IconVO icon);
 	
-	public List<IconVO> SelectMyIconByAll(int userId);
+	public List<IconVO> selectMyIconByAll(int userId);
 }

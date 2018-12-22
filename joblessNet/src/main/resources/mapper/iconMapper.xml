@@ -30,7 +30,7 @@
 			icon 
 	</select>
 	
-	<select id="SelectMyIconByAll" parameterType="int" resultType="Icon">	
+	<select id="selectMyIconByAll" parameterType="int" resultType="Icon">	
 		select 
 			i.icon_id as iconId, 
 			filename as fileName,
@@ -38,7 +38,7 @@
 		from 
 			icon i join my_icon mi on i.icon_id = mi.icon_id
 		where 
-			user_id = #{userId}
+			mi.user_id = #{userId}
 	</select>
 	
 	<delete id="deleteIcon" parameterType="int">

@@ -71,9 +71,9 @@ public class UserDAOImplJDBC implements UserDAO {
 	}
 
 	@Override
-	public void updateIconId(int iconId, int userId) {
+	public void updateIconId(UserVO user) {
 		// TODO Auto-generated method stub
-		mapper.updateIconId(iconId, userId);
+		mapper.updateIconId(user);
 	}
 
 	@Override
