@@ -13,9 +13,10 @@ $(function(){
   
   
   
-  $(".service-icon-radio>input[name=icon]").change(function(){
+  $(".service-icon-radio>input[name=iconId]").change(function(){
 	    $(".service-submit-btn>button").attr("id","service-icon-active")
-	      $(".service-submit-btn>button").removeAttr("disabled")
+	      $(".service-submit-btn>button").removeAttr("disabled");
+	    console.log("change1")
 	  })
 
 

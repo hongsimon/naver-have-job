@@ -57,11 +57,11 @@
 				   </c:forEach>
                     </div>
                   </div>
-                </div>
                   <div class="service-submit-btn">
-                    <button type="submit" id="service-icon-none" >적용하기</button>
+                    <button type="submit" id="service-icon-none" disabled="disabled" >적용하기</button>
                   </div>
                   </form>
+                </div>
                 </div>
               </div>
             </div>

@@ -91,7 +91,7 @@ public class AccountController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public ModelAndView login_POST(@RequestParam String loginId,
 			@RequestParam String password,
-			@RequestParam("g-recaptcha-response") String recaptcha,
+			//@RequestParam("g-recaptcha-response") String recaptcha,
 			HttpSession session
 			) {
 		System.out.println("login_POST");
@@ -107,7 +107,7 @@ public class AccountController {
 			modelAndView.setViewName("view/loginPage/login-main");
 			AuthUser authUser = loginService.login(loginId, password);
 			
-			recaptchaService.recaptcha(recaptcha);
+			//recaptchaService.recaptcha(recaptcha);
 			
 			session.setAttribute("authUser", authUser);
 		}catch (SignInFailException e) {
