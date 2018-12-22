@@ -145,19 +145,6 @@
 	                          			<div class="content con-left">
 	                            			<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
 	                          			</div>
-	                          			<div class="board-comment point-color">
-	                            			<c:if test="${post.comments != null}">
-												<c:choose>
-													<c:when test="${post.comments > 999 }">
-														<div>[999+]</div>
-													</c:when>
-													<c:otherwise>
-														<div>[${post.comments }]</div>
-													</c:otherwise>
-												</c:choose>
-											</c:if>
-	
-	                          			</div>
 	                        		</div>
 								</li>
                       	</c:forEach>
@@ -175,19 +162,6 @@
 	                          			</div>
 	                          			<div class="content con-left">
 	                            			<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
-	                          			</div>
-	                          			<div class="board-comment point-color">
-	                            			<c:if test="${post.comments != null}">
-												<c:choose>
-													<c:when test="${post.comments > 999 }">
-														<div>[999+]</div>
-													</c:when>
-													<c:otherwise>
-														<div>[${post.comments }]</div>
-													</c:otherwise>
-												</c:choose>
-											</c:if>
-							
 	                          			</div>
 	                        		</div>
 								</li>

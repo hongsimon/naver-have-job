@@ -63,6 +63,7 @@ public class CommentController {
 												  @RequestParam("content") String content, 
 												  @RequestParam("userId") int userId,
 												  @RequestParam("postId") int postId,
+												  @RequestParam("boardId") int boardId,
 												  @RequestParam("categoryId") int categoryId,
 												  @RequestParam("clipId") int clipId){
 		System.out.println("insertPostComment_POST");
@@ -74,7 +75,7 @@ public class CommentController {
 		}else {
 			CommentRequest commentRequest = new CommentRequest(content, userId, postId, clipId);
 			writeComment.writePostComment(commentRequest);
-			mv.setViewName("redirect:viewPost?postId="+postId+"&categoryId="+categoryId);
+			mv.setViewName("redirect:viewPost?postId="+postId+"&categoryId="+categoryId+"&boardId="+boardId);
 		}
 		return mv;
 	}
@@ -101,6 +102,7 @@ public class CommentController {
 	public ModelAndView deleteCommentPost_GET(HttpSession session,
 										@RequestParam int commentId,
 										@RequestParam("postId") int postId,
+										@RequestParam("boardId") int boardId,
 										@RequestParam("categoryId") int categoryId){
 		System.out.println("deleteComment_GET");
 		System.out.println(postId);
@@ -113,7 +115,7 @@ public class CommentController {
 		}else {
 			AuthUser authUser = (AuthUser) session.getAttribute("authUser");
 			deleteComment.delete(commentId);
-			mv.setViewName("redirect:viewPost?postId="+postId+"&categoryId="+categoryId);
+			mv.setViewName("redirect:viewPost?postId="+postId+"&categoryId="+categoryId+"&boardId="+boardId);
 		}
 		return mv;
 	}

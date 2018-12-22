@@ -182,16 +182,19 @@
 													<img src="${pageContext.request.contextPath}${comments.fileName}" class="icon-size" />
 												</div>
 												<div class="border-comm-comments-writer">${comments.writerNickname }</div>
-												<div class="con-right border-comm-comments-writer-service">
-												<div>
-													<form method="get" action="deleteCommentPost" name="border-comm-del">
-                          								<input type="hidden" name="commentId" value=${comments.commentId }>
-                          								<input type="hidden" name="categoryId" value="${postDetail.post.categoryId }">
-                          								<input type="hidden" name="postId" value="${postDetail.post.postId }">
-                          								<button type="submit" name="button">삭제</button>
-                        							</form>
-												</div>
-												</div>
+												<c:if test="${authUser.userId == comments.userId }">
+													<div class="con-right border-comm-comments-writer-service">
+														<div>
+															<form method="get" action="deleteCommentPost" name="border-comm-del">
+		                          								<input type="hidden" name="commentId" value=${comments.commentId }>
+		                          								<input type="hidden" name="categoryId" value="${postDetail.post.categoryId }">
+		                          								<input type="hidden" name="postId" value="${postDetail.post.postId }">
+		                          								<input type="hidden" name="boardId" value="${postDetail.post.boardId }">
+		                          								<button type="submit" name="button">삭제</button>
+		                        							</form>
+														</div>
+													</div>
+												</c:if>
 											</div>
 											<div class="border-comm-comments-contents">${comments.content }</div>
 										</li>
