@@ -21,8 +21,10 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/service.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
   <meta charset="utf-8" />
   <title>백수넷</title>
+    <%@include file="../share-nav/nav-header.jsp"%>
 
 </head>
 
@@ -31,6 +33,7 @@
   <!-- 우측 메인 메뉴바 -->
   <div class="container margin-nav">
     <div class="row right-nav-bar">
+    <%@include file="../share-nav/nav-service.jsp"%>
 
       <!-- 게시판 메뉴 -->
       <div class="col-xs-10">
@@ -66,8 +69,10 @@
           </div>
 
         </div>
-      </div>
-         <%@include file="../share-nav/controller.jsp"%>
+     <%@include file="../share-nav/nav-bottom.jsp"%>
+        </div>
+        
+        <%@include file="../share-nav/controller.jsp"%>
 </body>
 
 </html>

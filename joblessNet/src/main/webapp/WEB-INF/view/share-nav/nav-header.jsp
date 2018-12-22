@@ -56,7 +56,7 @@
             
             <!-- 로그인 -->  
               <c:if test="${!empty authUser }">
-              <li><a href="">아이콘샵</a></li>
+              <li><a href="selectIconList">아이콘샵</a></li>
               </c:if>
               
             </ul>
@@ -98,7 +98,6 @@
                 <ul class="dropdown-menu col-xs-12" role="menu" aria-labelledby="dropdownMenu">
                   <li><a href="${pageContext.request.contextPath}/addJobConfig">전광판 관리</a></li>
                   <li><a href="${pageContext.request.contextPath}/adminApplyPage">요청 관리</a></li>
-                  <li><a href="">신고 관리</a></li>
                   <li class="divider"></li>
                   <li><a href="">공지사항</a></li>
                   <li><a href="">이벤트</a></li>  
@@ -142,7 +141,7 @@
 	                  <li><div class="emphasis ">${authUser.point }</div>포인트</li>
 	                  <li class="divider"></li>
 	                  <li><a href="${pageContext.request.contextPath}/config/favoriteList?userId=${authUser.userId}">설정</a></li>
-	                  <li><a href="selectMyIconList?userId=${authUser.userId}">아이콘 보관함</a></li>
+	                  <li><a href="${pageContext.request.contextPath}/selectMyIconList?userId=${authUser.userId}">아이콘 보관함</a></li>
 	                  <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
                 </ul>
               </div>

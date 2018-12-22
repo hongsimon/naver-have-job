@@ -5,10 +5,15 @@
 
 <head>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/shareJs.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/changeProfile.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/hangul.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
+  
 
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
@@ -16,8 +21,11 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customC.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/service.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/User_service.css">
   <meta charset="utf-8" />
   <title>백수넷</title>
+    <%@include file="../share-nav/nav-header.jsp"%>
+  
 
 </head>
 
@@ -26,6 +34,7 @@
   <!-- 우측 메인 메뉴바 -->
   <div class="container margin-nav">
     <div class="row right-nav-bar">
+     <%@include file="../share-nav/nav-service.jsp"%>
 
       <!-- 게시판 메뉴 -->
       <div class="col-xs-10">
@@ -55,7 +64,10 @@
           </div>
 
         </div>
-      </div>
+       <%@include file="../share-nav/nav-bottom.jsp"%>
+        </div>
+        
+        <%@include file="../share-nav/controller.jsp"%>
 </body>
 
 </html>
