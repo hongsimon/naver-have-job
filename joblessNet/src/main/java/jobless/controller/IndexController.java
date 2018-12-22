@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import jobless.dao.condition.Condition;
+import jobless.dao.condition.Order;
 import jobless.model.ClipDetailVO;
 import jobless.model.JobAddVO;
 import jobless.model.PostDetailVO;
@@ -41,11 +42,18 @@ public class IndexController {
 	
 		
 		Condition condition = new Condition();
+		Order order = new Order();
+		order.setLikes(true);
+		condition.setOrder(order);
 		
 		List<PostDetailVO> postList = readPost.readDetailPostList(1, condition);
 		List<ClipDetailVO> clipList = readClip.readClipDetailList(condition);
 		mv.addObject("clipDetailList", clipList);
 		mv.addObject("postDetailList", postList);
+		
+		for(PostDetailVO posts : postList) {
+			System.out.println(posts.toString());
+		}
 		
 		mv.addObject("add", add);
 		

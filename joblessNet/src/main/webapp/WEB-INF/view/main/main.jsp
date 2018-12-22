@@ -43,7 +43,7 @@
                 <!-- 커뮤니티 인기글 -->
                 <div class="col-xs-6 ">
                   <div class="margin-title">
-                    <a href="#" class="not-working-a">
+                    <a href="viewPostList?boardId=1&likeN=1" class="not-working-a">
                       <p class="title-text-big display-in title-text">커뮤니티 인기글</p>
                       <span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
                     </a>
@@ -54,7 +54,7 @@
                     <ul class="best-content-border border_size">
 
                       <!-- 수정파트  -->
-                      		<c:forEach var="post" items="${postDetailList }">
+                      		<c:forEach var="post" items="${postDetailList }" begin="0" end="9" >
                       			<li>
 	                        		<div>
 	                          			<div class="board-name con-left">

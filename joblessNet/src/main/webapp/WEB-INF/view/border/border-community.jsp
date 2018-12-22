@@ -112,7 +112,7 @@
 								<div class="col-xs-12">
 									<div class="service display-in border-community-service">
 										<div class="popularW con-left">
-											<a><span class="glyphicon glyphicon-star-empty"></span>인기글</a>
+											<a href="viewPostList?boardId=1&likeN=1"><span class="glyphicon glyphicon-star-empty"></span>인기글</a>
 										</div>
 
 										<div class="comm-write con-right">
@@ -126,18 +126,18 @@
 								<ul class="pagination">
 									<c:if test="${pageMaker.prev }">
 										<li class="page-item"><a
-											href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page-1}"><span
+											href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page-1}&likeN=${likeN }"><span
 												class="glyphicon glyphicon-menu-left"></span></a></li>
 									</c:if>
 									<c:forEach begin="${pageMaker.startPage}"
 										end="${pageMaker.endPage }" var="index">
 										<li class="page-item"><a
-											href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}"
+											href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${index}&likeN=${likeN }"
 											class="page-link">${index }</a></li>
 									</c:forEach>
 									<c:if test="${pageMaker.next}">
 										<li class="page-item"><a
-											href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}"
+											href="viewPostList?sortby=${param.sortby }&term=${param.term}&search=${param.search}&id=${param.id}&page=${param.page+1}&likeN=${likeN }"
 											class="page-link"><span
 												class="glyphicon glyphicon-menu-right"></span></a></li>
 									</c:if>

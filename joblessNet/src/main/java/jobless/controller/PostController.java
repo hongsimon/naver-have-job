@@ -158,6 +158,7 @@ public class PostController {
 			mv.addObject("pageMaker", pageMaker); // 페이징 페이지 개수
 			mv.addObject("boardCategory", boardCategoryList); // 카테고리 한것
 			mv.addObject("boardIdNumber", boardId);
+			mv.addObject("likeN", likeN);
 			mv.setViewName("view/border/border-community");
 		}
 		
