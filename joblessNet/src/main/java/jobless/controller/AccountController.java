@@ -26,6 +26,7 @@ import jobless.exception.UserNotDeleteException;
 import jobless.exception.UserNotFoundException;
 import jobless.exception.UserRequestNullException;
 import jobless.model.ClipVO;
+import jobless.model.JobAddVO;
 import jobless.model.PostVO;
 import jobless.model.UserVO;
 import jobless.service.authuser.AuthUser;
@@ -33,6 +34,7 @@ import jobless.service.authuser.LoginService;
 import jobless.service.authuser.LogoutService;
 import jobless.service.clip.ReadClipService;
 import jobless.service.email.EmailSendService;
+import jobless.service.jobadd.JobAddService;
 import jobless.service.post.ReadPostService;
 import jobless.service.recaptcha.RecaptchaService;
 import jobless.service.user.DeleteUserService;
@@ -78,6 +80,9 @@ public class AccountController {
 	
 	@Autowired
 	RecaptchaService recaptchaService;
+	
+	@Autowired
+	JobAddService jobAddService;
 	
 	//로그인 페이지
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -264,6 +269,8 @@ public class AccountController {
 		System.out.println("configFavoriteList_GET");
 		List<PostVO> postList = readPost.readPostByUserId(userId);
 		mv.addObject("postList", postList);
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		mv.setViewName("view/service/write-comm");
 		return mv;
 	}
@@ -274,6 +281,8 @@ public class AccountController {
 		System.out.println("configFavoriteList_GET");
 		List<ClipVO> clipList = readClip.readClipByUserId(userId);
 		mv.addObject("clipList", clipList);
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		mv.setViewName("view/service/write-clip");
 		return mv;
 	}
@@ -281,9 +290,15 @@ public class AccountController {
 	
 	//회원탈퇴
 	@RequestMapping(value="/config/userDel", method=RequestMethod.GET)
-	public String configUserDel_GET() {
+	public ModelAndView configUserDel_GET() {
 		System.out.println("configUserDel_GET");
-		return "view/service/userDel";
+		
+		ModelAndView mv = new ModelAndView();
+		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
+		mv.setViewName("view/service/userDel");
+		return mv;
 	}
 	
 	@RequestMapping(value="/config/userDel", method=RequestMethod.POST)

@@ -337,3 +337,20 @@
   display: inline-block;
   padding-right: 10px;
 }
+
+.border-comment-box{
+	width:823px;
+}
+
+.border-comment-submit{
+	margin-left:-5px;
+	padding:13px;
+	border-radius:0px 5px 5px 0px;
+	border:none;
+	background-color:#287A72;
+	color:#fff;
+}
+
+.border-comment-input{
+	margin-bottom:10px;
+}

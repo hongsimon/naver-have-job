@@ -63,6 +63,17 @@
 	 	    });
 	 	}
   	</script>
+  	
+	<script type="text/javascript">
+	if(${!empty errors.NotMoreLike}){
+		var link = "viewPost?postId=";
+			link += "${clip_or_postId}";
+			link += "&boardId="
+			link += "${boardId }"
+		alert("추천은 한번만 가능합니다.");
+		location.href=link	;
+	}
+  	</script>
 <title>백수넷</title>
 <%@include file="../share-nav/nav-header.jsp"%>
 </head>
@@ -113,6 +124,7 @@
 								<form action="postLike" method="POST">
 									<input type="hidden" name="userId" value="${authUser.userId }">
 									<input type="hidden" name="clip_or_postId" value="${postDetail.post.postId }">
+									<input type="hidden" name="boardId" value="${postDetail.post.boardId }">
 									<button type="submit"><span class="glyphicon glyphicon-thumbs-up"></span>추천</button>
 								</form>
 							</div>
@@ -139,7 +151,7 @@
 						<c:if test="${boardCategory.categoryName ne '이벤트'}">
 							<c:if test="${!empty authUser.userId }">
 								<div class="border-comm-comments">
-									<div class="hotclip-comment-input">
+									<div class="hotclip-comment-input border-comment-input">
 			                      		<div class="clip-icon">
 			                      			<img />
 			                      		</div>
@@ -150,8 +162,8 @@
                           						<input type="hidden" name="postId" value="${postDetail.post.postId }">
                           						<input type="hidden" name="userId" value="${authUser.userId }">
                           						<input type="hidden" name="boardId" value="${postDetail.post.boardId }">
-                          						<input type="text" name="content" placeholder="댓글을 입력하세요..." id="hotclip-comment-input" class="clip-comment-box">
-                          						<button type="submit" name="button"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
+                          						<input type="text" name="content" placeholder="댓글을 입력하세요..." id="hotclip-comment-input" class="clip-comment-box border-comment-box">
+                          						<button type="submit" name="button" class="border-comment-submit"><span class="glyphicon glyphicon-pencil" class="clip-comment-submit"></span>작성</button>
                         					</form>
 			                      		</div>
 			                    	</div>

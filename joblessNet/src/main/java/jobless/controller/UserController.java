@@ -82,9 +82,16 @@ public class UserController {
 
 	// 회원정보수정
 	@RequestMapping(value = "/config/changeProfile", method = RequestMethod.GET)
-	public String configChangeProfile_GET() {
+	public ModelAndView configChangeProfile_GET() {
 		System.out.println("configChangeProfile_GET");
-		return "view/service/changeProfile";
+		
+		ModelAndView mv = new ModelAndView();
+		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
+		mv.setViewName("view/service/changeProfile");
+		
+		return mv;
 	}
 
 	@RequestMapping(value = "/config/changeProfile", method = RequestMethod.POST)

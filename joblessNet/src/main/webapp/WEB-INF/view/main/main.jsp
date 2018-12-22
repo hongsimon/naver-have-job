@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/change_comm.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/borderJs.js"></script>
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
@@ -155,9 +156,7 @@
 													</c:otherwise>
 												</c:choose>
 											</c:if>
-											<c:if test="${post.comments == null}">
-												<div>[0]</div>
-											</c:if>
+	
 	                          			</div>
 	                        		</div>
 								</li>
@@ -188,9 +187,7 @@
 													</c:otherwise>
 												</c:choose>
 											</c:if>
-											<c:if test="${post.comments == null}">
-												<div>[0]</div>
-											</c:if>
+							
 	                          			</div>
 	                        		</div>
 								</li>

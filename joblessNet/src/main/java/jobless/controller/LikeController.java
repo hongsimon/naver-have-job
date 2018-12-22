@@ -36,14 +36,14 @@ public class LikeController {
 
 		
 		try {
-			modelAndView.addObject("errors", errors);
-			modelAndView.addObject("clip_or_postId", clip_or_postId);
 			selectLikeService.selectLikeClip(new LikeVO(userId, clip_or_postId));
 			
 			insertLikeService.insertLikeClip(new LikeVO(userId, clip_or_postId));
 		}catch (NotMoreLikeException e) {
 			errors.put("NotMoreLike", true);
 			e.getMessage();
+			modelAndView.addObject("errors", errors);
+			modelAndView.addObject("clip_or_postId", clip_or_postId);
 			modelAndView.setViewName("view/view/border-hotClip-view");
 			return modelAndView;
 		}
@@ -54,6 +54,7 @@ public class LikeController {
 	@RequestMapping(value="/postLike", method=RequestMethod.POST)
 	public ModelAndView PostLike_POST(
 								@RequestParam int userId,
+								@RequestParam int boardId,
 								@RequestParam int clip_or_postId
 							   ) {
 		
@@ -63,18 +64,20 @@ public class LikeController {
 		
 		try {
 			modelAndView.addObject("errors", errors);
-			modelAndView.addObject("clip_or_postId", clip_or_postId);
 			selectLikeService.selectLikePost(new LikeVO(userId, clip_or_postId));
 			
 			insertLikeService.insertPostClip(new LikeVO(userId, clip_or_postId));
 		}catch (NotMoreLikeException e) {
 			errors.put("NotMoreLike", true);
 			e.getMessage();
+			modelAndView.addObject("clip_or_postId", clip_or_postId);
+			modelAndView.addObject("userId", userId);
+			modelAndView.addObject("boardId", boardId);
 			modelAndView.setViewName("view/view/border-community-view");
 			System.out.println("더이상 추천할수 없다!!");
 			return modelAndView;
 		}
-		modelAndView.setViewName("redirect:/viewPost?postId="+clip_or_postId);
+		modelAndView.setViewName("redirect:/viewPost?postId="+clip_or_postId+"&boardId="+boardId);
 		return modelAndView;
 	}
 	

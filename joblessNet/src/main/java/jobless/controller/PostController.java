@@ -25,6 +25,7 @@ import jobless.model.BoardCategoryVO;
 import jobless.model.CommentVO;
 import jobless.model.ContentVO;
 import jobless.model.CriteriaVO;
+import jobless.model.JobAddVO;
 import jobless.model.PageMakerVO;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
@@ -32,6 +33,7 @@ import jobless.service.board.ReadBoardService;
 import jobless.service.board.SelectBoardCategoryService;
 import jobless.service.comment.ReadCommentService;
 import jobless.service.comment.WriteCommentService;
+import jobless.service.jobadd.JobAddService;
 import jobless.service.post.DeletePostService;
 import jobless.service.post.ModifyPostService;
 import jobless.service.post.PostRequest;
@@ -64,6 +66,9 @@ public class PostController {
 	
 	@Autowired
 	SelectBoardCategoryService readBoardCategory;
+	
+	@Autowired
+	JobAddService jobAddService;
 	
 	// 완전 성공
 	@RequestMapping(value="/viewPostList", method=RequestMethod.GET)
@@ -171,6 +176,9 @@ public class PostController {
 			mv.setViewName("view/border/border-community");
 		}
 		
+		
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		System.out.println("정상 작동");
 		return mv;
 	}
@@ -283,6 +291,8 @@ public class PostController {
 		mv.addObject("pageMaker", pageMaker); // 페이징 페이지 개수
 		mv.addObject("boardCategory", boardCategory);
 		mv.addObject("boardCategoryList", boardCategoryList);
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		mv.setViewName("view/view/border-community-view");
 		return mv;
 	}
@@ -314,6 +324,8 @@ public class PostController {
 			mv.addObject("postReq", postReq);
 			mv.addObject("boardCategoryList",boardCategoryList);
 			mv.setViewName("view/write/border-community-write");
+			List<JobAddVO> add = jobAddService.selectAllAdd();
+			mv.addObject("add", add);
 			System.out.println("성공");
 		}
 		return mv;
@@ -369,6 +381,8 @@ public class PostController {
 			System.out.println("삭제 성공");
 			mv = controllerViewPostList_GET(boardId, 0, null, 0); // deletePost라는 페이지로 가서 postList로 이동하는 버튼 만들예정
 		}
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 	
@@ -396,6 +410,8 @@ public class PostController {
 			mv.addObject("boardCategoryList",boardCategoryList);
 			mv.setViewName("view/write/border-community-write");
 		}
+		List<JobAddVO> add = jobAddService.selectAllAdd();
+		mv.addObject("add", add);
 		return mv;
 	}
 	
