@@ -34,7 +34,7 @@
               </div>
              
             </div>
-            <div class="box">
+            <!-- <div class="box">
               <div class="left-nav-sub">
                 <a href="#"><div>
                   P
@@ -52,7 +52,7 @@
                   Q
                 </div>Q&A</a>
               </div>
-            </div>
+            </div> -->
             <div>
 
             </div class="box">

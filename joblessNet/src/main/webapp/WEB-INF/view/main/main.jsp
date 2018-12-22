@@ -90,40 +90,29 @@
                 <div class="col-xs-6 ">
                   <div class="margin-title">
                     <a href="#" class="not-working-a">
-                      <p class="title-text-big display-in title-text">Q&A </p>
+                      <p class="title-text-big display-in title-text">전체글 </p>
                       <span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
                     </a>
                   </div>
                   <div class="q-and-a border-padding">
                     <!-- 이곳을 수정하세용 -->
-                    <ul class="q-and-a-border border_size">
-                      <li>
-                        <div>
-                          <div class="content con-left">
-                            <a href="#" class="content-in">0000000000/0000000000/0000000000/0000000000</a>
-                          </div>
-                          <div class="board-comment point-color">
-                            [48]
-                          </div>
-                          <div class="writer">
-                            <a class="writer-in">가나다라마바사아자</a>
-                          </div>
-                        </div>
-                      </li>
+                   	<ul class="best-content-border border_size">
 
-                      <li>
-                        <div>
-                          <div class="content con-left">
-                            <a href="#">앙</a>
-                          </div>
-                          <div class="board-comment point-color">
-                            [48]
-                          </div>
-                          <div class="writer">
-                            <a class="writer-in">8자까지 들어감</a>
-                          </div>
-                        </div>
-                      </li>
+                      <!-- 수정파트  -->
+                      		
+                      			<li>
+			                        <div>
+			                          <div class="board-name con-left">
+			                            <a href="#" class="not-working-a point-color">IT/컴퓨터</a>
+			                          </div>
+			                          <div class="content con-left">
+			                            <a href="test" class="content-in">123456789123456789123456789123456789123456789</a>
+			                          </div>
+			                          <div class="board-comment point-color">
+			                            [18]
+			                          </div>
+			                        </div>
+			                      </li>
 
                     </ul>
                   </div>
@@ -145,9 +134,6 @@
                             <div class="content">
                               <a href="#" class="content-in">0000000000/0000000000/0000000000/0000000000/0000000000/0000000000/</a>
                             </div>
-                            <div class="board-comment">
-                              [00]
-                            </div>
                           </div>
                         </li>
 
@@ -158,9 +144,6 @@
                             </div>
                             <div class="content">
                               <a href="#"  class="content-in">%#&*!%@^&*)$^!@#^@!(*$%!@^#*)@!&$(*@!^#@!*#%@!&$%!@#$&(@!)^#*(@!&%))</a>
-                            </div>
-                            <div class="board-comment">
-                              [00]
                             </div>
                           </div>
                         </li>
@@ -179,10 +162,7 @@
                             </div>
                             <div class="content">
                               <a href="#" class="content-in">가가가가가가가가가가/가가가가가가가가가가/가가가가가가가가가가/가가가가가가가가가가/</a>
-                            </div>
-                            <div class="board-comment">
-                              [00]
-                            </div>
+                            </div> 
                           </div>
                         </li>
 
@@ -193,9 +173,6 @@
                             </div>
                             <div class="content">
                               <a href="#"  class="content-in">dfiodgh;sdfoiyhsoifyhsdpiwyi8ftgsdaifgsadkuyfgukawsg</a>
-                            </div>
-                            <div class="board-comment">
-                              [00]
                             </div>
                           </div>
                         </li>
@@ -247,82 +224,6 @@
                   </div>
                 </div>
               </div>
-
-              <!-- 놀러와요/함께 일해요-->
-              <div class="row margin-container">
-                <!-- 놀러와요 -->
-                <div class="col-xs-6 ">
-                  <div>
-                    <a href="#" class="not-working-a">
-                      <p class="title-text-big display-in title-text">놀러와요 </p>
-                      <span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
-                    </a>
-                    <div class="play border-padding">
-                      <ul class="play-border border_size">
-                        <li>
-                          <div>
-                            <div class="content con-left">
-                              <a href="#" class="content-in">0000000000/0000000000/0000000000/0000000000</a>
-                            </div>
-                            <div class="board-comment point-color">
-                              [48]
-                            </div>
-                            <div class="writer">
-                              <a class="writer-in">가나다라마바사아자</a>
-                            </div>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div>
-                            <div class="content con-left">
-                              <a href="#">앙</a>
-                            </div>
-                            <div class="board-comment point-color">
-                              [48]
-                            </div>
-                            <div class="writer">
-                              <a class="writer-in">8자까지 들어감</a>
-                            </div>
-                          </div>
-                        </li>
-
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <!-- 함께 일해요 -->
-                <div class="col-xs-6 ">
-                  <div>
-                    <a href="#" class="not-working-a">
-                      <p class="title-text-big display-in title-text">함께일해요 </p>
-                      <span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
-                    </a>
-                    <div class="working border-padding">
-                      <ul class="working-border border_size">
-                        <li>
-                          <div>
-                            <div class="content con-left">
-                              <a href="#" class="content-in">0000000000/0000000000/0000000000/0000000000</a>
-                            </div>
-                            <div class="board-comment point-color">
-                              [48]
-                            </div>
-                            <div class="writer">
-                              <a class="writer-in">가나다라마바사아자</a>
-                            </div>
-                          </div>
-                        </li>
-
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
 
 
             </div>
