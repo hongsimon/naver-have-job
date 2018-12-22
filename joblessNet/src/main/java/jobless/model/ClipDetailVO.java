@@ -10,6 +10,7 @@ public class ClipDetailVO {
 	private int likes;
 	private int comments;
 	private int platformId;
+	private String fileName;
 	
 	public ClipVO getClip() {
 		return clip;
@@ -57,6 +58,14 @@ public class ClipDetailVO {
 
 	public void setComments(int comments) {
 		this.comments = comments;
+	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	@Override

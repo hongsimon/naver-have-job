@@ -154,7 +154,7 @@
 								<div class="border-comm-comments">
 									<div class="hotclip-comment-input border-comment-input">
 			                      		<div class="clip-icon">
-			                      			<img />
+			                      			<img src="${pageContext.request.contextPath}${authUser.fileName}" alt="" class="icon-size">
 			                      		</div>
 			                      		<div class="">
 			                        		<form method="post" action="insertPostComment" name="border-comm-content">
@@ -179,7 +179,7 @@
 										<li>
 											<div class="border-comm-comments-info">
 												<div class="border-comm-comments-icon">
-													<img />
+													<img src="${pageContext.request.contextPath}${comments.fileName}" class="icon-size" />
 												</div>
 												<div class="border-comm-comments-writer">${comments.writerNickname }</div>
 												<div class="con-right border-comm-comments-writer-service">

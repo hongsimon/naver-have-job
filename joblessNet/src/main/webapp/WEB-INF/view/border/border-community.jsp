@@ -98,7 +98,7 @@
 													</div> <!-- 작성자 -->
 													<div class="border-comm-writer con-right">
 														<div>
-															<img src="" /><a>${post.user.nickName}</a>
+															<img src="${pageContext.request.contextPath}${post.user.fileName}" /><a>${post.user.nickName}</a>
 														</div>
 													</div>
 												</li>

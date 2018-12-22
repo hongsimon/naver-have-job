@@ -40,8 +40,12 @@
   			post_id postId, 
   			clip_id clipId,
   			u.nickname writerNickname,
-  			u.platform_id platformId
-  		from comment cm join user u on cm.user_id = u.user_id
+  			u.platform_id platformId,
+  			u.icon_id iconId,
+			(select filename from icon where icon_id = u.icon_id) as fileName
+  		from 
+  			comment cm join user u on cm.user_id = u.user_id
+  			
   		where clip_id = #{clipId}
   	</select>
   	<select id="selectCommentByPostId" parameterType="int" resultType="Comment">
@@ -52,8 +56,11 @@
   			post_id postId, 
   			clip_id clipId, 
   			u.nickname writerNickname,
-  			u.platform_id platformId
-  		from comment cm join user u on cm.user_id = u.user_id
+  			u.platform_id platformId,
+  			u.icon_id iconId,
+			(select filename from icon where icon_id = u.icon_id) as fileName
+  		from 
+  			comment cm join user u on cm.user_id = u.user_id
   		where post_id = #{postId}
   	</select>
   	<select id="selectCommentByUserId" parameterType="int" resultType="Comment">

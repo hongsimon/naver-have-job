@@ -70,16 +70,15 @@ public class IconController {
 		
 		int havePoint = user.getPoint();
 		
-		int updatePoint;
-		
 		if(havePoint >= 500) {
 			System.out.println(havePoint);
 			createIcon.insertMyIcon(iconId, userId);
 			modifyUser.updatePoint(userId);
 			//modifyUser.updateIconId(iconId, userId);
-			mv.setViewName("view/main/main");
+			mv.setViewName("redirect:/selectMyIconList?userId="+userId);
+			
 		}else {
-			mv.setViewName("view/main/main");
+			mv.setViewName("redirect:/main");
 		}
 		
 		return mv;

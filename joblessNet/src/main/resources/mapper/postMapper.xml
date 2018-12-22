@@ -255,7 +255,9 @@
 			nickname,
 			content,
     		(select count(post_id) from taku.like where post_id = p.post_id) likes,
-    		(select count(post_id) from taku.comment where post_id = p.post_id) comments
+    		(select count(post_id) from taku.comment where post_id = p.post_id) comments,
+    		u.icon_id iconId,
+			(select filename from icon where icon_id = u.icon_id) as fileName
 		from
 			post p
     		join user u on p.user_id = u.user_id

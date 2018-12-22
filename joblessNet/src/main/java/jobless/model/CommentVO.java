@@ -11,7 +11,18 @@ public class CommentVO {
 	private int clipId;
 	private String writerNickname;
 	private int platformId;
+	private String fileName;
 	
+	
+	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	public String getWriterNickname() {
 		return writerNickname;
 	}
@@ -38,6 +49,14 @@ public class CommentVO {
 		this.clipId = clipId;
 	}
 	
+	public CommentVO(int commentId, String content, int userId, int postId, int clipId, String fileName) {
+		this.commentId = commentId;
+		this.content = content;
+		this.userId = userId;
+		this.postId = postId;
+		this.clipId = clipId;
+		this.fileName = fileName;
+	}
 	
 	public int getPlatformId() {
 		return platformId;
