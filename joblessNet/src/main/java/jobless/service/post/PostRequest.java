@@ -15,6 +15,8 @@ public class PostRequest {
 	private int views;
 	private int writerId;
 	private int categoryId;
+	private String boardName;
+	private String categoryName;
 	
 	
 	public PostRequest() {}
@@ -60,6 +62,26 @@ public class PostRequest {
 		this.categoryId = categoryId;
 	}
 	
+	public String getBoardName() {
+		return boardName;
+	}
+
+
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
+	}
+
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+
 	public PostVO getPostVO() {
 		return new PostVO(postId, title, writeDate, contentId, boardId, views, writerId, categoryId);
 	}

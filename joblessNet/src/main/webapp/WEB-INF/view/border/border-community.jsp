@@ -42,7 +42,9 @@
 				<div class="row margin-container">
 					<div class="col-xs-12">
 						<div class="border-community">
-							<div class="border-title-hr">커뮤니티</div>
+							<div class="border-title-hr">
+								${boardChoose.boardName } - ${boardChoose.categoryName }
+							</div>
 							<div class="border-comm-favorites">
 							
 							</div>
@@ -143,23 +145,6 @@
 									</c:if>
 								</ul>
 							</div>
-
-							<div class="search_box">
-								<form>
-									<select name="borderName" class="borderSelect">
-										<option value="title">제목</option>
-										<option value="title_contents">제목+내용</option>
-										<option value="nickname">닉네임</option>
-									</select> <input type="text" placeholder="검색어" />
-									<button type="submit">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-								</form>
-							</div>
-
-
-
-
 						</div>
 					</div>
 				</div>

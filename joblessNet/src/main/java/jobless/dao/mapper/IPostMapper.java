@@ -15,6 +15,7 @@ public interface IPostMapper {
 	void deletePost(int id);
 	PostVO selectPostById(int id);
 	PostDetailVO selectPostDetail(int id);
+	PostDetailVO selectPostDetailByBoardIdAndCategoryId(PostDetailVO postDetail);
 	List<PostVO> selectPostList();
 	List<PostVO> selectPostOwnList(int id);
 	List<PostVO> selectPostByBoardId(int id);
@@ -23,7 +24,6 @@ public interface IPostMapper {
 	List<PostDetailVO> selectPostDetailByBoardId(int boardId);
 	List<PostDetailVO> selectPostDetailByCategoryId(int categoryId);
 	List<PostDetailVO> selectPostDetailCountLikeList(PostVO post);
-	List<PostDetailVO> selectPostDetailByBoardIdAndCategoryId(PostDetailVO postDetail);
 	List<PostDetailVO> selectDetailPostList(Map<String, Object> map);
 	int selectLastInsertId();
 	int selectPostCount(PostVO post);

@@ -79,6 +79,7 @@ public class PostController {
 		
 		List<BoardCategoryVO> boardCategoryList;		
 		List<PostDetailVO> postList;
+		PostRequest boardChoose;
 		
 		PostVO post;
 		PostDetailVO postDetail;
@@ -105,7 +106,7 @@ public class PostController {
 			page = Integer.parseInt(pageStr);
 		}
 		
-		postPerPage = 5;
+		postPerPage = 25;
 		
 		cri = new CriteriaVO();
 		cri.setPage(page);
@@ -147,9 +148,16 @@ public class PostController {
 		
 		postList = readPost.readDetailPostList(boardId, condition); // 해당 보드에 맞는 모든 post를 가져옴
 		
-		for(PostDetailVO posts : postList) {
-			System.out.println(posts.toString());
-		}
+		PostRequest postReq = new PostRequest();
+		postReq.setBoardId(boardId);
+		postReq.setCategoryId(categoryId);
+		
+		boardChoose = readPost.readNames(postReq);
+		
+		System.out.println(boardChoose.toString());
+//		for(PostDetailVO posts : postList) {
+//			System.out.println(posts.toString());
+//		}
 		
 		if(postList == null) {
 			mv.setViewName("view/error/500");
@@ -159,6 +167,7 @@ public class PostController {
 			mv.addObject("boardCategory", boardCategoryList); // 카테고리 한것
 			mv.addObject("boardIdNumber", boardId);
 			mv.addObject("likeN", likeN);
+			mv.addObject("boardChoose", boardChoose);
 			mv.setViewName("view/border/border-community");
 		}
 		

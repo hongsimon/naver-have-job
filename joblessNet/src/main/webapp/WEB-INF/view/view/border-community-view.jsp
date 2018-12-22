@@ -208,27 +208,40 @@
 								<ul>
 									<c:forEach var="post" items="${postList}" varStatus="status">
 										<li>
-											<!-- 추천수/공지/인기 -->
-											<div class="border-comm-recomm ">
-												<div>${post.post.postId }</div>
-											</div> <!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
-											<div class="border-comm-name ">
-												<a>${post.boardCategory.categoryName }</a>
-											</div> <!-- 제목 -->
-											<div class="border-comm-title ">
-												<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
-											</div> <!-- 작성일 -->
-											<div class="border-comm-day con-right">
-												<fmt:parseDate var="parseWdate" value="${post.post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
-				 								<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
-				 								${wdate }
-											</div> <!-- 작성자 -->
-											<div class="border-comm-writer con-right">
-												<div>
-													<img src="" /><a>${post.user.nickName}</a>
-												</div>
-											</div>
-										</li>
+													<!-- 추천수/공지/인기 -->
+													<div class="border-comm-recomm ">
+														<c:if test="${post.comments != null}">
+															<c:choose>
+																<c:when test="${post.comments > 999 }">
+																	<div>999+</div>
+																</c:when>
+																<c:otherwise>
+																	<div>${post.comments }</div>
+																</c:otherwise>
+															</c:choose>
+														</c:if>
+														<c:if test="${post.comments == null}">
+															<div>0</div>
+														</c:if>
+													</div> 
+													<!-- 현제 페이지가 전체 커뮤니티일때만 출력 -->
+													<div class="border-comm-name ">
+														<a>${post.boardCategory.categoryName }</a>
+													</div> <!-- 제목 -->
+													<div class="border-comm-title ">
+														<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
+													</div> <!-- 작성일 -->
+													<div class="border-comm-day con-right">
+														<fmt:parseDate var="parseWdate" value="${post.post.writeDate }" pattern="yyyy-MM-dd'T'HH:mm"></fmt:parseDate>
+				 										<fmt:formatDate var="wdate" value="${parseWdate }" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
+				 										${wdate }
+													</div> <!-- 작성자 -->
+													<div class="border-comm-writer con-right">
+														<div>
+															<img src="" /><a>${post.user.nickName}</a>
+														</div>
+													</div>
+												</li>
 									</c:forEach>
 								</ul>
 
@@ -274,21 +287,6 @@
 							</c:if>
 						</ul>
 					</div>
-
-					<div class="search_box">
-						<form>
-							<select name="borderName" class="borderSelect">
-								<option value="title">제목</option>
-								<option value="title_contents">제목+내용</option>
-								<option value="nickname">닉네임</option>
-							</select> <input type="text" placeholder="검색어" />
-							<button type="submit">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</form>
-					</div>
-
-
 				</div>
 			</div>
 		</div>

@@ -22,7 +22,7 @@ public interface PostDAO {
 	public List<PostDetailVO> readDetailBoard(int boardId);
 	public List<PostDetailVO> readDetailCategory(int categoryId);
 	public List<PostDetailVO> readPostDetailCountLikeList(PostVO post);
-	public List<PostDetailVO> readDetailBoardAndCategory(PostDetailVO postDetail);
+	public PostDetailVO readDetailBoardAndCategory(PostDetailVO postDetail);
 	public List<PostDetailVO> readDetailList(int boardId, Condition condition);
 	public int readLastInsertId();
 	public int readPostTotalCount(PostVO post);

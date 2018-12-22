@@ -100,7 +100,7 @@ public class PostDAOimplJDBC implements PostDAO {
 	}
 	
 	@Override
-	public List<PostDetailVO> readDetailBoardAndCategory(PostDetailVO postDetail) {
+	public PostDetailVO readDetailBoardAndCategory(PostDetailVO postDetail) {
 		return postMapper.selectPostDetailByBoardIdAndCategoryId(postDetail);
 	}
 	

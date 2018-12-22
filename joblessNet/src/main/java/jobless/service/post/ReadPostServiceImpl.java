@@ -5,10 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import jobless.dao.BoardCategoryDAO;
+import jobless.dao.BoardDAO;
 import jobless.dao.ContentDAO;
 import jobless.dao.PostDAO;
 import jobless.dao.condition.Condition;
 import jobless.exception.ReadPostException;
+import jobless.model.BoardCategoryVO;
+import jobless.model.BoardVO;
 import jobless.model.ContentVO;
 import jobless.model.PostDetailVO;
 import jobless.model.PostVO;
@@ -18,6 +22,12 @@ public class ReadPostServiceImpl implements ReadPostService{
 
 	@Autowired
 	PostDAO postdao;
+	
+	@Autowired
+	BoardDAO boarddao;
+	
+	@Autowired
+	BoardCategoryDAO bcDao;
 	
 	@Autowired
 	ContentDAO contentdao;
@@ -35,6 +45,30 @@ public class ReadPostServiceImpl implements ReadPostService{
 			throw new ReadPostException("post를 읽어오는데 실패하였습니다.");
 		}
 		return post;
+	}
+	
+	@Override
+	public PostRequest readNames(PostRequest postReq) {
+		PostRequest postReqs = new PostRequest();
+		
+		BoardVO board = new BoardVO();
+		BoardCategoryVO bc = new BoardCategoryVO();
+		board = boarddao.read(postReq.getBoardId());
+		
+		if(postReq.getCategoryId() != 0) {
+			bc = bcDao.select(postReq.getCategoryId());
+		}else {
+			bc = null;
+		}
+		
+		postReqs.setBoardName(board.getBoardName());
+		if(bc == null) {
+			postReqs.setCategoryName("전체");
+		}else {
+			postReqs.setCategoryName(bc.getCategoryName());
+		}
+		
+		return postReqs;
 	}
 	
 	@Override
@@ -133,9 +167,9 @@ public class ReadPostServiceImpl implements ReadPostService{
 	}
 	
 	@Override
-	public List<PostDetailVO> readDetailPostByBoardIdAndCategoryId(PostDetailVO postDetail) {
-		List<PostDetailVO> postDetailList = postdao.readDetailBoardAndCategory(postDetail);
-		return postDetailList;
+	public PostDetailVO readDetailPostByBoardIdAndCategoryId(PostDetailVO postDetail) {
+		PostDetailVO postDetail1 = postdao.readDetailBoardAndCategory(postDetail);
+		return postDetail1;
 	}
 	
 	//특정 게시판에 쓰여진 게시글 검색

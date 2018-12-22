@@ -124,6 +124,7 @@
 		<association property="user" javaType="User" autoMapping="true"/>
 		<association property="boardCategory" javaType="BoardCategory" autoMapping="true"/>
 		<association property="content" javaType="Content" autoMapping="true"/>
+		<association property="boardName" javaType="String"></association>
 	</resultMap>
 	
 	<select id="selectPostDetail" parameterType="int" resultMap="PostMap">
@@ -224,25 +225,15 @@
 	</select>
 	
 	<select id="selectPostDetailByBoardIdAndCategoryId" parameterType="PostDetail" resultMap="PostMap">
-		select p.post_id postId, 
-			post_title title, 
-			write_date writeDate, 
-			p.content_id contentId, 
-			p.board_id boardId, 
-			views,
-			p.user_id writerId,
-			p.category_id boardCategoryId,
-            bc.category_name categoryName,
-			u.user_id writerId,
-			nickname,
-			content,
-			count(l.post_id) likes
+		select
+			b.board_name boardName,
+			bc.category_name categoryName
 		from 
 			post p 
 			join user u on p.user_id = u.user_id
 			join content c on p.content_id = c.content_id
             join board_category bc on p.category_id = bc.category_id
-			left outer join taku.like l on p.post_id = l.post_id
+			join board b on p.board_id = b.board_id
 		where
 			bc.category_id = #{categoryId} 
 			AND p.board_id = #{boardId}
@@ -254,7 +245,8 @@
 			p.post_title title, 
 			p.write_date writeDate, 
 			p.content_id contentId, 
-			p.board_id boardId, 
+			p.board_id boardId,
+			b.board_name boardName, 
 			views,
 			p.user_id writerId,
 			p.category_id categoryId,
@@ -269,6 +261,7 @@
     		join user u on p.user_id = u.user_id
     		join content c on p.content_id = c.content_id
     		join board_category bc on p.category_id = bc.category_id
+    		join board b on p.board_id = b.board_id
 		WHERE
 			p.board_id = #{boardId}
 			<if test="condition.period != null">

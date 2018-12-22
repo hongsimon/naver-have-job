@@ -49,12 +49,11 @@
                     </a>
                   </div>
                   <!-- 내용 -->
-                  <div class="best-content border-padding">
+                  	<div class="best-content border-padding">
                     <!-- 이곳을 수정하세용 -->
-                    <ul class="best-content-border border_size">
+                    	<ul class="best-content-border border_size">
 
-                      <!-- 수정파트  -->
-                      		<c:forEach var="post" items="${postDetailList }" begin="0" end="9" >
+                      		<c:forEach var="post" items="${postLikeList }" begin="0" end="9" >
                       			<li>
 	                        		<div>
 	                          			<div class="board-name con-left">
@@ -81,15 +80,14 @@
 	                        		</div>
 								</li>
                       		</c:forEach>
-                    </ul>
-                  </div>
-
+                    	</ul>
+                  	</div>
                 </div>
 
                 <!-- Q&A -->
                 <div class="col-xs-6 ">
                   <div class="margin-title">
-                    <a href="#" class="not-working-a">
+                    <a href="viewPostList?boardId=1" class="not-working-a">
                       <p class="title-text-big display-in title-text">전체글 </p>
                       <span class="glyphicon glyphicon-menu-right gly-size-middle display-in gly-color"></span>
                     </a>
@@ -98,22 +96,33 @@
                     <!-- 이곳을 수정하세용 -->
                    	<ul class="best-content-border border_size">
 
-                      <!-- 수정파트  -->
-                      		
+                      	<c:forEach var="post" items="${postAllList }" begin="0" end="9" >
                       			<li>
-			                        <div>
-			                          <div class="board-name con-left">
-			                            <a href="#" class="not-working-a point-color">IT/컴퓨터</a>
-			                          </div>
-			                          <div class="content con-left">
-			                            <a href="test" class="content-in">123456789123456789123456789123456789123456789</a>
-			                          </div>
-			                          <div class="board-comment point-color">
-			                            [18]
-			                          </div>
-			                        </div>
-			                      </li>
-
+	                        		<div>
+	                          			<div class="board-name con-left">
+	                            			<a>${post.boardCategory.categoryName }</a>
+	                          			</div>
+	                          			<div class="content con-left">
+	                            			<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
+	                          			</div>
+	                          			<div class="board-comment point-color">
+	                            			<c:if test="${post.comments != null}">
+												<c:choose>
+													<c:when test="${post.comments > 999 }">
+														<div>[999+]</div>
+													</c:when>
+													<c:otherwise>
+														<div>[${post.comments }]</div>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+											<c:if test="${post.comments == null}">
+												<div>[0]</div>
+											</c:if>
+	                          			</div>
+	                        		</div>
+								</li>
+                      	</c:forEach>
                     </ul>
                   </div>
                 </div>
@@ -126,56 +135,66 @@
                     <!-- 이벤트 -->
                     <div class="col-xs-6 notice notice-event border-padding">
                       <ul class="notice-border border_size notice-border-event">
-                        <li>
-                          <div >
-                            <div class="board-name con-left">
-                              <a href="#" class="not-working-a point-color">이벤트 </a>
-                            </div>
-                            <div class="content">
-                              <a href="#" class="content-in">0000000000/0000000000/0000000000/0000000000/0000000000/0000000000/</a>
-                            </div>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div>
-                            <div class="board-name con-left">
-                              <a href="#" class="not-working-a point-color">이벤트 </a>
-                            </div>
-                            <div class="content">
-                              <a href="#"  class="content-in">%#&*!%@^&*)$^!@#^@!(*$%!@^#*)@!&$(*@!^#@!*#%@!&$%!@#$&(@!)^#*(@!&%))</a>
-                            </div>
-                          </div>
-                        </li>
+                        <c:forEach var="post" items="${postNoticeList }" begin="0" end="1" >
+                      			<li>
+	                        		<div>
+	                          			<div class="board-name con-left">
+	                            			<a>${post.boardCategory.categoryName }</a>
+	                          			</div>
+	                          			<div class="content con-left">
+	                            			<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
+	                          			</div>
+	                          			<div class="board-comment point-color">
+	                            			<c:if test="${post.comments != null}">
+												<c:choose>
+													<c:when test="${post.comments > 999 }">
+														<div>[999+]</div>
+													</c:when>
+													<c:otherwise>
+														<div>[${post.comments }]</div>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+											<c:if test="${post.comments == null}">
+												<div>[0]</div>
+											</c:if>
+	                          			</div>
+	                        		</div>
+								</li>
+                      	</c:forEach>
                       </ul>
-
-
                     </div>
 
                     <!-- 공지사항  -->
                     <div class="col-xs-6 notice notice-notice  border-padding">
                       <ul class="notice-border notice-border-notice border_size">
-                        <li>
-                          <div >
-                            <div class="board-name con-left">
-                              <a href="#" class="not-working-a point-color">공지사항 </a>
-                            </div>
-                            <div class="content">
-                              <a href="#" class="content-in">가가가가가가가가가가/가가가가가가가가가가/가가가가가가가가가가/가가가가가가가가가가/</a>
-                            </div> 
-                          </div>
-                        </li>
-
-                        <li>
-                          <div>
-                            <div class="board-name con-left">
-                              <a href="#" class="not-working-a point-color">공지사항 </a>
-                            </div>
-                            <div class="content">
-                              <a href="#"  class="content-in">dfiodgh;sdfoiyhsoifyhsdpiwyi8ftgsdaifgsadkuyfgukawsg</a>
-                            </div>
-                          </div>
-                        </li>
+                        <c:forEach var="post" items="${postEventList }" begin="0" end="1" >
+                      			<li>
+	                        		<div>
+	                          			<div class="board-name con-left">
+	                            			<a>${post.boardCategory.categoryName }</a>
+	                          			</div>
+	                          			<div class="content con-left">
+	                            			<a href="viewPost?postId=${post.post.postId}&boardId=${post.post.boardId }"><span class="glyphicon glyphicon-comment"></span>${post.post.title}</a>
+	                          			</div>
+	                          			<div class="board-comment point-color">
+	                            			<c:if test="${post.comments != null}">
+												<c:choose>
+													<c:when test="${post.comments > 999 }">
+														<div>[999+]</div>
+													</c:when>
+													<c:otherwise>
+														<div>[${post.comments }]</div>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+											<c:if test="${post.comments == null}">
+												<div>[0]</div>
+											</c:if>
+	                          			</div>
+	                        		</div>
+								</li>
+                      	</c:forEach>
                       </ul>
 
 

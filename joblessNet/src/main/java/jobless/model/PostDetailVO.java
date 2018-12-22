@@ -10,9 +10,18 @@ public class PostDetailVO {
 	private ContentVO content;
 	private int likes;
 	private int comments;
+	private String boardName;
 	
 	public BoardCategoryVO getBoardCategory() {
 		return boardCategory;
+	}
+
+	public String getBoardName() {
+		return boardName;
+	}
+
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
 	}
 
 	public void setBoardCategory(BoardCategoryVO boardCategory) {

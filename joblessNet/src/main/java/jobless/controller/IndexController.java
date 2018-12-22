@@ -2,20 +2,17 @@ package jobless.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import jobless.dao.condition.Condition;
+import jobless.dao.condition.Id;
 import jobless.dao.condition.Order;
 import jobless.model.ClipDetailVO;
 import jobless.model.JobAddVO;
 import jobless.model.PostDetailVO;
-import jobless.service.authuser.AuthUser;
 import jobless.service.clip.ReadClipService;
 import jobless.service.jobadd.JobAddService;
 import jobless.service.post.ReadPostService;
@@ -42,16 +39,35 @@ public class IndexController {
 	
 		
 		Condition condition = new Condition();
+		Condition condition1 = new Condition();
+		
+		
+		List<PostDetailVO> postAllList = readPost.readDetailPostList(1, condition);
+		
 		Order order = new Order();
 		order.setLikes(true);
-		condition.setOrder(order);
+		condition1.setOrder(order);
+		List<PostDetailVO> postLikeList = readPost.readDetailPostList(1, condition1);
 		
-		List<PostDetailVO> postList = readPost.readDetailPostList(1, condition);
+		Id id = new Id();
+		id.setCategoryId(2);
+		condition1.setId(id);
+		List<PostDetailVO> postNoticeList = readPost.readDetailPostList(1, condition1);
+		
+		id.setCategoryId(3);
+		condition1.setId(id);
+		List<PostDetailVO> postEventList = readPost.readDetailPostList(1, condition1);
+		
 		List<ClipDetailVO> clipList = readClip.readClipDetailList(condition);
-		mv.addObject("clipDetailList", clipList);
-		mv.addObject("postDetailList", postList);
 		
-		for(PostDetailVO posts : postList) {
+		mv.addObject("postAllList", postAllList);
+		mv.addObject("postLikeList", postLikeList);
+		mv.addObject("postNoticeList", postNoticeList);
+		mv.addObject("postEventList", postEventList);
+		
+		mv.addObject("clipDetailList", clipList);
+		
+		for(PostDetailVO posts : postLikeList) {
 			System.out.println(posts.toString());
 		}
 		
