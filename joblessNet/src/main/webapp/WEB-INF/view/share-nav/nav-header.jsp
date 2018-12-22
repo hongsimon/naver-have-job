@@ -99,8 +99,8 @@
                   <li><a href="${pageContext.request.contextPath}/addJobConfig">전광판 관리</a></li>
                   <li><a href="${pageContext.request.contextPath}/adminApplyPage">요청 관리</a></li>
                   <li class="divider"></li>
-                  <li><a href="">공지사항</a></li>
-                  <li><a href="">이벤트</a></li>  
+                  <li><a href="viewPostList?boardId=1&categoryId=2">공지사항</a></li>
+                  <li><a href="viewPostList?boardId=1&categoryId=3">이벤트</a></li>  
                 </ul>
               </div>
               </c:if>
