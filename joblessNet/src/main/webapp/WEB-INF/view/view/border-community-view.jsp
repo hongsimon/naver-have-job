@@ -16,6 +16,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBroadcaster.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/color-set.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/system.js"></script>
 	
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
@@ -121,7 +122,7 @@
 							<div class="border-comm-content">
 								${postDetail.content.content }</div>
 							<div class="border-comm-like">
-								<form action="postLike" method="POST">
+								<form action="postLike" method="POST" name="border-comm-like">
 									<input type="hidden" name="userId" value="${authUser.userId }">
 									<input type="hidden" name="clip_or_postId" value="${postDetail.post.postId }">
 									<input type="hidden" name="boardId" value="${postDetail.post.boardId }">
@@ -156,7 +157,7 @@
 			                      			<img />
 			                      		</div>
 			                      		<div class="">
-			                        		<form method="post" action="insertPostComment">
+			                        		<form method="post" action="insertPostComment" name="border-comm-content">
                           						<input type="hidden" name="clipId" value=0>
                           						<input type="hidden" name="categoryId" value="${postDetail.post.categoryId }">
                           						<input type="hidden" name="postId" value="${postDetail.post.postId }">
@@ -183,7 +184,7 @@
 												<div class="border-comm-comments-writer">${comments.writerNickname }</div>
 												<div class="con-right border-comm-comments-writer-service">
 												<div>
-													<form method="get" action="deleteCommentPost">
+													<form method="get" action="deleteCommentPost" name="border-comm-del">
                           								<input type="hidden" name="commentId" value=${comments.commentId }>
                           								<input type="hidden" name="categoryId" value="${postDetail.post.categoryId }">
                           								<input type="hidden" name="postId" value="${postDetail.post.postId }">

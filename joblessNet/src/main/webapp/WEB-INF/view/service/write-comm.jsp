@@ -19,6 +19,7 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliceString.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/changeProfile.js"></script>
   	<script type="text/javascript" src="${pageContext.request.contextPath}/js/userService.js"></script>
+  		<script type="text/javascript" src="${pageContext.request.contextPath}/js/system.js"></script>
 
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shareCss.css">
