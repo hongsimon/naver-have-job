@@ -422,7 +422,7 @@ public class PostController {
 													@RequestParam int contentId,
 													@RequestParam(value="postTitle") String title,
 													@RequestParam String content,
-													@RequestParam int categoryId) {
+													@RequestParam("borderName") int categoryId) {
 		System.out.println("게시글 수정 정보 가져오는 중");
 		System.out.println(categoryId);
 		ModelAndView mv = new ModelAndView();

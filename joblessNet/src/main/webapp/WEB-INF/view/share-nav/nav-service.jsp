@@ -57,13 +57,13 @@
 
             </div class="box">
             <div class="left-nav-sub">
-              <a href="#"><div>
+              <a href="viewPostList?boardId=1&categoryId=2"><div>
                 N
               </div>공지사항</a>
             </div>
 
             <div class="left-nav-sub">
-              <a href="#"><div>
+              <a href="viewPostList?boardId=1&categoryId=3"><div>
                 E
               </div>이벤트</a>
             </div>

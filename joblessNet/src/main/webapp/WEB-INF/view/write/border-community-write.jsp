@@ -92,7 +92,7 @@
 	                        		<c:forEach var="category" items="${boardCategoryList}" varStatus="status">
 	                        			<c:if test="${category.categoryName ne '공지' }">
 	    	                    			<c:if test="${category.categoryName ne '이벤트' }">
-					                			<option value="${category.boardCategoryId }">${category.categoryName }${category.boardCategoryId }</option>
+					                			<option value="${category.boardCategoryId }">${category.categoryName }</option>
 					                		</c:if>
 	                        			</c:if>
 				                	</c:forEach>                       		
