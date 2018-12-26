@@ -208,6 +208,7 @@
 
 
 
+
                 </div>
                 <div class="col-xs-4">
                   <div class="clip-list-view">
