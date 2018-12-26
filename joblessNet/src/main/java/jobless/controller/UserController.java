@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jobless.model.AttendanceCheckVO;
 import jobless.model.JobAddVO;
@@ -131,8 +132,8 @@ public class UserController {
 
 		UserVO user = getUserService.getUserByUserId(userId);
 		AuthUser authUser = new AuthUser(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(),
-				user.getPoint(), user.getAdmin(), user.getPlatformId());
-
+				user.getPoint(), user.getAdmin(), user.getPlatformId(),user.isStreamer(), user.getIconId(), user.getFileName());
+		
 		session.setAttribute("authUser", authUser);
 
 		modelAndView.addObject("Success", true);
@@ -145,7 +146,8 @@ public class UserController {
 	// 비밀번호 변경
 	@RequestMapping(value = "/config/changeProfile/password")
 	public ModelAndView configChangePassword_POST(@RequestParam int userId, @RequestParam String nowPw,
-			@RequestParam String newPw, @RequestParam String newPwCk) {
+			@RequestParam String newPw, @RequestParam String newPwCk,
+			RedirectAttributes redirectAttributes) {
 		System.out.println("configChangePassword_POST");
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -153,21 +155,24 @@ public class UserController {
 		UserVO user = getUserService.getUserByUserId(userId);
 		UserRequest userRequest = new UserRequest(nowPw, user.getPassword(), newPw, newPwCk);
 
+		
+		
 		userRequest.validateModifyPw(errors);
-
-		modelAndView.addObject("errors", errors);
-		modelAndView.setViewName("view/service/changeProfile");
-
+		
 		if (!errors.isEmpty()) {
+			modelAndView.addObject("errors", errors);
+			modelAndView.setViewName("view/service/changeProfile");
 			return modelAndView;
+		}else if(errors.isEmpty()) {
+			
+			modifyUserService.modifyUserPw(new UserRequest(userId, newPw));
+			
+			redirectAttributes.addFlashAttribute("Success", "Success");
+			modelAndView.setViewName("redirect:/config/changeProfile");
+			
 		}
+		
 
-		modifyUserService.modifyUserPw(new UserRequest(userId, newPw));
-
-		List<JobAddVO> add = jobAddService.selectAllAdd();
-		modelAndView.addObject("add", add);
-		modelAndView.addObject("Success", "Success");
-		modelAndView.setViewName("view/service/changeProfile");
 		return modelAndView;
 	}
 
