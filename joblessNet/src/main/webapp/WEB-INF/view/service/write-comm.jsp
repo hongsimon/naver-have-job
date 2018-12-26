@@ -75,7 +75,7 @@
                           ${post.postId }
                         </td>
                         <td class="write-info-title">
-                          <a href="${pageContext.request.contextPath}/viewPost?postId=${post.postId}">${post.title }</a>
+                          <a href="${pageContext.request.contextPath}/viewPost?postId=${post.postId}&boardId=${post.boardId}">${post.title }</a>
                         </td>
                         <td>
                           ${post.writeDate}

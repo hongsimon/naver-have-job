@@ -96,6 +96,7 @@ public class IconController {
 	@RequestMapping(value = "/selectMyIconChange", method = RequestMethod.POST)
 	public ModelAndView selectMyIconChange_POST(@RequestParam("iconId") int iconId, @RequestParam("userId") int userId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		modifyUser.updateIconId(iconId, userId);
 		
 		UserVO user = getUserService.getUserByUserId(userId);
 		AuthUser authUser = new AuthUser(user.getUserId(), user.getLoginId(), user.getNickName(), user.getEmail(),
@@ -104,7 +105,7 @@ public class IconController {
 		System.out.println(user.getIconId());
 		session.setAttribute("authUser", authUser);
 		
-		modifyUser.updateIconId(iconId, userId);
+		
 		mv.setViewName("redirect:/main");
 		return mv;
 	}
